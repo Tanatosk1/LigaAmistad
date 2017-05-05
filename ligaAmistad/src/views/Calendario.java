@@ -29,6 +29,7 @@ private FondoVentana fondo;
     public Calendario() {
         initComponents();
         setLocationRelativeTo(null);
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/logo1.png"));
         setIconImage(icon);       
         fondo = new FondoVentana();
@@ -76,6 +77,14 @@ private FondoVentana fondo;
         btnFiltroEditar = new javax.swing.JButton();
         btnFiltroAplicar = new javax.swing.JButton();
         pGestionFechas = new javax.swing.JPanel();
+        jInicioCalendario = new javax.swing.JPanel();
+        lbInicioFechaInicio = new javax.swing.JLabel();
+        txtInicioFechaInicio = new javax.swing.JTextField();
+        lblInicioFechaFin = new javax.swing.JLabel();
+        txtInicioFechaFin = new javax.swing.JTextField();
+        btnIniciocEditar = new javax.swing.JButton();
+        btnInicioAceptar = new javax.swing.JButton();
+        jExcluirFechas = new javax.swing.JPanel();
         lbExcFechaInicio = new javax.swing.JLabel();
         txtExcFechaInicio = new javax.swing.JTextField();
         lblExcFechaFin = new javax.swing.JLabel();
@@ -100,7 +109,7 @@ private FondoVentana fondo;
         setSize(new java.awt.Dimension(1366, 768));
 
         pCalendario.setBackground(new java.awt.Color(255, 255, 255));
-        pCalendario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 4), "  GESTIONAR FILTROS DE EXPORTACIÓN  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(31, 87, 12))); // NOI18N
+        pCalendario.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  GESTIONAR FILTROS DE EXPORTACIÓN  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(31, 87, 12))); // NOI18N
         pCalendario.setPreferredSize(new java.awt.Dimension(1366, 105));
 
         lblCategoria.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -140,7 +149,7 @@ private FondoVentana fondo;
         });
 
         lblFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblFechaFin.setText("Fecha de Inicio");
+        lblFechaFin.setText("Fecha de Fin");
 
         txtFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtFechaFin.setEnabled(false);
@@ -181,34 +190,30 @@ private FondoVentana fondo;
         pCalendarioLayout.setHorizontalGroup(
             pCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pCalendarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pCalendarioLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnFiltroEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnFiltroAplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pCalendarioLayout.createSequentialGroup()
-                        .addComponent(lblCategoria)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblDivision)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
-                        .addComponent(lblJornada)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblFechaInicio)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblFechaFin)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 310, Short.MAX_VALUE)))
+                .addGap(10, 10, 10)
+                .addComponent(lblCategoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblDivision)
+                .addGap(18, 18, 18)
+                .addComponent(cbDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblJornada)
+                .addGap(18, 18, 18)
+                .addComponent(cbJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblFechaInicio)
+                .addGap(18, 18, 18)
+                .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblFechaFin)
+                .addGap(18, 18, 18)
+                .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(btnFiltroEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnFiltroAplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pCalendarioLayout.setVerticalGroup(
@@ -225,20 +230,105 @@ private FondoVentana fondo;
                     .addComponent(lblFechaInicio)
                     .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFechaFin)
-                    .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltroEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltroAplicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCalendarioLayout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addGroup(pCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFiltroAplicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFiltroEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
         );
 
         pGestionFechas.setBackground(new java.awt.Color(255, 255, 255));
-        pGestionFechas.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 4), "  EXCLUIR FECHAS DEL CALENDARIO  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(31, 87, 12))); // NOI18N
+        pGestionFechas.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  EXCLUIR FECHAS DEL CALENDARIO  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(31, 87, 12))); // NOI18N
         pGestionFechas.setPreferredSize(new java.awt.Dimension(1366, 105));
 
+        jInicioCalendario.setBackground(new java.awt.Color(255, 255, 255));
+        jInicioCalendario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0)), " FECHA DE INICIO DE CALENDARIO ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(31, 87, 12)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(31, 87, 12))); // NOI18N
+        jInicioCalendario.setPreferredSize(new java.awt.Dimension(978, 67));
+
+        lbInicioFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
+        lbInicioFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbInicioFechaInicio.setText("Fecha de Incio de Calendario");
+
+        txtInicioFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtInicioFechaInicio.setEnabled(false);
+        txtInicioFechaInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInicioFechaInicioActionPerformed(evt);
+            }
+        });
+
+        lblInicioFechaFin.setBackground(new java.awt.Color(255, 255, 255));
+        lblInicioFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblInicioFechaFin.setText("Fecha de Fin de Calendario");
+
+        txtInicioFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtInicioFechaFin.setEnabled(false);
+        txtInicioFechaFin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInicioFechaFinActionPerformed(evt);
+            }
+        });
+
+        btnIniciocEditar.setBackground(new java.awt.Color(31, 87, 12));
+        btnIniciocEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciocEditar.setText("Editar");
+        btnIniciocEditar.setMaximumSize(new java.awt.Dimension(120, 23));
+        btnIniciocEditar.setMinimumSize(new java.awt.Dimension(120, 23));
+        btnIniciocEditar.setPreferredSize(new java.awt.Dimension(120, 23));
+        btnIniciocEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciocEditarActionPerformed(evt);
+            }
+        });
+
+        btnInicioAceptar.setBackground(new java.awt.Color(31, 87, 12));
+        btnInicioAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btnInicioAceptar.setText("Aceptar");
+        btnInicioAceptar.setMaximumSize(new java.awt.Dimension(120, 23));
+        btnInicioAceptar.setMinimumSize(new java.awt.Dimension(120, 23));
+        btnInicioAceptar.setPreferredSize(new java.awt.Dimension(120, 23));
+        btnInicioAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioAceptarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jInicioCalendarioLayout = new javax.swing.GroupLayout(jInicioCalendario);
+        jInicioCalendario.setLayout(jInicioCalendarioLayout);
+        jInicioCalendarioLayout.setHorizontalGroup(
+            jInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInicioCalendarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbInicioFechaInicio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtInicioFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblInicioFechaFin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtInicioFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnIniciocEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnInicioAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jInicioCalendarioLayout.setVerticalGroup(
+            jInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInicioCalendarioLayout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(jInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbInicioFechaInicio)
+                    .addComponent(txtInicioFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblInicioFechaFin)
+                    .addComponent(txtInicioFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIniciocEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInicioAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
+        );
+
+        jExcluirFechas.setBackground(new java.awt.Color(255, 255, 255));
+        jExcluirFechas.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0)), "  EXCLUIR FECHAS DEL CALENDARIO  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(31, 87, 12))); // NOI18N
+
+        lbExcFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
         lbExcFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbExcFechaInicio.setText("Fecha de Incio");
 
@@ -250,8 +340,9 @@ private FondoVentana fondo;
             }
         });
 
+        lblExcFechaFin.setBackground(new java.awt.Color(255, 255, 255));
         lblExcFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblExcFechaFin.setText("Fecha de Inicio");
+        lblExcFechaFin.setText("Fecha de Fin");
 
         txtExcFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtExcFechaFin.setEnabled(false);
@@ -261,6 +352,7 @@ private FondoVentana fondo;
             }
         });
 
+        lblDescripcion.setBackground(new java.awt.Color(255, 255, 255));
         lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblDescripcion.setText("Descripción");
 
@@ -292,11 +384,11 @@ private FondoVentana fondo;
             }
         });
 
-        javax.swing.GroupLayout pGestionFechasLayout = new javax.swing.GroupLayout(pGestionFechas);
-        pGestionFechas.setLayout(pGestionFechasLayout);
-        pGestionFechasLayout.setHorizontalGroup(
-            pGestionFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pGestionFechasLayout.createSequentialGroup()
+        javax.swing.GroupLayout jExcluirFechasLayout = new javax.swing.GroupLayout(jExcluirFechas);
+        jExcluirFechas.setLayout(jExcluirFechasLayout);
+        jExcluirFechasLayout.setHorizontalGroup(
+            jExcluirFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jExcluirFechasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbExcFechaInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -310,26 +402,45 @@ private FondoVentana fondo;
                 .addGap(18, 18, 18)
                 .addComponent(cbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExcEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnExcExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExcEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnExcExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        pGestionFechasLayout.setVerticalGroup(
-            pGestionFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pGestionFechasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pGestionFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jExcluirFechasLayout.setVerticalGroup(
+            jExcluirFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jExcluirFechasLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jExcluirFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbExcFechaInicio)
                     .addComponent(txtExcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblExcFechaFin)
                     .addComponent(txtExcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDescripcion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addGroup(pGestionFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDescripcion)
                     .addComponent(btnExcEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
+        );
+
+        javax.swing.GroupLayout pGestionFechasLayout = new javax.swing.GroupLayout(pGestionFechas);
+        pGestionFechas.setLayout(pGestionFechasLayout);
+        pGestionFechasLayout.setHorizontalGroup(
+            pGestionFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pGestionFechasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pGestionFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jExcluirFechas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jInicioCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 1310, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pGestionFechasLayout.setVerticalGroup(
+            pGestionFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pGestionFechasLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jInicioCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jExcluirFechas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -526,9 +637,9 @@ private FondoVentana fondo;
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnCalendarioEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnCalendarioGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnCalendarioSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scrollCalendario)
                     .addComponent(pGestionFechas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
@@ -539,17 +650,16 @@ private FondoVentana fondo;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pGestionFechas, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(pGestionFechas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCalendarioSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnCalendarioEditar)
-                        .addComponent(btnCalendarioGenerar)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCalendarioSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCalendarioGenerar)
+                    .addComponent(btnCalendarioEditar))
                 .addContainerGap())
         );
 
@@ -723,23 +833,22 @@ private FondoVentana fondo;
 //        }
     }//GEN-LAST:event_miPDFActionPerformed
 
-    private void txtExcFechaInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExcFechaInicioActionPerformed
+    private void txtInicioFechaInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInicioFechaInicioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtExcFechaInicioActionPerformed
+    }//GEN-LAST:event_txtInicioFechaInicioActionPerformed
 
-    private void txtExcFechaFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExcFechaFinActionPerformed
+    private void txtInicioFechaFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInicioFechaFinActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtExcFechaFinActionPerformed
+    }//GEN-LAST:event_txtInicioFechaFinActionPerformed
 
-    private void btnExcEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcEditarActionPerformed
+    private void btnIniciocEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciocEditarActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/editar.png");
-        int input = JOptionPane.showConfirmDialog(null, "¿Desea editar las fechas de exclusión en el calendario?", "Editar Fechas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea editar la fecha de inicio y fin del calendario?", "Editar Fechas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-            txtExcFechaInicio.setEnabled(true);
-            txtExcFechaFin.setEnabled(true);
-            cbDescripcion.setEnabled(true);
+            txtInicioFechaInicio.setEnabled(true);
+            txtInicioFechaFin.setEnabled(true);
             }
-    }//GEN-LAST:event_btnExcEditarActionPerformed
+    }//GEN-LAST:event_btnIniciocEditarActionPerformed
 
     private void btnFiltroEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroEditarActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/editar.png");
@@ -773,13 +882,15 @@ private FondoVentana fondo;
         // TODO add your handling code here:
     }//GEN-LAST:event_cbDivisionActionPerformed
 
-    private void btnExcExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcExcluirActionPerformed
+    private void btnInicioAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioAceptarActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/aceptar.png");
-        int input = JOptionPane.showConfirmDialog(null, "¿Desea excluir las fechas seleccionadas?", "Excluir Fechas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea aplicar los cambios en las fechas de inicio y fin del calendario?\n "
+               + "                       Esta acción no se puede deshacer", "Aceptar cambios",
+               JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
                 
         }
-    }//GEN-LAST:event_btnExcExcluirActionPerformed
+    }//GEN-LAST:event_btnInicioAceptarActionPerformed
 
     private void btnCalendarioEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalendarioEditarActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/editar.png");
@@ -792,6 +903,34 @@ private FondoVentana fondo;
     private void btnCalendarioSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalendarioSalirActionPerformed
         close();            
     }//GEN-LAST:event_btnCalendarioSalirActionPerformed
+
+    private void txtExcFechaInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExcFechaInicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtExcFechaInicioActionPerformed
+
+    private void txtExcFechaFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExcFechaFinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtExcFechaFinActionPerformed
+
+    private void btnExcEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcEditarActionPerformed
+        ImageIcon icon = new ImageIcon("src/resources/editar.png");
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea editar las fechas de exclusión en el calendario?", "Editar Fechas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        if (input == JOptionPane.YES_OPTION) {
+            txtExcFechaInicio.setEnabled(true);
+            txtExcFechaFin.setEnabled(true);
+            cbDescripcion.setEnabled(true);
+            }
+    }//GEN-LAST:event_btnExcEditarActionPerformed
+
+    private void btnExcExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcExcluirActionPerformed
+        ImageIcon icon = new ImageIcon("src/resources/aceptar.png");
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea excluir las fechas seleccionadas?\n "
+                + "      Esta acción no se puede deshacer", "Excluir Fechas", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        if (input == JOptionPane.YES_OPTION) {
+                
+        }
+    }//GEN-LAST:event_btnExcExcluirActionPerformed
     
     public void close() {
         ImageIcon icon = new ImageIcon("src/resources/back.png");
@@ -844,17 +983,23 @@ private FondoVentana fondo;
     private javax.swing.JButton btnExcExcluir;
     private javax.swing.JButton btnFiltroAplicar;
     private javax.swing.JButton btnFiltroEditar;
+    private javax.swing.JButton btnInicioAceptar;
+    private javax.swing.JButton btnIniciocEditar;
     private javax.swing.JComboBox<String> cbCategoria;
     private javax.swing.JComboBox<String> cbDescripcion;
     private javax.swing.JComboBox<String> cbDivision;
     private javax.swing.JComboBox<String> cbJornada;
+    private javax.swing.JPanel jExcluirFechas;
+    private javax.swing.JPanel jInicioCalendario;
     private javax.swing.JLabel lbExcFechaInicio;
+    private javax.swing.JLabel lbInicioFechaInicio;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblDivision;
     private javax.swing.JLabel lblExcFechaFin;
     private javax.swing.JLabel lblFechaFin;
     private javax.swing.JLabel lblFechaInicio;
+    private javax.swing.JLabel lblInicioFechaFin;
     private javax.swing.JLabel lblJornada;
     private javax.swing.JMenu mExportar;
     private javax.swing.JMenuBar mbCalendario;
@@ -868,5 +1013,7 @@ private FondoVentana fondo;
     private javax.swing.JTextField txtExcFechaInicio;
     private javax.swing.JTextField txtFechaFin;
     private javax.swing.JTextField txtFechaInicio;
+    private javax.swing.JTextField txtInicioFechaFin;
+    private javax.swing.JTextField txtInicioFechaInicio;
     // End of variables declaration//GEN-END:variables
 }

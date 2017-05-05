@@ -40,7 +40,7 @@ private FondoVentana fondo;
     
         setLocationRelativeTo(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         ImageIcon icon = new ImageIcon("src\\resources\\logo1.png".toString());
         Icon icono = new ImageIcon(icon.getImage().getScaledInstance(450, 450, Image.SCALE_DEFAULT));
         lblLogoPrincipal.setText(null);

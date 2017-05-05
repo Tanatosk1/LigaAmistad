@@ -25,7 +25,7 @@ public class FondoVentana extends JDesktopPane {
      public FondoVentana() {
   
        this.setLayout(null); 
-       this.fondoZize(1366, 768);
+    //   this.fondoZize(1366, 768);
   
   try {
        imagen=ImageIO.read(getClass().getResource("/resources/fondo.jpg"));
