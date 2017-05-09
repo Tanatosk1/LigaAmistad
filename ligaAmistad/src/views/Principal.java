@@ -253,13 +253,9 @@ private FondoVentana fondo;
         if (seleccion == JFileChooser.APPROVE_OPTION)
         {
             File fichero = fileChooser.getSelectedFile();
-            try {
-                Desktop.getDesktop().open(fichero);
-                //aqui debe coger los datos del excel y cargarlos a la BBDD
-                new Thread(new LeerExcel(fichero)).start();
-            } catch (IOException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            //Desktop.getDesktop().open(fichero);
+            //aqui debe coger los datos del excel y cargarlos a la BBDD
+            new Thread(new LeerExcel(fichero)).start();
 
         }
     }//GEN-LAST:event_miImpExcelActionPerformed
