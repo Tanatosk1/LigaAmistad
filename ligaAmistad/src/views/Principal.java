@@ -23,6 +23,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import sources.LeerExcel;
 
 /**
  *
@@ -255,6 +256,7 @@ private FondoVentana fondo;
             try {
                 Desktop.getDesktop().open(fichero);
                 //aqui debe coger los datos del excel y cargarlos a la BBDD
+                new Thread(new LeerExcel(fichero)).start();
             } catch (IOException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
