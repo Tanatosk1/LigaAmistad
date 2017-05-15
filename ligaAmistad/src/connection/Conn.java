@@ -71,8 +71,7 @@ public class Conn {
             st.executeUpdate(Query);
         } catch (SQLException ex) {
             LeerExcel.terminar = true;
-            JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos\n "
-                    + "Verifica que ningún campo contiene comillas (\")" );
+            JOptionPane.showMessageDialog(null, "Verfica que la tabla equipo este actualizada" );
         }
     }
     

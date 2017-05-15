@@ -1,6 +1,5 @@
 package sources;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 
 public class jcThread implements Runnable{

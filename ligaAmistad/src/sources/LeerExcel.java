@@ -100,23 +100,28 @@ public class LeerExcel implements Runnable{
             //Creamos un ArrayList para guardar los datos del excel
             List list = (List) sheetData.get(i);
             //Buscamos en la tabla de equipos para obtener el ID de cada equipo, local y visitante
-            ResultSet idEquipoLocal = conn.getValues("ID", "Equipos", "NOMBRE like \"" + list.get(6)+"\"", "");
-            ResultSet idEquipoVisitante = conn.getValues("ID", "Equipos", "NOMBRE like \"" + list.get(9)+"\"", "");
+            ResultSet idEquipoLocal = conn.getValues("ID", "Equipos", "NOMBRE like \"" + String.valueOf(list.get(4)).replace("\"", "")+"\"", "");
+            ResultSet idEquipoVisitante = conn.getValues("ID", "Equipos", "NOMBRE like \"" + String.valueOf(list.get(6)).replace("\"", "")+"\"", "");
             //Sustituimos en el ArrayList el nombre del equipo por su ID
             while(idEquipoLocal.next()){
-                list.set(6, idEquipoLocal.getInt("ID"));
+                list.set(4, idEquipoLocal.getInt("ID"));
+                System.out.println(list.get(4));
             }
             while(idEquipoVisitante.next()){
-                list.set(9, idEquipoVisitante.getInt("ID"));
+                list.set(6, idEquipoVisitante.getInt("ID"));
+                System.out.println(list.get(6));
             }
             //Convertimos el dato de la jornada de DOUBLE a INT, ya que de excel viene como DOUBLE
-            Cell cell = (Cell) list.get(5);
+            Cell cell = (Cell) list.get(1);
             int jornada = 0;
             if(cell.getCellType() == Cell.CELL_TYPE_NUMERIC){
                 jornada = (int)cell.getNumericCellValue();
             }
             //Enviamos la sentencia SQL para insertar los datos
-            conn.insertData("Campeonato", "ID, JORNADA, ID_LOCAL, ID_VISITANTE", "NULL,"+jornada+","+list.get(6)+","+list.get(9));  
+            conn.insertData("Campeonato", "ID, JORNADA, ID_LOCAL, ID_VISITANTE", "NULL,"+jornada+","+list.get(4)+","+list.get(6));  
+            if(LeerExcel.terminar){
+                break;
+            }
             try {
                 Thread.sleep(50);
             } catch (InterruptedException ex) {
