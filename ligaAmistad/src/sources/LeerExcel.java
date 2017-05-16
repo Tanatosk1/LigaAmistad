@@ -21,12 +21,14 @@ import org.apache.poi.xssf.usermodel.*;
  */
 
 public class LeerExcel implements Runnable{
-    public static int max = 0;
-    public static boolean terminar = false;
+    public static int max;
+    public static boolean terminar;
     private File file;
     
     public LeerExcel(File file) {               
         this.file = file;
+        terminar  = false;
+        max = 0;
     }
     
     @Override
@@ -105,11 +107,9 @@ public class LeerExcel implements Runnable{
             //Sustituimos en el ArrayList el nombre del equipo por su ID
             while(idEquipoLocal.next()){
                 list.set(4, idEquipoLocal.getInt("ID"));
-                System.out.println(list.get(4));
             }
             while(idEquipoVisitante.next()){
                 list.set(6, idEquipoVisitante.getInt("ID"));
-                System.out.println(list.get(6));
             }
             //Convertimos el dato de la jornada de DOUBLE a INT, ya que de excel viene como DOUBLE
             Cell cell = (Cell) list.get(1);
@@ -125,14 +125,15 @@ public class LeerExcel implements Runnable{
             try {
                 Thread.sleep(50);
             } catch (InterruptedException ex) {
-                terminar = true;
                 JOptionPane.showMessageDialog(null, ex);
             }
         }
+
         //Si no hay problema realizamos commit a la BBDD para guardar los datos
-        conn.getConection().commit();
+        if(!LeerExcel.terminar){
+            conn.getConection().commit();
+        }else{
         //Si se encuentran problemas realizamos un rollbak para no guardar nada en la BDD
-        if(conn.getConection() != null){
             conn.getConection().rollback();
         }
         //Desconectamos de la BBDD
