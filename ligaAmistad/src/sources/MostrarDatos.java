@@ -114,7 +114,7 @@ public class MostrarDatos {
                 + "INNER JOIN Equipos v ON c.ID_VISITANTE = v.ID "
                 + "LEFT JOIN Campos ca ON c.ID_CAMPO = ca.ID INNER JOIN competicion com ON l.ID_COMPETICION = com.ID "
                 + "INNER JOIN Division d ON l.ID_DIVISION = d.ID";
-        String order = "c.JORNADA"; 
+        String order = "c.JORNADA, com.ID, d.ID"; 
         ResultSet campeonato = con.getValues(select, from, "", order);
             try {
                 while(campeonato.next()){
