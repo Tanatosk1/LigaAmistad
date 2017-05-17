@@ -5,12 +5,18 @@
  */
 package views;
 
+import connection.Conn;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import sources.MostrarDatos;
 
 /**
  *
@@ -18,7 +24,8 @@ import javax.swing.JOptionPane;
  */
 public class Restricciones extends javax.swing.JFrame {
         private FondoVentana fondo;
-        
+        private final Conn conn = new Conn();
+        private final MostrarDatos md = new MostrarDatos();
         Vector v=new Vector();
         
 
@@ -30,6 +37,9 @@ public class Restricciones extends javax.swing.JFrame {
         setIconImage(icon);
         fondo = new FondoVentana();
         this.add(fondo);
+        
+        md.llenarComboEquipos(this.cbEquipos);
+        md.llenarComboCampos(this.cbCampos);
         
         
         
@@ -544,10 +554,10 @@ public class Restricciones extends javax.swing.JFrame {
 
         cbEquipos.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         cbEquipos.setForeground(new java.awt.Color(31, 87, 12));
-        cbEquipos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un equipo", "Equipo 1", "Equipo 2", "Equipo 3", "Equipo 4", "Equipo 5", "Equipo 6", "Equipo 7", "Equipo 8", "Equipo 9", "Equipo 10", "Equipo 11", "Equipo 12" }));
-        cbEquipos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbEquiposActionPerformed(evt);
+        cbEquipos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un equipo" }));
+        cbEquipos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbEquiposItemStateChanged(evt);
             }
         });
 
@@ -688,8 +698,8 @@ public class Restricciones extends javax.swing.JFrame {
         lblNoCoincidir.setText("No coincidir con equipo:");
 
         cbNoCoincidir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cbNoCoincidir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un equipo", "Equipo 1", "Equipo 2", "Equipo 3", "Equipo 4", "Equipo 5", "Equipo 6", "Equipo 7", "Equipo 8", "Equipo 9", "Equipo 10", "Equipo 11", "Equipo 12" }));
         cbNoCoincidir.setEnabled(false);
+        cbNoCoincidir.setPreferredSize(new java.awt.Dimension(300, 28));
 
         separadorEquipos5.setForeground(new java.awt.Color(31, 87, 12));
 
@@ -865,7 +875,7 @@ public class Restricciones extends javax.swing.JFrame {
                 .addComponent(ckCongelarEquipo)
                 .addGap(10, 10, 10)
                 .addComponent(separadorEquipos6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarEquipos)
                     .addComponent(btnEditarEquipos))
@@ -886,7 +896,7 @@ public class Restricciones extends javax.swing.JFrame {
 
         cbCampos.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         cbCampos.setForeground(new java.awt.Color(31, 87, 12));
-        cbCampos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un campo", "Montaña Pacho 3 (MP-3)", "Montaña Pacho 4 (MP-4)", "Tíncer (TNC)", "Santa Maria (STM)", "Las Chumberas (CHU)", "Las Delicias (DEL)", "El Chorrillo (CHO)", "El Draguillo (DRA)" }));
+        cbCampos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un campo" }));
         cbCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCamposActionPerformed(evt);
@@ -902,21 +912,11 @@ public class Restricciones extends javax.swing.JFrame {
         ckLunesCampos.setMaximumSize(new java.awt.Dimension(111, 31));
         ckLunesCampos.setMinimumSize(new java.awt.Dimension(111, 31));
         ckLunesCampos.setPreferredSize(new java.awt.Dimension(111, 31));
-        ckLunesCampos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckLunesCamposActionPerformed(evt);
-            }
-        });
 
         ckLunesPrimera.setBackground(new java.awt.Color(255, 255, 255));
         ckLunesPrimera.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ckLunesPrimera.setText("Primera Hora");
         ckLunesPrimera.setEnabled(false);
-        ckLunesPrimera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckLunesPrimeraActionPerformed(evt);
-            }
-        });
 
         txtLunesPrimera.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtLunesPrimera.setEnabled(false);
@@ -938,11 +938,6 @@ public class Restricciones extends javax.swing.JFrame {
         ckMartesCampos.setMaximumSize(new java.awt.Dimension(111, 31));
         ckMartesCampos.setMinimumSize(new java.awt.Dimension(111, 31));
         ckMartesCampos.setPreferredSize(new java.awt.Dimension(111, 31));
-        ckMartesCampos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckMartesCamposActionPerformed(evt);
-            }
-        });
 
         ckMartesPrimera.setBackground(new java.awt.Color(255, 255, 255));
         ckMartesPrimera.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -966,11 +961,6 @@ public class Restricciones extends javax.swing.JFrame {
         ckMiercolesCampos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         ckMiercolesCampos.setText("Miércoles");
         ckMiercolesCampos.setEnabled(false);
-        ckMiercolesCampos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckMiercolesCamposActionPerformed(evt);
-            }
-        });
 
         ckMiercolesPrimera.setBackground(new java.awt.Color(255, 255, 255));
         ckMiercolesPrimera.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -997,11 +987,6 @@ public class Restricciones extends javax.swing.JFrame {
         ckJuevesCampos.setMaximumSize(new java.awt.Dimension(111, 31));
         ckJuevesCampos.setMinimumSize(new java.awt.Dimension(111, 31));
         ckJuevesCampos.setPreferredSize(new java.awt.Dimension(111, 31));
-        ckJuevesCampos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckJuevesCamposActionPerformed(evt);
-            }
-        });
 
         ckJuevesPrimera.setBackground(new java.awt.Color(255, 255, 255));
         ckJuevesPrimera.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -1028,11 +1013,6 @@ public class Restricciones extends javax.swing.JFrame {
         ckViernesCampos.setMaximumSize(new java.awt.Dimension(111, 31));
         ckViernesCampos.setMinimumSize(new java.awt.Dimension(111, 31));
         ckViernesCampos.setPreferredSize(new java.awt.Dimension(111, 31));
-        ckViernesCampos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckViernesCamposActionPerformed(evt);
-            }
-        });
 
         ckViernesPrimera.setBackground(new java.awt.Color(255, 255, 255));
         ckViernesPrimera.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -1059,11 +1039,6 @@ public class Restricciones extends javax.swing.JFrame {
         ckSabadoCampos.setMaximumSize(new java.awt.Dimension(111, 31));
         ckSabadoCampos.setMinimumSize(new java.awt.Dimension(111, 31));
         ckSabadoCampos.setPreferredSize(new java.awt.Dimension(111, 31));
-        ckSabadoCampos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckSabadoCamposActionPerformed(evt);
-            }
-        });
 
         ckSabadoPrimera.setBackground(new java.awt.Color(255, 255, 255));
         ckSabadoPrimera.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -1090,11 +1065,6 @@ public class Restricciones extends javax.swing.JFrame {
         ckDomingoCampos.setMaximumSize(new java.awt.Dimension(111, 31));
         ckDomingoCampos.setMinimumSize(new java.awt.Dimension(111, 31));
         ckDomingoCampos.setPreferredSize(new java.awt.Dimension(111, 31));
-        ckDomingoCampos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckDomingoCamposActionPerformed(evt);
-            }
-        });
 
         ckDomingoPrimera.setBackground(new java.awt.Color(255, 255, 255));
         ckDomingoPrimera.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -1432,10 +1402,6 @@ public class Restricciones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ckSabadoEquiposActionPerformed
 
-    private void cbEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEquiposActionPerformed
-        
-    }//GEN-LAST:event_cbEquiposActionPerformed
-
     private void ckLunesPrimeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckLunesPrimeraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ckLunesPrimeraActionPerformed
@@ -1537,6 +1503,10 @@ public class Restricciones extends javax.swing.JFrame {
             txtDomingoSegunda.setEnabled(false);
         }
     }//GEN-LAST:event_ckDomingoCamposActionPerformed
+
+    private void cbEquiposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEquiposItemStateChanged
+        md.llenarComboNoCoincidir(this.cbNoCoincidir, this.cbEquipos.getSelectedIndex());
+    }//GEN-LAST:event_cbEquiposItemStateChanged
    
     public void close() {
         ImageIcon icon = new ImageIcon("src/resources/back.png");
