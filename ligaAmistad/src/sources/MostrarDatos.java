@@ -112,7 +112,7 @@ public class MostrarDatos {
                 + "d.DIVISION AS \"DIVISION\"";
         String from = " Campeonato c INNER JOIN Equipos l ON c.ID_LOCAL = l.ID "
                 + "INNER JOIN Equipos v ON c.ID_VISITANTE = v.ID "
-                + "LEFT JOIN Campos ca ON c.ID_CAMPO = ca.ID INNER JOIN competicion com ON l.ID_COMPETICION = com.ID "
+                + "LEFT JOIN Campos ca ON c.ID_CAMPO = ca.ID INNER JOIN Competicion com ON l.ID_COMPETICION = com.ID "
                 + "INNER JOIN Division d ON l.ID_DIVISION = d.ID";
         String order = "c.JORNADA, com.ID, d.ID"; 
         ResultSet campeonato = con.getValues(select, from, "", order);
