@@ -14,6 +14,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import sources.Filtros;
+import sources.GeneraCalendario;
 import sources.MostrarDatos;
 
 /**
@@ -24,6 +25,7 @@ public class Calendario extends javax.swing.JFrame {
     
 private FondoVentana fondo;
 private final MostrarDatos md = new MostrarDatos();
+private final GeneraCalendario gc = new GeneraCalendario();
 private Filtros filtro;
 
     public Calendario() {
@@ -804,7 +806,7 @@ private Filtros filtro;
                + "                       Esta acción no se puede deshacer", "Aceptar cambios",
                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-                
+            gc.generaFechas(this.txtInicioFechaInicio.getText(), this.txtInicioFechaFin.getText(), this.tCalendario);
         }
     }//GEN-LAST:event_btnInicioAceptarActionPerformed
 
