@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import sources.Filtros;
 import sources.MostrarDatos;
 
 /**
@@ -23,6 +24,7 @@ public class Calendario extends javax.swing.JFrame {
     
 private FondoVentana fondo;
 private final MostrarDatos md = new MostrarDatos();
+private Filtros filtro;
 
     public Calendario() {
         initComponents();
@@ -779,7 +781,8 @@ private final MostrarDatos md = new MostrarDatos();
         ImageIcon icon = new ImageIcon("src/resources/aceptar.png");
         int input = JOptionPane.showConfirmDialog(null, "¿Desea aplicar los filtros seleccionados?", "Aplicar Filtros", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-                
+              filtro = new Filtros(this.cbCategoria.getSelectedIndex(), this.cbDivision.getSelectedIndex(),
+              this.cbJornada.getSelectedIndex(), this.tCalendario);
         }
     }//GEN-LAST:event_btnFiltroAplicarActionPerformed
 
