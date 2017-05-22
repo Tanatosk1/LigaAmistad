@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,12 +41,10 @@ public class GeneraCalendario {
                 tabla.setValueAt(formatter.format(cInicio.getTime()), i, 1);
                 tabla.setValueAt(strDays[cInicio.get(Calendar.DAY_OF_WEEK)-1], i, 2);
             }
-            System.out.println(formatter.format(cInicio.getTime()));
-            System.out.println(strDays[cInicio.get(Calendar.DAY_OF_WEEK)-1]);
             
 
         } catch (ParseException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Introduce la fecha de inicio y fin del campeonato", "Error en fechas", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

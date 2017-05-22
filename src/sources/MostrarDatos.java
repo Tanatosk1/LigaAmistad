@@ -73,7 +73,7 @@ public class MostrarDatos {
     public void llenarComboNoCoincidir(JComboBox cbNoCoincidir, int id){
         cbNoCoincidir.removeAllItems();
         try {
-            
+            cbNoCoincidir.addItem("");
             int idCat = 0;
             con.conectar();
             ResultSet idCategoria = con.getValues("ID_COMPETICION", "Equipos", "ID = " + id, "");
