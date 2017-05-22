@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import sources.CrearDocumentos;
 import sources.Filtros;
 import sources.GeneraCalendario;
 import sources.MostrarDatos;
@@ -27,6 +28,7 @@ private FondoVentana fondo;
 private final MostrarDatos md = new MostrarDatos();
 private final GeneraCalendario gc = new GeneraCalendario();
 private Filtros filtro;
+private final CrearDocumentos cd = new CrearDocumentos();
 
     public Calendario() {
         initComponents();
@@ -466,14 +468,15 @@ private Filtros filtro;
 
     private void miExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExcelActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de Excel (*.xls; *.xlsx)", "xls", "xlsx");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de Excel (*.xlsx)", "xlsx");
         fileChooser.setFileFilter(filter);
         int seleccion = fileChooser.showSaveDialog(new Principal());
         if (seleccion == JFileChooser.APPROVE_OPTION)
         {
             File fichero = fileChooser.getSelectedFile();
-            System.out.println("Save as file: " + fichero.getAbsolutePath());
+            //System.out.println("Save as file: " + fichero.getAbsolutePath()+"."+filter.getExtensions()[0]);
             //aqui debe coger los datos de la BBDD y guardarlos en un excel
+            cd.crearExcel(fichero.getAbsolutePath()+"."+filter.getExtensions()[0], this.tCalendario);
 
         }
 //        String categoria2 = (String) cbCategoria.getSelectedItem();
