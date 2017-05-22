@@ -793,15 +793,13 @@ public class Restricciones extends javax.swing.JFrame {
                             .addComponent(separadorEquipos4, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(separadorEquipos3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(separadorEquipos2)
-                            .addGroup(pEquiposLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(lblLogoEquipos)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblEquipos)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbEquipos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(separadorEquipos1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pEquiposLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnEditarEquipos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAceptarEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
                                 .addComponent(lblDiasEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -820,11 +818,12 @@ public class Restricciones extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(ckJuevesEquipos)))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(pEquiposLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnEditarEquipos)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
+                                .addComponent(lblLogoEquipos)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAceptarEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lblEquipos)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbEquipos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(10, 10, 10))))
         );
         pEquiposLayout.setVerticalGroup(
@@ -1117,7 +1116,7 @@ public class Restricciones extends javax.swing.JFrame {
 
         btnAceptarEquipos1.setBackground(new java.awt.Color(31, 87, 12));
         btnAceptarEquipos1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAceptarEquipos1.setText("Aplicar");
+        btnAceptarEquipos1.setText("Aceptar");
         btnAceptarEquipos1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarEquipos1ActionPerformed(evt);
@@ -1152,12 +1151,12 @@ public class Restricciones extends javax.swing.JFrame {
                             .addComponent(separadorCampos6)
                             .addComponent(separadorCampos7)
                             .addComponent(separadorCampos8)
-                            .addGroup(pCamposLayout.createSequentialGroup()
-                                .addComponent(lblLogoCampos)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblCampos)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbCampos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnEditarEquipos1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAceptarEquipos1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(separadorCampos9, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pCamposLayout.createSequentialGroup()
                                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pCamposLayout.createSequentialGroup()
@@ -1222,12 +1221,12 @@ public class Restricciones extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(txtMartesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnEditarEquipos1)
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addComponent(lblLogoCampos)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAceptarEquipos1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(separadorCampos9, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(lblCampos)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbCampos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         pCamposLayout.setVerticalGroup(
@@ -1434,7 +1433,7 @@ public class Restricciones extends javax.swing.JFrame {
                 .addComponent(jExcluirFechas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 659, Short.MAX_VALUE)
                     .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1633,8 +1632,7 @@ public class Restricciones extends javax.swing.JFrame {
 
     private void btnExcExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcExcluirActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/aceptar.png");
-        int input = JOptionPane.showConfirmDialog(null, "¿Desea excluir las fechas seleccionadas?\n "
-            + "      Esta acción no se puede deshacer", "Excluir Fechas",
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea excluir las fechas seleccionadas?", "Excluir Fechas",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
 
