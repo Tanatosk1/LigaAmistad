@@ -30,15 +30,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Component id="jExcluirFechas" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Component id="pEquipos" pref="658" max="32767" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="pCampos" pref="670" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jExcluirFechas" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -51,7 +51,7 @@
               <Component id="jExcluirFechas" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pEquipos" pref="0" max="32767" attributes="0"/>
+                  <Component id="pEquipos" pref="659" max="32767" attributes="0"/>
                   <Component id="pCampos" pref="659" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -91,17 +91,17 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblHorasEquipos" min="-2" pref="212" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="ckPrimeraEquipos" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="ckSegundaEquipos" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="separadorEquipos5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="separadorEquipos4" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblNoCoincidir" min="-2" pref="212" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -111,7 +111,7 @@
                                   <Component id="lblCamposExcluidos" min="-2" pref="212" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="ckCHU" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="ckDEL" min="-2" max="-2" attributes="0"/>
@@ -120,7 +120,7 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="ckDRA" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="ckMP3" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="ckMP4" min="-2" max="-2" attributes="0"/>
@@ -131,59 +131,64 @@
                                       </Group>
                                   </Group>
                               </Group>
+                              <Component id="ckCongelarEquipo" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="ckCongelarEquipo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="separadorEquipos6" alignment="0" max="32767" attributes="0"/>
-                              <Component id="separadorEquipos5" alignment="0" max="32767" attributes="0"/>
-                              <Component id="separadorEquipos4" alignment="0" max="32767" attributes="0"/>
-                              <Component id="separadorEquipos3" alignment="0" max="32767" attributes="0"/>
-                              <Component id="separadorEquipos2" alignment="1" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                  <Component id="lblLogoEquipos" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lblEquipos" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="cbEquipos" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="separadorEquipos1" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="lblDiasEquipos" min="-2" pref="212" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblDiasEquipos" min="-2" pref="125" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="ckLunesEquipos" min="-2" max="-2" attributes="0"/>
-                                      <Component id="ckViernesEquipos" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="ckMiercolesEquipos" max="32767" attributes="0"/>
+                                      <Component id="ckJuevesEquipos" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="ckMartesEquipos" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="ckLunesEquipos" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="ckSabadoEquipos" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="ckDomingoEquipos" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="cbMartes" max="32767" attributes="0"/>
+                                          <Component id="cbLunes" min="-2" pref="120" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="ckMartesEquipos" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="ckMiercolesEquipos" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="ckJuevesEquipos" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="cbJueves" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="cbMiercoles" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="ckSabadoEquipos" min="-2" pref="97" max="-2" attributes="0"/>
+                                      <Component id="ckViernesEquipos" min="-2" pref="97" max="-2" attributes="0"/>
+                                      <Component id="ckDomingoEquipos" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cbViernes" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="cbDomingo" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="cbSabado" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
+                              <Component id="separadorEquipos1" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblLogoEquipos" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="lblEquipos" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="cbEquipos" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="btnEditarEquipos" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="btnAceptarEquipos" min="-2" pref="95" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="separadorEquipos6" alignment="0" max="32767" attributes="0"/>
+                              <Component id="separadorEquipos2" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
@@ -205,30 +210,39 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="separadorEquipos1" min="-2" pref="11" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblDiasEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ckLunesEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ckMartesEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ckMiercolesEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ckJuevesEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="ckMartesEquipos" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbMartes" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ckSabadoEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbSabado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="ckMiercolesEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbMiercoles" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ckDomingoEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbDomingo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="ckJuevesEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbJueves" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDiasEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ckLunesEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbLunes" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ckViernesEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbViernes" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ckSabadoEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ckDomingoEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ckViernesEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="separadorEquipos2" min="-2" pref="10" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblHorasEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ckPrimeraEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ckSegundaEquipos" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="separadorEquipos3" min="-2" pref="10" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCamposExcluidos" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ckMP3" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -243,9 +257,9 @@
                       <Component id="ckDEL" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ckCHO" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                   <Component id="separadorEquipos4" min="-2" pref="10" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblNoCoincidir" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbNoCoincidir" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -365,6 +379,9 @@
             <Property name="text" type="java.lang.String" value="Martes"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckMartesEquiposActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckMiercolesEquipos">
           <Properties>
@@ -377,6 +394,9 @@
             <Property name="text" type="java.lang.String" value="Mi&#xe9;rcoles"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckMiercolesEquiposActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckJuevesEquipos">
           <Properties>
@@ -389,6 +409,9 @@
             <Property name="text" type="java.lang.String" value="Jueves"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckJuevesEquiposActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckViernesEquipos">
           <Properties>
@@ -401,6 +424,9 @@
             <Property name="text" type="java.lang.String" value="Viernes"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckViernesEquiposActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckSabadoEquipos">
           <Properties>
@@ -428,59 +454,11 @@
             <Property name="text" type="java.lang.String" value="Domingo"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckDomingoEquiposActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="separadorEquipos2">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c" green="57" red="1f" type="rgb"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblHorasEquipos">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Horas exclu&#xed;dos:"/>
-            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[191, 22]"/>
-            </Property>
-            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[191, 22]"/>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[191, 22]"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="ckPrimeraEquipos">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Primera"/>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="ckSegundaEquipos">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Segunda"/>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JSeparator" name="separadorEquipos3">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c" green="57" red="1f" type="rgb"/>
@@ -701,6 +679,121 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarEquiposActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JComboBox" name="cbLunes">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Selecciona Hora"/>
+                <StringItem index="1" value="Primera"/>
+                <StringItem index="2" value="Segunda"/>
+                <StringItem index="3" value="Ambas"/>
+              </StringArray>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbMartes">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Selecciona Hora"/>
+                <StringItem index="1" value="Primera"/>
+                <StringItem index="2" value="Segunda"/>
+                <StringItem index="3" value="Ambas"/>
+              </StringArray>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbMartesActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbMiercoles">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Selecciona Hora"/>
+                <StringItem index="1" value="Primera"/>
+                <StringItem index="2" value="Segunda"/>
+                <StringItem index="3" value="Ambas"/>
+              </StringArray>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbJueves">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Selecciona Hora"/>
+                <StringItem index="1" value="Primera"/>
+                <StringItem index="2" value="Segunda"/>
+                <StringItem index="3" value="Ambas"/>
+              </StringArray>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbViernes">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Selecciona Hora"/>
+                <StringItem index="1" value="Primera"/>
+                <StringItem index="2" value="Segunda"/>
+                <StringItem index="3" value="Ambas"/>
+              </StringArray>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbSabado">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Selecciona Hora"/>
+                <StringItem index="1" value="Primera"/>
+                <StringItem index="2" value="Segunda"/>
+                <StringItem index="3" value="Ambas"/>
+              </StringArray>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbDomingo">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Selecciona Hora"/>
+                <StringItem index="1" value="Primera"/>
+                <StringItem index="2" value="Segunda"/>
+                <StringItem index="3" value="Ambas"/>
+              </StringArray>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="pCampos">
@@ -754,13 +847,13 @@
                               <Component id="separadorCampos6" alignment="0" max="32767" attributes="0"/>
                               <Component id="separadorCampos7" alignment="0" max="32767" attributes="0"/>
                               <Component id="separadorCampos8" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblLogoCampos" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lblCampos" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="cbCampos" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="btnEditarEquipos1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnAceptarEquipos1" min="-2" pref="102" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="separadorCampos9" alignment="1" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
@@ -833,13 +926,13 @@
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="btnEditarEquipos1" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblLogoCampos" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="btnAceptarEquipos1" min="-2" pref="102" max="-2" attributes="0"/>
+                                  <Component id="lblCampos" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="cbCampos" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="separadorCampos9" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1017,6 +1110,9 @@
               <Dimension value="[111, 31]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckLunesCamposActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckLunesPrimera">
           <Properties>
@@ -1085,6 +1181,9 @@
               <Dimension value="[111, 31]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckMartesCamposActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckMartesPrimera">
           <Properties>
@@ -1144,6 +1243,9 @@
             <Property name="text" type="java.lang.String" value="Mi&#xe9;rcoles"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckMiercolesCamposActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckMiercolesPrimera">
           <Properties>
@@ -1212,6 +1314,9 @@
               <Dimension value="[111, 31]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckJuevesCamposActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckJuevesPrimera">
           <Properties>
@@ -1280,6 +1385,9 @@
               <Dimension value="[111, 31]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckViernesCamposActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckViernesPrimera">
           <Properties>
@@ -1348,6 +1456,9 @@
               <Dimension value="[111, 31]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckSabadoCamposActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckSabadoPrimera">
           <Properties>
@@ -1416,6 +1527,9 @@
               <Dimension value="[111, 31]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckDomingoCamposActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckDomingoPrimera">
           <Properties>
@@ -1511,7 +1625,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Aplicar"/>
+            <Property name="text" type="java.lang.String" value="Aceptar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarEquipos1ActionPerformed"/>
@@ -1546,14 +1660,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lbExcFechaInicio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtExcFechaInicio" min="-2" pref="100" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="dExcFechaInicio" min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lblExcFechaFin" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtExcFechaFin" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="dExcFechaFin" min="-2" pref="120" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lblDescripcion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="cbDescripcion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="btnExcEditar" min="-2" pref="145" max="-2" attributes="0"/>
@@ -1567,15 +1681,17 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cbDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbExcFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtExcFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblExcFechaFin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtExcFechaFin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnExcEditar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnExcExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="dExcFechaFin" min="-2" max="-2" attributes="0"/>
+                      <Component id="dExcFechaInicio" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="cbDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbExcFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblExcFechaFin" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnExcEditar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnExcExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               </Group>
@@ -1594,16 +1710,10 @@
             <Property name="text" type="java.lang.String" value="Fecha de Incio"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtExcFechaInicio">
+        <Component class="com.toedter.calendar.JDateChooser" name="dExcFechaInicio">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtExcFechaInicioActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblExcFechaFin">
           <Properties>
@@ -1616,16 +1726,10 @@
             <Property name="text" type="java.lang.String" value="Fecha de Fin"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtExcFechaFin">
+        <Component class="com.toedter.calendar.JDateChooser" name="dExcFechaFin">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtExcFechaFinActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDescripcion">
           <Properties>
