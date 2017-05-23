@@ -90,13 +90,15 @@ private FondoVentana fondo;
         btnCamposP = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         mbprincipal = new javax.swing.JMenuBar();
+        mMenu = new javax.swing.JMenu();
         mOpciones = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
         miImpExcel = new javax.swing.JMenuItem();
+        mInsEquipo = new javax.swing.JMenuItem();
+        mInsCampo = new javax.swing.JMenuItem();
         miCambiarLogo = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mGenerarCalendario = new javax.swing.JMenuItem();
+        mConfiguracion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Liga de la Amistad");
@@ -165,66 +167,87 @@ private FondoVentana fondo;
         mbprincipal.setBackground(new java.awt.Color(31, 87, 12));
         mbprincipal.setForeground(new java.awt.Color(255, 255, 255));
 
-        mOpciones.setForeground(new java.awt.Color(255, 255, 255));
-        mOpciones.setText("Opciones");
+        mMenu.setForeground(new java.awt.Color(255, 255, 255));
+        mMenu.setText("Menú");
 
-        jMenu1.setBackground(new java.awt.Color(31, 87, 12));
-        jMenu1.setText("Archivos");
+        mOpciones.setBackground(new java.awt.Color(31, 87, 12));
+        mOpciones.setText("Archivos");
 
         miImpExcel.setBackground(new java.awt.Color(31, 87, 12));
         miImpExcel.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         miImpExcel.setForeground(new java.awt.Color(255, 255, 255));
         miImpExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/importar.png"))); // NOI18N
-        miImpExcel.setText("IMPORTAR EXCEL");
+        miImpExcel.setText("Importar Excel");
         miImpExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miImpExcelActionPerformed(evt);
             }
         });
-        jMenu1.add(miImpExcel);
+        mOpciones.add(miImpExcel);
+
+        mInsEquipo.setBackground(new java.awt.Color(31, 87, 12));
+        mInsEquipo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        mInsEquipo.setForeground(new java.awt.Color(255, 255, 255));
+        mInsEquipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/equipos_menu.png"))); // NOI18N
+        mInsEquipo.setText("Insertar Equipo");
+        mOpciones.add(mInsEquipo);
+
+        mInsCampo.setBackground(new java.awt.Color(31, 87, 12));
+        mInsCampo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        mInsCampo.setForeground(new java.awt.Color(255, 255, 255));
+        mInsCampo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/campo_menu.png"))); // NOI18N
+        mInsCampo.setText("Insertar Campo");
+        mInsCampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mInsCampoActionPerformed(evt);
+            }
+        });
+        mOpciones.add(mInsCampo);
 
         miCambiarLogo.setBackground(new java.awt.Color(31, 87, 12));
         miCambiarLogo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         miCambiarLogo.setForeground(new java.awt.Color(255, 255, 255));
         miCambiarLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cambiarlogo.png"))); // NOI18N
-        miCambiarLogo.setText("CAMBIAR LOGO");
+        miCambiarLogo.setText("cambiar Logo");
         miCambiarLogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miCambiarLogoActionPerformed(evt);
             }
         });
-        jMenu1.add(miCambiarLogo);
+        mOpciones.add(miCambiarLogo);
 
-        mOpciones.add(jMenu1);
+        mMenu.add(mOpciones);
 
         jMenu2.setBackground(new java.awt.Color(31, 87, 12));
         jMenu2.setText("Opciones");
 
-        jMenuItem1.setBackground(new java.awt.Color(31, 87, 12));
-        jMenuItem1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenuItem1.setText("GENERAR CALENDARIO");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mGenerarCalendario.setBackground(new java.awt.Color(31, 87, 12));
+        mGenerarCalendario.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        mGenerarCalendario.setForeground(new java.awt.Color(255, 255, 255));
+        mGenerarCalendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/generar.png"))); // NOI18N
+        mGenerarCalendario.setText("Generar Calendario");
+        mGenerarCalendario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mGenerarCalendarioActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(mGenerarCalendario);
 
-        jMenuItem2.setBackground(new java.awt.Color(31, 87, 12));
-        jMenuItem2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        jMenuItem2.setForeground(new java.awt.Color(255, 255, 255));
-        jMenuItem2.setText("CONFIGURACIÓN");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mConfiguracion.setBackground(new java.awt.Color(31, 87, 12));
+        mConfiguracion.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        mConfiguracion.setForeground(new java.awt.Color(255, 255, 255));
+        mConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/configuracion.png"))); // NOI18N
+        mConfiguracion.setText("Configuración");
+        mConfiguracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mConfiguracionActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenu2.add(mConfiguracion);
 
-        mOpciones.add(jMenu2);
+        mMenu.add(jMenu2);
 
-        mbprincipal.add(mOpciones);
+        mbprincipal.add(mMenu);
 
         setJMenuBar(mbprincipal);
 
@@ -345,15 +368,19 @@ private FondoVentana fondo;
 
     }//GEN-LAST:event_btncalendarioPMouseEntered
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mGenerarCalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mGenerarCalendarioActionPerformed
         Calendario frm = new Calendario ();
         frm.setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mGenerarCalendarioActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mConfiguracionActionPerformed
         Restricciones frm = new Restricciones ();
         frm.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_mConfiguracionActionPerformed
+
+    private void mInsCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mInsCampoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mInsCampoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -406,11 +433,13 @@ private FondoVentana fondo;
     private javax.swing.JButton btnEquiposP;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btncalendarioP;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel lblLogoPrincipal;
+    private javax.swing.JMenuItem mConfiguracion;
+    private javax.swing.JMenuItem mGenerarCalendario;
+    private javax.swing.JMenuItem mInsCampo;
+    private javax.swing.JMenuItem mInsEquipo;
+    private javax.swing.JMenu mMenu;
     private javax.swing.JMenu mOpciones;
     private javax.swing.JMenuBar mbprincipal;
     private javax.swing.JMenuItem miCambiarLogo;

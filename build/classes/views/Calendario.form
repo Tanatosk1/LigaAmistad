@@ -174,12 +174,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lbInicioFechaInicio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtInicioFechaInicio" min="-2" pref="100" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="dFechaInicio" min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="lblInicioFechaFin" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtInicioFechaFin" min="-2" pref="100" max="-2" attributes="0"/>
-                  <EmptySpace pref="469" max="32767" attributes="0"/>
+                  <Component id="dFechaFin" min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="btnIniciocEditar" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnInicioAplicar" min="-2" pref="145" max="-2" attributes="0"/>
@@ -191,13 +191,15 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbInicioFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtInicioFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblInicioFechaFin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtInicioFechaFin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnIniciocEditar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnInicioAplicar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="dFechaFin" min="-2" max="-2" attributes="0"/>
+                      <Component id="dFechaInicio" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lbInicioFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblInicioFechaFin" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIniciocEditar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnInicioAplicar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               </Group>
@@ -216,16 +218,10 @@
             <Property name="text" type="java.lang.String" value="Fecha de Incio de Calendario"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtInicioFechaInicio">
+        <Component class="com.toedter.calendar.JDateChooser" name="dFechaInicio">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtInicioFechaInicioActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblInicioFechaFin">
           <Properties>
@@ -238,16 +234,10 @@
             <Property name="text" type="java.lang.String" value="Fecha de Fin de Calendario"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtInicioFechaFin">
+        <Component class="com.toedter.calendar.JDateChooser" name="dFechaFin">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtInicioFechaFinActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnIniciocEditar">
           <Properties>

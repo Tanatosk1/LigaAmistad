@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -44,7 +45,10 @@ public class GeneraCalendario {
             
 
         } catch (ParseException e) {
-            JOptionPane.showMessageDialog(null, "Introduce la fecha de inicio y fin del campeonato", "Error en fechas", JOptionPane.ERROR_MESSAGE);
+         
+        ImageIcon icon = new ImageIcon("src/resources/warning.png");
+        JOptionPane.showMessageDialog(null, "Introduce la fecha de inicio y fin del campeonato","Error en fechas", JOptionPane.QUESTION_MESSAGE, icon);
+  
         }
     }
 }

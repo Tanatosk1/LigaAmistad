@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ import sources.CrearDocumentos;
 import sources.Filtros;
 import sources.GeneraCalendario;
 import sources.MostrarDatos;
+import java.util.Date;
 
 /**
  *
@@ -74,9 +76,9 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
         jInicioCalendario = new javax.swing.JPanel();
         lbInicioFechaInicio = new javax.swing.JLabel();
-        txtInicioFechaInicio = new javax.swing.JTextField();
+        dFechaInicio = new com.toedter.calendar.JDateChooser();
         lblInicioFechaFin = new javax.swing.JLabel();
-        txtInicioFechaFin = new javax.swing.JTextField();
+        dFechaFin = new com.toedter.calendar.JDateChooser();
         btnIniciocEditar = new javax.swing.JButton();
         btnInicioAplicar = new javax.swing.JButton();
         pCalendario = new javax.swing.JPanel();
@@ -115,25 +117,13 @@ private final CrearDocumentos cd = new CrearDocumentos();
         lbInicioFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbInicioFechaInicio.setText("Fecha de Incio de Calendario");
 
-        txtInicioFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtInicioFechaInicio.setEnabled(false);
-        txtInicioFechaInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtInicioFechaInicioActionPerformed(evt);
-            }
-        });
+        dFechaInicio.setEnabled(false);
 
         lblInicioFechaFin.setBackground(new java.awt.Color(255, 255, 255));
         lblInicioFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblInicioFechaFin.setText("Fecha de Fin de Calendario");
 
-        txtInicioFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtInicioFechaFin.setEnabled(false);
-        txtInicioFechaFin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtInicioFechaFinActionPerformed(evt);
-            }
-        });
+        dFechaFin.setEnabled(false);
 
         btnIniciocEditar.setBackground(new java.awt.Color(31, 87, 12));
         btnIniciocEditar.setForeground(new java.awt.Color(255, 255, 255));
@@ -167,12 +157,12 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 .addContainerGap()
                 .addComponent(lbInicioFechaInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtInicioFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addComponent(lblInicioFechaFin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtInicioFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 469, Short.MAX_VALUE)
+                .addComponent(dFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnIniciocEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnInicioAplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,13 +172,14 @@ private final CrearDocumentos cd = new CrearDocumentos();
             jInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInicioCalendarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbInicioFechaInicio)
-                    .addComponent(txtInicioFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblInicioFechaFin)
-                    .addComponent(txtInicioFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIniciocEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInicioAplicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbInicioFechaInicio)
+                        .addComponent(lblInicioFechaFin)
+                        .addComponent(btnIniciocEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnInicioAplicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
 
@@ -619,18 +610,10 @@ private final CrearDocumentos cd = new CrearDocumentos();
 //        }
     }//GEN-LAST:event_miPDFActionPerformed
 
-    private void txtInicioFechaInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInicioFechaInicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtInicioFechaInicioActionPerformed
-
-    private void txtInicioFechaFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInicioFechaFinActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtInicioFechaFinActionPerformed
-
     private void btnIniciocEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciocEditarActionPerformed
 
-            txtInicioFechaInicio.setEnabled(true);
-            txtInicioFechaFin.setEnabled(true);
+            dFechaInicio.setEnabled(true);
+            dFechaFin.setEnabled(true);
             
     }//GEN-LAST:event_btnIniciocEditarActionPerformed
 
@@ -665,7 +648,12 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
     private void btnInicioAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioAplicarActionPerformed
 
-            gc.generaFechas(this.txtInicioFechaInicio.getText(), this.txtInicioFechaFin.getText(), this.tCalendario);
+              Date fechaInicio = this.dFechaInicio.getDate();
+              Date fechaFin = this.dFechaInicio.getDate();
+              SimpleDateFormat formato = new SimpleDateFormat("d/MM/yyyy");
+              gc.generaFechas(formato.format(fechaInicio), formato.format(fechaFin), this.tCalendario);
+              
+    //        gc.generaFechas(this.dFechaInicio.getText(), this.dFechaFin.getText(), this.tCalendario);
 
     }//GEN-LAST:event_btnInicioAplicarActionPerformed
 
@@ -731,6 +719,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private javax.swing.JComboBox<String> cbCategoria;
     private javax.swing.JComboBox<String> cbDivision;
     private javax.swing.JComboBox<String> cbJornada;
+    private com.toedter.calendar.JDateChooser dFechaFin;
+    private com.toedter.calendar.JDateChooser dFechaInicio;
     private javax.swing.JPanel jInicioCalendario;
     private javax.swing.JLabel lbInicioFechaInicio;
     private javax.swing.JLabel lblCategoria;
@@ -748,7 +738,5 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private javax.swing.JTable tCalendario;
     private javax.swing.JTextField txtFechaFin;
     private javax.swing.JTextField txtFechaInicio;
-    private javax.swing.JTextField txtInicioFechaFin;
-    private javax.swing.JTextField txtInicioFechaInicio;
     // End of variables declaration//GEN-END:variables
 }
