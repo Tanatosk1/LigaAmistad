@@ -19,6 +19,7 @@ import sources.Filtros;
 import sources.GeneraCalendario;
 import sources.MostrarDatos;
 import java.util.Date;
+import sources.LeerExcel;
 
 /**
  *
@@ -76,11 +77,10 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
         jInicioCalendario = new javax.swing.JPanel();
         lbInicioFechaInicio = new javax.swing.JLabel();
-        dFechaInicio = new com.toedter.calendar.JDateChooser();
+        dFechaInicioTemporada = new com.toedter.calendar.JDateChooser();
         lblInicioFechaFin = new javax.swing.JLabel();
-        dFechaFin = new com.toedter.calendar.JDateChooser();
-        btnIniciocEditar = new javax.swing.JButton();
-        btnInicioAplicar = new javax.swing.JButton();
+        dFechaFinTemporada = new com.toedter.calendar.JDateChooser();
+        btnGenerarInicio = new javax.swing.JButton();
         pCalendario = new javax.swing.JPanel();
         lblCategoria = new javax.swing.JLabel();
         cbCategoria = new javax.swing.JComboBox<>();
@@ -89,20 +89,21 @@ private final CrearDocumentos cd = new CrearDocumentos();
         lblJornada = new javax.swing.JLabel();
         cbJornada = new javax.swing.JComboBox<>();
         lblFechaInicio = new javax.swing.JLabel();
-        txtFechaInicio = new javax.swing.JTextField();
         lblFechaFin = new javax.swing.JLabel();
-        txtFechaFin = new javax.swing.JTextField();
-        btnFiltroEditar = new javax.swing.JButton();
+        btnFiltroLimpiar = new javax.swing.JButton();
         btnFiltroAceptar = new javax.swing.JButton();
+        dFechaInicoFiltro = new com.toedter.calendar.JDateChooser();
+        dFechaFinFiltro = new com.toedter.calendar.JDateChooser();
         scrollCalendario = new javax.swing.JScrollPane();
         tCalendario = new javax.swing.JTable();
-        btnCalendarioEditar = new javax.swing.JButton();
         btnCalendarioGenerar = new javax.swing.JButton();
         btnCalendarioSalir = new javax.swing.JButton();
         mbCalendario = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        miImportarcalendario = new javax.swing.JMenuItem();
         mExportar = new javax.swing.JMenu();
-        miExcel = new javax.swing.JMenuItem();
-        miPDF = new javax.swing.JMenuItem();
+        miExportarExcel = new javax.swing.JMenuItem();
+        miExportarPDF = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Generación de Calendario");
@@ -110,42 +111,26 @@ private final CrearDocumentos cd = new CrearDocumentos();
         setSize(new java.awt.Dimension(1366, 768));
 
         jInicioCalendario.setBackground(new java.awt.Color(255, 255, 255));
-        jInicioCalendario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  FECHA DE INICIO DE CALENDARIO  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12))); // NOI18N
+        jInicioCalendario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  FECHA DE INICIO DE TEMPORADA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12))); // NOI18N
         jInicioCalendario.setPreferredSize(new java.awt.Dimension(978, 67));
 
         lbInicioFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
         lbInicioFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbInicioFechaInicio.setText("Fecha de Incio de Calendario");
-
-        dFechaInicio.setEnabled(false);
+        lbInicioFechaInicio.setText("Fecha de Incio");
 
         lblInicioFechaFin.setBackground(new java.awt.Color(255, 255, 255));
         lblInicioFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblInicioFechaFin.setText("Fecha de Fin de Calendario");
+        lblInicioFechaFin.setText("Fecha de Fin");
 
-        dFechaFin.setEnabled(false);
-
-        btnIniciocEditar.setBackground(new java.awt.Color(31, 87, 12));
-        btnIniciocEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIniciocEditar.setText("Editar fecha");
-        btnIniciocEditar.setMaximumSize(new java.awt.Dimension(120, 23));
-        btnIniciocEditar.setMinimumSize(new java.awt.Dimension(120, 23));
-        btnIniciocEditar.setPreferredSize(new java.awt.Dimension(120, 23));
-        btnIniciocEditar.addActionListener(new java.awt.event.ActionListener() {
+        btnGenerarInicio.setBackground(new java.awt.Color(31, 87, 12));
+        btnGenerarInicio.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenerarInicio.setText("Generar");
+        btnGenerarInicio.setMaximumSize(new java.awt.Dimension(120, 23));
+        btnGenerarInicio.setMinimumSize(new java.awt.Dimension(120, 23));
+        btnGenerarInicio.setPreferredSize(new java.awt.Dimension(120, 23));
+        btnGenerarInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciocEditarActionPerformed(evt);
-            }
-        });
-
-        btnInicioAplicar.setBackground(new java.awt.Color(31, 87, 12));
-        btnInicioAplicar.setForeground(new java.awt.Color(255, 255, 255));
-        btnInicioAplicar.setText("Aceptar");
-        btnInicioAplicar.setMaximumSize(new java.awt.Dimension(120, 23));
-        btnInicioAplicar.setMinimumSize(new java.awt.Dimension(120, 23));
-        btnInicioAplicar.setPreferredSize(new java.awt.Dimension(120, 23));
-        btnInicioAplicar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInicioAplicarActionPerformed(evt);
+                btnGenerarInicioActionPerformed(evt);
             }
         });
 
@@ -157,15 +142,13 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 .addContainerGap()
                 .addComponent(lbInicioFechaInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addComponent(dFechaInicioTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lblInicioFechaFin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dFechaFinTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnIniciocEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnInicioAplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGenerarInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jInicioCalendarioLayout.setVerticalGroup(
@@ -173,13 +156,13 @@ private final CrearDocumentos cd = new CrearDocumentos();
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInicioCalendarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dFechaFinTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbInicioFechaInicio)
+                        .addComponent(btnGenerarInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(lblInicioFechaFin)
-                        .addComponent(btnIniciocEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnInicioAplicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(dFechaInicioTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
 
@@ -191,14 +174,12 @@ private final CrearDocumentos cd = new CrearDocumentos();
         lblCategoria.setText("Categoría");
 
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas" }));
-        cbCategoria.setEnabled(false);
 
         lblDivision.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblDivision.setText("División");
 
         cbDivision.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas" }));
-        cbDivision.setEnabled(false);
         cbDivision.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbDivisionActionPerformed(evt);
@@ -210,40 +191,23 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
         cbJornada.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbJornada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas" }));
-        cbJornada.setEnabled(false);
 
         lblFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblFechaInicio.setText("Fecha de Incio");
 
-        txtFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtFechaInicio.setEnabled(false);
-        txtFechaInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaInicioActionPerformed(evt);
-            }
-        });
-
         lblFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblFechaFin.setText("Fecha de Fin");
 
-        txtFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtFechaFin.setEnabled(false);
-        txtFechaFin.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltroLimpiar.setBackground(new java.awt.Color(31, 87, 12));
+        btnFiltroLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnFiltroLimpiar.setText("Limpiar Filtros");
+        btnFiltroLimpiar.setFocusPainted(false);
+        btnFiltroLimpiar.setMaximumSize(new java.awt.Dimension(120, 23));
+        btnFiltroLimpiar.setMinimumSize(new java.awt.Dimension(120, 23));
+        btnFiltroLimpiar.setPreferredSize(new java.awt.Dimension(120, 23));
+        btnFiltroLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaFinActionPerformed(evt);
-            }
-        });
-
-        btnFiltroEditar.setBackground(new java.awt.Color(31, 87, 12));
-        btnFiltroEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnFiltroEditar.setText("Editar Filtros");
-        btnFiltroEditar.setFocusPainted(false);
-        btnFiltroEditar.setMaximumSize(new java.awt.Dimension(120, 23));
-        btnFiltroEditar.setMinimumSize(new java.awt.Dimension(120, 23));
-        btnFiltroEditar.setPreferredSize(new java.awt.Dimension(120, 23));
-        btnFiltroEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFiltroEditarActionPerformed(evt);
+                btnFiltroLimpiarActionPerformed(evt);
             }
         });
 
@@ -279,35 +243,37 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 .addComponent(cbJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblFechaInicio)
-                .addGap(18, 18, 18)
-                .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dFechaInicoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblFechaFin)
-                .addGap(18, 18, 18)
-                .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-                .addComponent(btnFiltroEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dFechaFinFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(btnFiltroLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnFiltroAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pCalendarioLayout.setVerticalGroup(
             pCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCalendarioLayout.createSequentialGroup()
+            .addGroup(pCalendarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCategoria)
-                    .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDivision)
-                    .addComponent(cbDivision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbJornada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblJornada)
-                    .addComponent(lblFechaInicio)
-                    .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFechaFin)
-                    .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFiltroEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFiltroAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblCategoria)
+                        .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDivision)
+                        .addComponent(cbDivision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbJornada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblJornada)
+                        .addComponent(lblFechaInicio)
+                        .addComponent(btnFiltroLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnFiltroAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dFechaInicoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblFechaFin)
+                        .addComponent(dFechaFinFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -316,14 +282,14 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
             },
             new String [] {
-                "Jornada", "Fecha", "Día", "Hora", "Equipo Local", "Equipo Visitante", "Campo", "Competición", "Partido aplazado"
+                "ID", "Jornada", "Fecha", "Día", "Hora", "Equipo Local", "Equipo Visitante", "Campo", "Competición", "Partido aplazado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, true, false, false, true, false, false
+                false, false, true, false, true, false, false, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -334,18 +300,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 return canEdit [columnIndex];
             }
         });
-        tCalendario.setEnabled(false);
         tCalendario.getTableHeader().setReorderingAllowed(false);
         scrollCalendario.setViewportView(tCalendario);
-
-        btnCalendarioEditar.setBackground(new java.awt.Color(31, 87, 12));
-        btnCalendarioEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCalendarioEditar.setText("Editar Calendario");
-        btnCalendarioEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalendarioEditarActionPerformed(evt);
-            }
-        });
 
         btnCalendarioGenerar.setBackground(new java.awt.Color(31, 87, 12));
         btnCalendarioGenerar.setForeground(new java.awt.Color(255, 255, 255));
@@ -368,37 +324,54 @@ private final CrearDocumentos cd = new CrearDocumentos();
         mbCalendario.setBackground(new java.awt.Color(31, 87, 12));
         mbCalendario.setForeground(new java.awt.Color(255, 255, 255));
 
+        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu1.setText("Importar");
+
+        miImportarcalendario.setBackground(new java.awt.Color(31, 87, 12));
+        miImportarcalendario.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miImportarcalendario.setForeground(new java.awt.Color(255, 255, 255));
+        miImportarcalendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/calendario.png"))); // NOI18N
+        miImportarcalendario.setText("Calendario");
+        miImportarcalendario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miImportarcalendarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(miImportarcalendario);
+
+        mbCalendario.add(jMenu1);
+
         mExportar.setForeground(new java.awt.Color(255, 255, 255));
-        mExportar.setText("Exportar Calendario");
+        mExportar.setText("Exportar");
         mExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mExportarActionPerformed(evt);
             }
         });
 
-        miExcel.setBackground(new java.awt.Color(31, 87, 12));
-        miExcel.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        miExcel.setForeground(new java.awt.Color(255, 255, 255));
-        miExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/excel.png"))); // NOI18N
-        miExcel.setText("Exportar como Excel");
-        miExcel.addActionListener(new java.awt.event.ActionListener() {
+        miExportarExcel.setBackground(new java.awt.Color(31, 87, 12));
+        miExportarExcel.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miExportarExcel.setForeground(new java.awt.Color(255, 255, 255));
+        miExportarExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/excel.png"))); // NOI18N
+        miExportarExcel.setText("A Excel...");
+        miExportarExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miExcelActionPerformed(evt);
+                miExportarExcelActionPerformed(evt);
             }
         });
-        mExportar.add(miExcel);
+        mExportar.add(miExportarExcel);
 
-        miPDF.setBackground(new java.awt.Color(31, 87, 12));
-        miPDF.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        miPDF.setForeground(new java.awt.Color(255, 255, 255));
-        miPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pdf.png"))); // NOI18N
-        miPDF.setText("Exportar como PDF");
-        miPDF.addActionListener(new java.awt.event.ActionListener() {
+        miExportarPDF.setBackground(new java.awt.Color(31, 87, 12));
+        miExportarPDF.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miExportarPDF.setForeground(new java.awt.Color(255, 255, 255));
+        miExportarPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pdf.png"))); // NOI18N
+        miExportarPDF.setText("A PDF...");
+        miExportarPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miPDFActionPerformed(evt);
+                miExportarPDFActionPerformed(evt);
             }
         });
-        mExportar.add(miPDF);
+        mExportar.add(miExportarPDF);
 
         mbCalendario.add(mExportar);
 
@@ -413,8 +386,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnCalendarioEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(btnCalendarioGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCalendarioSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -435,8 +406,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCalendarioSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCalendarioGenerar)
-                    .addComponent(btnCalendarioEditar))
+                    .addComponent(btnCalendarioGenerar))
                 .addContainerGap())
         );
 
@@ -457,7 +427,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         // TODO add your handling code here:
     }//GEN-LAST:event_mExportarActionPerformed
 
-    private void miExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExcelActionPerformed
+    private void miExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExportarExcelActionPerformed
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de Excel (*.xlsx)", "xlsx");
         fileChooser.setFileFilter(filter);
@@ -532,9 +502,9 @@ private final CrearDocumentos cd = new CrearDocumentos();
 //            }
 //            break;
 //        }  
-    }//GEN-LAST:event_miExcelActionPerformed
+    }//GEN-LAST:event_miExportarExcelActionPerformed
 
-    private void miPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPDFActionPerformed
+    private void miExportarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExportarPDFActionPerformed
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo PDF (*.pdf)", "pdf");
         fileChooser.setFileFilter(filter);
@@ -608,24 +578,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
 //            }
 //            break;
 //        }
-    }//GEN-LAST:event_miPDFActionPerformed
-
-    private void btnIniciocEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciocEditarActionPerformed
-
-            dFechaInicio.setEnabled(true);
-            dFechaFin.setEnabled(true);
-            
-    }//GEN-LAST:event_btnIniciocEditarActionPerformed
-
-    private void btnFiltroEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroEditarActionPerformed
-
-            cbCategoria.setEnabled(true);
-            cbDivision.setEnabled(true);
-            cbJornada.setEnabled(true);
-            txtFechaInicio.setEnabled(true);
-            txtFechaFin.setEnabled(true);
-
-    }//GEN-LAST:event_btnFiltroEditarActionPerformed
+    }//GEN-LAST:event_miExportarPDFActionPerformed
 
     private void btnFiltroAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroAceptarActionPerformed
 
@@ -634,40 +587,47 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
     }//GEN-LAST:event_btnFiltroAceptarActionPerformed
 
-    private void txtFechaFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaFinActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaFinActionPerformed
-
-    private void txtFechaInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaInicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaInicioActionPerformed
-
     private void cbDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDivisionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbDivisionActionPerformed
 
-    private void btnInicioAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioAplicarActionPerformed
+    private void btnGenerarInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarInicioActionPerformed
 
-              Date fechaInicio = this.dFechaInicio.getDate();
-              Date fechaFin = this.dFechaInicio.getDate();
+              Date fechaInicio = this.dFechaInicioTemporada.getDate();
+              Date fechaFin = this.dFechaInicioTemporada.getDate();
               SimpleDateFormat formato = new SimpleDateFormat("d/MM/yyyy");
               gc.generaFechas(formato.format(fechaInicio), formato.format(fechaFin), this.tCalendario);
               
     //        gc.generaFechas(this.dFechaInicio.getText(), this.dFechaFin.getText(), this.tCalendario);
 
-    }//GEN-LAST:event_btnInicioAplicarActionPerformed
-
-    private void btnCalendarioEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalendarioEditarActionPerformed
-        ImageIcon icon = new ImageIcon("src/resources/editar.png");
-        int input = JOptionPane.showConfirmDialog(null, "¿Desea editar los datos del calendario?", "Editar datos del calendario", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
-        if (input == JOptionPane.YES_OPTION) {
-            tCalendario.setEnabled(true);
-        }
-    }//GEN-LAST:event_btnCalendarioEditarActionPerformed
+    }//GEN-LAST:event_btnGenerarInicioActionPerformed
 
     private void btnCalendarioSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalendarioSalirActionPerformed
         close();            
     }//GEN-LAST:event_btnCalendarioSalirActionPerformed
+
+    private void miImportarcalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miImportarcalendarioActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Excel (*.xls; *.xlsx)", "xls", "xlsx");
+        fileChooser.setFileFilter(filtro);
+        int seleccion = fileChooser.showOpenDialog(new Principal());
+        if (seleccion == JFileChooser.APPROVE_OPTION)
+        {
+            File fichero = fileChooser.getSelectedFile();
+            //Desktop.getDesktop().open(fichero);
+            //aqui debe coger los datos del excel y cargarlos a la BBDD
+            new Thread(new LeerExcel(fichero)).start();
+
+        }
+    }//GEN-LAST:event_miImportarcalendarioActionPerformed
+
+    private void btnFiltroLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroLimpiarActionPerformed
+        cbCategoria.setSelectedItem("Todas");
+        cbDivision.setSelectedItem("Todas");
+        cbJornada.setSelectedItem("Todas");
+        dFechaInicoFiltro.setDate(null);
+        dFechaFinFiltro.setDate(null);
+    }//GEN-LAST:event_btnFiltroLimpiarActionPerformed
     
     public void close() {
              dispose();             
@@ -709,19 +669,20 @@ private final CrearDocumentos cd = new CrearDocumentos();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCalendarioEditar;
     private javax.swing.JButton btnCalendarioGenerar;
     private javax.swing.JButton btnCalendarioSalir;
     private javax.swing.JButton btnFiltroAceptar;
-    private javax.swing.JButton btnFiltroEditar;
-    private javax.swing.JButton btnInicioAplicar;
-    private javax.swing.JButton btnIniciocEditar;
+    private javax.swing.JButton btnFiltroLimpiar;
+    private javax.swing.JButton btnGenerarInicio;
     private javax.swing.JComboBox<String> cbCategoria;
     private javax.swing.JComboBox<String> cbDivision;
     private javax.swing.JComboBox<String> cbJornada;
-    private com.toedter.calendar.JDateChooser dFechaFin;
-    private com.toedter.calendar.JDateChooser dFechaInicio;
+    private com.toedter.calendar.JDateChooser dFechaFinFiltro;
+    private com.toedter.calendar.JDateChooser dFechaFinTemporada;
+    private com.toedter.calendar.JDateChooser dFechaInicioTemporada;
+    private com.toedter.calendar.JDateChooser dFechaInicoFiltro;
     private javax.swing.JPanel jInicioCalendario;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lbInicioFechaInicio;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblDivision;
@@ -731,12 +692,11 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private javax.swing.JLabel lblJornada;
     private javax.swing.JMenu mExportar;
     private javax.swing.JMenuBar mbCalendario;
-    private javax.swing.JMenuItem miExcel;
-    private javax.swing.JMenuItem miPDF;
+    private javax.swing.JMenuItem miExportarExcel;
+    private javax.swing.JMenuItem miExportarPDF;
+    private javax.swing.JMenuItem miImportarcalendario;
     private javax.swing.JPanel pCalendario;
     private javax.swing.JScrollPane scrollCalendario;
     private javax.swing.JTable tCalendario;
-    private javax.swing.JTextField txtFechaFin;
-    private javax.swing.JTextField txtFechaInicio;
     // End of variables declaration//GEN-END:variables
 }

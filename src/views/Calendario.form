@@ -12,18 +12,48 @@
         </Property>
       </Properties>
       <SubComponents>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Importar"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="miImportarcalendario">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c" green="57" red="1f" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Franklin Gothic Medium" size="24" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/resources/calendario.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Calendario"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miImportarcalendarioActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="mExportar">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Exportar Calendario"/>
+            <Property name="text" type="java.lang.String" value="Exportar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mExportarActionPerformed"/>
           </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="miExcel">
+            <MenuItem class="javax.swing.JMenuItem" name="miExportarExcel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="c" green="57" red="1f" type="rgb"/>
@@ -37,13 +67,13 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/excel.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Exportar como Excel"/>
+                <Property name="text" type="java.lang.String" value="A Excel..."/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miExcelActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miExportarExcelActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="miPDF">
+            <MenuItem class="javax.swing.JMenuItem" name="miExportarPDF">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="c" green="57" red="1f" type="rgb"/>
@@ -57,10 +87,10 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/pdf.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Exportar como PDF"/>
+                <Property name="text" type="java.lang.String" value="A PDF..."/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miPDFActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miExportarPDFActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -103,8 +133,6 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="btnCalendarioEditar" min="-2" pref="165" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnCalendarioGenerar" min="-2" pref="165" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnCalendarioSalir" min="-2" pref="165" max="-2" attributes="0"/>
@@ -130,7 +158,6 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCalendarioSalir" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="btnCalendarioGenerar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnCalendarioEditar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -147,7 +174,7 @@
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder>
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="  FECHA DE INICIO DE CALENDARIO  ">
+                <TitledBorder title="  FECHA DE INICIO DE TEMPORADA">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true" thickness="4">
                       <Color PropertyName="color" blue="0" green="99" red="0" type="rgb"/>
@@ -174,15 +201,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lbInicioFechaInicio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="dFechaInicio" min="-2" pref="120" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="dFechaInicioTemporada" min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lblInicioFechaFin" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="dFechaFin" min="-2" pref="120" max="-2" attributes="0"/>
+                  <Component id="dFechaFinTemporada" min="-2" pref="120" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btnIniciocEditar" min="-2" pref="145" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnInicioAplicar" min="-2" pref="145" max="-2" attributes="0"/>
+                  <Component id="btnGenerarInicio" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -192,13 +217,14 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="dFechaFin" min="-2" max="-2" attributes="0"/>
-                      <Component id="dFechaInicio" min="-2" max="-2" attributes="0"/>
+                      <Component id="dFechaFinTemporada" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbInicioFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblInicioFechaFin" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnIniciocEditar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnInicioAplicar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnGenerarInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="lblInicioFechaFin" min="-2" max="-2" attributes="0"/>
+                          <Component id="dFechaInicioTemporada" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -215,13 +241,10 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Fecha de Incio de Calendario"/>
+            <Property name="text" type="java.lang.String" value="Fecha de Incio"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="dFechaInicio">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
+        <Component class="com.toedter.calendar.JDateChooser" name="dFechaInicioTemporada">
         </Component>
         <Component class="javax.swing.JLabel" name="lblInicioFechaFin">
           <Properties>
@@ -231,15 +254,12 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Fecha de Fin de Calendario"/>
+            <Property name="text" type="java.lang.String" value="Fecha de Fin"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="dFechaFin">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
+        <Component class="com.toedter.calendar.JDateChooser" name="dFechaFinTemporada">
         </Component>
-        <Component class="javax.swing.JButton" name="btnIniciocEditar">
+        <Component class="javax.swing.JButton" name="btnGenerarInicio">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c" green="57" red="1f" type="rgb"/>
@@ -247,7 +267,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Editar fecha"/>
+            <Property name="text" type="java.lang.String" value="Generar"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[120, 23]"/>
             </Property>
@@ -259,30 +279,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIniciocEditarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnInicioAplicar">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c" green="57" red="1f" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Aceptar"/>
-            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[120, 23]"/>
-            </Property>
-            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[120, 23]"/>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[120, 23]"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInicioAplicarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarInicioActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -328,14 +325,14 @@
                   <Component id="cbJornada" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lblFechaInicio" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtFechaInicio" min="-2" pref="100" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="dFechaInicoFiltro" min="-2" pref="120" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lblFechaFin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtFechaFin" min="-2" pref="100" max="-2" attributes="0"/>
-                  <EmptySpace pref="113" max="32767" attributes="0"/>
-                  <Component id="btnFiltroEditar" min="-2" pref="145" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="dFechaFinFiltro" min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace pref="89" max="32767" attributes="0"/>
+                  <Component id="btnFiltroLimpiar" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="btnFiltroAceptar" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -344,21 +341,25 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblDivision" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbDivision" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbJornada" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblJornada" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblFechaFin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtFechaFin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnFiltroEditar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnFiltroAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="lblCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDivision" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbDivision" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbJornada" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblJornada" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnFiltroLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnFiltroAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="dFechaInicoFiltro" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="lblFechaFin" min="-2" max="-2" attributes="0"/>
+                          <Component id="dFechaFinFiltro" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -381,7 +382,6 @@
                 <StringItem index="0" value="Todas"/>
               </StringArray>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -405,7 +405,6 @@
                 <StringItem index="0" value="Todas"/>
               </StringArray>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbDivisionActionPerformed"/>
@@ -432,7 +431,6 @@
                 <StringItem index="0" value="Todas"/>
               </StringArray>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -446,17 +444,6 @@
             <Property name="text" type="java.lang.String" value="Fecha de Incio"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtFechaInicio">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFechaInicioActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblFechaFin">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -465,18 +452,7 @@
             <Property name="text" type="java.lang.String" value="Fecha de Fin"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtFechaFin">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFechaFinActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnFiltroEditar">
+        <Component class="javax.swing.JButton" name="btnFiltroLimpiar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c" green="57" red="1f" type="rgb"/>
@@ -484,7 +460,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Editar Filtros"/>
+            <Property name="text" type="java.lang.String" value="Limpiar Filtros"/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[120, 23]"/>
@@ -497,7 +473,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltroEditarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltroLimpiarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnFiltroAceptar">
@@ -524,6 +500,10 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltroAceptarActionPerformed"/>
           </Events>
         </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="dFechaInicoFiltro">
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="dFechaFinFiltro">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JScrollPane" name="scrollCalendario">
@@ -536,7 +516,8 @@
         <Component class="javax.swing.JTable" name="tCalendario">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="0">
+              <Table columnCount="10" rowCount="0">
+                <Column editable="false" title="ID" type="java.lang.Object"/>
                 <Column editable="false" title="Jornada" type="java.lang.Object"/>
                 <Column editable="true" title="Fecha" type="java.lang.Object"/>
                 <Column editable="false" title="D&#xed;a" type="java.lang.Object"/>
@@ -595,9 +576,13 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
               </TableColumnModel>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
             </Property>
@@ -605,20 +590,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnCalendarioEditar">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c" green="57" red="1f" type="rgb"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Editar Calendario"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalendarioEditarActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnCalendarioGenerar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
