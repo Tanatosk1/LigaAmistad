@@ -118,14 +118,14 @@ public class MostrarDatos {
         ResultSet campeonato = con.getValues(select, from, "", order);
             try {
                 while(campeonato.next()){
-                    fila[0] = campeonato.getInt("JORNADA");
-                    fila[1] = campeonato.getString("FECHA");
-                    fila[2] = "";
-                    fila[3] = campeonato.getString("HORA");
-                    fila[4] = campeonato.getString("LOCAL");
-                    fila[5] = campeonato.getString("VISITANTE");
-                    fila[6] = campeonato.getString("CAMPO");
-                    fila[7] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
+                    fila[1] = campeonato.getInt("JORNADA");
+                    fila[2] = campeonato.getString("FECHA");
+                    fila[3] = "";
+                    fila[4] = campeonato.getString("HORA");
+                    fila[5] = campeonato.getString("LOCAL");
+                    fila[6] = campeonato.getString("VISITANTE");
+                    fila[7] = campeonato.getString("CAMPO");
+                    fila[8] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
         
                     model.addRow(fila); 
                 } 
