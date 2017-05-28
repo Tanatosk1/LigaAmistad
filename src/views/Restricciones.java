@@ -541,7 +541,6 @@ public class Restricciones extends javax.swing.JFrame {
         dExcFechaFin = new com.toedter.calendar.JDateChooser();
         lblDescripcion = new javax.swing.JLabel();
         cbDescripcion = new javax.swing.JComboBox<>();
-        btnExcEditar = new javax.swing.JButton();
         btnExcExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -875,11 +874,12 @@ public class Restricciones extends javax.swing.JFrame {
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pEquiposLayout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ckMartesEquipos)
-                            .addComponent(cbMartes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ckSabadoEquipos)
-                            .addComponent(cbSabado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cbMartes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ckSabadoEquipos)
+                                .addComponent(cbSabado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(15, 15, 15)
                         .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ckMiercolesEquipos)
@@ -1390,19 +1390,15 @@ public class Restricciones extends javax.swing.JFrame {
         );
 
         jExcluirFechas.setBackground(new java.awt.Color(255, 255, 255));
-        jExcluirFechas.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  EXCLUIR FECHAS DEL CALENDARIO  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12))); // NOI18N
+        jExcluirFechas.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  DÍAS DE INACTIVIDAD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12))); // NOI18N
 
         lbExcFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
         lbExcFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbExcFechaInicio.setText("Fecha de Incio");
 
-        dExcFechaInicio.setEnabled(false);
-
         lblExcFechaFin.setBackground(new java.awt.Color(255, 255, 255));
         lblExcFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblExcFechaFin.setText("Fecha de Fin");
-
-        dExcFechaFin.setEnabled(false);
 
         lblDescripcion.setBackground(new java.awt.Color(255, 255, 255));
         lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -1410,19 +1406,6 @@ public class Restricciones extends javax.swing.JFrame {
 
         cbDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbDescripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un motivo", "Periodo hábil", "Fiesta nacional", "Fiesta local", "Periodo vacacional", "Otros" }));
-        cbDescripcion.setEnabled(false);
-
-        btnExcEditar.setBackground(new java.awt.Color(31, 87, 12));
-        btnExcEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnExcEditar.setText("Editar Fechas");
-        btnExcEditar.setMaximumSize(new java.awt.Dimension(120, 23));
-        btnExcEditar.setMinimumSize(new java.awt.Dimension(120, 23));
-        btnExcEditar.setPreferredSize(new java.awt.Dimension(120, 23));
-        btnExcEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcEditarActionPerformed(evt);
-            }
-        });
 
         btnExcExcluir.setBackground(new java.awt.Color(31, 87, 12));
         btnExcExcluir.setForeground(new java.awt.Color(255, 255, 255));
@@ -1454,8 +1437,6 @@ public class Restricciones extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExcEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(btnExcExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1471,7 +1452,6 @@ public class Restricciones extends javax.swing.JFrame {
                         .addComponent(lbExcFechaInicio)
                         .addComponent(lblExcFechaFin)
                         .addComponent(lblDescripcion)
-                        .addComponent(btnExcEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnExcExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
@@ -1634,16 +1614,6 @@ public class Restricciones extends javax.swing.JFrame {
             txtDomingoSegunda.setEnabled(false);
         }
     }//GEN-LAST:event_ckDomingoCamposActionPerformed
-
-    private void btnExcEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcEditarActionPerformed
-        ImageIcon icon = new ImageIcon("src/resources/editar.png");
-        int input = JOptionPane.showConfirmDialog(null, "¿Desea editar las fechas de exclusión en el calendario?", "Editar Fechas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
-        if (input == JOptionPane.YES_OPTION) {
-            dExcFechaInicio.setEnabled(true);
-            dExcFechaFin.setEnabled(true);
-            cbDescripcion.setEnabled(true);
-        }
-    }//GEN-LAST:event_btnExcEditarActionPerformed
 
     private void btnExcExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcExcluirActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/aceptar.png");
@@ -1808,7 +1778,6 @@ public class Restricciones extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptarEquipos1;
     private javax.swing.JButton btnEditarEquipos;
     private javax.swing.JButton btnEditarEquipos1;
-    private javax.swing.JButton btnExcEditar;
     private javax.swing.JButton btnExcExcluir;
     private javax.swing.JComboBox<String> cbCampos;
     private javax.swing.JComboBox<String> cbDescripcion;
