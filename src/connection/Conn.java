@@ -85,9 +85,9 @@ public class Conn {
             String Query = "INSERT INTO " + table + " VALUES(" + values +")";
             Statement st = link.createStatement();
             st.executeUpdate(Query);
-            JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
+            //JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos\n" + ex);
+            //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos\n" + ex);
         }
     }
     
@@ -147,9 +147,9 @@ public class Conn {
             String query = "DELETE FROM " + table + " WHERE " + where;
             Statement st = link.createStatement();
             st.executeUpdate(query);
-            JOptionPane.showMessageDialog(null, "Datos eliminados de forma exitosa");
+            //JOptionPane.showMessageDialog(null, "Datos eliminados de forma exitosa");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos\n"+ex);
+            //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos\n"+ex);
         }
     }
 }
