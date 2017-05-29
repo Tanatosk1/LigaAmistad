@@ -18,7 +18,7 @@ public class CrearDocumentos {
     
     public void crearExcel(String ruta, JTable tabla){
     try{    
-        String[] headers = {"JORNADA", "FECHA", "DÍA", "HORA", "LOCAL", "VISITANTE", "CAMPO", "COMPETICION"};
+        String[] headers = {"ID","JORNADA", "FECHA", "DÍA", "HORA", "LOCAL", "VISITANTE", "CAMPO", "COMPETICION"};
 
         //Creamos un libro excel
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -26,12 +26,12 @@ public class CrearDocumentos {
         //Creamos una hoja de excel
         XSSFSheet sheet = workbook.createSheet("Liga La Amistad");
         //Asignamos tamaño a las columnas
-        sheet.setColumnWidth(1, 4096);
         sheet.setColumnWidth(2, 4096);
-        sheet.setColumnWidth(4, 10350);
+        sheet.setColumnWidth(3, 4096);
         sheet.setColumnWidth(5, 10350);
-        sheet.setColumnWidth(6, 6154);
-        sheet.setColumnWidth(7, 8202);
+        sheet.setColumnWidth(6, 10350);
+        sheet.setColumnWidth(7, 6154);
+        sheet.setColumnWidth(8, 8202);
         //XSSFSheet sheet1 = workbook.createSheet("Otra hoja");
         
         //Creamos estilo para los encabezados
@@ -78,32 +78,35 @@ public class CrearDocumentos {
             
             //Extraemos los datos de la matriz
             Object[] d = datos[i];
-            int jornada = (int) d[0];
-            String fecha = (String) d[1];
-            String dia = (String) d[2];
-            String hora = (String) d[3];
-            String local = (String) d[4];
-            String visitante = (String) d[5];
-            String campo = (String) d[6];
-            String competicion = (String) d[7];
+            int id = (int) d[0];
+            int jornada = (int) d[1];
+            String fecha = (String) d[2];
+            String dia = (String) d[3];
+            String hora = (String) d[4];
+            String local = (String) d[5];
+            String visitante = (String) d[6];
+            String campo = (String) d[7];
+            String competicion = (String) d[8];
             
             //Agregamos el texto a cada celda del excel y centramos el contenido
-            dataRow.createCell(0).setCellValue(jornada);
+            dataRow.createCell(0).setCellValue(id);
             dataRow.getCell(0).setCellStyle(dataStyle);
-            dataRow.createCell(1).setCellValue(fecha);
+            dataRow.createCell(1).setCellValue(jornada);
             dataRow.getCell(1).setCellStyle(dataStyle);
-            dataRow.createCell(2).setCellValue(dia);
+            dataRow.createCell(2).setCellValue(fecha);
             dataRow.getCell(2).setCellStyle(dataStyle);
-            dataRow.createCell(3).setCellValue(hora);
+            dataRow.createCell(3).setCellValue(dia);
             dataRow.getCell(3).setCellStyle(dataStyle);
-            dataRow.createCell(4).setCellValue(local);
+            dataRow.createCell(4).setCellValue(hora);
             dataRow.getCell(4).setCellStyle(dataStyle);
-            dataRow.createCell(5).setCellValue(visitante);
+            dataRow.createCell(5).setCellValue(local);
             dataRow.getCell(5).setCellStyle(dataStyle);
-            dataRow.createCell(6).setCellValue(campo);
+            dataRow.createCell(6).setCellValue(visitante);
             dataRow.getCell(6).setCellStyle(dataStyle);
-            dataRow.createCell(7).setCellValue(competicion); 
+            dataRow.createCell(7).setCellValue(campo);
             dataRow.getCell(7).setCellStyle(dataStyle);
+            dataRow.createCell(8).setCellValue(competicion); 
+            dataRow.getCell(8).setCellStyle(dataStyle);
         }
 
         //Guardamos el fichero
@@ -112,7 +115,7 @@ public class CrearDocumentos {
         fichero.close();
         // Se crea bien el fichero, muestra mensaje
         JOptionPane.showMessageDialog(null, "Fichero creado correctamente", "Exportar Excel", JOptionPane.INFORMATION_MESSAGE);
-    } catch (IOException e) {
+    } catch (IOException | java.lang.ClassCastException e) {
         //Error al crear el fichero, muestra mensaje
         JOptionPane.showMessageDialog(null, "No se ha creado el fichero\n" + e.getMessage(), "Exportar Excel", JOptionPane.INFORMATION_MESSAGE);
         

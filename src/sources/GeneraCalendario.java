@@ -29,18 +29,18 @@ public class GeneraCalendario {
             cInicio.setTime(date);
             cInicio.add(Calendar.DATE, 1);
             for(int i = 0; i < 14; i++){
-                tabla.setValueAt(formatter.format(cInicio.getTime()), i, 1);
-                tabla.setValueAt(strDays[cInicio.get(Calendar.DAY_OF_WEEK)-1], i, 2);
+                tabla.setValueAt(formatter.format(cInicio.getTime()), i, 2);
+                tabla.setValueAt(strDays[cInicio.get(Calendar.DAY_OF_WEEK)-1], i, 3);
             }
             cInicio.add(Calendar.DATE, 1);
             for(int i = 14; i < 28; i++){
-                tabla.setValueAt(formatter.format(cInicio.getTime()), i, 1);
-                tabla.setValueAt(strDays[cInicio.get(Calendar.DAY_OF_WEEK)-1], i, 2);
+                tabla.setValueAt(formatter.format(cInicio.getTime()), i, 2);
+                tabla.setValueAt(strDays[cInicio.get(Calendar.DAY_OF_WEEK)-1], i, 3);
             }
             cInicio.add(Calendar.DATE, 1);
             for(int i = 28; i < 41; i++){
-                tabla.setValueAt(formatter.format(cInicio.getTime()), i, 1);
-                tabla.setValueAt(strDays[cInicio.get(Calendar.DAY_OF_WEEK)-1], i, 2);
+                tabla.setValueAt(formatter.format(cInicio.getTime()), i, 2);
+                tabla.setValueAt(strDays[cInicio.get(Calendar.DAY_OF_WEEK)-1], i, 3);
             }
             
 
