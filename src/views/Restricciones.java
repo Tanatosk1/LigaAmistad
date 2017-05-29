@@ -11,12 +11,16 @@ import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import sources.GestionarCampos;
+import sources.GestionarEquipos;
 import sources.MostrarDatos;
+import sources.OCampos;
 
 /**
  *
@@ -26,6 +30,8 @@ public class Restricciones extends javax.swing.JFrame {
         private FondoVentana fondo;
         private final Conn conn = new Conn();
         private final MostrarDatos md = new MostrarDatos();
+        private final GestionarCampos gc;
+        private final GestionarEquipos ge;
         Vector v=new Vector();
         
 
@@ -40,7 +46,8 @@ public class Restricciones extends javax.swing.JFrame {
         
         md.llenarComboEquipos(this.cbEquipos);
         md.llenarComboCampos(this.cbCampos);
-        
+        ge = new GestionarEquipos(this);
+        gc = new GestionarCampos(this);
         
         
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -187,15 +194,69 @@ public class Restricciones extends javax.swing.JFrame {
     
      public void restriccionesDeCampo(){
          
-        String campoSeleccionado = (String) cbCampos.getSelectedItem();
+        /*String campoSeleccionado = (String) cbCampos.getSelectedItem();
         
         if(!"Selecciona un campo".equals(campoSeleccionado)){
             System.out.println("Mandar " + campoSeleccionado + " a la BBDD.");
+        }*/
+        
+        ArrayList<OCampos> condiciones = new ArrayList<OCampos>();
+        
+        if(this.ckLunesCampos.isSelected()){
+            if(this.ckLunesPrimera.isSelected()){
+                condiciones.add(new OCampos(1,1));
+            }else if(this.ckLunesSegunda.isSelected()){
+                condiciones.add(new OCampos(1,2));
+            }
+        }
+        if(this.ckMartesCampos.isSelected()){
+            if(this.ckMartesPrimera.isSelected()){
+                condiciones.add(new OCampos(2,1));
+            }else if(this.ckMartesSegunda.isSelected()){
+                condiciones.add(new OCampos(2,2));
+            }
+        }
+        if(this.ckMiercolesCampos.isSelected()){
+            if(this.ckMiercolesPrimera.isSelected()){
+                condiciones.add(new OCampos(3,1));
+            }else if(this.ckMiercolesSegunda.isSelected()){
+                condiciones.add(new OCampos(3,2));
+            }
+        }
+        if(this.ckJuevesCampos.isSelected()){
+            if(this.ckJuevesPrimera.isSelected()){
+                condiciones.add(new OCampos(4,1));
+            }else if(this.ckJuevesSegunda.isSelected()){
+                condiciones.add(new OCampos(4,2));
+            }
+        }
+        if(this.ckViernesCampos.isSelected()){
+            if(this.ckViernesPrimera.isSelected()){
+                condiciones.add(new OCampos(5,1));
+            }else if(this.ckViernesSegunda.isSelected()){
+                condiciones.add(new OCampos(5,2));
+            }
+        }
+        if(this.ckSabadoCampos.isSelected()){
+            if(this.ckSabadoPrimera.isSelected()){
+                condiciones.add(new OCampos(6,1));
+            }else if(this.ckSabadoSegunda.isSelected()){
+                condiciones.add(new OCampos(6,2));
+            }
+        }
+        if(this.ckDomingoCampos.isSelected()){
+            if(this.ckDomingoPrimera.isSelected()){
+                condiciones.add(new OCampos(7,1));
+            }else if(this.ckDomingoSegunda.isSelected()){
+                condiciones.add(new OCampos(7,2));
+            }
         }
         
-        this.comprobarCampoTexto();
+        gc.gestionarCampo(condiciones);
+        
+        /*this.comprobarCampoTexto();
         this.comprobarCampoHoraExcluida();
-        this.comprobarCampoDiaExcluido();
+        this.comprobarCampoDiaExcluido();*/
 
     }
      
@@ -945,9 +1006,9 @@ public class Restricciones extends javax.swing.JFrame {
         cbCampos.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         cbCampos.setForeground(new java.awt.Color(31, 87, 12));
         cbCampos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un campo" }));
-        cbCampos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbCamposActionPerformed(evt);
+        cbCampos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbCamposItemStateChanged(evt);
             }
         });
 
@@ -1485,10 +1546,6 @@ public class Restricciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCamposActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbCamposActionPerformed
-
     private void ckCongelarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckCongelarCampoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ckCongelarCampoActionPerformed
@@ -1504,12 +1561,12 @@ public class Restricciones extends javax.swing.JFrame {
 
     private void btnAceptarEquipos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarEquipos1ActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/aceptar.png");
-        int input = JOptionPane.showConfirmDialog(null, "¿Desea aplicar las restricciones para el campo seleccionado?", "Aplicar restricciones", 
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea guardar los horarios para el campo seleccionado?", "Gestión de campos", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-            
                 this.restriccionesDeCampo();
                 this.disableCampos();
+                //gc.gestionarCampo();
         }  
     }//GEN-LAST:event_btnAceptarEquipos1ActionPerformed
 
@@ -1676,6 +1733,7 @@ public class Restricciones extends javax.swing.JFrame {
 
     private void cbEquiposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEquiposItemStateChanged
         md.llenarComboNoCoincidir(this.cbNoCoincidir, this.cbEquipos.getSelectedIndex());
+        ge.mostrarRestricciones();
     }//GEN-LAST:event_cbEquiposItemStateChanged
 
     private void cbMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMartesActionPerformed
@@ -1731,6 +1789,10 @@ public class Restricciones extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_ckDomingoEquiposActionPerformed
+
+    private void cbCamposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCamposItemStateChanged
+        gc.mostrarDatos();
+    }//GEN-LAST:event_cbCamposItemStateChanged
    
     public void close() {
              dispose();             
@@ -1779,55 +1841,55 @@ public class Restricciones extends javax.swing.JFrame {
     private javax.swing.JButton btnEditarEquipos;
     private javax.swing.JButton btnEditarEquipos1;
     private javax.swing.JButton btnExcExcluir;
-    private javax.swing.JComboBox<String> cbCampos;
+    public javax.swing.JComboBox<String> cbCampos;
     private javax.swing.JComboBox<String> cbDescripcion;
-    private javax.swing.JComboBox<String> cbDomingo;
-    private javax.swing.JComboBox<String> cbEquipos;
-    private javax.swing.JComboBox<String> cbJueves;
-    private javax.swing.JComboBox<String> cbLunes;
-    private javax.swing.JComboBox<String> cbMartes;
-    private javax.swing.JComboBox<String> cbMiercoles;
-    private javax.swing.JComboBox<String> cbNoCoincidir;
-    private javax.swing.JComboBox<String> cbSabado;
-    private javax.swing.JComboBox<String> cbViernes;
+    public javax.swing.JComboBox<String> cbDomingo;
+    public javax.swing.JComboBox<String> cbEquipos;
+    public javax.swing.JComboBox<String> cbJueves;
+    public javax.swing.JComboBox<String> cbLunes;
+    public javax.swing.JComboBox<String> cbMartes;
+    public javax.swing.JComboBox<String> cbMiercoles;
+    public javax.swing.JComboBox<String> cbNoCoincidir;
+    public javax.swing.JComboBox<String> cbSabado;
+    public javax.swing.JComboBox<String> cbViernes;
     private javax.swing.JCheckBox ckCHO;
     private javax.swing.JCheckBox ckCHU;
-    private javax.swing.JCheckBox ckCongelarCampo;
-    private javax.swing.JCheckBox ckCongelarEquipo;
+    public javax.swing.JCheckBox ckCongelarCampo;
+    public javax.swing.JCheckBox ckCongelarEquipo;
     private javax.swing.JCheckBox ckDEL;
     private javax.swing.JCheckBox ckDRA;
-    private javax.swing.JCheckBox ckDomingoCampos;
-    private javax.swing.JCheckBox ckDomingoEquipos;
-    private javax.swing.JCheckBox ckDomingoPrimera;
-    private javax.swing.JCheckBox ckDomingoSegunda;
-    private javax.swing.JCheckBox ckJuevesCampos;
-    private javax.swing.JCheckBox ckJuevesEquipos;
-    private javax.swing.JCheckBox ckJuevesPrimera;
-    private javax.swing.JCheckBox ckJuevesSegunda;
-    private javax.swing.JCheckBox ckLunesCampos;
-    private javax.swing.JCheckBox ckLunesEquipos;
-    private javax.swing.JCheckBox ckLunesPrimera;
-    private javax.swing.JCheckBox ckLunesSegunda;
+    public javax.swing.JCheckBox ckDomingoCampos;
+    public javax.swing.JCheckBox ckDomingoEquipos;
+    public javax.swing.JCheckBox ckDomingoPrimera;
+    public javax.swing.JCheckBox ckDomingoSegunda;
+    public javax.swing.JCheckBox ckJuevesCampos;
+    public javax.swing.JCheckBox ckJuevesEquipos;
+    public javax.swing.JCheckBox ckJuevesPrimera;
+    public javax.swing.JCheckBox ckJuevesSegunda;
+    public javax.swing.JCheckBox ckLunesCampos;
+    public javax.swing.JCheckBox ckLunesEquipos;
+    public javax.swing.JCheckBox ckLunesPrimera;
+    public javax.swing.JCheckBox ckLunesSegunda;
     private javax.swing.JCheckBox ckMP3;
     private javax.swing.JCheckBox ckMP4;
-    private javax.swing.JCheckBox ckMartesCampos;
-    private javax.swing.JCheckBox ckMartesEquipos;
-    private javax.swing.JCheckBox ckMartesPrimera;
-    private javax.swing.JCheckBox ckMartesSegunda;
-    private javax.swing.JCheckBox ckMiercolesCampos;
-    private javax.swing.JCheckBox ckMiercolesEquipos;
-    private javax.swing.JCheckBox ckMiercolesPrimera;
-    private javax.swing.JCheckBox ckMiercolesSegunda;
+    public javax.swing.JCheckBox ckMartesCampos;
+    public javax.swing.JCheckBox ckMartesEquipos;
+    public javax.swing.JCheckBox ckMartesPrimera;
+    public javax.swing.JCheckBox ckMartesSegunda;
+    public javax.swing.JCheckBox ckMiercolesCampos;
+    public javax.swing.JCheckBox ckMiercolesEquipos;
+    public javax.swing.JCheckBox ckMiercolesPrimera;
+    public javax.swing.JCheckBox ckMiercolesSegunda;
     private javax.swing.JCheckBox ckSTM;
-    private javax.swing.JCheckBox ckSabadoCampos;
-    private javax.swing.JCheckBox ckSabadoEquipos;
-    private javax.swing.JCheckBox ckSabadoPrimera;
-    private javax.swing.JCheckBox ckSabadoSegunda;
+    public javax.swing.JCheckBox ckSabadoCampos;
+    public javax.swing.JCheckBox ckSabadoEquipos;
+    public javax.swing.JCheckBox ckSabadoPrimera;
+    public javax.swing.JCheckBox ckSabadoSegunda;
     private javax.swing.JCheckBox ckTNC;
-    private javax.swing.JCheckBox ckViernesCampos;
-    private javax.swing.JCheckBox ckViernesEquipos;
-    private javax.swing.JCheckBox ckViernesPrimera;
-    private javax.swing.JCheckBox ckViernesSegunda;
+    public javax.swing.JCheckBox ckViernesCampos;
+    public javax.swing.JCheckBox ckViernesEquipos;
+    public javax.swing.JCheckBox ckViernesPrimera;
+    public javax.swing.JCheckBox ckViernesSegunda;
     private com.toedter.calendar.JDateChooser dExcFechaFin;
     private com.toedter.calendar.JDateChooser dExcFechaInicio;
     private javax.swing.JPanel jExcluirFechas;
@@ -1857,19 +1919,19 @@ public class Restricciones extends javax.swing.JFrame {
     private javax.swing.JSeparator separadorEquipos4;
     private javax.swing.JSeparator separadorEquipos5;
     private javax.swing.JSeparator separadorEquipos6;
-    private javax.swing.JTextField txtDomingoPrimera;
-    private javax.swing.JTextField txtDomingoSegunda;
-    private javax.swing.JTextField txtJuevesPrimera;
-    private javax.swing.JTextField txtJuevesSegunda;
-    private javax.swing.JTextField txtLunesPrimera;
-    private javax.swing.JTextField txtLunesSegunda;
-    private javax.swing.JTextField txtMartesPrimera;
-    private javax.swing.JTextField txtMartesSegunda;
-    private javax.swing.JTextField txtMiercolesPrimera;
-    private javax.swing.JTextField txtMiercolesSegunda;
-    private javax.swing.JTextField txtSabadoPrimera;
-    private javax.swing.JTextField txtSabadoSegunda;
-    private javax.swing.JTextField txtViernesPrimera;
-    private javax.swing.JTextField txtViernesSegunda;
+    public javax.swing.JTextField txtDomingoPrimera;
+    public javax.swing.JTextField txtDomingoSegunda;
+    public javax.swing.JTextField txtJuevesPrimera;
+    public javax.swing.JTextField txtJuevesSegunda;
+    public javax.swing.JTextField txtLunesPrimera;
+    public javax.swing.JTextField txtLunesSegunda;
+    public javax.swing.JTextField txtMartesPrimera;
+    public javax.swing.JTextField txtMartesSegunda;
+    public javax.swing.JTextField txtMiercolesPrimera;
+    public javax.swing.JTextField txtMiercolesSegunda;
+    public javax.swing.JTextField txtSabadoPrimera;
+    public javax.swing.JTextField txtSabadoSegunda;
+    public javax.swing.JTextField txtViernesPrimera;
+    public javax.swing.JTextField txtViernesSegunda;
     // End of variables declaration//GEN-END:variables
 }
