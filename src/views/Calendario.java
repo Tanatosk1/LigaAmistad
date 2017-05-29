@@ -289,7 +289,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, true, false, false, true, false, false
+                false, false, true, false, true, false, false, true, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -627,6 +627,9 @@ private final CrearDocumentos cd = new CrearDocumentos();
         cbJornada.setSelectedItem("Todas");
         dFechaInicoFiltro.setDate(null);
         dFechaFinFiltro.setDate(null);
+        filtro = new Filtros(this.cbCategoria.getSelectedIndex(), this.cbDivision.getSelectedIndex(),
+              this.cbJornada.getSelectedIndex(), this.tCalendario);
+        
     }//GEN-LAST:event_btnFiltroLimpiarActionPerformed
     
     public void close() {

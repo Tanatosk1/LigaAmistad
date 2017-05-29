@@ -526,7 +526,7 @@
                 <Column editable="false" title="Equipo Visitante" type="java.lang.Object"/>
                 <Column editable="true" title="Campo" type="java.lang.Object"/>
                 <Column editable="false" title="Competici&#xf3;n" type="java.lang.Object"/>
-                <Column editable="false" title="Partido aplazado" type="java.lang.Boolean"/>
+                <Column editable="true" title="Partido aplazado" type="java.lang.Boolean"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
