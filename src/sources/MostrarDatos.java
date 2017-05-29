@@ -92,7 +92,7 @@ public class MostrarDatos {
     
     public void llenarComboCampos(JComboBox cbCampos){
         con.conectar();
-        ResultSet campos = con.getValues("CAMPO", "Campos", "", "Campo");
+        ResultSet campos = con.getValues("CAMPO", "Campos", "", "ID");
             try {
                 while(campos.next()){
                     cbCampos.addItem(campos.getString("CAMPO"));
