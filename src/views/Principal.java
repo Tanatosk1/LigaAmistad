@@ -23,6 +23,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import sources.GestionarCampos;
 import sources.LeerExcel;
 
 /**
@@ -455,7 +456,11 @@ private FondoVentana fondo;
     }//GEN-LAST:event_miSalirActionPerformed
 
     private void miAgregarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAgregarCamposActionPerformed
-        // TODO add your handling code here:
+        String campo = JOptionPane.showInputDialog(null, "Nombre del campo", "Agregar campo", JOptionPane.QUESTION_MESSAGE);
+        if(campo != null){
+            GestionarCampos gc = new GestionarCampos();
+            gc.guardarCampo(campo);
+        }
     }//GEN-LAST:event_miAgregarCamposActionPerformed
 
     private void miVaciarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVaciarCamposActionPerformed
