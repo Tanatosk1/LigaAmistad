@@ -15,16 +15,20 @@ import views.Restricciones;
  */
 public class GestionarCampos {
     private final Conn conn = new Conn();
-    private final Restricciones r;
+    private Restricciones r = null;
     
     public GestionarCampos(Restricciones rect){
         this.r = rect;
     }
     
+    public GestionarCampos(){
+        
+    }
+    
     public void guardarCampo(String campo){
         try {
             conn.conectar();
-            conn.insertData("campos", campo);
+            conn.insertData("campos", "null,'" + campo + "'");
             conn.getConection().commit();
             conn.desconectar();
             JOptionPane.showMessageDialog(null, "Campo guardado con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
