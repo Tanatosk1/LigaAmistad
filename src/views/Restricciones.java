@@ -7,14 +7,13 @@ package views;
 
 import connection.Conn;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.GestionarCampos;
@@ -32,10 +31,9 @@ public class Restricciones extends javax.swing.JFrame {
         private final MostrarDatos md = new MostrarDatos();
         private final GestionarCampos gc;
         private final GestionarEquipos ge;
-        Vector v=new Vector();
+        //Vector v=new Vector();
         
-
-    public Restricciones() {
+public Restricciones() {
         initComponents();
         setLocationRelativeTo(null);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
@@ -48,6 +46,23 @@ public class Restricciones extends javax.swing.JFrame {
         md.llenarComboCampos(this.cbCampos);
         ge = new GestionarEquipos(this);
         gc = new GestionarCampos(this);
+        
+        /*conn.conectar();
+        ResultSet campos = conn.getValues("*", "campos", "", "ID");
+        javax.swing.JCheckBox[] ckCampos = new javax.swing.JCheckBox[6];
+        for(int i = 0; i < ckCampos.length; i++){
+            ckCampos[i] = new javax.swing.JCheckBox("prueba");
+            ckCampos[i].setBounds(new Rectangle(200, (i+1)*20, 60, 35));
+            this.pEquipos.add(ckCampos[i]);
+        }
+            try {
+                while(campos.next()){
+                  //Crear los checkbox para los campos donde no puede jugar un equipo  
+                }   
+            } catch (SQLException ex) {
+                
+            }
+        conn.desconectar();*/
         
         
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -78,9 +93,9 @@ public class Restricciones extends javax.swing.JFrame {
         }
         
         
-        this.comprobarCamposExcluidos();
-        this.comprobarHorasExcluidas();
-        this.comprobarEquiposDiasExcluidos();
+        //this.comprobarCamposExcluidos();
+        //this.comprobarHorasExcluidas();
+        //this.comprobarEquiposDiasExcluidos();
         String equipoNoCoincidir = (String) cbNoCoincidir.getSelectedItem();
                 if ("".equals(equipoNoCoincidir)){
                     
@@ -90,7 +105,7 @@ public class Restricciones extends javax.swing.JFrame {
     }
     
    
-    public void comprobarEquiposDiasExcluidos(){
+    /*public void comprobarEquiposDiasExcluidos(){
 
             if(ckLunesEquipos.isSelected()){
                 System.out.println("Mandar Lunes a BBDD");
@@ -113,7 +128,7 @@ public class Restricciones extends javax.swing.JFrame {
             if(ckDomingoEquipos.isSelected()){
                 System.out.println("Mandar Domingo a BBDD");
             }
-    }
+    }*/
     
     public void comprobarHorasExcluidas(){
 //        if(ckPrimeraEquipos.isSelected()){
@@ -124,7 +139,7 @@ public class Restricciones extends javax.swing.JFrame {
 //            }
     }
     
-    public void comprobarCamposExcluidos(){
+/*    public void comprobarCamposExcluidos(){
         
         if(ckMP3.isSelected()){
                 System.out.println("Mandar MP3 a BBDD");
@@ -150,7 +165,7 @@ public class Restricciones extends javax.swing.JFrame {
         if(ckDRA.isSelected()){
                 System.out.println("Mandar DRA a BBDD");
             }
-    }
+    }*/
 
     public void enableEquipos(){
                 ckLunesEquipos.setEnabled(true);
@@ -267,7 +282,7 @@ public class Restricciones extends javax.swing.JFrame {
 
     }
      
-     public void comprobarCampoDiaExcluido(){
+    /*public void comprobarCampoDiaExcluido(){
             if(ckLunesCampos.isSelected()){
                 System.out.println("Mandar Lunes a BBDD");
             }
@@ -421,7 +436,7 @@ public class Restricciones extends javax.swing.JFrame {
              String hora = txtDomingoSegunda.getText();
              System.out.println("Mandar " + hora + "a la BBDD.");
          }
-     }
+     }*/
     
     public void enableCampos(){
                 cbEquipos.setEnabled(true);
@@ -1717,10 +1732,6 @@ public class Restricciones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ckCongelarEquipoActionPerformed
 
-    private void ckMP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckMP3ActionPerformed
-
-    }//GEN-LAST:event_ckMP3ActionPerformed
-
     private void ckSabadoEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckSabadoEquiposActionPerformed
         if(ckSabadoEquipos.isSelected()){
             cbSabado.setEnabled(true);
@@ -1804,6 +1815,10 @@ public class Restricciones extends javax.swing.JFrame {
     private void cbCamposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCamposItemStateChanged
         gc.mostrarDatos();
     }//GEN-LAST:event_cbCamposItemStateChanged
+
+    private void ckMP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckMP3ActionPerformed
+
+    }//GEN-LAST:event_ckMP3ActionPerformed
    
     public void close() {
              dispose();             
