@@ -21,6 +21,7 @@ public class GestionarEquipos {
     
     public void mostrarRestricciones(){
         try {
+            limpiarCampos();
             int idEquipo = r.cbEquipos.getSelectedIndex();
             conn.conectar();
             ResultSet equi = conn.getValues("r.*, d.dia",
@@ -63,8 +64,26 @@ public class GestionarEquipos {
             conn.desconectar();
         } catch (SQLException ex) {
             Logger.getLogger(GestionarEquipos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }  
+    }
+    
+    private void limpiarCampos(){
+        r.ckLunesEquipos.setSelected(false);
+        r.ckMartesEquipos.setSelected(false);
+        r.ckMiercolesEquipos.setSelected(false);
+        r.ckJuevesEquipos.setSelected(false);
+        r.ckViernesEquipos.setSelected(false);
+        r.ckSabadoEquipos.setSelected(false);
+        r.ckDomingoEquipos.setSelected(false);
+        r.ckCongelarEquipo.setSelected(false);
+        r.cbLunes.setSelectedIndex(0);
+        r.cbMartes.setSelectedIndex(0);
+        r.cbMiercoles.setSelectedIndex(0);
+        r.cbJueves.setSelectedIndex(0);
+        r.cbViernes.setSelectedIndex(0);
+        r.cbSabado.setSelectedIndex(0);
+        r.cbDomingo.setSelectedIndex(0);
+        r.cbNoCoincidir.setSelectedIndex(0);
         
     }
 }
