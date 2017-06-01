@@ -84,9 +84,11 @@ public class Conn {
         try {
             String Query = "INSERT INTO " + table + " VALUES(" + values +")";
             Statement st = link.createStatement();
+
             st.executeUpdate(Query);
             //JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
         } catch (SQLException ex) {
+            System.err.println(ex);
             //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos\n" + ex);
         }
     }
@@ -129,11 +131,11 @@ public class Conn {
         try {
             String Query = "UPDATE " + table + " SET " + set +" WHERE " + where;
             Statement st = link.createStatement();
-            st.executeUpdate(Query);
-            JOptionPane.showMessageDialog(null, "Datos editados de forma exitosa");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos\n"+ex);
             
+            st.executeUpdate(Query);
+            //JOptionPane.showMessageDialog(null, "Datos editados de forma exitosa");
+        } catch (SQLException ex) {
+            //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos\n"+ex);  
         }
     }
     
