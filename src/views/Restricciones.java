@@ -200,54 +200,61 @@ public class Restricciones extends javax.swing.JFrame {
             System.out.println("Mandar " + campoSeleccionado + " a la BBDD.");
         }*/
         
-        ArrayList<OCampos> condiciones = new ArrayList<OCampos>();
+        ArrayList<OCampos> condiciones = new ArrayList<>();
         
         if(this.ckLunesCampos.isSelected()){
             if(this.ckLunesPrimera.isSelected()){
                 condiciones.add(new OCampos(1,1));
-            }else if(this.ckLunesSegunda.isSelected()){
+            }
+            if(this.ckLunesSegunda.isSelected()){
                 condiciones.add(new OCampos(1,2));
             }
         }
         if(this.ckMartesCampos.isSelected()){
             if(this.ckMartesPrimera.isSelected()){
                 condiciones.add(new OCampos(2,1));
-            }else if(this.ckMartesSegunda.isSelected()){
+            }
+            if(this.ckMartesSegunda.isSelected()){
                 condiciones.add(new OCampos(2,2));
             }
         }
         if(this.ckMiercolesCampos.isSelected()){
             if(this.ckMiercolesPrimera.isSelected()){
                 condiciones.add(new OCampos(3,1));
-            }else if(this.ckMiercolesSegunda.isSelected()){
+            }
+            if(this.ckMiercolesSegunda.isSelected()){
                 condiciones.add(new OCampos(3,2));
             }
         }
         if(this.ckJuevesCampos.isSelected()){
             if(this.ckJuevesPrimera.isSelected()){
                 condiciones.add(new OCampos(4,1));
-            }else if(this.ckJuevesSegunda.isSelected()){
+            }
+            if(this.ckJuevesSegunda.isSelected()){
                 condiciones.add(new OCampos(4,2));
             }
         }
         if(this.ckViernesCampos.isSelected()){
             if(this.ckViernesPrimera.isSelected()){
                 condiciones.add(new OCampos(5,1));
-            }else if(this.ckViernesSegunda.isSelected()){
+            }
+            if(this.ckViernesSegunda.isSelected()){
                 condiciones.add(new OCampos(5,2));
             }
         }
         if(this.ckSabadoCampos.isSelected()){
             if(this.ckSabadoPrimera.isSelected()){
                 condiciones.add(new OCampos(6,1));
-            }else if(this.ckSabadoSegunda.isSelected()){
+            }
+            if(this.ckSabadoSegunda.isSelected()){
                 condiciones.add(new OCampos(6,2));
             }
         }
         if(this.ckDomingoCampos.isSelected()){
             if(this.ckDomingoPrimera.isSelected()){
                 condiciones.add(new OCampos(7,1));
-            }else if(this.ckDomingoSegunda.isSelected()){
+            }
+            if(this.ckDomingoSegunda.isSelected()){
                 condiciones.add(new OCampos(7,2));
             }
         }
@@ -1564,9 +1571,13 @@ public class Restricciones extends javax.swing.JFrame {
         int input = JOptionPane.showConfirmDialog(null, "¿Desea guardar los horarios para el campo seleccionado?", "Gestión de campos", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-                this.restriccionesDeCampo();
-                this.disableCampos();
-                //gc.gestionarCampo();
+            if(this.ckCongelarCampo.isSelected()){
+                gc.congelarCampo(this.cbCampos.getSelectedIndex(), 1);
+            }else{  
+                gc.congelarCampo(this.cbCampos.getSelectedIndex(), 0);
+            }
+            this.restriccionesDeCampo();
+            this.disableCampos();
         }  
     }//GEN-LAST:event_btnAceptarEquipos1ActionPerformed
 
