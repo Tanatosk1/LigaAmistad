@@ -50,12 +50,22 @@ public class GestionarCampos {
             }
             
             conn.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }finally{
             r.cbCampos.setSelectedIndex(0);
+        }
+    }
+    
+    public void congelarCampo(int idCampo, int estado){
+        try {
+            conn.conectar();
+            conn.updateData("campos", "congelado = " + estado, "ID = " + idCampo);
+            conn.getConection().commit();
+            conn.desconectar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
     }
     
     public void mostrarDatos(){
@@ -63,8 +73,8 @@ public class GestionarCampos {
             limpiarSeleccion();
             int idCampo = r.cbCampos.getSelectedIndex();
             conn.conectar();
-            ResultSet cam = conn.getValues("ch.*, d.dia, h.hora, h.horario",
-                    "cam_horarios ch INNER JOIN dias d ON ch.ID_DIA = d.ID INNER JOIN hora h ON ch.ID_HORA = h.ID",
+            ResultSet cam = conn.getValues("c.congelado, ch.*, d.dia, h.hora, h.horario",
+                    "cam_horarios ch INNER JOIN dias d ON ch.ID_DIA = d.ID INNER JOIN hora h ON ch.ID_HORA = h.ID INNER JOIN campos c ON ch.ID_CAMPO = c.ID",
                     "ch.ID_CAMPO = "+idCampo, "");
             while(cam.next()){
                 switch (cam.getString("dia")){
@@ -138,6 +148,9 @@ public class GestionarCampos {
                             r.txtDomingoSegunda.setText(cam.getString("hora"));
                         }
                         break;
+                }
+                if(cam.getInt("congelado") == 1){
+                    r.ckCongelarCampo.setSelected(true);
                 }
             }
             conn.desconectar();
