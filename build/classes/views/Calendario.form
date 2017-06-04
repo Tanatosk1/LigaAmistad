@@ -207,6 +207,8 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="dFechaFinTemporada" min="-2" pref="120" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="cbGenerarJornada" min="-2" pref="175" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnGenerarInicio" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -221,6 +223,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbInicioFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnGenerarInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbGenerarJornada" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                           <Component id="lblInicioFechaFin" min="-2" max="-2" attributes="0"/>
@@ -281,6 +284,22 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarInicioActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbGenerarJornada">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="Seleccione una Jornada"/>
+                <StringItem index="1" value="Jornada 1"/>
+                <StringItem index="2" value="Jornada 2"/>
+                <StringItem index="3" value="Jornada 3"/>
+                <StringItem index="4" value="Jornada 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -526,7 +545,7 @@
                 <Column editable="false" title="Equipo Visitante" type="java.lang.Object"/>
                 <Column editable="true" title="Campo" type="java.lang.Object"/>
                 <Column editable="false" title="Competici&#xf3;n" type="java.lang.Object"/>
-                <Column editable="false" title="Partido aplazado" type="java.lang.Boolean"/>
+                <Column editable="true" title="Partido aplazado" type="java.lang.Boolean"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

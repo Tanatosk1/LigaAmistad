@@ -81,6 +81,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         lblInicioFechaFin = new javax.swing.JLabel();
         dFechaFinTemporada = new com.toedter.calendar.JDateChooser();
         btnGenerarInicio = new javax.swing.JButton();
+        cbGenerarJornada = new javax.swing.JComboBox<>();
         pCalendario = new javax.swing.JPanel();
         lblCategoria = new javax.swing.JLabel();
         cbCategoria = new javax.swing.JComboBox<>();
@@ -134,6 +135,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
             }
         });
 
+        cbGenerarJornada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Jornada", "Jornada 1", "Jornada 2", "Jornada 3", "Jornada 4" }));
+
         javax.swing.GroupLayout jInicioCalendarioLayout = new javax.swing.GroupLayout(jInicioCalendario);
         jInicioCalendario.setLayout(jInicioCalendarioLayout);
         jInicioCalendarioLayout.setHorizontalGroup(
@@ -148,6 +151,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dFechaFinTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cbGenerarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnGenerarInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -159,7 +164,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
                     .addComponent(dFechaFinTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbInicioFechaInicio)
-                        .addComponent(btnGenerarInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnGenerarInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbGenerarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(lblInicioFechaFin)
                         .addComponent(dFechaInicioTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -592,12 +598,15 @@ private final CrearDocumentos cd = new CrearDocumentos();
     }//GEN-LAST:event_cbDivisionActionPerformed
 
     private void btnGenerarInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarInicioActionPerformed
-
+        if (cbGenerarJornada.getSelectedItem().toString().equals("Seleccione una Jornada")){
+            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una jornada","Seleccione una jornada", JOptionPane.QUESTION_MESSAGE, icon);
+        }else{
               Date fechaInicio = this.dFechaInicioTemporada.getDate();
               Date fechaFin = this.dFechaInicioTemporada.getDate();
               SimpleDateFormat formato = new SimpleDateFormat("d/MM/yyyy");
               gc.generaFechas(formato.format(fechaInicio), formato.format(fechaFin), this.tCalendario);
-              
+        }      
     //        gc.generaFechas(this.dFechaInicio.getText(), this.dFechaFin.getText(), this.tCalendario);
 
     }//GEN-LAST:event_btnGenerarInicioActionPerformed
@@ -679,6 +688,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private javax.swing.JButton btnGenerarInicio;
     private javax.swing.JComboBox<String> cbCategoria;
     private javax.swing.JComboBox<String> cbDivision;
+    private javax.swing.JComboBox<String> cbGenerarJornada;
     private javax.swing.JComboBox<String> cbJornada;
     private com.toedter.calendar.JDateChooser dFechaFinFiltro;
     private com.toedter.calendar.JDateChooser dFechaFinTemporada;

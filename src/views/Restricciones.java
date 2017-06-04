@@ -235,14 +235,14 @@ public Restricciones() {
                 ckViernesEquipos.setEnabled(true);
                 ckSabadoEquipos.setEnabled(true);
                 ckDomingoEquipos.setEnabled(true);
-                ckMP3.setEnabled(true);
-                ckMP4.setEnabled(true);
-                ckSTM.setEnabled(true);
-                ckTNC.setEnabled(true);
-                ckCHU.setEnabled(true);
-                ckDEL.setEnabled(true);
-                ckCHO.setEnabled(true);
-                ckDRA.setEnabled(true);
+//                ckMP3.setEnabled(true);
+//                ckMP4.setEnabled(true);
+//                ckSTM.setEnabled(true);
+//                ckTNC.setEnabled(true);
+//                ckCHU.setEnabled(true);
+//                ckDEL.setEnabled(true);
+//                ckCHO.setEnabled(true);
+//                ckDRA.setEnabled(true);
                 cbNoCoincidir.setEnabled(true);
                 ckCongelarEquipo.setEnabled(true);
     }
@@ -262,14 +262,14 @@ public Restricciones() {
                 cbViernes.setEnabled(false);
                 cbSabado.setEnabled(false);
                 cbDomingo.setEnabled(false);
-                ckMP3.setEnabled(false);
-                ckMP4.setEnabled(false);
-                ckSTM.setEnabled(false);
-                ckTNC.setEnabled(false);
-                ckCHU.setEnabled(false);
-                ckDEL.setEnabled(false);
-                ckCHO.setEnabled(false);
-                ckDRA.setEnabled(false);
+//                ckMP3.setEnabled(false);
+//                ckMP4.setEnabled(false);
+//                ckSTM.setEnabled(false);
+//                ckTNC.setEnabled(false);
+//                ckCHU.setEnabled(false);
+//                ckDEL.setEnabled(false);
+//                ckCHO.setEnabled(false);
+//                ckDRA.setEnabled(false);
                 cbNoCoincidir.setEnabled(false);
                 ckCongelarEquipo.setEnabled(false);
     }
@@ -610,14 +610,6 @@ public Restricciones() {
         ckDomingoEquipos = new javax.swing.JCheckBox();
         separadorEquipos2 = new javax.swing.JSeparator();
         lblCamposExcluidos = new javax.swing.JLabel();
-        ckMP3 = new javax.swing.JCheckBox();
-        ckMP4 = new javax.swing.JCheckBox();
-        ckSTM = new javax.swing.JCheckBox();
-        ckTNC = new javax.swing.JCheckBox();
-        ckCHU = new javax.swing.JCheckBox();
-        ckDEL = new javax.swing.JCheckBox();
-        ckCHO = new javax.swing.JCheckBox();
-        ckDRA = new javax.swing.JCheckBox();
         separadorEquipos4 = new javax.swing.JSeparator();
         lblNoCoincidir = new javax.swing.JLabel();
         cbNoCoincidir = new javax.swing.JComboBox<>();
@@ -633,6 +625,7 @@ public Restricciones() {
         cbViernes = new javax.swing.JComboBox<>();
         cbSabado = new javax.swing.JComboBox<>();
         cbDomingo = new javax.swing.JComboBox<>();
+        pCamposExcluidos = new javax.swing.JPanel();
         pCampos = new javax.swing.JPanel();
         lblLogoCampos = new javax.swing.JLabel();
         lblCampos = new javax.swing.JLabel();
@@ -684,14 +677,9 @@ public Restricciones() {
         separadorCampos9 = new javax.swing.JSeparator();
         btnEditarEquipos1 = new javax.swing.JButton();
         btnAceptarEquipos1 = new javax.swing.JButton();
-        jExcluirFechas = new javax.swing.JPanel();
-        lbExcFechaInicio = new javax.swing.JLabel();
-        dExcFechaInicio = new com.toedter.calendar.JDateChooser();
-        lblExcFechaFin = new javax.swing.JLabel();
-        dExcFechaFin = new com.toedter.calendar.JDateChooser();
-        lblDescripcion = new javax.swing.JLabel();
-        cbDescripcion = new javax.swing.JComboBox<>();
-        btnExcExcluir = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Configuración");
@@ -809,51 +797,6 @@ public Restricciones() {
         lblCamposExcluidos.setMinimumSize(new java.awt.Dimension(191, 22));
         lblCamposExcluidos.setPreferredSize(new java.awt.Dimension(191, 22));
 
-        ckMP3.setBackground(new java.awt.Color(255, 255, 255));
-        ckMP3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        ckMP3.setText("MP3");
-        ckMP3.setEnabled(false);
-        ckMP3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckMP3ActionPerformed(evt);
-            }
-        });
-
-        ckMP4.setBackground(new java.awt.Color(255, 255, 255));
-        ckMP4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        ckMP4.setText("MP4");
-        ckMP4.setEnabled(false);
-
-        ckSTM.setBackground(new java.awt.Color(255, 255, 255));
-        ckSTM.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        ckSTM.setText("STM");
-        ckSTM.setEnabled(false);
-
-        ckTNC.setBackground(new java.awt.Color(255, 255, 255));
-        ckTNC.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        ckTNC.setText("TNC");
-        ckTNC.setEnabled(false);
-
-        ckCHU.setBackground(new java.awt.Color(255, 255, 255));
-        ckCHU.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        ckCHU.setText("CHU");
-        ckCHU.setEnabled(false);
-
-        ckDEL.setBackground(new java.awt.Color(255, 255, 255));
-        ckDEL.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        ckDEL.setText("DEL");
-        ckDEL.setEnabled(false);
-
-        ckCHO.setBackground(new java.awt.Color(255, 255, 255));
-        ckCHO.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        ckCHO.setText("CHO");
-        ckCHO.setEnabled(false);
-
-        ckDRA.setBackground(new java.awt.Color(255, 255, 255));
-        ckDRA.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        ckDRA.setText("DRA");
-        ckDRA.setEnabled(false);
-
         separadorEquipos4.setForeground(new java.awt.Color(31, 87, 12));
 
         lblNoCoincidir.setBackground(new java.awt.Color(255, 255, 255));
@@ -891,6 +834,7 @@ public Restricciones() {
         btnAceptarEquipos.setBackground(new java.awt.Color(31, 87, 12));
         btnAceptarEquipos.setForeground(new java.awt.Color(255, 255, 255));
         btnAceptarEquipos.setText("Aceptar");
+        btnAceptarEquipos.setEnabled(false);
         btnAceptarEquipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarEquiposActionPerformed(evt);
@@ -899,6 +843,11 @@ public Restricciones() {
 
         cbLunes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona Hora", "Primera", "Segunda", "Ambas" }));
         cbLunes.setEnabled(false);
+        cbLunes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLunesActionPerformed(evt);
+            }
+        });
 
         cbMartes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona Hora", "Primera", "Segunda", "Ambas" }));
         cbMartes.setEnabled(false);
@@ -923,6 +872,20 @@ public Restricciones() {
         cbDomingo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona Hora", "Primera", "Segunda", "Ambas" }));
         cbDomingo.setEnabled(false);
 
+        pCamposExcluidos.setBackground(new java.awt.Color(255, 255, 255));
+        pCamposExcluidos.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pCamposExcluidosLayout = new javax.swing.GroupLayout(pCamposExcluidos);
+        pCamposExcluidos.setLayout(pCamposExcluidosLayout);
+        pCamposExcluidosLayout.setHorizontalGroup(
+            pCamposExcluidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pCamposExcluidosLayout.setVerticalGroup(
+            pCamposExcluidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout pEquiposLayout = new javax.swing.GroupLayout(pEquipos);
         pEquipos.setLayout(pEquiposLayout);
         pEquiposLayout.setHorizontalGroup(
@@ -931,40 +894,33 @@ public Restricciones() {
                 .addContainerGap()
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pEquiposLayout.createSequentialGroup()
-                        .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(separadorEquipos5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(separadorEquipos4))
+                        .addComponent(separadorEquipos4)
                         .addContainerGap())
                     .addGroup(pEquiposLayout.createSequentialGroup()
-                        .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
+                        .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pEquiposLayout.createSequentialGroup()
                                 .addComponent(lblNoCoincidir, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbNoCoincidir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
-                                .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pEquiposLayout.createSequentialGroup()
-                                        .addComponent(ckCHU)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckDEL)
-                                        .addGap(20, 20, 20)
-                                        .addComponent(ckCHO)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckDRA))
-                                    .addGroup(pEquiposLayout.createSequentialGroup()
-                                        .addComponent(ckMP3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckMP4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckSTM)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckTNC))))
-                            .addComponent(ckCongelarEquipo, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(cbNoCoincidir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ckCongelarEquipo))
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(separadorEquipos5)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pEquiposLayout.createSequentialGroup()
                         .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(separadorEquipos1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
+                                .addComponent(lblLogoEquipos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblEquipos)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbEquipos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnEditarEquipos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAceptarEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(separadorEquipos6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(separadorEquipos2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
                                 .addComponent(lblDiasEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -993,20 +949,10 @@ public Restricciones() {
                                         .addComponent(cbDomingo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(cbSabado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(separadorEquipos1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
-                                .addComponent(lblLogoEquipos)
+                                .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblEquipos)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbEquipos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnEditarEquipos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAceptarEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(separadorEquipos6, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(separadorEquipos2, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(pCamposExcluidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(10, 10, 10))))
         );
         pEquiposLayout.setVerticalGroup(
@@ -1046,34 +992,27 @@ public Restricciones() {
                         .addComponent(cbLunes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(ckViernesEquipos)
                         .addComponent(cbViernes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(55, 55, 55)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separadorEquipos2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pEquiposLayout.createSequentialGroup()
+                        .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 201, Short.MAX_VALUE))
+                    .addComponent(pCamposExcluidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ckMP3)
-                    .addComponent(ckMP4)
-                    .addComponent(ckSTM)
-                    .addComponent(ckTNC))
-                .addGap(13, 13, 13)
-                .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ckCHU)
-                    .addComponent(ckDRA)
-                    .addComponent(ckDEL)
-                    .addComponent(ckCHO))
-                .addGap(3, 3, 3)
                 .addComponent(separadorEquipos4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNoCoincidir)
                     .addComponent(cbNoCoincidir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separadorEquipos5, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ckCongelarEquipo)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separadorEquipos6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditarEquipos)
                     .addComponent(btnAceptarEquipos))
@@ -1342,6 +1281,7 @@ public Restricciones() {
         btnAceptarEquipos1.setBackground(new java.awt.Color(31, 87, 12));
         btnAceptarEquipos1.setForeground(new java.awt.Color(255, 255, 255));
         btnAceptarEquipos1.setText("Aceptar");
+        btnAceptarEquipos1.setEnabled(false);
         btnAceptarEquipos1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarEquipos1ActionPerformed(evt);
@@ -1532,79 +1472,34 @@ public Restricciones() {
                 .addComponent(ckCongelarCampo)
                 .addGap(10, 10, 10)
                 .addComponent(separadorCampos9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarEquipos1)
                     .addComponent(btnEditarEquipos1))
                 .addContainerGap())
         );
 
-        jExcluirFechas.setBackground(new java.awt.Color(255, 255, 255));
-        jExcluirFechas.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  DÍAS DE INACTIVIDAD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12))); // NOI18N
+        jMenuBar1.setBackground(new java.awt.Color(31, 87, 12));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
 
-        lbExcFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
-        lbExcFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbExcFechaInicio.setText("Fecha de Incio");
+        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu1.setText("Inactividad");
 
-        lblExcFechaFin.setBackground(new java.awt.Color(255, 255, 255));
-        lblExcFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblExcFechaFin.setText("Fecha de Fin");
-
-        lblDescripcion.setBackground(new java.awt.Color(255, 255, 255));
-        lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblDescripcion.setText("Descripción");
-
-        cbDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cbDescripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un motivo", "Periodo hábil", "Fiesta nacional", "Fiesta local", "Periodo vacacional", "Otros" }));
-
-        btnExcExcluir.setBackground(new java.awt.Color(31, 87, 12));
-        btnExcExcluir.setForeground(new java.awt.Color(255, 255, 255));
-        btnExcExcluir.setText("Aceptar");
-        btnExcExcluir.setMaximumSize(new java.awt.Dimension(120, 23));
-        btnExcExcluir.setMinimumSize(new java.awt.Dimension(120, 23));
-        btnExcExcluir.setPreferredSize(new java.awt.Dimension(120, 23));
-        btnExcExcluir.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setBackground(new java.awt.Color(31, 87, 12));
+        jMenuItem1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lupa.png"))); // NOI18N
+        jMenuItem1.setText(" Ver días de inactividad");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcExcluirActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItem1);
 
-        javax.swing.GroupLayout jExcluirFechasLayout = new javax.swing.GroupLayout(jExcluirFechas);
-        jExcluirFechas.setLayout(jExcluirFechasLayout);
-        jExcluirFechasLayout.setHorizontalGroup(
-            jExcluirFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jExcluirFechasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbExcFechaInicio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dExcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblExcFechaFin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dExcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblDescripcion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExcExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jExcluirFechasLayout.setVerticalGroup(
-            jExcluirFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jExcluirFechasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jExcluirFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dExcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dExcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jExcluirFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbExcFechaInicio)
-                        .addComponent(lblExcFechaFin)
-                        .addComponent(lblDescripcion)
-                        .addComponent(btnExcExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10))
-        );
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1612,23 +1507,18 @@ public Restricciones() {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jExcluirFechas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 658, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)))
+                .addComponent(pEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 658, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jExcluirFechas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 659, Short.MAX_VALUE)
-                    .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE))
+                    .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
+                    .addComponent(pEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1765,22 +1655,13 @@ public Restricciones() {
         }
     }//GEN-LAST:event_ckDomingoCamposActionPerformed
 
-    private void btnExcExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcExcluirActionPerformed
-        ImageIcon icon = new ImageIcon("src/resources/aceptar.png");
-        int input = JOptionPane.showConfirmDialog(null, "¿Desea excluir las fechas seleccionadas?", "Excluir Fechas",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
-        if (input == JOptionPane.YES_OPTION) {
-
-        }
-    }//GEN-LAST:event_btnExcExcluirActionPerformed
-
     private void btnAceptarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarEquiposActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/aceptar.png");
         int input = JOptionPane.showConfirmDialog(null, "¿Desea aplicar las restricciones para el equipo seleccionado?", "Aplicar restricciones",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
 
-            this.restriccionesDeEquipo();
+//            this.restriccionesDeEquipo();
             if(correcto){
                 this.disableEquipos();
             }
@@ -1793,6 +1674,7 @@ public Restricciones() {
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un equipo","Seleccione un equipo", JOptionPane.QUESTION_MESSAGE, icon);
         }else {
             this.enableEquipos();
+            btnAceptarEquipos.setEnabled(true);
 
         }
     }//GEN-LAST:event_btnEditarEquiposActionPerformed
@@ -1885,9 +1767,15 @@ public Restricciones() {
         gc.mostrarDatos();
     }//GEN-LAST:event_cbCamposItemStateChanged
 
-    private void ckMP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckMP3ActionPerformed
+    private void cbLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLunesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbLunesActionPerformed
 
-    }//GEN-LAST:event_ckMP3ActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Inactividad  frm = new Inactividad ();
+
+        frm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
    
     public void close() {
              dispose();             
@@ -1935,9 +1823,7 @@ public Restricciones() {
     private javax.swing.JButton btnAceptarEquipos1;
     private javax.swing.JButton btnEditarEquipos;
     private javax.swing.JButton btnEditarEquipos1;
-    private javax.swing.JButton btnExcExcluir;
     public javax.swing.JComboBox<String> cbCampos;
-    private javax.swing.JComboBox<String> cbDescripcion;
     public javax.swing.JComboBox<String> cbDomingo;
     public javax.swing.JComboBox<String> cbEquipos;
     public javax.swing.JComboBox<String> cbJueves;
@@ -1947,12 +1833,8 @@ public Restricciones() {
     public javax.swing.JComboBox<String> cbNoCoincidir;
     public javax.swing.JComboBox<String> cbSabado;
     public javax.swing.JComboBox<String> cbViernes;
-    private javax.swing.JCheckBox ckCHO;
-    private javax.swing.JCheckBox ckCHU;
     public javax.swing.JCheckBox ckCongelarCampo;
     public javax.swing.JCheckBox ckCongelarEquipo;
-    private javax.swing.JCheckBox ckDEL;
-    private javax.swing.JCheckBox ckDRA;
     public javax.swing.JCheckBox ckDomingoCampos;
     public javax.swing.JCheckBox ckDomingoEquipos;
     public javax.swing.JCheckBox ckDomingoPrimera;
@@ -1965,8 +1847,6 @@ public Restricciones() {
     public javax.swing.JCheckBox ckLunesEquipos;
     public javax.swing.JCheckBox ckLunesPrimera;
     public javax.swing.JCheckBox ckLunesSegunda;
-    private javax.swing.JCheckBox ckMP3;
-    private javax.swing.JCheckBox ckMP4;
     public javax.swing.JCheckBox ckMartesCampos;
     public javax.swing.JCheckBox ckMartesEquipos;
     public javax.swing.JCheckBox ckMartesPrimera;
@@ -1975,30 +1855,26 @@ public Restricciones() {
     public javax.swing.JCheckBox ckMiercolesEquipos;
     public javax.swing.JCheckBox ckMiercolesPrimera;
     public javax.swing.JCheckBox ckMiercolesSegunda;
-    private javax.swing.JCheckBox ckSTM;
     public javax.swing.JCheckBox ckSabadoCampos;
     public javax.swing.JCheckBox ckSabadoEquipos;
     public javax.swing.JCheckBox ckSabadoPrimera;
     public javax.swing.JCheckBox ckSabadoSegunda;
-    private javax.swing.JCheckBox ckTNC;
     public javax.swing.JCheckBox ckViernesCampos;
     public javax.swing.JCheckBox ckViernesEquipos;
     public javax.swing.JCheckBox ckViernesPrimera;
     public javax.swing.JCheckBox ckViernesSegunda;
-    private com.toedter.calendar.JDateChooser dExcFechaFin;
-    private com.toedter.calendar.JDateChooser dExcFechaInicio;
-    private javax.swing.JPanel jExcluirFechas;
-    private javax.swing.JLabel lbExcFechaInicio;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblCampos;
     private javax.swing.JLabel lblCamposExcluidos;
-    private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblDiasEquipos;
     private javax.swing.JLabel lblEquipos;
-    private javax.swing.JLabel lblExcFechaFin;
     private javax.swing.JLabel lblLogoCampos;
     private javax.swing.JLabel lblLogoEquipos;
     private javax.swing.JLabel lblNoCoincidir;
     private javax.swing.JPanel pCampos;
+    private javax.swing.JPanel pCamposExcluidos;
     private javax.swing.JPanel pEquipos;
     private javax.swing.JSeparator separadorCampos1;
     private javax.swing.JSeparator separadorCampos2;
