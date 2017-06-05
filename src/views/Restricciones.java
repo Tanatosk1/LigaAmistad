@@ -6,6 +6,7 @@
 package views;
 
 import connection.Conn;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -13,7 +14,6 @@ import java.awt.event.ComponentEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.GestionarCampos;
@@ -49,22 +49,22 @@ public Restricciones() {
         ge = new GestionarEquipos(this);
         gc = new GestionarCampos(this);
         
-        /*conn.conectar();
+        conn.conectar();
+        int total = conn.totalRegistros("campos");
         ResultSet campos = conn.getValues("*", "campos", "", "ID");
-        javax.swing.JCheckBox[] ckCampos = new javax.swing.JCheckBox[6];
-        for(int i = 0; i < ckCampos.length; i++){
-            ckCampos[i] = new javax.swing.JCheckBox("prueba");
-            ckCampos[i].setBounds(new Rectangle(200, (i+1)*20, 60, 35));
-            this.pEquipos.add(ckCampos[i]);
+        javax.swing.JCheckBox[] ckCampos = new javax.swing.JCheckBox[total];
+        pCamposExcluidos.setLayout(new GridLayout(0,3));
+        int i = 0;
+        try {
+            while(campos.next()){
+              ckCampos[i] = new javax.swing.JCheckBox(campos.getString("campo"));
+              this.pCamposExcluidos.add(ckCampos[i]);
+              i++;
+            }   
+        } catch (SQLException ex) {
+
         }
-            try {
-                while(campos.next()){
-                  //Crear los checkbox para los campos donde no puede jugar un equipo  
-                }   
-            } catch (SQLException ex) {
-                
-            }
-        conn.desconectar();*/
+        conn.desconectar();
         
         
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -874,16 +874,17 @@ public Restricciones() {
 
         pCamposExcluidos.setBackground(new java.awt.Color(255, 255, 255));
         pCamposExcluidos.setForeground(new java.awt.Color(255, 255, 255));
+        pCamposExcluidos.setPreferredSize(new java.awt.Dimension(600, 200));
 
         javax.swing.GroupLayout pCamposExcluidosLayout = new javax.swing.GroupLayout(pCamposExcluidos);
         pCamposExcluidos.setLayout(pCamposExcluidosLayout);
         pCamposExcluidosLayout.setHorizontalGroup(
             pCamposExcluidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
         pCamposExcluidosLayout.setVerticalGroup(
             pCamposExcluidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 177, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pEquiposLayout = new javax.swing.GroupLayout(pEquipos);
@@ -952,7 +953,7 @@ public Restricciones() {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
                                 .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pCamposExcluidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(pCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(10, 10, 10))))
         );
         pEquiposLayout.setVerticalGroup(
@@ -998,8 +999,8 @@ public Restricciones() {
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pEquiposLayout.createSequentialGroup()
                         .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 201, Short.MAX_VALUE))
-                    .addComponent(pCamposExcluidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(pCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separadorEquipos4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1281,7 +1282,6 @@ public Restricciones() {
         btnAceptarEquipos1.setBackground(new java.awt.Color(31, 87, 12));
         btnAceptarEquipos1.setForeground(new java.awt.Color(255, 255, 255));
         btnAceptarEquipos1.setText("Aceptar");
-        btnAceptarEquipos1.setEnabled(false);
         btnAceptarEquipos1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarEquipos1ActionPerformed(evt);
@@ -1544,9 +1544,9 @@ public Restricciones() {
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
             if(this.ckCongelarCampo.isSelected()){
-                gc.congelarCampo(this.cbCampos.getSelectedIndex(), 1);
+                gc.congelarCampo(this.cbCampos.getSelectedIndex(), true);
             }else{  
-                gc.congelarCampo(this.cbCampos.getSelectedIndex(), 0);
+                gc.congelarCampo(this.cbCampos.getSelectedIndex(), false);
             }
             this.restriccionesDeCampo();
             this.disableCampos();
