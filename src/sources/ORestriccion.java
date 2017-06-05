@@ -5,31 +5,31 @@ package sources;
  * @author santy
  */
 public class ORestriccion {
-    private final int dia;
-    private final int hora;
-    private final int campo;
-    private final int noCoincidir;
+    private final Object dia;
+    private final Object hora;
+    private final Object campo;
+    private final Object noCoincidir;
     
-    public ORestriccion(int dia, int hora, int campo, int noCoincidir){
+    public ORestriccion(Object dia, Object hora, Object campo, Object noCoincidir){
         this.dia = dia;
         this.hora = hora;
         this.campo = campo;
         this.noCoincidir = noCoincidir;
     }
     
-    public int getDia(){
+    public Object getDia(){
         return this.dia;
     }
     
-    public int getHora(){
+    public Object getHora(){
         return this.hora;
     }
     
-    public int getCampo(){
+    public Object getCampo(){
         return this.campo;
     }
     
-    public int getNoCoincidir(){
+    public Object getNoCoincidir(){
         return this.noCoincidir;
     }
 }

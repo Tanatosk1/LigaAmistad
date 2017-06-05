@@ -43,6 +43,17 @@ public class GestionarEquipos {
         }
     }
     
+    public void congelarEquipo(int idEquipo, boolean estado){
+        try {
+            conn.conectar();
+            conn.updateData("equipos", "congelado = " + estado, "ID = " + idEquipo);
+            conn.getConection().commit();
+            conn.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     public void mostrarRestricciones(){
         try {
             limpiarCampos();
@@ -56,38 +67,53 @@ public class GestionarEquipos {
                     switch (equi.getString("dia")){
                         case "Lunes":
                             r.ckLunesEquipos.setSelected(true);
-                            r.cbLunes.setSelectedIndex(equi.getInt("ID_HORA"));
+                            r.cbLunes.setSelectedIndex(equi.getInt("HORA"));
                             break;
                         case "Martes":
                             r.ckMartesEquipos.setSelected(true);
-                            r.cbMartes.setSelectedIndex(equi.getInt("ID_HORA"));
+                            r.cbMartes.setSelectedIndex(equi.getInt("HORA"));
                             break;
                         case "Miércoles":
                             r.ckMiercolesEquipos.setSelected(true);
-                            r.cbMiercoles.setSelectedIndex(equi.getInt("ID_HORA"));
+                            r.cbMiercoles.setSelectedIndex(equi.getInt("HORA"));
                             break;
                         case "Jueves":
                             r.ckJuevesEquipos.setSelected(true);
-                            r.cbJueves.setSelectedIndex(equi.getInt("ID_HORA"));
+                            r.cbJueves.setSelectedIndex(equi.getInt("HORA"));
                             break;
                         case "Viernes":
                             r.ckViernesEquipos.setSelected(true);
-                            r.cbViernes.setSelectedIndex(equi.getInt("ID_HORA"));
+                            r.cbViernes.setSelectedIndex(equi.getInt("HORA"));
                             break;
                         case "Sábado":
                             r.ckSabadoEquipos.setSelected(true);
-                            r.cbSabado.setSelectedIndex(equi.getInt("ID_HORA"));
+                            r.cbSabado.setSelectedIndex(equi.getInt("HORA"));
                             break;
                         case "Domingo":
                             r.ckDomingoEquipos.setSelected(true);
-                            r.cbDomingo.setSelectedIndex(equi.getInt("ID_HORA"));
+                            r.cbDomingo.setSelectedIndex(equi.getInt("HORA"));
                             break;
                     }
                 }
-                if(equi.getInt("ID_COINCIDE") > 0){
-                    r.cbNoCoincidir.setSelectedItem(equi.getString("nombre"));
+                if(equi.getObject("ID_CAMPO") != null){
+                    for(int i = 0; i < r.total+1; i++){
+                        if(i == equi.getInt("ID_CAMPO")){
+                            r.ckCampos[i].setSelected(true);
+                        }
+                    }
                 }
-                
+                if(equi.getObject("ID_COINCIDE") != null){
+                    r.cbNoCoincidir.setSelectedItem(equi.getString("nombre"));
+                } 
+            }
+            
+            ResultSet eCongelado = conn.getValues("CONGELADO", "equipos", "ID = " + idEquipo, "");
+            while(eCongelado.next()){
+                if(eCongelado.getBoolean("CONGELADO")){
+                    r.ckCongelarEquipo.setSelected(true);
+                }else{
+                    r.ckCongelarEquipo.setSelected(false);
+                }
             }
             
             conn.desconectar();
@@ -113,6 +139,9 @@ public class GestionarEquipos {
         r.cbSabado.setSelectedIndex(0);
         r.cbDomingo.setSelectedIndex(0);
         r.cbNoCoincidir.setSelectedIndex(0);
+        for(int i = 1; i < r.total+1; i++){
+            r.ckCampos[i].setSelected(false);
+        }
         
     }
 }
