@@ -57,9 +57,10 @@ public class GestionarCampos {
         }
     }
     
-    public void congelarCampo(int idCampo, int estado){
+    public void congelarCampo(int idCampo, boolean estado){
         try {
             conn.conectar();
+            //conn.insertData("cam_horarios", idCampo +",null,null,"+estado);
             conn.updateData("campos", "congelado = " + estado, "ID = " + idCampo);
             conn.getConection().commit();
             conn.desconectar();
@@ -73,86 +74,94 @@ public class GestionarCampos {
             limpiarSeleccion();
             int idCampo = r.cbCampos.getSelectedIndex();
             conn.conectar();
-            ResultSet cam = conn.getValues("c.congelado, ch.*, d.dia, h.hora, h.horario",
-                    "cam_horarios ch INNER JOIN dias d ON ch.ID_DIA = d.ID INNER JOIN hora h ON ch.ID_HORA = h.ID INNER JOIN campos c ON ch.ID_CAMPO = c.ID",
+            ResultSet cam = conn.getValues("ch.*, d.dia, h.hora, h.horario",
+                    "cam_horarios ch LEFT JOIN dias d ON ch.ID_DIA = d.ID LEFT JOIN hora h ON ch.ID_HORA = h.ID",
                     "ch.ID_CAMPO = "+idCampo, "");
             while(cam.next()){
-                switch (cam.getString("dia")){
-                    case "Lunes":
-                        r.ckLunesCampos.setSelected(true);
-                        if(cam.getString("horario").equalsIgnoreCase("primera")){
-                            r.ckLunesPrimera.setSelected(true);
-                            r.txtLunesPrimera.setText(cam.getString("hora"));
-                        }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
-                            r.ckLunesSegunda.setSelected(true);
-                            r.txtLunesSegunda.setText(cam.getString("hora"));
-                        }
-                        break;
-                    case "Martes":
-                        r.ckMartesCampos.setSelected(true);
-                        if(cam.getString("horario").equalsIgnoreCase("primera")){
-                            r.ckMartesPrimera.setSelected(true);
-                            r.txtMartesPrimera.setText(cam.getString("hora"));
-                        }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
-                            r.ckMartesSegunda.setSelected(true);
-                            r.txtMartesSegunda.setText(cam.getString("hora"));
-                        }
-                        break;
-                    case "Miércoles":
-                        r.ckMiercolesCampos.setSelected(true);
-                        if(cam.getString("horario").equalsIgnoreCase("primera")){
-                            r.ckMiercolesPrimera.setSelected(true);
-                            r.txtMiercolesPrimera.setText(cam.getString("hora"));
-                        }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
-                            r.ckMiercolesSegunda.setSelected(true);
-                            r.txtMiercolesSegunda.setText(cam.getString("hora"));
-                        }
-                        break;
-                    case "Jueves":
-                        r.ckJuevesCampos.setSelected(true);
-                        if(cam.getString("horario").equalsIgnoreCase("primera")){
-                            r.ckJuevesPrimera.setSelected(true);
-                            r.txtJuevesPrimera.setText(cam.getString("hora"));
-                        }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
-                            r.ckJuevesSegunda.setSelected(true);
-                            r.txtJuevesSegunda.setText(cam.getString("hora"));
-                        }
-                        break;
-                    case "Viernes":
-                        r.ckViernesCampos.setSelected(true);
-                        if(cam.getString("horario").equalsIgnoreCase("primera")){
-                            r.ckViernesPrimera.setSelected(true);
-                            r.txtViernesPrimera.setText(cam.getString("hora"));
-                        }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
-                            r.ckViernesSegunda.setSelected(true);
-                            r.txtViernesSegunda.setText(cam.getString("hora"));
-                        }
-                        break;
-                    case "Sábado":
-                        r.ckSabadoCampos.setSelected(true);
-                        if(cam.getString("horario").equalsIgnoreCase("primera")){
-                            r.ckSabadoPrimera.setSelected(true);
-                            r.txtSabadoPrimera.setText(cam.getString("hora"));
-                        }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
-                            r.ckSabadoSegunda.setSelected(true);
-                            r.txtSabadoSegunda.setText(cam.getString("hora"));
-                        }
-                        break;
-                    case "Domingo":
-                        r.ckDomingoCampos.setSelected(true);
-                        if(cam.getString("horario").equalsIgnoreCase("primera")){
-                            r.ckDomingoPrimera.setSelected(true);
-                            r.txtDomingoPrimera.setText(cam.getString("hora"));
-                        }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
-                            r.ckDomingoSegunda.setSelected(true);
-                            r.txtDomingoSegunda.setText(cam.getString("hora"));
-                        }
-                        break;
+                if(cam.getString("dia") != null){
+                    switch (cam.getString("dia")){
+                        case "Lunes":
+                            r.ckLunesCampos.setSelected(true);
+                            if(cam.getString("horario").equalsIgnoreCase("primera")){
+                                r.ckLunesPrimera.setSelected(true);
+                                r.txtLunesPrimera.setText(cam.getString("hora"));
+                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                                r.ckLunesSegunda.setSelected(true);
+                                r.txtLunesSegunda.setText(cam.getString("hora"));
+                            }
+                            break;
+                        case "Martes":
+                            r.ckMartesCampos.setSelected(true);
+                            if(cam.getString("horario").equalsIgnoreCase("primera")){
+                                r.ckMartesPrimera.setSelected(true);
+                                r.txtMartesPrimera.setText(cam.getString("hora"));
+                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                                r.ckMartesSegunda.setSelected(true);
+                                r.txtMartesSegunda.setText(cam.getString("hora"));
+                            }
+                            break;
+                        case "Miércoles":
+                            r.ckMiercolesCampos.setSelected(true);
+                            if(cam.getString("horario").equalsIgnoreCase("primera")){
+                                r.ckMiercolesPrimera.setSelected(true);
+                                r.txtMiercolesPrimera.setText(cam.getString("hora"));
+                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                                r.ckMiercolesSegunda.setSelected(true);
+                                r.txtMiercolesSegunda.setText(cam.getString("hora"));
+                            }
+                            break;
+                        case "Jueves":
+                            r.ckJuevesCampos.setSelected(true);
+                            if(cam.getString("horario").equalsIgnoreCase("primera")){
+                                r.ckJuevesPrimera.setSelected(true);
+                                r.txtJuevesPrimera.setText(cam.getString("hora"));
+                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                                r.ckJuevesSegunda.setSelected(true);
+                                r.txtJuevesSegunda.setText(cam.getString("hora"));
+                            }
+                            break;
+                        case "Viernes":
+                            r.ckViernesCampos.setSelected(true);
+                            if(cam.getString("horario").equalsIgnoreCase("primera")){
+                                r.ckViernesPrimera.setSelected(true);
+                                r.txtViernesPrimera.setText(cam.getString("hora"));
+                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                                r.ckViernesSegunda.setSelected(true);
+                                r.txtViernesSegunda.setText(cam.getString("hora"));
+                            }
+                            break;
+                        case "Sábado":
+                            r.ckSabadoCampos.setSelected(true);
+                            if(cam.getString("horario").equalsIgnoreCase("primera")){
+                                r.ckSabadoPrimera.setSelected(true);
+                                r.txtSabadoPrimera.setText(cam.getString("hora"));
+                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                                r.ckSabadoSegunda.setSelected(true);
+                                r.txtSabadoSegunda.setText(cam.getString("hora"));
+                            }
+                            break;
+                        case "Domingo":
+                            r.ckDomingoCampos.setSelected(true);
+                            if(cam.getString("horario").equalsIgnoreCase("primera")){
+                                r.ckDomingoPrimera.setSelected(true);
+                                r.txtDomingoPrimera.setText(cam.getString("hora"));
+                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                                r.ckDomingoSegunda.setSelected(true);
+                                r.txtDomingoSegunda.setText(cam.getString("hora"));
+                            }
+                            break;
+                    }
                 }
-                if(cam.getInt("congelado") == 1){
+                
+            }
+            cam.close();
+            ResultSet frozen = conn.getValues("congelado", "campos", "ID = " + idCampo, "");
+            while (frozen.next()){
+                if(frozen.getInt("congelado")==1){
                     r.ckCongelarCampo.setSelected(true);
                 }
             }
+            frozen.close();
             conn.desconectar();
         } catch (SQLException ex) {
             Logger.getLogger(GestionarCampos.class.getName()).log(Level.SEVERE, null, ex);
