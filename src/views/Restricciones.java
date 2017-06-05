@@ -513,7 +513,8 @@ public Restricciones() {
                 ckJuevesCampos.setEnabled(true);
                 ckViernesCampos.setEnabled(true);
                 ckSabadoCampos.setEnabled(true);
-                ckDomingoCampos.setEnabled(true);                
+                ckDomingoCampos.setEnabled(true);
+                btnAceptarEquipos1.setEnabled(true);
                 /*ckLunesPrimera.setEnabled(true);
                 ckLunesSegunda.setEnabled(true);
                 ckMartesPrimera.setEnabled(true);
@@ -1282,6 +1283,7 @@ public Restricciones() {
         btnAceptarEquipos1.setBackground(new java.awt.Color(31, 87, 12));
         btnAceptarEquipos1.setForeground(new java.awt.Color(255, 255, 255));
         btnAceptarEquipos1.setText("Aceptar");
+        btnAceptarEquipos1.setEnabled(false);
         btnAceptarEquipos1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarEquipos1ActionPerformed(evt);
