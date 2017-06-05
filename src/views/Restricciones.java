@@ -8,7 +8,6 @@ package views;
 import connection.Conn;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.sql.ResultSet;
@@ -33,6 +32,8 @@ public class Restricciones extends javax.swing.JFrame {
         private final GestionarCampos gc;
         private final GestionarEquipos ge;
         private boolean correcto = true;
+        private int total = 0;
+        private javax.swing.JCheckBox[] ckCampos;
         //Vector v=new Vector();
         
 public Restricciones() {
@@ -50,14 +51,15 @@ public Restricciones() {
         gc = new GestionarCampos(this);
         
         conn.conectar();
-        int total = conn.totalRegistros("campos");
+        total = conn.totalRegistros("campos");
         ResultSet campos = conn.getValues("*", "campos", "", "ID");
-        javax.swing.JCheckBox[] ckCampos = new javax.swing.JCheckBox[total];
+        ckCampos = new javax.swing.JCheckBox[total];
         pCamposExcluidos.setLayout(new GridLayout(0,3));
         int i = 0;
         try {
             while(campos.next()){
               ckCampos[i] = new javax.swing.JCheckBox(campos.getString("campo"));
+              ckCampos[i].setEnabled(false);
               this.pCamposExcluidos.add(ckCampos[i]);
               i++;
             }   
@@ -245,6 +247,9 @@ public Restricciones() {
 //                ckDRA.setEnabled(true);
                 cbNoCoincidir.setEnabled(true);
                 ckCongelarEquipo.setEnabled(true);
+                for(int i = 0; i < total; i++){
+                    ckCampos[i].setEnabled(true);
+                }
     }
     
     public void disableEquipos(){
@@ -272,6 +277,9 @@ public Restricciones() {
 //                ckDRA.setEnabled(false);
                 cbNoCoincidir.setEnabled(false);
                 ckCongelarEquipo.setEnabled(false);
+                for(int i = 0; i < total; i++){
+                    ckCampos[i].setEnabled(false);
+                }
     }
     
      public void restriccionesDeCampo(){
