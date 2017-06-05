@@ -13,6 +13,8 @@ import java.awt.event.ComponentEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.GestionarCampos;
@@ -32,8 +34,8 @@ public class Restricciones extends javax.swing.JFrame {
         private final GestionarCampos gc;
         private final GestionarEquipos ge;
         private boolean correcto = true;
-        private int total = 0;
-        private javax.swing.JCheckBox[] ckCampos;
+        public int total = 0;
+        public javax.swing.JCheckBox[] ckCampos;
         //Vector v=new Vector();
         
 public Restricciones() {
@@ -53,9 +55,9 @@ public Restricciones() {
         conn.conectar();
         total = conn.totalRegistros("campos");
         ResultSet campos = conn.getValues("*", "campos", "", "ID");
-        ckCampos = new javax.swing.JCheckBox[total];
+        ckCampos = new javax.swing.JCheckBox[total+1];
         pCamposExcluidos.setLayout(new GridLayout(0,3));
-        int i = 0;
+        int i = 1;
         try {
             while(campos.next()){
               ckCampos[i] = new javax.swing.JCheckBox(campos.getString("campo"));
@@ -94,53 +96,84 @@ public Restricciones() {
         
         if(this.ckLunesEquipos.isSelected()){
             if(this.cbLunes.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(1,this.cbLunes.getSelectedIndex(),0,0));
+                condiciones.add(new ORestriccion(1,this.cbLunes.getSelectedIndex(),null,null));
+                correcto = true;
             }else{
-                System.out.println("no correcto");
                 correcto = false;
             }
         }
         if(this.ckMartesEquipos.isSelected()){
             if(this.cbMartes.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(2,this.cbMartes.getSelectedIndex(),0,0));
+                condiciones.add(new ORestriccion(2,this.cbMartes.getSelectedIndex(),null,null));
+                correcto = true;
             }else{
                 correcto = false;
             }
         }
         if(this.ckMiercolesEquipos.isSelected()){
             if(this.cbMiercoles.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(3,this.cbMiercoles.getSelectedIndex(),0,0));
+                condiciones.add(new ORestriccion(3,this.cbMiercoles.getSelectedIndex(),null,null));
+                correcto = true;
             }else{
                 correcto = false;
             }
         }
         if(this.ckJuevesEquipos.isSelected()){
             if(this.cbJueves.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(4,this.cbJueves.getSelectedIndex(),0,0));
+                condiciones.add(new ORestriccion(4,this.cbJueves.getSelectedIndex(),null,null));
+                correcto = true;
             }else{
                 correcto = false;
             }
         }
         if(this.ckViernesEquipos.isSelected()){
             if(this.cbViernes.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(5,this.cbViernes.getSelectedIndex(),0,0));
+                condiciones.add(new ORestriccion(5,this.cbViernes.getSelectedIndex(),null,null));
+                correcto = true;
             }else{
                 correcto = false;
             }
         }
         if(this.ckSabadoEquipos.isSelected()){
             if(this.cbSabado.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(6,this.cbSabado.getSelectedIndex(),0,0));
+                condiciones.add(new ORestriccion(6,this.cbSabado.getSelectedIndex(),null,null));
+                correcto = true;
             }else{
                 correcto = false;
             }
         }
         if(this.ckDomingoEquipos.isSelected()){
             if(this.cbDomingo.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(7,this.cbDomingo.getSelectedIndex(),0,0));
+                condiciones.add(new ORestriccion(7,this.cbDomingo.getSelectedIndex(),null,null));
+                correcto = true;
             }else{
                 correcto = false;
             }
+        }
+        
+        for(int i = 1; i < total+1; i++){
+            if(this.ckCampos[i].isSelected()){
+                condiciones.add(new ORestriccion(null, null, i, null));
+            }
+        }
+        
+        if(this.cbNoCoincidir.getSelectedIndex() > 0){
+            conn.conectar();
+            ResultSet idEquipoNoCoincidir = conn.getValues("ID", "Equipos", "NOMBRE like '" + cbNoCoincidir.getSelectedItem()+"'", "");
+            try {
+                while(idEquipoNoCoincidir.next()){
+                    condiciones.add(new ORestriccion(null, null, null, idEquipoNoCoincidir.getInt("ID")));
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                try {
+                    idEquipoNoCoincidir.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                conn.desconectar();
+            }   
         }
         
         if(correcto){
@@ -247,7 +280,7 @@ public Restricciones() {
 //                ckDRA.setEnabled(true);
                 cbNoCoincidir.setEnabled(true);
                 ckCongelarEquipo.setEnabled(true);
-                for(int i = 0; i < total; i++){
+                for(int i = 1; i < total+1; i++){
                     ckCampos[i].setEnabled(true);
                 }
     }
@@ -277,7 +310,8 @@ public Restricciones() {
 //                ckDRA.setEnabled(false);
                 cbNoCoincidir.setEnabled(false);
                 ckCongelarEquipo.setEnabled(false);
-                for(int i = 0; i < total; i++){
+                for(int i = 1; i < total+1; i++){
+                    ckCampos[i].setSelected(false);
                     ckCampos[i].setEnabled(false);
                 }
     }
@@ -1670,8 +1704,12 @@ public Restricciones() {
         int input = JOptionPane.showConfirmDialog(null, "¿Desea aplicar las restricciones para el equipo seleccionado?", "Aplicar restricciones",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-
-//            this.restriccionesDeEquipo();
+            if(this.ckCongelarEquipo.isSelected()){
+                ge.congelarEquipo(this.cbEquipos.getSelectedIndex(), true);
+            }else{  
+                gc.congelarCampo(this.cbEquipos.getSelectedIndex(), false);
+            }
+            this.restriccionesDeEquipo();
             if(correcto){
                 this.disableEquipos();
             }
