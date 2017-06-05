@@ -45,6 +45,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         md.llenarComboCategorias(this.cbCategoria);
         md.llenarComboDivisiones(this.cbDivision);
         md.llenarComboJornadas(this.cbJornada);
+        md.llenarComboJornadas(this.cbGenerarJornada);
         md.llenarTCalendario(this.tCalendario);
         
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -135,7 +136,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
             }
         });
 
-        cbGenerarJornada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Jornada", "Jornada 1", "Jornada 2", "Jornada 3", "Jornada 4" }));
+        cbGenerarJornada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Jornada" }));
 
         javax.swing.GroupLayout jInicioCalendarioLayout = new javax.swing.GroupLayout(jInicioCalendario);
         jInicioCalendario.setLayout(jInicioCalendarioLayout);

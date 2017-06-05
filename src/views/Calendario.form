@@ -288,12 +288,8 @@
         <Component class="javax.swing.JComboBox" name="cbGenerarJornada">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
+              <StringArray count="1">
                 <StringItem index="0" value="Seleccione una Jornada"/>
-                <StringItem index="1" value="Jornada 1"/>
-                <StringItem index="2" value="Jornada 2"/>
-                <StringItem index="3" value="Jornada 3"/>
-                <StringItem index="4" value="Jornada 4"/>
               </StringArray>
             </Property>
           </Properties>
