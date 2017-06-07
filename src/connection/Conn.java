@@ -121,6 +121,38 @@ public class Conn {
         return null;
     }
     
+    public int totalRegistros(String tabla){
+        int total = 0;
+        try{
+            
+            String Query = "SELECT COUNT(*) FROM " + tabla;
+            Statement st = link.createStatement();
+            ResultSet rs = st.executeQuery(Query);
+            while (rs.next()){
+                total = rs.getInt("count(*)");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total;
+    }
+    
+    public int totalRegistros(String tabla, String where){
+        int total = 0;
+        try{
+            
+            String Query = "SELECT COUNT(*) FROM " + tabla +" WHERE " + where;
+            Statement st = link.createStatement();
+            ResultSet rs = st.executeQuery(Query);
+            while (rs.next()){
+                total = rs.getInt("count(*)");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total;
+    }
+    
     /**
      * Proceso para actualizar los datos en la BBDD
      * @param table Tabla donde se realizará la actualización
