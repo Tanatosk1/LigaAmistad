@@ -1,13 +1,17 @@
 package sources;
 
+import connection.Conn;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import views.Calendario;
 
 /**
  *
@@ -16,17 +20,36 @@ import javax.swing.table.DefaultTableModel;
 public class GeneraCalendario {
     String[] strDays = new String[]{"Domingo", "Lunes", "Martes", "Miércoles",
         			    "Jueves", "Viernes", "Sábado"};
-    public void generaFechas(String fInicio, String fFin, JTable tabla){
+    int totalPartidosJornada;
+    int totalCamposDisponibles;
+  
+    public void generaFechas(String fInicio, String fFin, JTable tabla, JComboBox jornada){
+        Conn conn = new Conn();
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         Object[] fila = new Object[9];
-        
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String dateInString = fInicio;
+        String dateFinString = fFin;
         Calendar cInicio = Calendar.getInstance();
+        Calendar cFin = Calendar.getInstance();
+        
+        conn.conectar();
+        totalPartidosJornada = conn.totalRegistros("campeonato", "JORNADA = " + jornada.getSelectedItem());
+        totalCamposDisponibles = conn.totalRegistros("campos", "CONGELADO = 0");
+        
+        conn.desconectar();
         
         try {
-            Date date = formatter.parse(dateInString);
-            cInicio.setTime(date);
+            Date dateIni = formatter.parse(dateInString);
+            Date dateFin = formatter.parse(dateFinString);
+            cInicio.setTime(dateIni);
+            cFin.setTime(dateFin);
+            
+            for(int i = 0; i < totalPartidosJornada; i++){
+                System.out.println(ThreadLocalRandom.current().nextInt(cInicio.get(Calendar.DATE), cFin.get(Calendar.DATE)+1));
+            }
+            
             cInicio.add(Calendar.DATE, 1);
             for(int i = 0; i < 14; i++){
                 tabla.setValueAt(formatter.format(cInicio.getTime()), i, 2);
