@@ -604,9 +604,9 @@ private final CrearDocumentos cd = new CrearDocumentos();
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una jornada","Seleccione una jornada", JOptionPane.QUESTION_MESSAGE, icon);
         }else{
               Date fechaInicio = this.dFechaInicioTemporada.getDate();
-              Date fechaFin = this.dFechaInicioTemporada.getDate();
+              Date fechaFin = this.dFechaFinTemporada.getDate();
               SimpleDateFormat formato = new SimpleDateFormat("d/MM/yyyy");
-              gc.generaFechas(formato.format(fechaInicio), formato.format(fechaFin), this.tCalendario);
+              gc.generaFechas(formato.format(fechaInicio), formato.format(fechaFin), this.tCalendario, this.cbGenerarJornada);
         }      
     //        gc.generaFechas(this.dFechaInicio.getText(), this.dFechaFin.getText(), this.tCalendario);
 
