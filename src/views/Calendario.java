@@ -622,7 +622,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
     private void miImportarcalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miImportarcalendarioActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Excel (*.xls; *.xlsx)", "xls", "xlsx");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Excel (*.xlsx)","xlsx");
         fileChooser.setFileFilter(filtro);
         int seleccion = fileChooser.showOpenDialog(new Principal());
         if (seleccion == JFileChooser.APPROVE_OPTION)

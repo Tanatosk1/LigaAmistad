@@ -32,9 +32,9 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/resources/lupa.png"/>
+                  <Image iconType="3" name="/resources/configuracion.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value=" Ver d&#xed;as festivos"/>
+                <Property name="text" type="java.lang.String" value=" Gestionar d&#xed;as festivos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>

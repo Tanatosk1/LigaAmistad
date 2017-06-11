@@ -1549,8 +1549,8 @@ public Restricciones() {
         jMenuItem1.setBackground(new java.awt.Color(31, 87, 12));
         jMenuItem1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lupa.png"))); // NOI18N
-        jMenuItem1.setText(" Ver días festivos");
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/configuracion.png"))); // NOI18N
+        jMenuItem1.setText(" Gestionar días festivos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);

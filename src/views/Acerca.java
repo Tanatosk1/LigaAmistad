@@ -20,7 +20,7 @@ public class Acerca extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-getContentPane().setBackground( Color.white );
+        getContentPane().setBackground( Color.white );
     }
 
     /**
@@ -36,7 +36,7 @@ getContentPane().setBackground( Color.white );
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Acerca de Liga de la Amistad");
+        setTitle("Acerca de Gestión de Partidos");
         setBackground(new java.awt.Color(102, 255, 102));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));

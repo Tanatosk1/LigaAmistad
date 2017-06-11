@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javafx.stage.FileChooser;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -110,8 +111,13 @@ private FondoPrincipal fondo;
         miAgregarCompeticion = new javax.swing.JMenuItem();
         miAgregarDivision = new javax.swing.JMenuItem();
         miAgregarEquipos = new javax.swing.JMenuItem();
+        mEditarPrincipal = new javax.swing.JMenu();
+        miEditarCampos = new javax.swing.JMenuItem();
+        miEditarCompeticion = new javax.swing.JMenuItem();
+        miEditarDivision = new javax.swing.JMenuItem();
+        miEditarEquipos = new javax.swing.JMenuItem();
         mBBDD = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
+        mVaciarBBDD = new javax.swing.JMenu();
         miVaciarCalendario = new javax.swing.JMenuItem();
         miVaciarCampos = new javax.swing.JMenuItem();
         miVaciarCompeticion = new javax.swing.JMenuItem();
@@ -119,7 +125,7 @@ private FondoPrincipal fondo;
         mivaciarEquipos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Liga de la Amistad");
+        setTitle("Gestión de Partidos");
         setIconImages(null);
         setMinimumSize(new java.awt.Dimension(1366, 768));
         setPreferredSize(new java.awt.Dimension(1366, 768));
@@ -324,14 +330,66 @@ private FondoPrincipal fondo;
 
         mGestion.add(mAgregarPrincipal);
 
+        mEditarPrincipal.setText("Editar");
+
+        miEditarCampos.setBackground(new java.awt.Color(31, 87, 12));
+        miEditarCampos.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miEditarCampos.setForeground(new java.awt.Color(255, 255, 255));
+        miEditarCampos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/campo_menu.png"))); // NOI18N
+        miEditarCampos.setText(" Campo");
+        miEditarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEditarCamposActionPerformed(evt);
+            }
+        });
+        mEditarPrincipal.add(miEditarCampos);
+
+        miEditarCompeticion.setBackground(new java.awt.Color(31, 87, 12));
+        miEditarCompeticion.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miEditarCompeticion.setForeground(new java.awt.Color(255, 255, 255));
+        miEditarCompeticion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/competicion.png"))); // NOI18N
+        miEditarCompeticion.setText(" Competición");
+        miEditarCompeticion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEditarCompeticionActionPerformed(evt);
+            }
+        });
+        mEditarPrincipal.add(miEditarCompeticion);
+
+        miEditarDivision.setBackground(new java.awt.Color(31, 87, 12));
+        miEditarDivision.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miEditarDivision.setForeground(new java.awt.Color(255, 255, 255));
+        miEditarDivision.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/division.png"))); // NOI18N
+        miEditarDivision.setText(" División");
+        miEditarDivision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEditarDivisionActionPerformed(evt);
+            }
+        });
+        mEditarPrincipal.add(miEditarDivision);
+
+        miEditarEquipos.setBackground(new java.awt.Color(31, 87, 12));
+        miEditarEquipos.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miEditarEquipos.setForeground(new java.awt.Color(255, 255, 255));
+        miEditarEquipos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/equipos_menu.png"))); // NOI18N
+        miEditarEquipos.setText(" Equipo");
+        miEditarEquipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEditarEquiposActionPerformed(evt);
+            }
+        });
+        mEditarPrincipal.add(miEditarEquipos);
+
+        mGestion.add(mEditarPrincipal);
+
         mbprincipal.add(mGestion);
 
         mBBDD.setBackground(new java.awt.Color(31, 87, 12));
         mBBDD.setForeground(new java.awt.Color(255, 255, 255));
         mBBDD.setText("BBDD");
 
-        jMenu1.setForeground(new java.awt.Color(31, 87, 12));
-        jMenu1.setText("Vaciar");
+        mVaciarBBDD.setForeground(new java.awt.Color(31, 87, 12));
+        mVaciarBBDD.setText("Vaciar");
 
         miVaciarCalendario.setBackground(new java.awt.Color(31, 87, 12));
         miVaciarCalendario.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
@@ -343,7 +401,7 @@ private FondoPrincipal fondo;
                 miVaciarCalendarioActionPerformed(evt);
             }
         });
-        jMenu1.add(miVaciarCalendario);
+        mVaciarBBDD.add(miVaciarCalendario);
 
         miVaciarCampos.setBackground(new java.awt.Color(31, 87, 12));
         miVaciarCampos.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
@@ -355,7 +413,7 @@ private FondoPrincipal fondo;
                 miVaciarCamposActionPerformed(evt);
             }
         });
-        jMenu1.add(miVaciarCampos);
+        mVaciarBBDD.add(miVaciarCampos);
 
         miVaciarCompeticion.setBackground(new java.awt.Color(31, 87, 12));
         miVaciarCompeticion.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
@@ -367,7 +425,7 @@ private FondoPrincipal fondo;
                 miVaciarCompeticionActionPerformed(evt);
             }
         });
-        jMenu1.add(miVaciarCompeticion);
+        mVaciarBBDD.add(miVaciarCompeticion);
 
         mivaciarDivision.setBackground(new java.awt.Color(31, 87, 12));
         mivaciarDivision.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
@@ -379,7 +437,7 @@ private FondoPrincipal fondo;
                 mivaciarDivisionActionPerformed(evt);
             }
         });
-        jMenu1.add(mivaciarDivision);
+        mVaciarBBDD.add(mivaciarDivision);
 
         mivaciarEquipos.setBackground(new java.awt.Color(31, 87, 12));
         mivaciarEquipos.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
@@ -391,9 +449,9 @@ private FondoPrincipal fondo;
                 mivaciarEquiposActionPerformed(evt);
             }
         });
-        jMenu1.add(mivaciarEquipos);
+        mVaciarBBDD.add(mivaciarEquipos);
 
-        mBBDD.add(jMenu1);
+        mBBDD.add(mVaciarBBDD);
 
         mbprincipal.add(mBBDD);
 
@@ -417,7 +475,7 @@ private FondoPrincipal fondo;
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
+                .addContainerGap(161, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblLogoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -503,7 +561,7 @@ private FondoPrincipal fondo;
 
     private void miImportarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miImportarCamposActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Excel (*.xls; *.xlsx)", "xls", "xlsx");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Excel (*.xlsx)",  "xlsx");
         fileChooser.setFileFilter(filtro);
         int seleccion = fileChooser.showOpenDialog(new Principal());
         if (seleccion == JFileChooser.APPROVE_OPTION)
@@ -541,13 +599,16 @@ private FondoPrincipal fondo;
         int input = JOptionPane.showConfirmDialog(null, "¿Desea eliminar todos los campos de la BBDD ?", "Eliminar campos", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-              
-        }  
+                int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+                if (input == JOptionPane.YES_OPTION) {
+                }
+        } 
     }//GEN-LAST:event_miVaciarCamposActionPerformed
 
     private void miImportarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miImportarEquiposActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Excel (*.xls; *.xlsx)", "xls", "xlsx");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Excel (*.xlsx)", "xlsx");
         fileChooser.setFileFilter(filtro);
         int seleccion = fileChooser.showOpenDialog(new Principal());
         if (seleccion == JFileChooser.APPROVE_OPTION)
@@ -589,7 +650,10 @@ private FondoPrincipal fondo;
         int input = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el calendario de la BBDD ?", "Eliminar calendario", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-              
+                int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+                if (input == JOptionPane.YES_OPTION) {
+                }
         }  
     }//GEN-LAST:event_miVaciarCalendarioActionPerformed
 
@@ -598,7 +662,10 @@ private FondoPrincipal fondo;
         int input = JOptionPane.showConfirmDialog(null, "¿Desea eliminar todas las competiciones de la BBDD ?", "Eliminar competiciones", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-              
+                int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+                if (input == JOptionPane.YES_OPTION) {
+                }
         }  
     }//GEN-LAST:event_miVaciarCompeticionActionPerformed
 
@@ -607,7 +674,10 @@ private FondoPrincipal fondo;
         int input = JOptionPane.showConfirmDialog(null, "¿Desea eliminar todas las divisiones de la BBDD ?", "Eliminar divisiones", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-              
+                int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+                if (input == JOptionPane.YES_OPTION) {
+                }
         }  
     }//GEN-LAST:event_mivaciarDivisionActionPerformed
 
@@ -616,13 +686,67 @@ private FondoPrincipal fondo;
         int input = JOptionPane.showConfirmDialog(null, "¿Desea eliminar todos los equipos de la BBDD ?", "Eliminar equipos", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-              
-        }  
+                int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+                if (input == JOptionPane.YES_OPTION) {
+                }
+        } 
     }//GEN-LAST:event_mivaciarEquiposActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         new Acerca(this, true).setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void miEditarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarCamposActionPerformed
+        new EditarCampo(this, true).setVisible(true);
+
+
+//        ImageIcon icon = new ImageIcon("src/resources/campo_menu.png");
+//        
+//        String[] list = {"A", "B", "C"};
+//        JComboBox jcb = new JComboBox(list);
+//
+//        int seleccion = JOptionPane.showOptionDialog(
+//        null,
+//        jcb, 
+//        "Seleccione un campo",
+//        JOptionPane.YES_NO_CANCEL_OPTION,
+//        JOptionPane.QUESTION_MESSAGE,
+//        icon, 
+//        new Object[] { "Editar", "Elliminar", "Cancelar" },
+//        "Editar");
+//
+//        if (seleccion == 0){
+//            jcb.setEditable(true);
+//            jcb.getSelectedItem();
+//            System.out.println(seleccion);
+//            //aqui guardaria el cambio
+//        }if (seleccion == 1){
+//            System.out.println("seleccion == 1");
+//            jcb.setEditable(true);
+//            jcb.getSelectedItem();
+//            //aqui borra el item
+//        }else{
+//            jcb.setEditable(true);
+//            System.out.println(seleccion);
+//            jcb.getSelectedItem();
+//        }
+
+
+ 
+    }//GEN-LAST:event_miEditarCamposActionPerformed
+
+    private void miEditarCompeticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarCompeticionActionPerformed
+        new EditarCompeticion(this, true).setVisible(true);
+    }//GEN-LAST:event_miEditarCompeticionActionPerformed
+
+    private void miEditarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarDivisionActionPerformed
+        new EditarDivision(this, true).setVisible(true);
+    }//GEN-LAST:event_miEditarDivisionActionPerformed
+
+    private void miEditarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarEquiposActionPerformed
+        new EditarEquipo(this, true).setVisible(true);
+    }//GEN-LAST:event_miEditarEquiposActionPerformed
 
     /**
      * @param args the command line arguments
@@ -675,21 +799,26 @@ private FondoPrincipal fondo;
     private javax.swing.JButton btnEquiposP;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btncalendarioP;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblLogoPrincipal;
     private javax.swing.JMenu mAgregarPrincipal;
     private javax.swing.JMenu mArchivo;
     private javax.swing.JMenu mBBDD;
+    private javax.swing.JMenu mEditarPrincipal;
     private javax.swing.JMenu mGestion;
     private javax.swing.JMenu mImportarPrincipal;
+    private javax.swing.JMenu mVaciarBBDD;
     private javax.swing.JMenuBar mbprincipal;
     private javax.swing.JMenuItem miAgregarCampos;
     private javax.swing.JMenuItem miAgregarCompeticion;
     private javax.swing.JMenuItem miAgregarDivision;
     private javax.swing.JMenuItem miAgregarEquipos;
     private javax.swing.JMenuItem miCambiarLogo;
+    private javax.swing.JMenuItem miEditarCampos;
+    private javax.swing.JMenuItem miEditarCompeticion;
+    private javax.swing.JMenuItem miEditarDivision;
+    private javax.swing.JMenuItem miEditarEquipos;
     private javax.swing.JMenuItem miImportarCampos;
     private javax.swing.JMenuItem miImportarEquipos;
     private javax.swing.JMenuItem miNuevaJornada;

@@ -80,11 +80,10 @@ public Inactividad() {
         btnFestivosAceptar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tFestivos = new javax.swing.JTable();
-        btnEditarFestivos = new javax.swing.JButton();
         btnEliminarFestivos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Días Festivos");
+        setTitle("Gestión de días festivos");
         setMinimumSize(new java.awt.Dimension(1366, 768));
         setSize(new java.awt.Dimension(1366, 768));
 
@@ -169,15 +168,6 @@ public Inactividad() {
         tFestivos.setEnabled(false);
         jScrollPane1.setViewportView(tFestivos);
 
-        btnEditarFestivos.setBackground(new java.awt.Color(31, 87, 12));
-        btnEditarFestivos.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditarFestivos.setText("Editar día");
-        btnEditarFestivos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarFestivosActionPerformed(evt);
-            }
-        });
-
         btnEliminarFestivos.setBackground(new java.awt.Color(31, 87, 12));
         btnEliminarFestivos.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarFestivos.setText("Eliminar día");
@@ -198,8 +188,6 @@ public Inactividad() {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnEditarFestivos, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEliminarFestivos, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -211,9 +199,7 @@ public Inactividad() {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditarFestivos)
-                    .addComponent(btnEliminarFestivos))
+                .addComponent(btnEliminarFestivos)
                 .addContainerGap())
         );
 
@@ -244,13 +230,6 @@ public Inactividad() {
  
         }   
     }//GEN-LAST:event_btnFestivosAceptarActionPerformed
-
-    private void btnEditarFestivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarFestivosActionPerformed
-
-            tFestivos.setEnabled(true);
-
-
-    }//GEN-LAST:event_btnEditarFestivosActionPerformed
 
     private void btnEliminarFestivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFestivosActionPerformed
 
@@ -302,7 +281,6 @@ public Inactividad() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditarFestivos;
     private javax.swing.JButton btnEliminarFestivos;
     private javax.swing.JButton btnFestivosAceptar;
     private javax.swing.JComboBox<String> cbFestivosDescripcion;
