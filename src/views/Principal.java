@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.stage.FileChooser;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -32,7 +33,7 @@ import sources.LeerExcel;
  */
 public class Principal extends javax.swing.JFrame {
 
-private FondoVentana fondo;
+private FondoPrincipal fondo;
     /**
      * Creates new form Panel
      */
@@ -55,7 +56,7 @@ private FondoVentana fondo;
         setIconImage(iconMenu);
         
         
-        fondo = new FondoVentana();
+        fondo = new FondoPrincipal();
         this.add(fondo);
         
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -97,6 +98,7 @@ private FondoVentana fondo;
         mArchivo = new javax.swing.JMenu();
         miNuevaJornada = new javax.swing.JMenuItem();
         miCambiarLogo = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         miSalir = new javax.swing.JMenuItem();
         mGestion = new javax.swing.JMenu();
@@ -205,6 +207,18 @@ private FondoVentana fondo;
         });
         mArchivo.add(miCambiarLogo);
 
+        jMenuItem1.setBackground(new java.awt.Color(31, 87, 12));
+        jMenuItem1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        jMenuItem1.setText(" Acerca...");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        mArchivo.add(jMenuItem1);
+
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         mArchivo.add(jSeparator1);
 
@@ -247,6 +261,11 @@ private FondoVentana fondo;
         miImportarEquipos.setForeground(new java.awt.Color(255, 255, 255));
         miImportarEquipos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/equipos_menu.png"))); // NOI18N
         miImportarEquipos.setText(" Equipos");
+        miImportarEquipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miImportarEquiposActionPerformed(evt);
+            }
+        });
         mImportarPrincipal.add(miImportarEquipos);
 
         mGestion.add(mImportarPrincipal);
@@ -259,7 +278,7 @@ private FondoVentana fondo;
         miAgregarCampos.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         miAgregarCampos.setForeground(new java.awt.Color(255, 255, 255));
         miAgregarCampos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/campo_menu.png"))); // NOI18N
-        miAgregarCampos.setText(" Campos");
+        miAgregarCampos.setText(" Campo");
         miAgregarCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miAgregarCamposActionPerformed(evt);
@@ -272,6 +291,11 @@ private FondoVentana fondo;
         miAgregarCompeticion.setForeground(new java.awt.Color(255, 255, 255));
         miAgregarCompeticion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/competicion.png"))); // NOI18N
         miAgregarCompeticion.setText(" Competición");
+        miAgregarCompeticion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAgregarCompeticionActionPerformed(evt);
+            }
+        });
         mAgregarPrincipal.add(miAgregarCompeticion);
 
         miAgregarDivision.setBackground(new java.awt.Color(31, 87, 12));
@@ -279,13 +303,23 @@ private FondoVentana fondo;
         miAgregarDivision.setForeground(new java.awt.Color(255, 255, 255));
         miAgregarDivision.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/division.png"))); // NOI18N
         miAgregarDivision.setText(" División");
+        miAgregarDivision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAgregarDivisionActionPerformed(evt);
+            }
+        });
         mAgregarPrincipal.add(miAgregarDivision);
 
         miAgregarEquipos.setBackground(new java.awt.Color(31, 87, 12));
         miAgregarEquipos.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         miAgregarEquipos.setForeground(new java.awt.Color(255, 255, 255));
         miAgregarEquipos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/equipos_menu.png"))); // NOI18N
-        miAgregarEquipos.setText(" Equipos");
+        miAgregarEquipos.setText(" Equipo");
+        miAgregarEquipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAgregarEquiposActionPerformed(evt);
+            }
+        });
         mAgregarPrincipal.add(miAgregarEquipos);
 
         mGestion.add(mAgregarPrincipal);
@@ -304,6 +338,11 @@ private FondoVentana fondo;
         miVaciarCalendario.setForeground(new java.awt.Color(255, 255, 255));
         miVaciarCalendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/calendario.png"))); // NOI18N
         miVaciarCalendario.setText(" Calendario");
+        miVaciarCalendario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miVaciarCalendarioActionPerformed(evt);
+            }
+        });
         jMenu1.add(miVaciarCalendario);
 
         miVaciarCampos.setBackground(new java.awt.Color(31, 87, 12));
@@ -323,6 +362,11 @@ private FondoVentana fondo;
         miVaciarCompeticion.setForeground(new java.awt.Color(255, 255, 255));
         miVaciarCompeticion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/competicion.png"))); // NOI18N
         miVaciarCompeticion.setText(" Competición");
+        miVaciarCompeticion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miVaciarCompeticionActionPerformed(evt);
+            }
+        });
         jMenu1.add(miVaciarCompeticion);
 
         mivaciarDivision.setBackground(new java.awt.Color(31, 87, 12));
@@ -330,6 +374,11 @@ private FondoVentana fondo;
         mivaciarDivision.setForeground(new java.awt.Color(255, 255, 255));
         mivaciarDivision.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/division.png"))); // NOI18N
         mivaciarDivision.setText(" División");
+        mivaciarDivision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mivaciarDivisionActionPerformed(evt);
+            }
+        });
         jMenu1.add(mivaciarDivision);
 
         mivaciarEquipos.setBackground(new java.awt.Color(31, 87, 12));
@@ -337,6 +386,11 @@ private FondoVentana fondo;
         mivaciarEquipos.setForeground(new java.awt.Color(255, 255, 255));
         mivaciarEquipos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/equipos_menu.png"))); // NOI18N
         mivaciarEquipos.setText(" Equipos");
+        mivaciarEquipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mivaciarEquiposActionPerformed(evt);
+            }
+        });
         jMenu1.add(mivaciarEquipos);
 
         mBBDD.add(jMenu1);
@@ -448,7 +502,18 @@ private FondoVentana fondo;
     }//GEN-LAST:event_btncalendarioPMouseEntered
 
     private void miImportarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miImportarCamposActionPerformed
-        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Excel (*.xls; *.xlsx)", "xls", "xlsx");
+        fileChooser.setFileFilter(filtro);
+        int seleccion = fileChooser.showOpenDialog(new Principal());
+        if (seleccion == JFileChooser.APPROVE_OPTION)
+        {
+            File fichero = fileChooser.getSelectedFile();
+            //Desktop.getDesktop().open(fichero);
+            //aqui debe coger los datos del excel y cargarlos a la BBDD
+            new Thread(new LeerExcel(fichero)).start();
+
+        }
     }//GEN-LAST:event_miImportarCamposActionPerformed
 
     private void miSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSalirActionPerformed
@@ -456,16 +521,108 @@ private FondoVentana fondo;
     }//GEN-LAST:event_miSalirActionPerformed
 
     private void miAgregarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAgregarCamposActionPerformed
-        String campo = JOptionPane.showInputDialog(null, "Nombre del campo", "Agregar campo", JOptionPane.QUESTION_MESSAGE);
+        ImageIcon icon = new ImageIcon("src/resources/campo_menu.png");
+        Object campo = JOptionPane.showInputDialog(null, "Nombre del campo", "Agregar campo", JOptionPane.QUESTION_MESSAGE,icon,null,""); 
         if(campo != null){
+            String scampo= campo.toString();
             GestionarCampos gc = new GestionarCampos();
-            gc.guardarCampo(campo);
+            gc.guardarCampo(scampo);            
         }
+        
+//        String campo = JOptionPane.showInputDialog(null, "Nombre del campo", "Agregar campo", JOptionPane.QUESTION_MESSAGE);
+//        if(campo != null){
+//            GestionarCampos gc = new GestionarCampos();
+//            gc.guardarCampo(campo);
+//        }
     }//GEN-LAST:event_miAgregarCamposActionPerformed
 
     private void miVaciarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVaciarCamposActionPerformed
-        // TODO add your handling code here:
+        ImageIcon icon = new ImageIcon("src/resources/warning.png");
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea eliminar todos los campos de la BBDD ?", "Eliminar campos", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        if (input == JOptionPane.YES_OPTION) {
+              
+        }  
     }//GEN-LAST:event_miVaciarCamposActionPerformed
+
+    private void miImportarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miImportarEquiposActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Excel (*.xls; *.xlsx)", "xls", "xlsx");
+        fileChooser.setFileFilter(filtro);
+        int seleccion = fileChooser.showOpenDialog(new Principal());
+        if (seleccion == JFileChooser.APPROVE_OPTION)
+        {
+            File fichero = fileChooser.getSelectedFile();
+            //Desktop.getDesktop().open(fichero);
+            //aqui debe coger los datos del excel y cargarlos a la BBDD
+            new Thread(new LeerExcel(fichero)).start();
+
+        }
+    }//GEN-LAST:event_miImportarEquiposActionPerformed
+
+    private void miAgregarCompeticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAgregarCompeticionActionPerformed
+        ImageIcon icon = new ImageIcon("src/resources/competicion.png");
+        Object competicion = JOptionPane.showInputDialog(null, "Nombre de la competición", "Agregar competición", JOptionPane.QUESTION_MESSAGE,icon,null,"");
+        if(competicion != null){
+            String scompeticion = competicion.toString();
+        }
+    }//GEN-LAST:event_miAgregarCompeticionActionPerformed
+
+    private void miAgregarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAgregarDivisionActionPerformed
+        ImageIcon icon = new ImageIcon("src/resources/division.png");
+        Object division = JOptionPane.showInputDialog(null, "Nombre de la división", "Agregar división", JOptionPane.QUESTION_MESSAGE,icon,null,"");    
+        if(division != null){
+            String sdivision = division.toString();    
+        }
+    }//GEN-LAST:event_miAgregarDivisionActionPerformed
+
+    private void miAgregarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAgregarEquiposActionPerformed
+        ImageIcon icon = new ImageIcon("src/resources/equipos_menu.png");
+        Object equipo = JOptionPane.showInputDialog(null, "Nombre del equipo", "Agregar equipo", JOptionPane.QUESTION_MESSAGE,icon,null,"");
+        if(equipo != null){
+           String sequipo = equipo.toString();
+        }
+    }//GEN-LAST:event_miAgregarEquiposActionPerformed
+
+    private void miVaciarCalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVaciarCalendarioActionPerformed
+        ImageIcon icon = new ImageIcon("src/resources/warning.png");
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el calendario de la BBDD ?", "Eliminar calendario", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        if (input == JOptionPane.YES_OPTION) {
+              
+        }  
+    }//GEN-LAST:event_miVaciarCalendarioActionPerformed
+
+    private void miVaciarCompeticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVaciarCompeticionActionPerformed
+        ImageIcon icon = new ImageIcon("src/resources/warning.png");
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea eliminar todas las competiciones de la BBDD ?", "Eliminar competiciones", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        if (input == JOptionPane.YES_OPTION) {
+              
+        }  
+    }//GEN-LAST:event_miVaciarCompeticionActionPerformed
+
+    private void mivaciarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mivaciarDivisionActionPerformed
+        ImageIcon icon = new ImageIcon("src/resources/warning.png");
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea eliminar todas las divisiones de la BBDD ?", "Eliminar divisiones", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        if (input == JOptionPane.YES_OPTION) {
+              
+        }  
+    }//GEN-LAST:event_mivaciarDivisionActionPerformed
+
+    private void mivaciarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mivaciarEquiposActionPerformed
+        ImageIcon icon = new ImageIcon("src/resources/warning.png");
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea eliminar todos los equipos de la BBDD ?", "Eliminar equipos", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        if (input == JOptionPane.YES_OPTION) {
+              
+        }  
+    }//GEN-LAST:event_mivaciarEquiposActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        new Acerca(this, true).setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -519,6 +676,7 @@ private FondoVentana fondo;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btncalendarioP;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblLogoPrincipal;
     private javax.swing.JMenu mAgregarPrincipal;

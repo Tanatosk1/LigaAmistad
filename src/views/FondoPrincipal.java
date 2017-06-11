@@ -5,29 +5,26 @@
  */
 package views;
 
-/**
- *
- * @author A644308
- */
-
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.JDesktopPane;
 
-public class FondoVentana extends JDesktopPane {
+/**
+ *
+ * @author rob_a
+ */
+public class FondoPrincipal extends JDesktopPane {
 
   private Image imagen;
  
-     public FondoVentana() {
+     public FondoPrincipal() {
   
        this.setLayout(null); 
   
     try {
-         imagen=ImageIO.read(getClass().getResource("/resources/fondo.jpg"));
+         imagen=ImageIO.read(getClass().getResource("/resources/fondo1.jpg"));
     }
     catch (IOException e) {
      e.printStackTrace();
@@ -46,4 +43,5 @@ public class FondoVentana extends JDesktopPane {
   
      this.setBounds(0, 0, X, Y);
  }
+    
 }

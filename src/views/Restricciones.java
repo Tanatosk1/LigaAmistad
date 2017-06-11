@@ -6,6 +6,7 @@
 package views;
 
 import connection.Conn;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -55,13 +56,19 @@ public Restricciones() {
         conn.conectar();
         total = conn.totalRegistros("campos");
         ResultSet campos = conn.getValues("*", "campos", "", "ID");
+        
         ckCampos = new javax.swing.JCheckBox[total+1];
         pCamposExcluidos.setLayout(new GridLayout(0,3));
+        pCamposExcluidos.setBackground(Color.white);
+        
+        
         int i = 1;
         try {
             while(campos.next()){
               ckCampos[i] = new javax.swing.JCheckBox(campos.getString("campo"));
               ckCampos[i].setEnabled(false);
+              ckCampos[i].setBackground(Color.white);
+              ckCampos[i].setFont(new java.awt.Font("Tahoma", 0, 12));
               this.pCamposExcluidos.add(ckCampos[i]);
               i++;
             }   
@@ -556,7 +563,7 @@ public Restricciones() {
                 ckViernesCampos.setEnabled(true);
                 ckSabadoCampos.setEnabled(true);
                 ckDomingoCampos.setEnabled(true);
-                btnAceptarEquipos1.setEnabled(true);
+                btnAceptarCampos.setEnabled(true);
                 /*ckLunesPrimera.setEnabled(true);
                 ckLunesSegunda.setEnabled(true);
                 ckMartesPrimera.setEnabled(true);
@@ -719,7 +726,7 @@ public Restricciones() {
         ckCongelarCampo = new javax.swing.JCheckBox();
         separadorCampos9 = new javax.swing.JSeparator();
         btnEditarEquipos1 = new javax.swing.JButton();
-        btnAceptarEquipos1 = new javax.swing.JButton();
+        btnAceptarCampos = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -746,6 +753,11 @@ public Restricciones() {
         cbEquipos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbEquiposItemStateChanged(evt);
+            }
+        });
+        cbEquipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbEquiposActionPerformed(evt);
             }
         });
 
@@ -966,37 +978,39 @@ public Restricciones() {
                             .addComponent(separadorEquipos6, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(separadorEquipos2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
-                                .addComponent(lblDiasEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ckMiercolesEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ckJuevesEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ckMartesEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ckLunesEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(6, 6, 6)
-                                .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cbMartes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cbLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(cbJueves, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cbMiercoles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ckSabadoEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ckViernesEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ckDomingoEquipos))
-                                .addGap(6, 6, 6)
-                                .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbViernes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(cbDomingo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cbSabado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
-                                .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
+                                        .addComponent(lblDiasEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(ckMiercolesEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(ckJuevesEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(ckMartesEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(ckLunesEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(6, 6, 6)
+                                        .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(cbMartes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(cbLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(cbJueves, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(cbMiercoles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(ckSabadoEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ckViernesEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ckDomingoEquipos))
+                                        .addGap(6, 6, 6)
+                                        .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cbViernes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(cbDomingo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(cbSabado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
+                                        .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(pCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(10, 10, 10))))
         );
         pEquiposLayout.setVerticalGroup(
@@ -1040,11 +1054,9 @@ public Restricciones() {
                 .addComponent(separadorEquipos2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pEquiposLayout.createSequentialGroup()
-                        .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(separadorEquipos4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1081,6 +1093,11 @@ public Restricciones() {
         cbCampos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbCamposItemStateChanged(evt);
+            }
+        });
+        cbCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCamposActionPerformed(evt);
             }
         });
 
@@ -1322,13 +1339,13 @@ public Restricciones() {
             }
         });
 
-        btnAceptarEquipos1.setBackground(new java.awt.Color(31, 87, 12));
-        btnAceptarEquipos1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAceptarEquipos1.setText("Aceptar");
-        btnAceptarEquipos1.setEnabled(false);
-        btnAceptarEquipos1.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptarCampos.setBackground(new java.awt.Color(31, 87, 12));
+        btnAceptarCampos.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptarCampos.setText("Aceptar");
+        btnAceptarCampos.setEnabled(false);
+        btnAceptarCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarEquipos1ActionPerformed(evt);
+                btnAceptarCamposActionPerformed(evt);
             }
         });
 
@@ -1364,7 +1381,7 @@ public Restricciones() {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnEditarEquipos1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAceptarEquipos1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnAceptarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(separadorCampos9, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pCamposLayout.createSequentialGroup()
                                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1518,7 +1535,7 @@ public Restricciones() {
                 .addComponent(separadorCampos9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptarEquipos1)
+                    .addComponent(btnAceptarCampos)
                     .addComponent(btnEditarEquipos1))
                 .addContainerGap())
         );
@@ -1527,13 +1544,13 @@ public Restricciones() {
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
 
         jMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu1.setText("Inactividad");
+        jMenu1.setText("Días Festivos");
 
         jMenuItem1.setBackground(new java.awt.Color(31, 87, 12));
         jMenuItem1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lupa.png"))); // NOI18N
-        jMenuItem1.setText(" Ver días de inactividad");
+        jMenuItem1.setText(" Ver días festivos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -1582,7 +1599,7 @@ public Restricciones() {
         }
     }//GEN-LAST:event_btnEditarEquipos1ActionPerformed
 
-    private void btnAceptarEquipos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarEquipos1ActionPerformed
+    private void btnAceptarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarCamposActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/aceptar.png");
         int input = JOptionPane.showConfirmDialog(null, "¿Desea guardar los horarios para el campo seleccionado?", "Gestión de campos", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
@@ -1594,8 +1611,12 @@ public Restricciones() {
             }
             this.restriccionesDeCampo();
             this.disableCampos();
+        }else{
+            this.disableCampos();
+            btnAceptarCampos.setEnabled(false);
+            cbCampos.setSelectedItem("Selecciona un campo");
         }  
-    }//GEN-LAST:event_btnAceptarEquipos1ActionPerformed
+    }//GEN-LAST:event_btnAceptarCamposActionPerformed
 
     private void ckLunesPrimeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckLunesPrimeraActionPerformed
         // TODO add your handling code here:
@@ -1713,6 +1734,11 @@ public Restricciones() {
             if(correcto){
                 this.disableEquipos();
             }
+        } else {         
+            this.disableEquipos();
+            btnAceptarEquipos.setEnabled(false);
+            cbEquipos.setSelectedItem("Selecciona un equipo");
+        
         }
     }//GEN-LAST:event_btnAceptarEquiposActionPerformed
 
@@ -1821,9 +1847,16 @@ public Restricciones() {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         Inactividad  frm = new Inactividad ();
-
         frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void cbEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEquiposActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbEquiposActionPerformed
+
+    private void cbCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCamposActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCamposActionPerformed
    
     public void close() {
              dispose();             
@@ -1867,8 +1900,8 @@ public Restricciones() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptarCampos;
     private javax.swing.JButton btnAceptarEquipos;
-    private javax.swing.JButton btnAceptarEquipos1;
     private javax.swing.JButton btnEditarEquipos;
     private javax.swing.JButton btnEditarEquipos1;
     public javax.swing.JComboBox<String> cbCampos;

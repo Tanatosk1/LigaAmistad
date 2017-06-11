@@ -12,7 +12,9 @@ import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -38,9 +40,7 @@ public Inactividad() {
         setIconImage(icon);
         fondo = new FondoVentana();
         this.add(fondo);
-        
-        
-        
+            
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -70,90 +70,92 @@ public Inactividad() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jExcluirFechas = new javax.swing.JPanel();
-        lbExcFechaInicio = new javax.swing.JLabel();
-        dExcFechaInicio = new com.toedter.calendar.JDateChooser();
-        lblExcFechaFin = new javax.swing.JLabel();
-        dExcFechaFin = new com.toedter.calendar.JDateChooser();
-        lblDescripcion = new javax.swing.JLabel();
-        cbDescripcion = new javax.swing.JComboBox<>();
-        btnExcExcluir = new javax.swing.JButton();
+        pFestivos = new javax.swing.JPanel();
+        lbFestivosFechaInicio = new javax.swing.JLabel();
+        dFestivosFechaInicio = new com.toedter.calendar.JDateChooser();
+        lblFestivosFechaFin = new javax.swing.JLabel();
+        dFestivosFechaFin = new com.toedter.calendar.JDateChooser();
+        lblFestivosDescripcion = new javax.swing.JLabel();
+        cbFestivosDescripcion = new javax.swing.JComboBox<>();
+        btnFestivosAceptar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tInactividad = new javax.swing.JTable();
+        tFestivos = new javax.swing.JTable();
+        btnEditarFestivos = new javax.swing.JButton();
+        btnEliminarFestivos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Inactividad");
+        setTitle("Días Festivos");
         setMinimumSize(new java.awt.Dimension(1366, 768));
         setSize(new java.awt.Dimension(1366, 768));
 
-        jExcluirFechas.setBackground(new java.awt.Color(255, 255, 255));
-        jExcluirFechas.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  DÍAS DE INACTIVIDAD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12))); // NOI18N
+        pFestivos.setBackground(new java.awt.Color(255, 255, 255));
+        pFestivos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  DÍAS FESTIVOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12))); // NOI18N
 
-        lbExcFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
-        lbExcFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbExcFechaInicio.setText("Fecha de Incio");
+        lbFestivosFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
+        lbFestivosFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbFestivosFechaInicio.setText("Fecha de Incio");
 
-        lblExcFechaFin.setBackground(new java.awt.Color(255, 255, 255));
-        lblExcFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblExcFechaFin.setText("Fecha de Fin");
+        lblFestivosFechaFin.setBackground(new java.awt.Color(255, 255, 255));
+        lblFestivosFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblFestivosFechaFin.setText("Fecha de Fin");
 
-        lblDescripcion.setBackground(new java.awt.Color(255, 255, 255));
-        lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblDescripcion.setText("Descripción");
+        lblFestivosDescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        lblFestivosDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblFestivosDescripcion.setText("Descripción");
 
-        cbDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cbDescripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un motivo", "Periodo hábil", "Fiesta nacional", "Fiesta local", "Periodo vacacional", "Otros" }));
+        cbFestivosDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cbFestivosDescripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un motivo", "Periodo hábil", "Fiesta nacional", "Fiesta local", "Periodo vacacional", "Otros" }));
 
-        btnExcExcluir.setBackground(new java.awt.Color(31, 87, 12));
-        btnExcExcluir.setForeground(new java.awt.Color(255, 255, 255));
-        btnExcExcluir.setText("Aceptar");
-        btnExcExcluir.setMaximumSize(new java.awt.Dimension(120, 23));
-        btnExcExcluir.setMinimumSize(new java.awt.Dimension(120, 23));
-        btnExcExcluir.setPreferredSize(new java.awt.Dimension(120, 23));
-        btnExcExcluir.addActionListener(new java.awt.event.ActionListener() {
+        btnFestivosAceptar.setBackground(new java.awt.Color(31, 87, 12));
+        btnFestivosAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btnFestivosAceptar.setText("Aceptar");
+        btnFestivosAceptar.setMaximumSize(new java.awt.Dimension(120, 23));
+        btnFestivosAceptar.setMinimumSize(new java.awt.Dimension(120, 23));
+        btnFestivosAceptar.setPreferredSize(new java.awt.Dimension(120, 23));
+        btnFestivosAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcExcluirActionPerformed(evt);
+                btnFestivosAceptarActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jExcluirFechasLayout = new javax.swing.GroupLayout(jExcluirFechas);
-        jExcluirFechas.setLayout(jExcluirFechasLayout);
-        jExcluirFechasLayout.setHorizontalGroup(
-            jExcluirFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jExcluirFechasLayout.createSequentialGroup()
+        javax.swing.GroupLayout pFestivosLayout = new javax.swing.GroupLayout(pFestivos);
+        pFestivos.setLayout(pFestivosLayout);
+        pFestivosLayout.setHorizontalGroup(
+            pFestivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pFestivosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbExcFechaInicio)
+                .addComponent(lbFestivosFechaInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dExcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dFestivosFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblExcFechaFin)
+                .addComponent(lblFestivosFechaFin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dExcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dFestivosFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblDescripcion)
+                .addComponent(lblFestivosDescripcion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbFestivosDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 506, Short.MAX_VALUE)
-                .addComponent(btnExcExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFestivosAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jExcluirFechasLayout.setVerticalGroup(
-            jExcluirFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jExcluirFechasLayout.createSequentialGroup()
+        pFestivosLayout.setVerticalGroup(
+            pFestivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pFestivosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jExcluirFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dExcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dExcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jExcluirFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbExcFechaInicio)
-                        .addComponent(lblExcFechaFin)
-                        .addComponent(lblDescripcion)
-                        .addComponent(btnExcExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pFestivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dFestivosFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dFestivosFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pFestivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbFestivosDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbFestivosFechaInicio)
+                        .addComponent(lblFestivosFechaFin)
+                        .addComponent(lblFestivosDescripcion)
+                        .addComponent(btnFestivosAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
 
-        tInactividad.setModel(new javax.swing.table.DefaultTableModel(
+        tFestivos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -164,7 +166,26 @@ public Inactividad() {
                 "Fecha de Inicio", "Fecha de Fin", "Descripción"
             }
         ));
-        jScrollPane1.setViewportView(tInactividad);
+        tFestivos.setEnabled(false);
+        jScrollPane1.setViewportView(tFestivos);
+
+        btnEditarFestivos.setBackground(new java.awt.Color(31, 87, 12));
+        btnEditarFestivos.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarFestivos.setText("Editar día");
+        btnEditarFestivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarFestivosActionPerformed(evt);
+            }
+        });
+
+        btnEliminarFestivos.setBackground(new java.awt.Color(31, 87, 12));
+        btnEliminarFestivos.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarFestivos.setText("Eliminar día");
+        btnEliminarFestivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarFestivosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,17 +194,26 @@ public Inactividad() {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jExcluirFechas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(pFestivos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnEditarFestivos, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEliminarFestivos, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jExcluirFechas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pFestivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEditarFestivos)
+                    .addComponent(btnEliminarFestivos))
                 .addContainerGap())
         );
 
@@ -194,14 +224,37 @@ public Inactividad() {
         // TODO add your handling code here:
     }//GEN-LAST:event_ckLunesPrimeraActionPerformed
 
-    private void btnExcExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcExcluirActionPerformed
-        ImageIcon icon = new ImageIcon("src/resources/aceptar.png");
-        int input = JOptionPane.showConfirmDialog(null, "¿Desea excluir las fechas seleccionadas?", "Excluir Fechas",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
-        if (input == JOptionPane.YES_OPTION) {
+    private void btnFestivosAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFestivosAceptarActionPerformed
+        if(dFestivosFechaInicio.getDate()==null){
+            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fecha de inicio","Seleccione una  fecha de inicio", JOptionPane.QUESTION_MESSAGE, icon);
+        
+        }if(dFestivosFechaFin.getDate()==null){
+            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fecha de fin","Seleccione una  fecha de fin", JOptionPane.QUESTION_MESSAGE, icon);
+        
+        }if (cbFestivosDescripcion.getSelectedItem().toString().equals("Seleccione un motivo")){
+            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un motivo","Seleccione un motivo", JOptionPane.QUESTION_MESSAGE, icon);
+        
+        }else{
+              Date fechaInicio = this.dFestivosFechaInicio.getDate();
+              Date fechaFin = this.dFestivosFechaFin.getDate();
+              SimpleDateFormat formato = new SimpleDateFormat("d/MM/yyyy");
+ 
+        }   
+    }//GEN-LAST:event_btnFestivosAceptarActionPerformed
 
-        }
-    }//GEN-LAST:event_btnExcExcluirActionPerformed
+    private void btnEditarFestivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarFestivosActionPerformed
+
+            tFestivos.setEnabled(true);
+
+
+    }//GEN-LAST:event_btnEditarFestivosActionPerformed
+
+    private void btnEliminarFestivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFestivosActionPerformed
+
+    }//GEN-LAST:event_btnEliminarFestivosActionPerformed
    
     public void close() {
              dispose();             
@@ -249,15 +302,17 @@ public Inactividad() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExcExcluir;
-    private javax.swing.JComboBox<String> cbDescripcion;
-    private com.toedter.calendar.JDateChooser dExcFechaFin;
-    private com.toedter.calendar.JDateChooser dExcFechaInicio;
-    private javax.swing.JPanel jExcluirFechas;
+    private javax.swing.JButton btnEditarFestivos;
+    private javax.swing.JButton btnEliminarFestivos;
+    private javax.swing.JButton btnFestivosAceptar;
+    private javax.swing.JComboBox<String> cbFestivosDescripcion;
+    private com.toedter.calendar.JDateChooser dFestivosFechaFin;
+    private com.toedter.calendar.JDateChooser dFestivosFechaInicio;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbExcFechaInicio;
-    private javax.swing.JLabel lblDescripcion;
-    private javax.swing.JLabel lblExcFechaFin;
-    private javax.swing.JTable tInactividad;
+    private javax.swing.JLabel lbFestivosFechaInicio;
+    private javax.swing.JLabel lblFestivosDescripcion;
+    private javax.swing.JLabel lblFestivosFechaFin;
+    private javax.swing.JPanel pFestivos;
+    private javax.swing.JTable tFestivos;
     // End of variables declaration//GEN-END:variables
 }

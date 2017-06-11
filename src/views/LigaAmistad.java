@@ -16,7 +16,6 @@ public class LigaAmistad {
      */
     public static void main(String[] args) {
         Principal frm = new Principal ();
-
         frm.setVisible(true);
     }
     

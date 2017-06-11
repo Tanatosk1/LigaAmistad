@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rob_a/Documents/NetBeansProjects/LIGAAMISTAD/LigaAmistad/src/views/Restricciones.java</file>
-            <file>file:/C:/Users/rob_a/Documents/NetBeansProjects/LIGAAMISTAD/LigaAmistad/src/views/Calendario.java</file>
-            <file>file:/C:/Users/rob_a/Documents/NetBeansProjects/LIGAAMISTAD/LigaAmistad/src/views/Principal.java</file>
-            <file>file:/C:/Users/rob_a/Documents/NetBeansProjects/LIGAAMISTAD/LigaAmistad/src/views/FondoVentana.java</file>
-            <file>file:/C:/Users/rob_a/Documents/NetBeansProjects/LIGAAMISTAD/LigaAmistad/src/views/LigaAmistad.java</file>
+            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/views/Inactividad.java</file>
+            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/sources/jcThread.java</file>
+            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/connection/Conn.java</file>
+            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/views/Restricciones.java</file>
+            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/sources/ORestriccion.java</file>
+            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/sources/OCampos.java</file>
+            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/sources/MostrarDatos.java</file>
+            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/sources/GestionarCampos.java</file>
+            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/sources/GestionarEquipos.java</file>
+            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/sources/GeneraCalendario.java</file>
+            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/views/Calendario.java</file>
         </group>
     </open-files>
 </project-private>
