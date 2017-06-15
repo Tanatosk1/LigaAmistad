@@ -424,7 +424,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         int input = JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios realizados en el calendario?", "Guardar cambios", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-              
+              gc.guardarCalendario(this.tCalendario, this.cbGenerarJornada);
         }      
         
     }//GEN-LAST:event_btnCalendarioGenerarActionPerformed
@@ -613,7 +613,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         }else{
               Date fechaInicio = this.dFechaInicioTemporada.getDate();
               Date fechaFin = this.dFechaFinTemporada.getDate();
-              SimpleDateFormat formato = new SimpleDateFormat("d/MM/yyyy");
+              SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
               gc.generaFechas(formato.format(fechaInicio), formato.format(fechaFin), this.tCalendario, this.cbGenerarJornada);
         }      
     //        gc.generaFechas(this.dFechaInicio.getText(), this.dFechaFin.getText(), this.tCalendario);
