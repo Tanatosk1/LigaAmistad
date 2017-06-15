@@ -3,6 +3,8 @@ package sources;
 import connection.Conn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -120,7 +122,12 @@ public class MostrarDatos {
                 while(campeonato.next()){
                     fila[0] = campeonato.getInt("ID");
                     fila[1] = campeonato.getInt("JORNADA");
-                    fila[2] = campeonato.getString("FECHA");
+                    fila[2] = campeonato.getDate("FECHA");
+                    if(campeonato.getDate("FECHA") != null){
+                        fila[3] = calculaDia((Date)campeonato.getDate("FECHA"));
+                    }else{
+                        fila[3] = "";
+                    }
                     fila[4] = campeonato.getString("HORA");
                     fila[5] = campeonato.getString("LOCAL");
                     fila[6] = campeonato.getString("VISITANTE");
@@ -130,14 +137,24 @@ public class MostrarDatos {
                     }else{
                         fila[8] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
                     }
+                    model.addRow(fila);
                     
-        
-                    model.addRow(fila); 
                 } 
             }catch (SQLException ex) {
                 Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
             }
         con.desconectar();
         tCalendario.setModel(model);
+    }
+    
+    private String calculaDia(Date fecha){
+        String dia = "";
+        Calendar d = Calendar.getInstance();
+        String[] strDays = new String[]{"Domingo", "Lunes", "Martes", "Miércoles",
+        			    "Jueves", "Viernes", "Sábado"};
+        
+        d.setTime(fecha);
+        dia = strDays[d.get(Calendar.DAY_OF_WEEK)-1];
+        return dia;
     }
 }
