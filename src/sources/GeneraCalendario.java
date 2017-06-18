@@ -1,6 +1,8 @@
 package sources;
 
 import connection.Conn;
+import java.awt.Color;
+import java.awt.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -13,7 +15,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -43,19 +48,19 @@ public class GeneraCalendario {
         int id;
         int id_equipo;
         int id_dia;
-        String hora;
+        int hora;
         int id_campo;
         int id_coindice;
         public oRestricciones(Object[] datos){
             this.id = (int)datos[0];
             this.id_equipo = (int)datos[1];
             this.id_dia = (int)datos[2];
-            this.hora = (String)datos[3];
+            this.hora = (int)datos[3];
             this.id_campo = (int)datos[4];
             this.id_coindice = (int)datos[5];
         }
     }
-    
+       
     private final String[] strDays = new String[]{"Domingo", "Lunes", "Martes", "Miércoles",
         			    "Jueves", "Viernes", "Sábado"};
     //private int totalPartidosJornada;
@@ -65,7 +70,7 @@ public class GeneraCalendario {
     private ResultSet campeonato;
     private ResultSet restricciones;
     private ArrayList<oCampeonato> arrCampeonato;
-    private ArrayList arrRestricciones;
+    private ArrayList<oRestricciones> arrRestricciones;
   
     public void generaFechas(String fInicio, String fFin, JTable tabla, JComboBox jornada){
         Conn conn = new Conn();
@@ -83,7 +88,7 @@ public class GeneraCalendario {
         //totalPartidosJornada = conn.totalRegistros("campeonato", "JORNADA = " + jornada.getSelectedItem());
         totalCamposDisponibles = conn.totalRegistros("campos", "CONGELADO = 0");
         
-        campeonato = conn.getValues("*", "campeonato", "", "");
+        campeonato = conn.getValues("*", "campeonato", "", "JORNADA");
         restricciones = conn.getValues("*", "restricciones", "", "");
         
         
@@ -103,7 +108,7 @@ public class GeneraCalendario {
                 
                 arrCampeonato.add(new oCampeonato(fCampeonato));
             }
-            System.out.println(arrCampeonato.get(1).jornada);
+            //System.out.println(arrCampeonato.get(1).jornada);
             Object[] fRestricciones = new Object[6];
             arrRestricciones = new ArrayList();
             while(restricciones.next()){
@@ -130,20 +135,47 @@ public class GeneraCalendario {
             cFin.setTime(dateFin);
             Calendar setDay = Calendar.getInstance();
             int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
-            
+            int day = 0;
             for(int i = 0; i < totalPartidosMostrados; i++){
                 if(this.jornada == (int)model.getValueAt(i, 1)){
                     int dia = ThreadLocalRandom.current().nextInt(cInicio.get(Calendar.DATE), cFin.get(Calendar.DATE)+1); 
                     for(int j = 0; j < dias; j++){
                         if(dia == cInicio.get(Calendar.DATE)+j){
                             setDay.set(cInicio.get(Calendar.YEAR), cInicio.get(Calendar.MONTH),dia);
-                            
-                            //tabla.setValueAt(formatter.format(setDay.getTime()), i, 2);
-                            int day = setDay.get(Calendar.DAY_OF_WEEK)-1;
-                            
+                            tabla.setValueAt(formatter.format(setDay.getTime()), i, 2);
+                            day = setDay.get(Calendar.DAY_OF_WEEK)-1;
                             tabla.setValueAt(strDays[day], i, 3);
                             //tabla.setValueAt(campo, i, 7);
-
+                        }
+                    }
+                    for(int e = 0; e < arrCampeonato.size(); e++){
+                        int numDia = 0;
+                        int local = 0;
+                        int visitante = 0;
+                        if((int)model.getValueAt(i, 0) == arrCampeonato.get(e).id){
+                            local = arrCampeonato.get(e).local;
+                            visitante = arrCampeonato.get(e).visitante;
+                        }
+                        for(int r = 0; r < arrRestricciones.size(); r++){
+                            if(arrRestricciones.get(r).id_equipo == local){
+                                
+                                if(arrRestricciones.get(r).id_dia != 0){
+                                    System.out.println("local " + arrRestricciones.get(r).id_equipo);
+                                    System.out.println(arrRestricciones.get(r).id_dia);
+                                }
+                                System.out.println("numDia " +numDia);
+                            }
+                            if(arrRestricciones.get(r).id_equipo == visitante){
+                                
+                                if(arrRestricciones.get(r).id_dia != 0){
+                                    System.out.println("visitante " + arrRestricciones.get(r).id_equipo);
+                                    System.out.println(getDia(arrRestricciones.get(r).id_dia));
+                                    if(model.getValueAt(i, 3).equals(getDia(arrRestricciones.get(r).id_dia))){
+                                        System.out.println("Día que no puede jugar");
+                                        
+                                    }
+                                } 
+                            }
                         }
                     }
                     int campo = ThreadLocalRandom.current().nextInt(totalCamposDisponibles)+1;
@@ -152,6 +184,26 @@ public class GeneraCalendario {
             }
         } catch (ParseException e) {
         }
+    }
+    
+    public String getDia(int dia){
+        switch(dia){
+            case 1:
+                return "Lunes";
+             case 2:
+                return "Martes";
+            case 3:
+                return "Miércoles";
+            case 4:
+                return "Jueves";
+            case 5:
+                return "Viernes";
+            case 6:
+                return "Sábado";
+            case 7:
+                return "Domingo";
+        }
+        return null;
     }
     
     public void guardarCalendario(JTable tabla, JComboBox jornada){

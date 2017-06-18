@@ -20,6 +20,7 @@ import sources.GeneraCalendario;
 import sources.MostrarDatos;
 import java.util.Date;
 import sources.LeerExcel;
+import sources.ModelTable;
 
 /**
  *
@@ -32,6 +33,7 @@ private final MostrarDatos md = new MostrarDatos();
 private final GeneraCalendario gc = new GeneraCalendario();
 private Filtros filtro;
 private final CrearDocumentos cd = new CrearDocumentos();
+private ModelTable mt = new ModelTable();
 
     public Calendario() {
         initComponents();
@@ -47,6 +49,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         md.llenarComboJornadas(this.cbJornada);
         md.llenarComboJornadas(this.cbGenerarJornada);
         md.llenarTCalendario(this.tCalendario);
+        this.tCalendario.setDefaultRenderer(Object.class, mt);
         
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
