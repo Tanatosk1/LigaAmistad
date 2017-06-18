@@ -42,6 +42,17 @@ private final CrearDocumentos cd = new CrearDocumentos();
         fondo = new FondoVentana();
         this.add(fondo);
         
+        tCalendario.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tCalendario.getColumnModel().getColumn(1).setPreferredWidth(75);
+        tCalendario.getColumnModel().getColumn(2).setPreferredWidth(120);
+        tCalendario.getColumnModel().getColumn(3).setPreferredWidth(120);
+        tCalendario.getColumnModel().getColumn(4).setPreferredWidth(120);
+        tCalendario.getColumnModel().getColumn(5).setPreferredWidth(325);
+        tCalendario.getColumnModel().getColumn(6).setPreferredWidth(325);
+        tCalendario.getColumnModel().getColumn(7).setPreferredWidth(325);
+        tCalendario.getColumnModel().getColumn(8).setPreferredWidth(300);
+        tCalendario.getColumnModel().getColumn(9).setPreferredWidth(120);
+        
         md.llenarComboCategorias(this.cbCategoria);
         md.llenarComboDivisiones(this.cbDivision);
         md.llenarComboJornadas(this.cbJornada);
@@ -319,6 +330,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 return canEdit [columnIndex];
             }
         });
+        tCalendario.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tCalendario.getTableHeader().setReorderingAllowed(false);
         scrollCalendario.setViewportView(tCalendario);
 
