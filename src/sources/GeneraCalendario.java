@@ -2,7 +2,6 @@ package sources;
 
 import connection.Conn;
 import java.awt.Color;
-import java.awt.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -15,10 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -83,6 +79,7 @@ public class GeneraCalendario {
         String dateFinString = fFin;
         Calendar cInicio = Calendar.getInstance();
         Calendar cFin = Calendar.getInstance();
+        ArrayList fila = new ArrayList(); 
         
         conn.conectar();
         //totalPartidosJornada = conn.totalRegistros("campeonato", "JORNADA = " + jornada.getSelectedItem());
@@ -160,19 +157,23 @@ public class GeneraCalendario {
                             if(arrRestricciones.get(r).id_equipo == local){
                                 
                                 if(arrRestricciones.get(r).id_dia != 0){
-                                    System.out.println("local " + arrRestricciones.get(r).id_equipo);
-                                    System.out.println(arrRestricciones.get(r).id_dia);
+                                    //System.out.println("local " + arrRestricciones.get(r).id_equipo);
+                                    //System.out.println(arrRestricciones.get(r).id_dia);
+                                    tabla.setRowSelectionInterval(i, i);
+                                    tabla.setSelectionBackground(Color.red);
                                 }
-                                System.out.println("numDia " +numDia);
                             }
                             if(arrRestricciones.get(r).id_equipo == visitante){
                                 
                                 if(arrRestricciones.get(r).id_dia != 0){
-                                    System.out.println("visitante " + arrRestricciones.get(r).id_equipo);
-                                    System.out.println(getDia(arrRestricciones.get(r).id_dia));
+                                    
+                                    //System.out.println(getDia(arrRestricciones.get(r).id_dia));
                                     if(model.getValueAt(i, 3).equals(getDia(arrRestricciones.get(r).id_dia))){
-                                        System.out.println("Día que no puede jugar");
-                                        
+                                        //System.out.println("visitante " + arrRestricciones.get(r).id_equipo);
+                                        //System.out.println("Día que no puede jugar");
+                                        //JOptionPane.showMessageDialog(null, "El equipo " + arrRestricciones.get(r).id_equipo + "\nNo puede jugar ese día", "Restricción encontrada", JOptionPane.ERROR_MESSAGE);
+                                        tabla.setRowSelectionInterval(i, i);
+                                        tabla.setSelectionBackground(Color.red);                                       
                                     }
                                 } 
                             }

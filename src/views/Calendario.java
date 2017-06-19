@@ -33,7 +33,6 @@ private final MostrarDatos md = new MostrarDatos();
 private final GeneraCalendario gc = new GeneraCalendario();
 private Filtros filtro;
 private final CrearDocumentos cd = new CrearDocumentos();
-private ModelTable mt = new ModelTable();
 
     public Calendario() {
         initComponents();
@@ -60,7 +59,7 @@ private ModelTable mt = new ModelTable();
         md.llenarComboJornadas(this.cbJornada);
         md.llenarComboJornadas(this.cbGenerarJornada);
         md.llenarTCalendario(this.tCalendario);
-        this.tCalendario.setDefaultRenderer(Object.class, mt);
+        //this.tCalendario.setDefaultRenderer(Object.class, new ModelTable(0, 3));
         
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
