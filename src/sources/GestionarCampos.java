@@ -28,12 +28,34 @@ public class GestionarCampos {
     public void guardarCampo(String campo){
         try {
             conn.conectar();
-            conn.insertData("campos", "null,'" + campo + "'");
+            conn.insertData("campos", "null,'" + campo + "', 1");
             conn.getConection().commit();
             conn.desconectar();
             JOptionPane.showMessageDialog(null, "Campo guardado con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void editarCampo(String anterior, String nuevo){
+        try{
+            conn.conectar();
+            conn.updateData("campos", "CAMPO = '" + nuevo + "'", "CAMPO LIKE '" + anterior+ "'");
+            conn.getConection().commit();
+            conn.desconectar();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al editar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void eliminarCampo(int id){
+        try{
+            conn.conectar();
+            conn.deleteData("campos", "ID = " + id);
+            conn.getConection().commit();
+            conn.desconectar();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
