@@ -163,7 +163,6 @@ public class Conn {
         try {
             String Query = "UPDATE " + table + " SET " + set +" WHERE " + where;
             Statement st = link.createStatement();
-            
             st.executeUpdate(Query);
             //JOptionPane.showMessageDialog(null, "Datos editados de forma exitosa");
         } catch (SQLException ex) {
@@ -189,7 +188,7 @@ public class Conn {
     
     public void createTable(String tabla, String[] parametros){
         try{
-            String query = "CREATE TABLE " + tabla + " (";
+            String query = "CREATE TABLE IF NOT EXISTS " + tabla + " (";
             for (String parametro : parametros) {
                 query += parametro;
             }
@@ -197,6 +196,22 @@ public class Conn {
             System.out.println(query);
             Statement st = link.createStatement();
             st.execute(query);
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void alterTable(String tabla, String[] parametros){
+        try{
+            String query = "ALTER TABLE '" + tabla + "' (";
+            for (String parametro : parametros) {
+                query += parametro;
+            }
+            query += ")";
+            System.out.println(query);
+            Statement st = link.createStatement();
+            //st.execute(query);
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
