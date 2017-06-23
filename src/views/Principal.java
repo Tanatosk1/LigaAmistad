@@ -6,25 +6,19 @@
 package views;
 
 
-import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.channels.FileChannel;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.stage.FileChooser;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import sources.GestionarBBDD;
 import sources.GestionarCampos;
 import sources.LeerExcel;
 
@@ -199,6 +193,11 @@ private FondoPrincipal fondo;
         miNuevaJornada.setForeground(new java.awt.Color(255, 255, 255));
         miNuevaJornada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/new.png"))); // NOI18N
         miNuevaJornada.setText(" Nueva Temporada");
+        miNuevaJornada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miNuevaJornadaActionPerformed(evt);
+            }
+        });
         mArchivo.add(miNuevaJornada);
 
         miCambiarLogo.setBackground(new java.awt.Color(31, 87, 12));
@@ -699,41 +698,6 @@ private FondoPrincipal fondo;
 
     private void miEditarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarCamposActionPerformed
         new EditarCampo(this, true).setVisible(true);
-
-
-//        ImageIcon icon = new ImageIcon("src/resources/campo_menu.png");
-//        
-//        String[] list = {"A", "B", "C"};
-//        JComboBox jcb = new JComboBox(list);
-//
-//        int seleccion = JOptionPane.showOptionDialog(
-//        null,
-//        jcb, 
-//        "Seleccione un campo",
-//        JOptionPane.YES_NO_CANCEL_OPTION,
-//        JOptionPane.QUESTION_MESSAGE,
-//        icon, 
-//        new Object[] { "Editar", "Elliminar", "Cancelar" },
-//        "Editar");
-//
-//        if (seleccion == 0){
-//            jcb.setEditable(true);
-//            jcb.getSelectedItem();
-//            System.out.println(seleccion);
-//            //aqui guardaria el cambio
-//        }if (seleccion == 1){
-//            System.out.println("seleccion == 1");
-//            jcb.setEditable(true);
-//            jcb.getSelectedItem();
-//            //aqui borra el item
-//        }else{
-//            jcb.setEditable(true);
-//            System.out.println(seleccion);
-//            jcb.getSelectedItem();
-//        }
-
-
- 
     }//GEN-LAST:event_miEditarCamposActionPerformed
 
     private void miEditarCompeticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarCompeticionActionPerformed
@@ -747,6 +711,15 @@ private FondoPrincipal fondo;
     private void miEditarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarEquiposActionPerformed
         new EditarEquipo(this, true).setVisible(true);
     }//GEN-LAST:event_miEditarEquiposActionPerformed
+
+    private void miNuevaJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miNuevaJornadaActionPerformed
+        Object temporada = JOptionPane.showInputDialog(null, "Temporada", "Agregar temporada", JOptionPane.QUESTION_MESSAGE); 
+        if(temporada != null){
+            String nTemporada= temporada.toString();
+            GestionarBBDD gbd = new GestionarBBDD();
+            gbd.nuevaTemporada(nTemporada);
+        }
+    }//GEN-LAST:event_miNuevaJornadaActionPerformed
 
     /**
      * @param args the command line arguments

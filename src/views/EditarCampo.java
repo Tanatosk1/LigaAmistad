@@ -5,7 +5,8 @@
  */
 package views;
 
-import java.awt.Color;
+import sources.GestionarCampos;
+import sources.MostrarDatos;
 
 /**
  *
@@ -13,6 +14,9 @@ import java.awt.Color;
  */
 public class EditarCampo extends javax.swing.JDialog {
 
+    private final MostrarDatos md = new MostrarDatos();
+    private final GestionarCampos gc = new GestionarCampos();
+    private String campoAnterior = null;
     /**
      * Creates new form EditarCampo
      */
@@ -21,6 +25,9 @@ public class EditarCampo extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(232, 245, 228));
+        
+        md.llenarComboCampos(this.cbEditarCampo);
+        
     }
 
     /**
@@ -50,7 +57,7 @@ public class EditarCampo extends javax.swing.JDialog {
 
         cbEditarCampo.setBackground(new java.awt.Color(31, 87, 12));
         cbEditarCampo.setForeground(new java.awt.Color(255, 255, 255));
-        cbEditarCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEditarCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione campo" }));
 
         btnEditarCampo.setBackground(new java.awt.Color(31, 87, 12));
         btnEditarCampo.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,11 +131,21 @@ public class EditarCampo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarCampoActionPerformed
+        
         cbEditarCampo.setEditable(true);
+        if(btnEditarCampo.getText().equals("Editar")){
+            campoAnterior = this.cbEditarCampo.getSelectedItem().toString();
+        }else{
+            gc.editarCampo(campoAnterior, this.cbEditarCampo.getSelectedItem().toString());
+            dispose();
+        }
+        btnEditarCampo.setText("Aceptar");
+        
     }//GEN-LAST:event_btnEditarCampoActionPerformed
 
     private void btnEliminarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCampoActionPerformed
-        // TODO add your handling code here:
+        gc.eliminarCampo(this.cbEditarCampo.getSelectedIndex());
+        dispose();
     }//GEN-LAST:event_btnEliminarCampoActionPerformed
 
     private void btnCancelarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCampoActionPerformed
