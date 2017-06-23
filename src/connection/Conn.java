@@ -36,8 +36,8 @@ public class Conn {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             // Establecemos la conexión con la base de datos.
-            this.link = DriverManager.getConnection (this.url,this.user, this.pass);
-            this.link.setAutoCommit(false);
+            link = DriverManager.getConnection (this.url,this.user, this.pass);
+            link.setAutoCommit(false);
             //System.out.println("Conexión establecida");
         } catch (ClassNotFoundException e){
             System.out.println(e);
@@ -51,7 +51,7 @@ public class Conn {
      */    
     public void desconectar(){
         try{
-            this.link.close();
+            link.close();
             //System.out.println("Conexion cerrada");
         } catch (SQLException ex) {
             Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
@@ -184,6 +184,22 @@ public class Conn {
             //JOptionPane.showMessageDialog(null, "Datos eliminados de forma exitosa");
         } catch (SQLException ex) {
             //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos\n"+ex);
+        }
+    }
+    
+    public void createTable(String tabla, String[] parametros){
+        try{
+            String query = "CREATE TABLE " + tabla + " (";
+            for (String parametro : parametros) {
+                query += parametro;
+            }
+            query += ")";
+            System.out.println(query);
+            Statement st = link.createStatement();
+            st.execute(query);
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
         }
     }
 }
