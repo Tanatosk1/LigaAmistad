@@ -131,11 +131,12 @@ public class GeneraCalendario {
             cInicio.setTime(dateIni);
             cFin.setTime(dateFin);
             Calendar setDay = Calendar.getInstance();
+            int dia;
             int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
             int day = 0;
             for(int i = 0; i < totalPartidosMostrados; i++){
                 if(this.jornada == (int)model.getValueAt(i, 1)){
-                    int dia = ThreadLocalRandom.current().nextInt(cInicio.get(Calendar.DATE), cFin.get(Calendar.DATE)+1); 
+                    dia = ThreadLocalRandom.current().nextInt(cInicio.get(Calendar.DATE), cFin.get(Calendar.DATE)+1); 
                     for(int j = 0; j < dias; j++){
                         if(dia == cInicio.get(Calendar.DATE)+j){
                             setDay.set(cInicio.get(Calendar.YEAR), cInicio.get(Calendar.MONTH),dia);
@@ -157,29 +158,64 @@ public class GeneraCalendario {
                             if(arrRestricciones.get(r).id_equipo == local){
                                 
                                 if(arrRestricciones.get(r).id_dia != 0){
-                                    //System.out.println("local " + arrRestricciones.get(r).id_equipo);
-                                    //System.out.println(arrRestricciones.get(r).id_dia);
-                                    tabla.setRowSelectionInterval(i, i);
-                                    tabla.setSelectionBackground(Color.red);
+                                    boolean rest = true;
+                                    
+                                    do{
+                                        if(model.getValueAt(i, 3).equals(getDia(arrRestricciones.get(r).id_dia))){
+                                            
+                                            System.out.println("Nueva anterior " + formatter.format(setDay.getTime()));
+                                            System.out.println("visitante " + arrRestricciones.get(r).id_equipo);
+                                            System.out.println("Día que no puede jugar");
+                                            /** Genero otra fecha aleatoria **/
+                                            dia = ThreadLocalRandom.current().nextInt(cInicio.get(Calendar.DATE), cFin.get(Calendar.DATE)+1);
+                                            setDay.set(cInicio.get(Calendar.YEAR), cInicio.get(Calendar.MONTH),dia);
+                                            tabla.setValueAt(formatter.format(setDay.getTime()), i, 2);
+                                            System.out.println("Nueva fecha " + formatter.format(setDay.getTime()));
+                                            System.out.println("Valor en tabla " + tabla.getValueAt(i, 2));
+                                            day = setDay.get(Calendar.DAY_OF_WEEK)-1;
+                                            tabla.setValueAt(strDays[day], i, 3);
+                                            r = 0;
+                                            /** Cambia el color de la celda **/
+                                            //tabla.setRowSelectionInterval(i, i);
+                                            //tabla.setSelectionBackground(Color.blue);                                       
+                                        }else{
+                                            rest = false;
+                                        }
+                                    }while(rest);
                                 }
                             }
                             if(arrRestricciones.get(r).id_equipo == visitante){
                                 
                                 if(arrRestricciones.get(r).id_dia != 0){
+                                    boolean rest = true;
                                     
-                                    //System.out.println(getDia(arrRestricciones.get(r).id_dia));
-                                    if(model.getValueAt(i, 3).equals(getDia(arrRestricciones.get(r).id_dia))){
-                                        //System.out.println("visitante " + arrRestricciones.get(r).id_equipo);
-                                        //System.out.println("Día que no puede jugar");
-                                        //JOptionPane.showMessageDialog(null, "El equipo " + arrRestricciones.get(r).id_equipo + "\nNo puede jugar ese día", "Restricción encontrada", JOptionPane.ERROR_MESSAGE);
-                                        tabla.setRowSelectionInterval(i, i);
-                                        tabla.setSelectionBackground(Color.red);                                       
-                                    }
+                                    do{
+                                        if(model.getValueAt(i, 3).equals(getDia(arrRestricciones.get(r).id_dia))){
+                                            
+                                            System.out.println("Nueva anterior " + formatter.format(setDay.getTime()));
+                                            System.out.println("visitante " + arrRestricciones.get(r).id_equipo);
+                                            System.out.println("Día que no puede jugar");
+                                            /** Genero otra fecha aleatoria **/
+                                            dia = ThreadLocalRandom.current().nextInt(cInicio.get(Calendar.DATE), cFin.get(Calendar.DATE)+1);
+                                            setDay.set(cInicio.get(Calendar.YEAR), cInicio.get(Calendar.MONTH),dia);
+                                            tabla.setValueAt(formatter.format(setDay.getTime()), i, 2);
+                                            System.out.println("Nueva fecha " + formatter.format(setDay.getTime()));
+                                            System.out.println("Valor en tabla " + tabla.getValueAt(i, 2));
+                                            day = setDay.get(Calendar.DAY_OF_WEEK)-1;
+                                            tabla.setValueAt(strDays[day], i, 3);
+                                            r = 0;
+                                            /** Cambia el color de la celda **/
+                                            //tabla.setRowSelectionInterval(i, i);
+                                            //tabla.setSelectionBackground(Color.red);                                       
+                                        }else{
+                                            rest = false;
+                                        }
+                                    }while(rest);
                                 } 
                             }
                         }
                     }
-                    int campo = ThreadLocalRandom.current().nextInt(totalCamposDisponibles)+1;
+                    //int campo = ThreadLocalRandom.current().nextInt(totalCamposDisponibles)+1;
                     //System.out.println(campo);
                 }
             }
