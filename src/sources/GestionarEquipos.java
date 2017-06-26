@@ -20,6 +20,8 @@ public class GestionarEquipos {
     public GestionarEquipos(Restricciones rest){
         this.r = rest;
     }
+
+
     
     public void gestionarEquipo(ArrayList<ORestriccion> condiciones){
         try {
@@ -40,6 +42,18 @@ public class GestionarEquipos {
             JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex, "Error", JOptionPane.ERROR_MESSAGE);
         }finally{
             r.cbEquipos.setSelectedIndex(0);
+        }
+    }
+    
+        public void guardarEquipo(String equipo){
+        try {
+            conn.conectar();
+            conn.insertData("equipos", "null,'" + equipo + "', 1, 1, 1");
+            conn.getConection().commit();
+            conn.desconectar();
+            JOptionPane.showMessageDialog(null, "Equipo guardado con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     

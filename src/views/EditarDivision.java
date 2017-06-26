@@ -6,21 +6,27 @@
 package views;
 
 import java.awt.Color;
+import sources.GestionarDivisiones;
+import sources.MostrarDatos;
 
 /**
  *
  * @author rob_a
  */
 public class EditarDivision extends javax.swing.JDialog {
-
+    private final MostrarDatos md = new MostrarDatos();
+    private final GestionarDivisiones gd = new GestionarDivisiones();
+    private String divisionAnterior = null;
     /**
-     * Creates new form EditarCampo
+     * Creates new form EditarDivision
      */
     public EditarDivision(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(232, 245, 228));
+        
+        md.llenarComboDivisiones(this.cbEditarDivision);
     }
 
     /**
@@ -50,7 +56,7 @@ public class EditarDivision extends javax.swing.JDialog {
 
         cbEditarDivision.setBackground(new java.awt.Color(31, 87, 12));
         cbEditarDivision.setForeground(new java.awt.Color(255, 255, 255));
-        cbEditarDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEditarDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una división" }));
 
         btnEditarDivision.setBackground(new java.awt.Color(31, 87, 12));
         btnEditarDivision.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,10 +131,19 @@ public class EditarDivision extends javax.swing.JDialog {
 
     private void btnEditarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDivisionActionPerformed
         cbEditarDivision.setEditable(true);
+
+        if(btnEditarDivision.getText().equals("Editar")){
+            divisionAnterior = this.cbEditarDivision.getSelectedItem().toString();
+        }else{
+            gd.editarDivision(divisionAnterior, this.cbEditarDivision.getSelectedItem().toString());
+            dispose();
+        }
+        btnEditarDivision.setText("Aceptar");
     }//GEN-LAST:event_btnEditarDivisionActionPerformed
 
     private void btnEliminarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDivisionActionPerformed
-        // TODO add your handling code here:
+        gd.eliminarDivision(this.cbEditarDivision.getSelectedIndex());
+        dispose();
     }//GEN-LAST:event_btnEliminarDivisionActionPerformed
 
     private void btnCancelarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarDivisionActionPerformed

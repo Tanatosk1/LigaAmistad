@@ -20,7 +20,7 @@ public class MostrarDatos {
     
     public void llenarComboCategorias(JComboBox cbCategoria){
         con.conectar();
-        ResultSet categoria = con.getValues("COMPETICION", "Competicion", "", "Competicion");
+        ResultSet categoria = con.getValues("COMPETICION", "Competicion", "", "ID");
             try {
                 while(categoria.next()){
                     cbCategoria.addItem(categoria.getString("COMPETICION"));
@@ -33,7 +33,7 @@ public class MostrarDatos {
     
     public void llenarComboDivisiones(JComboBox cbDivision){
         con.conectar();
-        ResultSet division = con.getValues("DIVISION", "Division", "", "DIVISION");
+        ResultSet division = con.getValues("DIVISION", "Division", "", "ID");
             try {
                 while(division.next()){
                     cbDivision.addItem(division.getString("DIVISION"));

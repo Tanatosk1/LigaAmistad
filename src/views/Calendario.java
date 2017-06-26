@@ -201,6 +201,11 @@ private final CrearDocumentos cd = new CrearDocumentos();
         lblCategoria.setText("Categoría");
 
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas" }));
+        cbCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCategoriaActionPerformed(evt);
+            }
+        });
 
         lblDivision.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblDivision.setText("División");
@@ -663,6 +668,10 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private void cbJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbJornadaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbJornadaActionPerformed
+
+    private void cbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCategoriaActionPerformed
     
     public void close() {
              dispose();             

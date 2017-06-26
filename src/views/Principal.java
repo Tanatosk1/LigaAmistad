@@ -20,6 +20,9 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import sources.GestionarBBDD;
 import sources.GestionarCampos;
+import sources.GestionarCategorias;
+import sources.GestionarDivisiones;
+import sources.GestionarEquipos;
 import sources.LeerExcel;
 
 /**
@@ -93,7 +96,7 @@ private FondoPrincipal fondo;
         mArchivo = new javax.swing.JMenu();
         miNuevaJornada = new javax.swing.JMenuItem();
         miCambiarLogo = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        miAcerca = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         miSalir = new javax.swing.JMenuItem();
         mGestion = new javax.swing.JMenu();
@@ -102,12 +105,12 @@ private FondoPrincipal fondo;
         miImportarEquipos = new javax.swing.JMenuItem();
         mAgregarPrincipal = new javax.swing.JMenu();
         miAgregarCampos = new javax.swing.JMenuItem();
-        miAgregarCompeticion = new javax.swing.JMenuItem();
+        miAgregarCategoria = new javax.swing.JMenuItem();
         miAgregarDivision = new javax.swing.JMenuItem();
         miAgregarEquipos = new javax.swing.JMenuItem();
         mEditarPrincipal = new javax.swing.JMenu();
         miEditarCampos = new javax.swing.JMenuItem();
-        miEditarCompeticion = new javax.swing.JMenuItem();
+        miEditarCategoria = new javax.swing.JMenuItem();
         miEditarDivision = new javax.swing.JMenuItem();
         miEditarEquipos = new javax.swing.JMenuItem();
         mBBDD = new javax.swing.JMenu();
@@ -212,17 +215,17 @@ private FondoPrincipal fondo;
         });
         mArchivo.add(miCambiarLogo);
 
-        jMenuItem1.setBackground(new java.awt.Color(31, 87, 12));
-        jMenuItem1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
-        jMenuItem1.setText(" Acerca...");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        miAcerca.setBackground(new java.awt.Color(31, 87, 12));
+        miAcerca.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miAcerca.setForeground(new java.awt.Color(255, 255, 255));
+        miAcerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        miAcerca.setText(" Acerca...");
+        miAcerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                miAcercaActionPerformed(evt);
             }
         });
-        mArchivo.add(jMenuItem1);
+        mArchivo.add(miAcerca);
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         mArchivo.add(jSeparator1);
@@ -291,17 +294,17 @@ private FondoPrincipal fondo;
         });
         mAgregarPrincipal.add(miAgregarCampos);
 
-        miAgregarCompeticion.setBackground(new java.awt.Color(31, 87, 12));
-        miAgregarCompeticion.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        miAgregarCompeticion.setForeground(new java.awt.Color(255, 255, 255));
-        miAgregarCompeticion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/competicion.png"))); // NOI18N
-        miAgregarCompeticion.setText(" Competición");
-        miAgregarCompeticion.addActionListener(new java.awt.event.ActionListener() {
+        miAgregarCategoria.setBackground(new java.awt.Color(31, 87, 12));
+        miAgregarCategoria.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miAgregarCategoria.setForeground(new java.awt.Color(255, 255, 255));
+        miAgregarCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/competicion.png"))); // NOI18N
+        miAgregarCategoria.setText(" Categoría");
+        miAgregarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miAgregarCompeticionActionPerformed(evt);
+                miAgregarCategoriaActionPerformed(evt);
             }
         });
-        mAgregarPrincipal.add(miAgregarCompeticion);
+        mAgregarPrincipal.add(miAgregarCategoria);
 
         miAgregarDivision.setBackground(new java.awt.Color(31, 87, 12));
         miAgregarDivision.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
@@ -343,17 +346,17 @@ private FondoPrincipal fondo;
         });
         mEditarPrincipal.add(miEditarCampos);
 
-        miEditarCompeticion.setBackground(new java.awt.Color(31, 87, 12));
-        miEditarCompeticion.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        miEditarCompeticion.setForeground(new java.awt.Color(255, 255, 255));
-        miEditarCompeticion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/competicion.png"))); // NOI18N
-        miEditarCompeticion.setText(" Competición");
-        miEditarCompeticion.addActionListener(new java.awt.event.ActionListener() {
+        miEditarCategoria.setBackground(new java.awt.Color(31, 87, 12));
+        miEditarCategoria.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miEditarCategoria.setForeground(new java.awt.Color(255, 255, 255));
+        miEditarCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/competicion.png"))); // NOI18N
+        miEditarCategoria.setText("Categoría");
+        miEditarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miEditarCompeticionActionPerformed(evt);
+                miEditarCategoriaActionPerformed(evt);
             }
         });
-        mEditarPrincipal.add(miEditarCompeticion);
+        mEditarPrincipal.add(miEditarCategoria);
 
         miEditarDivision.setBackground(new java.awt.Color(31, 87, 12));
         miEditarDivision.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
@@ -620,19 +623,23 @@ private FondoPrincipal fondo;
         }
     }//GEN-LAST:event_miImportarEquiposActionPerformed
 
-    private void miAgregarCompeticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAgregarCompeticionActionPerformed
+    private void miAgregarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAgregarCategoriaActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/competicion.png");
         Object competicion = JOptionPane.showInputDialog(null, "Nombre de la competición", "Agregar competición", JOptionPane.QUESTION_MESSAGE,icon,null,"");
         if(competicion != null){
             String scompeticion = competicion.toString();
+            GestionarCategorias gct = new GestionarCategorias();
+            gct.guardarCategoria(scompeticion);
         }
-    }//GEN-LAST:event_miAgregarCompeticionActionPerformed
+    }//GEN-LAST:event_miAgregarCategoriaActionPerformed
 
     private void miAgregarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAgregarDivisionActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/division.png");
         Object division = JOptionPane.showInputDialog(null, "Nombre de la división", "Agregar división", JOptionPane.QUESTION_MESSAGE,icon,null,"");    
         if(division != null){
-            String sdivision = division.toString();    
+            String sdivision = division.toString();
+            GestionarDivisiones gd = new GestionarDivisiones();
+            gd.guardarDivision(sdivision);
         }
     }//GEN-LAST:event_miAgregarDivisionActionPerformed
 
@@ -641,6 +648,8 @@ private FondoPrincipal fondo;
         Object equipo = JOptionPane.showInputDialog(null, "Nombre del equipo", "Agregar equipo", JOptionPane.QUESTION_MESSAGE,icon,null,"");
         if(equipo != null){
            String sequipo = equipo.toString();
+            GestionarEquipos ge = new GestionarEquipos (null);
+            ge.guardarEquipo(sequipo); 
         }
     }//GEN-LAST:event_miAgregarEquiposActionPerformed
 
@@ -692,17 +701,17 @@ private FondoPrincipal fondo;
         } 
     }//GEN-LAST:event_mivaciarEquiposActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void miAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAcercaActionPerformed
         new Acerca(this, true).setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_miAcercaActionPerformed
 
     private void miEditarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarCamposActionPerformed
         new EditarCampo(this, true).setVisible(true);
     }//GEN-LAST:event_miEditarCamposActionPerformed
 
-    private void miEditarCompeticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarCompeticionActionPerformed
-        new EditarCompeticion(this, true).setVisible(true);
-    }//GEN-LAST:event_miEditarCompeticionActionPerformed
+    private void miEditarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarCategoriaActionPerformed
+        new EditarCategoria(this, true).setVisible(true);
+    }//GEN-LAST:event_miEditarCategoriaActionPerformed
 
     private void miEditarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarDivisionActionPerformed
         new EditarDivision(this, true).setVisible(true);
@@ -772,7 +781,6 @@ private FondoPrincipal fondo;
     private javax.swing.JButton btnEquiposP;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btncalendarioP;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblLogoPrincipal;
     private javax.swing.JMenu mAgregarPrincipal;
@@ -783,13 +791,14 @@ private FondoPrincipal fondo;
     private javax.swing.JMenu mImportarPrincipal;
     private javax.swing.JMenu mVaciarBBDD;
     private javax.swing.JMenuBar mbprincipal;
+    private javax.swing.JMenuItem miAcerca;
     private javax.swing.JMenuItem miAgregarCampos;
-    private javax.swing.JMenuItem miAgregarCompeticion;
+    private javax.swing.JMenuItem miAgregarCategoria;
     private javax.swing.JMenuItem miAgregarDivision;
     private javax.swing.JMenuItem miAgregarEquipos;
     private javax.swing.JMenuItem miCambiarLogo;
     private javax.swing.JMenuItem miEditarCampos;
-    private javax.swing.JMenuItem miEditarCompeticion;
+    private javax.swing.JMenuItem miEditarCategoria;
     private javax.swing.JMenuItem miEditarDivision;
     private javax.swing.JMenuItem miEditarEquipos;
     private javax.swing.JMenuItem miImportarCampos;
