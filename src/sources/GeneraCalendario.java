@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -71,7 +73,6 @@ public class GeneraCalendario {
     public void generaFechas(String fInicio, String fFin, JTable tabla, JComboBox jornada){
         Conn conn = new Conn();
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
-        //Object[] fila = new Object[10];
         this.jornada = (int) jornada.getSelectedItem();
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -79,10 +80,9 @@ public class GeneraCalendario {
         String dateFinString = fFin;
         Calendar cInicio = Calendar.getInstance();
         Calendar cFin = Calendar.getInstance();
-        ArrayList fila = new ArrayList(); 
+        //ArrayList fila = new ArrayList(); 
         
         conn.conectar();
-        //totalPartidosJornada = conn.totalRegistros("campeonato", "JORNADA = " + jornada.getSelectedItem());
         totalCamposDisponibles = conn.totalRegistros("campos", "CONGELADO = 0");
         
         campeonato = conn.getValues("*", "campeonato", "", "JORNADA");
@@ -105,7 +105,6 @@ public class GeneraCalendario {
                 
                 arrCampeonato.add(new oCampeonato(fCampeonato));
             }
-            //System.out.println(arrCampeonato.get(1).jornada);
             Object[] fRestricciones = new Object[6];
             arrRestricciones = new ArrayList();
             while(restricciones.next()){
@@ -118,7 +117,6 @@ public class GeneraCalendario {
                 
                 arrRestricciones.add(new oRestricciones(fRestricciones));
             }
-            //System.out.println(arrRestricciones.size());
             
         }   catch (SQLException ex) {
             Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
@@ -133,21 +131,19 @@ public class GeneraCalendario {
             Calendar setDay = Calendar.getInstance();
             int dia;
             int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
-            int day = 0;
+            int day;
             for(int i = 0; i < totalPartidosMostrados; i++){
                 if(this.jornada == (int)model.getValueAt(i, 1)){
-                    dia = ThreadLocalRandom.current().nextInt(cInicio.get(Calendar.DATE), cFin.get(Calendar.DATE)+1); 
-                    for(int j = 0; j < dias; j++){
-                        if(dia == cInicio.get(Calendar.DATE)+j){
-                            setDay.set(cInicio.get(Calendar.YEAR), cInicio.get(Calendar.MONTH),dia);
-                            tabla.setValueAt(formatter.format(setDay.getTime()), i, 2);
-                            day = setDay.get(Calendar.DAY_OF_WEEK)-1;
-                            tabla.setValueAt(strDays[day], i, 3);
-                            //tabla.setValueAt(campo, i, 7);
-                        }
-                    }
+                    
+                    String fecha = generaFechaAleatoria(formatter, dateIni, dateFin);
+                    tabla.setValueAt(fecha, i, 2);
+                    setDay.setTime(formatter.parse(fecha));
+                    day = setDay.get(Calendar.DAY_OF_WEEK)-1;
+                    tabla.setValueAt(strDays[day], i, 3);
+                    
                     for(int e = 0; e < arrCampeonato.size(); e++){
-                        int numDia = 0;
+                        
+                        //int numDia = 0;
                         int local = 0;
                         int visitante = 0;
                         if((int)model.getValueAt(i, 0) == arrCampeonato.get(e).id){
@@ -155,29 +151,28 @@ public class GeneraCalendario {
                             visitante = arrCampeonato.get(e).visitante;
                         }
                         for(int r = 0; r < arrRestricciones.size(); r++){
+                            ArrayList<Date> dateLocal = new ArrayList();
                             if(arrRestricciones.get(r).id_equipo == local){
                                 
                                 if(arrRestricciones.get(r).id_dia != 0){
                                     boolean rest = true;
                                     
-                                    do{
+                                   do{
+                                       
                                         if(model.getValueAt(i, 3).equals(getDia(arrRestricciones.get(r).id_dia))){
                                             
-                                            System.out.println("Nueva anterior " + formatter.format(setDay.getTime()));
-                                            System.out.println("visitante " + arrRestricciones.get(r).id_equipo);
+                                            System.out.println("Fecha anterior " + formatter.format(setDay.getTime()));
+                                            System.out.println("Local " + arrRestricciones.get(r).id_equipo);
                                             System.out.println("Día que no puede jugar");
+                                            dateLocal.add(setDay.getTime());
                                             /** Genero otra fecha aleatoria **/
-                                            dia = ThreadLocalRandom.current().nextInt(cInicio.get(Calendar.DATE), cFin.get(Calendar.DATE)+1);
-                                            setDay.set(cInicio.get(Calendar.YEAR), cInicio.get(Calendar.MONTH),dia);
-                                            tabla.setValueAt(formatter.format(setDay.getTime()), i, 2);
+                                            fecha = generaFechaAleatoria(formatter, dateIni, dateFin);
+                                            setDay.setTime(formatter.parse(fecha));                                            
+                                            tabla.setValueAt(fecha, i, 2);
                                             System.out.println("Nueva fecha " + formatter.format(setDay.getTime()));
-                                            System.out.println("Valor en tabla " + tabla.getValueAt(i, 2));
                                             day = setDay.get(Calendar.DAY_OF_WEEK)-1;
                                             tabla.setValueAt(strDays[day], i, 3);
-                                            r = 0;
-                                            /** Cambia el color de la celda **/
-                                            //tabla.setRowSelectionInterval(i, i);
-                                            //tabla.setSelectionBackground(Color.blue);                                       
+                                            r = 0;                                       
                                         }else{
                                             rest = false;
                                         }
@@ -192,21 +187,28 @@ public class GeneraCalendario {
                                     do{
                                         if(model.getValueAt(i, 3).equals(getDia(arrRestricciones.get(r).id_dia))){
                                             
-                                            System.out.println("Nueva anterior " + formatter.format(setDay.getTime()));
+                                            System.out.println("Fecha anterior " + formatter.format(setDay.getTime()));
                                             System.out.println("visitante " + arrRestricciones.get(r).id_equipo);
                                             System.out.println("Día que no puede jugar");
+                                            
                                             /** Genero otra fecha aleatoria **/
-                                            dia = ThreadLocalRandom.current().nextInt(cInicio.get(Calendar.DATE), cFin.get(Calendar.DATE)+1);
-                                            setDay.set(cInicio.get(Calendar.YEAR), cInicio.get(Calendar.MONTH),dia);
-                                            tabla.setValueAt(formatter.format(setDay.getTime()), i, 2);
-                                            System.out.println("Nueva fecha " + formatter.format(setDay.getTime()));
-                                            System.out.println("Valor en tabla " + tabla.getValueAt(i, 2));
+                                            fecha = generaFechaAleatoria(formatter, dateIni, dateFin);
+                                            
+                                            if(dateLocal.size() > 0){
+                                                for(int d = 0; d < dateLocal.size(); d++){
+                                                    if(dateLocal.get(d) == formatter.parse(fecha)){
+                                                        fecha = generaFechaAleatoria(formatter, dateIni, dateFin);
+                                                        d = 0;
+                                                    }
+                                                }
+                                            }
+                                            
+                                            setDay.setTime(formatter.parse(fecha));
+                                            tabla.setValueAt(fecha, i, 2);
                                             day = setDay.get(Calendar.DAY_OF_WEEK)-1;
                                             tabla.setValueAt(strDays[day], i, 3);
-                                            r = 0;
-                                            /** Cambia el color de la celda **/
-                                            //tabla.setRowSelectionInterval(i, i);
-                                            //tabla.setSelectionBackground(Color.red);                                       
+                                            System.out.println("Nueva fecha " + formatter.format(setDay.getTime()));
+                                            r = 0;                                       
                                         }else{
                                             rest = false;
                                         }
@@ -260,5 +262,10 @@ public class GeneraCalendario {
         } catch (SQLException ex) {
             Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private String generaFechaAleatoria(SimpleDateFormat formatter, Date dateIni, Date dateFin){
+        Date randomDate = new Date(ThreadLocalRandom.current().nextLong(dateIni.getTime(), dateFin.getTime()));      
+        return formatter.format(randomDate);
     }
 }
