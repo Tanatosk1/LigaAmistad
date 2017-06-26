@@ -142,7 +142,6 @@ public class GeneraCalendario {
                     tabla.setValueAt(strDays[day], i, 3);
                     
                     for(int e = 0; e < arrCampeonato.size(); e++){
-                        
                         //int numDia = 0;
                         int local = 0;
                         int visitante = 0;
@@ -151,7 +150,7 @@ public class GeneraCalendario {
                             visitante = arrCampeonato.get(e).visitante;
                         }
                         for(int r = 0; r < arrRestricciones.size(); r++){
-                            ArrayList<Date> dateLocal = new ArrayList();
+                            
                             if(arrRestricciones.get(r).id_equipo == local){
                                 
                                 if(arrRestricciones.get(r).id_dia != 0){
@@ -159,19 +158,17 @@ public class GeneraCalendario {
                                     
                                    do{
                                        
-                                        if(model.getValueAt(i, 3).equals(getDia(arrRestricciones.get(r).id_dia))){
+                                        if(model.getValueAt(i, 3).equals(getDia(arrRestricciones.get(r).id_dia))){   
+                                            System.out.println("Local " + arrRestricciones.get(r).id_equipo +" no puede jugar en fecha anterior " + formatter.format(setDay.getTime()));
                                             
-                                            System.out.println("Fecha anterior " + formatter.format(setDay.getTime()));
-                                            System.out.println("Local " + arrRestricciones.get(r).id_equipo);
-                                            System.out.println("Día que no puede jugar");
-                                            dateLocal.add(setDay.getTime());
                                             /** Genero otra fecha aleatoria **/
                                             fecha = generaFechaAleatoria(formatter, dateIni, dateFin);
                                             setDay.setTime(formatter.parse(fecha));                                            
                                             tabla.setValueAt(fecha, i, 2);
-                                            System.out.println("Nueva fecha " + formatter.format(setDay.getTime()));
                                             day = setDay.get(Calendar.DAY_OF_WEEK)-1;
                                             tabla.setValueAt(strDays[day], i, 3);
+                                            System.out.println("Nueva fecha " + formatter.format(setDay.getTime()));
+                                            System.out.println();
                                             r = 0;                                       
                                         }else{
                                             rest = false;
@@ -187,27 +184,15 @@ public class GeneraCalendario {
                                     do{
                                         if(model.getValueAt(i, 3).equals(getDia(arrRestricciones.get(r).id_dia))){
                                             
-                                            System.out.println("Fecha anterior " + formatter.format(setDay.getTime()));
-                                            System.out.println("visitante " + arrRestricciones.get(r).id_equipo);
-                                            System.out.println("Día que no puede jugar");
-                                            
+                                            System.out.println("visitante " + arrRestricciones.get(r).id_equipo +" no puede jugar en fecha anterior " + formatter.format(setDay.getTime()));
                                             /** Genero otra fecha aleatoria **/
-                                            fecha = generaFechaAleatoria(formatter, dateIni, dateFin);
-                                            
-                                            if(dateLocal.size() > 0){
-                                                for(int d = 0; d < dateLocal.size(); d++){
-                                                    if(dateLocal.get(d) == formatter.parse(fecha)){
-                                                        fecha = generaFechaAleatoria(formatter, dateIni, dateFin);
-                                                        d = 0;
-                                                    }
-                                                }
-                                            }
-                                            
+                                            fecha = generaFechaAleatoria(formatter, dateIni, dateFin);                                           
                                             setDay.setTime(formatter.parse(fecha));
                                             tabla.setValueAt(fecha, i, 2);
                                             day = setDay.get(Calendar.DAY_OF_WEEK)-1;
                                             tabla.setValueAt(strDays[day], i, 3);
                                             System.out.println("Nueva fecha " + formatter.format(setDay.getTime()));
+                                            System.out.println();
                                             r = 0;                                       
                                         }else{
                                             rest = false;
