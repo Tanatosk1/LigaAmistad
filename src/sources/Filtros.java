@@ -3,6 +3,8 @@ package sources;
 import connection.Conn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,9 +21,11 @@ public class Filtros {
     
     public Filtros(int categoria, int division, int jornada, JTable tabla){
         vaciarTabla(tabla);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         Object[] fila = new Object[9];
         String where = "";
+        Calendar getDay = Calendar.getInstance();
         con.conectar();
         int cat = categoria;
         int div = division;
@@ -65,6 +69,13 @@ public class Filtros {
                         fila[0] = campeonato.getInt("ID");
                         fila[1] = campeonato.getInt("JORNADA");
                         fila[2] = campeonato.getString("FECHA");
+                        if(campeonato.getDate("FECHA") != null){
+                            getDay.setTime(campeonato.getDate("FECHA"));
+                            int day = getDay.get(Calendar.DAY_OF_WEEK)-1;
+                            fila[3] = getDia(day);
+                        }else{
+                            fila[3] = null;
+                        }
                         fila[4] = campeonato.getString("HORA");
                         fila[5] = campeonato.getString("LOCAL");
                         fila[6] = campeonato.getString("VISITANTE");
@@ -99,5 +110,23 @@ public class Filtros {
        }
    }
     
-    
+   public final String getDia(int dia){
+        switch(dia){
+            case 1:
+                return "Lunes";
+             case 2:
+                return "Martes";
+            case 3:
+                return "Miércoles";
+            case 4:
+                return "Jueves";
+            case 5:
+                return "Viernes";
+            case 6:
+                return "Sábado";
+            case 7:
+                return "Domingo";
+        }
+        return null;
+    }
 }
