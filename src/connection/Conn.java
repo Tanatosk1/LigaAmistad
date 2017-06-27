@@ -204,14 +204,13 @@ public class Conn {
     
     public void alterTable(String tabla, String[] parametros){
         try{
-            String query = "ALTER TABLE '" + tabla + "' (";
+            String query = "ALTER TABLE '" + tabla + "' ";
             for (String parametro : parametros) {
                 query += parametro;
             }
-            query += ")";
             System.out.println(query);
             Statement st = link.createStatement();
-            //st.execute(query);
+            st.execute(query);
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
