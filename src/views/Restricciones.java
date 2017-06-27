@@ -1605,9 +1605,9 @@ public Restricciones() {
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
             if(this.ckCongelarCampo.isSelected()){
-                gc.congelarCampo(this.cbCampos.getSelectedIndex(), true);
+                gc.congelarCampo(this.cbCampos.getSelectedItem().toString(), true);
             }else{  
-                gc.congelarCampo(this.cbCampos.getSelectedIndex(), false);
+                gc.congelarCampo(this.cbCampos.getSelectedItem().toString(), false);
             }
             this.restriccionesDeCampo();
             this.disableCampos();
@@ -1728,7 +1728,7 @@ public Restricciones() {
             if(this.ckCongelarEquipo.isSelected()){
                 ge.congelarEquipo(this.cbEquipos.getSelectedIndex(), true);
             }else{  
-                gc.congelarCampo(this.cbEquipos.getSelectedIndex(), false);
+                ge.congelarEquipo(this.cbEquipos.getSelectedIndex(), false);
             }
             this.restriccionesDeEquipo();
             if(correcto){

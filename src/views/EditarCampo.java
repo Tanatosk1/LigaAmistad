@@ -144,7 +144,7 @@ public class EditarCampo extends javax.swing.JDialog {
     }//GEN-LAST:event_btnEditarCampoActionPerformed
 
     private void btnEliminarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCampoActionPerformed
-        gc.eliminarCampo(this.cbEditarCampo.getSelectedIndex());
+        gc.eliminarCampo(this.cbEditarCampo.getSelectedItem().toString());
         dispose();
     }//GEN-LAST:event_btnEliminarCampoActionPerformed
 
