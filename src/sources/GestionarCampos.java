@@ -48,10 +48,10 @@ public class GestionarCampos {
         }
     }
     
-    public void eliminarCampo(int id){
+    public void eliminarCampo(String campo){
         try{
             conn.conectar();
-            conn.deleteData("campos", "ID = " + id);
+            conn.deleteData("campos", "CAMPO like '" + campo + "'");
             conn.getConection().commit();
             conn.desconectar();
         }catch(SQLException ex){
@@ -79,11 +79,10 @@ public class GestionarCampos {
         }
     }
     
-    public void congelarCampo(int idCampo, boolean estado){
+    public void congelarCampo(String campo, boolean estado){
         try {
             conn.conectar();
-            //conn.insertData("cam_horarios", idCampo +",null,null,"+estado);
-            conn.updateData("campos", "congelado = " + estado, "ID = " + idCampo);
+            conn.updateData("campos", "CONGELADO = " + estado, "CAMPO like '" + campo + "'");
             conn.getConection().commit();
             conn.desconectar();
         } catch (SQLException ex) {
