@@ -37,26 +37,20 @@ public class Filtros {
                 + "INNER JOIN Equipos v ON c.ID_VISITANTE = v.ID "
                 + "LEFT JOIN Campos ca ON c.ID_CAMPO = ca.ID INNER JOIN Competicion com ON l.ID_COMPETICION = com.ID "
                 + "INNER JOIN Division d ON l.ID_DIVISION = d.ID";
-        if(cat != 0 && div < 0 && jor != 0){
-            where = "com.ID = " + cat + " and d.ID = 4 and c.JORNADA = " + jor;
-        }else if(cat != 0 && div != 0 && jor == 0){
-            where = "com.ID = " + cat + " and d.ID = "+(div-1);
+        if(cat != 0 && div != 0 && jor == 0){
+            where = "com.ID = " + cat + " and d.ID = "+div;
         }else if(cat != 0 && div == 0 && jor != 0){
             where = "com.ID = " + cat + " and c.JORNADA = " + jor;
         }else if(cat != 0 && div == 0 && jor == 0){
             where = "com.ID = " + cat;
-        }else if(cat == 0 && div < 0 && jor == 0){
-            where = "d.ID = 4";
         }else if(cat == 0 && div != 0 && jor == 0){
-            where = "d.ID = " + (div-1);
-        }else if(cat == 0 && div < 0 && jor != 0){
-            where = "d.ID = 4 and c.JORNADA = " + jor; 
+            where = "d.ID = " + div;
         }else if(cat == 0 && div != 0 && jor != 0){
-            where = "d.ID = "+(div-1)+" and c.JORNADA = " + jor;
+            where = "d.ID = "+div+" and c.JORNADA = " + jor;
         }else if(cat == 0 && div == 0 && jor != 0){
             where = "c.JORNADA = " + jor;
         }else if(cat != 0 && div != 0 && jor != 0){
-            where = "com.ID = " + cat + " and d.ID = " + (div-1) + " and c.JORNADA = " + jor;
+            where = "com.ID = " + cat + " and d.ID = " + div + " and c.JORNADA = " + jor;
         }
         String order = "c.JORNADA, com.ID, d.ID"; 
         ResultSet campeonato = con.getValues(select, from, where, order);    
@@ -80,7 +74,7 @@ public class Filtros {
                         fila[5] = campeonato.getString("LOCAL");
                         fila[6] = campeonato.getString("VISITANTE");
                         fila[7] = campeonato.getString("CAMPO");
-                        if(campeonato.getString("DIVISION") == null){
+                        if(campeonato.getString("DIVISION").equalsIgnoreCase("sin división")){
                             fila[8] = campeonato.getString("CATEGORIA");
                         }else{
                             fila[8] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");

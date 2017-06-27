@@ -132,7 +132,7 @@ public class MostrarDatos {
                     fila[5] = campeonato.getString("LOCAL");
                     fila[6] = campeonato.getString("VISITANTE");
                     fila[7] = campeonato.getString("CAMPO");
-                    if(campeonato.getString("DIVISION") == null){
+                    if(campeonato.getString("DIVISION").equalsIgnoreCase("sin división")){
                         fila[8] = campeonato.getString("CATEGORIA");
                     }else{
                         fila[8] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
