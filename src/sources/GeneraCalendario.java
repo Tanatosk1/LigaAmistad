@@ -11,6 +11,8 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,6 +65,7 @@ public class GeneraCalendario {
         			    "Jueves", "Viernes", "Sábado"};
     //private int totalPartidosJornada;
     private int totalCamposDisponibles;
+    private int totalHorariosDisponibles;
     private int totalPartidosMostrados;
     private int jornada;
     private ResultSet campeonato;
@@ -83,12 +86,31 @@ public class GeneraCalendario {
         //ArrayList fila = new ArrayList(); 
         
         conn.conectar();
+        totalHorariosDisponibles = conn.totalRegistros("campos INNER JOIN cam_horarios ON ID = ID_CAMPO", "CONGELADO = 0");
         totalCamposDisponibles = conn.totalRegistros("campos", "CONGELADO = 0");
-        
         campeonato = conn.getValues("*", "campeonato", "", "JORNADA");
         restricciones = conn.getValues("*", "restricciones", "", "");
         
+        /** Map con los campos disponibles **/
+        Hashtable<Integer, Integer> camposDisponibles = new Hashtable<>();
+        ResultSet camposDis = conn.getValues("*", "campos", "CONGELADO = 0", "");
+        int num = 1;
+        try {
+            while(camposDis.next()){
+                camposDisponibles.put(num, camposDis.getInt("ID"));
+                num++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+        Enumeration clave = camposDisponibles.keys();
+        while(clave.hasMoreElements()){
+            Object id = clave.nextElement();
+            Object id_campo = camposDisponibles.get(id);
+            System.out.println("Numero para aleatorio " + id + " id del campo " + id_campo);
+        }
+        /** Fin llenado del array asociativo **/
         
         try{
             Object[] fCampeonato = new Object[8];
@@ -122,15 +144,50 @@ public class GeneraCalendario {
             Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
         }
         conn.desconectar();
-        try {
+        
+        /**
+         * 1 - Saber la cantidad de horas disponibles en campos (HECHO)
+         * 2 - Comparar el numero de horas disponibles con los partidos mostrados en la rejilla (HECHO)
+         * 3 - Si son iguales o la cantidad de horas es mayor, punto 4 (HECHO)
+         * 3.1 - Si es menor la cantidad de horas, mostrar error. (HECHO)
+         * 4 - Asignamos aleatoriamente los campos disponibles a los partidos, se asigna el mismo campo a dos partidos
+         * 5 - Asignamos las horas a los partidos
+         * 6 - Verificamos restricciones de campo y hora en cada partido
+         * 7 - Verificamos restricciones de día en cada partido
+         * 8 - Verificamos restricciones de no coincidencia de cada partido
+         */
+        
+        /** Reparto de campos **/
+        totalPartidosMostrados = model.getRowCount();
+        int contadorPartidos = 0;
+        //System.out.println("Campos " +totalCamposDisponibles);
+        System.out.println("Horarios " +totalHorariosDisponibles);
+        for(int d = 0; d < totalPartidosMostrados; d++){
+            if(this.jornada == (int)model.getValueAt(d, 1)){
+                contadorPartidos++;
+            }
+        }
+        System.out.println("Partidos "+contadorPartidos);
+        
+        if(totalHorariosDisponibles >= contadorPartidos){
+            System.out.println("Hay suficientes horarios para los partidos");
+            generaNumerosAleatorios();
+        }else{
+            System.out.println("NO hay suficientes horarios para los partidos");
+        }
+ 
+        
+        /** Fin reparto de campos **/
+        /** Generación de fechas aleatorias **/
+        /*try {
             totalPartidosMostrados = model.getRowCount();
             Date dateIni = formatter.parse(dateInString);
             Date dateFin = formatter.parse(dateFinString);
             cInicio.setTime(dateIni);
             cFin.setTime(dateFin);
             Calendar setDay = Calendar.getInstance();
-            int dia;
-            int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
+            //int dia;
+            //int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
             int day;
             for(int i = 0; i < totalPartidosMostrados; i++){
                 if(this.jornada == (int)model.getValueAt(i, 1)){
@@ -162,7 +219,7 @@ public class GeneraCalendario {
                                             System.out.println("Local " + arrRestricciones.get(r).id_equipo +" no puede jugar en fecha anterior " + formatter.format(setDay.getTime()));
                                             
                                             /** Genero otra fecha aleatoria **/
-                                            fecha = generaFechaAleatoria(formatter, dateIni, dateFin);
+        /*                                  fecha = generaFechaAleatoria(formatter, dateIni, dateFin);
                                             setDay.setTime(formatter.parse(fecha));                                            
                                             tabla.setValueAt(fecha, i, 2);
                                             day = setDay.get(Calendar.DAY_OF_WEEK)-1;
@@ -186,7 +243,7 @@ public class GeneraCalendario {
                                             
                                             System.out.println("visitante " + arrRestricciones.get(r).id_equipo +" no puede jugar en fecha anterior " + formatter.format(setDay.getTime()));
                                             /** Genero otra fecha aleatoria **/
-                                            fecha = generaFechaAleatoria(formatter, dateIni, dateFin);                                           
+        /*                                  fecha = generaFechaAleatoria(formatter, dateIni, dateFin);                                           
                                             setDay.setTime(formatter.parse(fecha));
                                             tabla.setValueAt(fecha, i, 2);
                                             day = setDay.get(Calendar.DAY_OF_WEEK)-1;
@@ -207,7 +264,8 @@ public class GeneraCalendario {
                 }
             }
         } catch (ParseException e) {
-        }
+        }*/
+        /** Fin generación de fechas aleatorias **/
     }
     
     public String getDia(int dia){
@@ -247,6 +305,25 @@ public class GeneraCalendario {
         } catch (SQLException ex) {
             Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void generaNumerosAleatorios(){
+        int i=0, cantidad=10, rango=10;
+        int arreglo[] = new int[cantidad];
+
+        arreglo[i]=(int)(Math.random()*rango);
+        for(i=1; i<cantidad; i++){
+            arreglo[i]=(int)(Math.random()*rango);
+            for(int j=0; j<i; j++){
+                if(arreglo[i]==arreglo[j]){
+                    i--;
+                }
+            }
+        }
+
+        for(int k=0; k<cantidad; k++){
+            System.out.print((k+1)+".- "+arreglo[k]+"\n");
+        } 
     }
     
     private String generaFechaAleatoria(SimpleDateFormat formatter, Date dateIni, Date dateFin){
