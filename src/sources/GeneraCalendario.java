@@ -171,7 +171,7 @@ public class GeneraCalendario {
         
         if(totalHorariosDisponibles >= contadorPartidos){
             System.out.println("Hay suficientes horarios para los partidos");
-            generaNumerosAleatorios();
+            generaNumerosAleatorios(totalHorariosDisponibles);
         }else{
             System.out.println("NO hay suficientes horarios para los partidos");
         }
@@ -307,8 +307,8 @@ public class GeneraCalendario {
         }
     }
     
-    private void generaNumerosAleatorios(){
-        int i=0, cantidad=10, rango=10;
+    private void generaNumerosAleatorios(int valores){
+        int i=0, cantidad=valores, rango=valores;
         int arreglo[] = new int[cantidad];
 
         arreglo[i]=(int)(Math.random()*rango);
@@ -322,7 +322,7 @@ public class GeneraCalendario {
         }
 
         for(int k=0; k<cantidad; k++){
-            System.out.print((k+1)+".- "+arreglo[k]+"\n");
+            System.out.print((k+1)+".- "+(arreglo[k]+1)+"\n");
         } 
     }
     
