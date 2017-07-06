@@ -45,14 +45,25 @@ public class GestionarCategorias {
         }
     }
     
-    public void eliminarCategoria(int id){
+    public void eliminarCategoria(String categoria){
         try{
             conn.conectar();
-            conn.deleteData("competicion", "ID = " + id);
+            conn.deleteData("competicion", "COMPETICION like '" + categoria + "'");
             conn.getConection().commit();
             conn.desconectar();
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void vaciarCategoria(){
+        try{
+            conn.conectar();
+            conn.deleteTable("competicion");
+            conn.getConection().commit();
+            conn.desconectar();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
