@@ -59,6 +59,17 @@ public class GestionarCampos {
         }
     }
     
+    public void vaciarCampo(){
+        try{
+            conn.conectar();
+            conn.deleteTable("campos");
+            conn.getConection().commit();
+            conn.desconectar();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     public void gestionarCampo(ArrayList<OCampos> condiciones){
         try {
             int id = r.cbCampos.getSelectedIndex();
