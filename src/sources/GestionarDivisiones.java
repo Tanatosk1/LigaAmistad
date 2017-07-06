@@ -44,14 +44,24 @@ public class GestionarDivisiones {
         }
     }
     
-    public void eliminarDivision(int id){
+    public void eliminarDivision(String division){
         try{
             conn.conectar();
-            conn.deleteData("division", "ID = " + id);
+            conn.deleteData("division", "DIVISION like '" + division + "'");
             conn.getConection().commit();
             conn.desconectar();
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    public void vaciarDivision(){
+        try{
+            conn.conectar();
+            conn.deleteTable("division");
+            conn.getConection().commit();
+            conn.desconectar();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
