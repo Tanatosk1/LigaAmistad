@@ -148,7 +148,7 @@ public class EditarCategoria extends javax.swing.JDialog {
     }//GEN-LAST:event_btnEditarCategoriaActionPerformed
 
     private void btnEliminarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCategoriaActionPerformed
-        gct.eliminarCategoria(this.cbEditarCategoria.getSelectedIndex());
+        gct.eliminarCategoria(this.cbEditarCategoria.getSelectedItem().toString());
         dispose();
     }//GEN-LAST:event_btnEliminarCategoriaActionPerformed
 
