@@ -30,6 +30,11 @@ import sources.LeerExcel;
  * @author rob_a
  */
 public class Principal extends javax.swing.JFrame {
+    
+    private final GestionarCampos gc = new GestionarCampos();
+    private final GestionarCategorias gct = new GestionarCategorias();
+    private final GestionarDivisiones gd = new GestionarDivisiones ();
+
 
 private FondoPrincipal fondo;
     /**
@@ -117,7 +122,7 @@ private FondoPrincipal fondo;
         mVaciarBBDD = new javax.swing.JMenu();
         miVaciarCalendario = new javax.swing.JMenuItem();
         miVaciarCampos = new javax.swing.JMenuItem();
-        miVaciarCompeticion = new javax.swing.JMenuItem();
+        miVaciarCategoria = new javax.swing.JMenuItem();
         mivaciarDivision = new javax.swing.JMenuItem();
         mivaciarEquipos = new javax.swing.JMenuItem();
 
@@ -417,17 +422,17 @@ private FondoPrincipal fondo;
         });
         mVaciarBBDD.add(miVaciarCampos);
 
-        miVaciarCompeticion.setBackground(new java.awt.Color(31, 87, 12));
-        miVaciarCompeticion.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        miVaciarCompeticion.setForeground(new java.awt.Color(255, 255, 255));
-        miVaciarCompeticion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/competicion.png"))); // NOI18N
-        miVaciarCompeticion.setText(" Competición");
-        miVaciarCompeticion.addActionListener(new java.awt.event.ActionListener() {
+        miVaciarCategoria.setBackground(new java.awt.Color(31, 87, 12));
+        miVaciarCategoria.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miVaciarCategoria.setForeground(new java.awt.Color(255, 255, 255));
+        miVaciarCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/competicion.png"))); // NOI18N
+        miVaciarCategoria.setText(" Categoría");
+        miVaciarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miVaciarCompeticionActionPerformed(evt);
+                miVaciarCategoriaActionPerformed(evt);
             }
         });
-        mVaciarBBDD.add(miVaciarCompeticion);
+        mVaciarBBDD.add(miVaciarCategoria);
 
         mivaciarDivision.setBackground(new java.awt.Color(31, 87, 12));
         mivaciarDivision.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
@@ -603,7 +608,8 @@ private FondoPrincipal fondo;
         if (input == JOptionPane.YES_OPTION) {
                 int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
-                if (input == JOptionPane.YES_OPTION) {
+                if (confir == JOptionPane.YES_OPTION) {
+                    gc.vaciarCampo();
                 }
         } 
     }//GEN-LAST:event_miVaciarCamposActionPerformed
@@ -660,22 +666,23 @@ private FondoPrincipal fondo;
         if (input == JOptionPane.YES_OPTION) {
                 int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
-                if (input == JOptionPane.YES_OPTION) {
+                if (confir == JOptionPane.YES_OPTION) {
                 }
         }  
     }//GEN-LAST:event_miVaciarCalendarioActionPerformed
 
-    private void miVaciarCompeticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVaciarCompeticionActionPerformed
+    private void miVaciarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVaciarCategoriaActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/warning.png");
         int input = JOptionPane.showConfirmDialog(null, "¿Desea eliminar todas las competiciones de la BBDD ?", "Eliminar competiciones", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
                 int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
-                if (input == JOptionPane.YES_OPTION) {
+                if (confir == JOptionPane.YES_OPTION) {
+                    gct.vaciarCategoria();
                 }
         }  
-    }//GEN-LAST:event_miVaciarCompeticionActionPerformed
+    }//GEN-LAST:event_miVaciarCategoriaActionPerformed
 
     private void mivaciarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mivaciarDivisionActionPerformed
         ImageIcon icon = new ImageIcon("src/resources/warning.png");
@@ -684,7 +691,8 @@ private FondoPrincipal fondo;
         if (input == JOptionPane.YES_OPTION) {
                 int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
-                if (input == JOptionPane.YES_OPTION) {
+                if (confir == JOptionPane.YES_OPTION) {
+                    gd.vaciarDivision();
                 }
         }  
     }//GEN-LAST:event_mivaciarDivisionActionPerformed
@@ -696,7 +704,7 @@ private FondoPrincipal fondo;
         if (input == JOptionPane.YES_OPTION) {
                 int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
-                if (input == JOptionPane.YES_OPTION) {
+                if (confir == JOptionPane.YES_OPTION) {
                 }
         } 
     }//GEN-LAST:event_mivaciarEquiposActionPerformed
@@ -807,7 +815,7 @@ private FondoPrincipal fondo;
     private javax.swing.JMenuItem miSalir;
     private javax.swing.JMenuItem miVaciarCalendario;
     private javax.swing.JMenuItem miVaciarCampos;
-    private javax.swing.JMenuItem miVaciarCompeticion;
+    private javax.swing.JMenuItem miVaciarCategoria;
     private javax.swing.JMenuItem mivaciarDivision;
     private javax.swing.JMenuItem mivaciarEquipos;
     // End of variables declaration//GEN-END:variables
