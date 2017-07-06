@@ -142,7 +142,7 @@ public class EditarDivision extends javax.swing.JDialog {
     }//GEN-LAST:event_btnEditarDivisionActionPerformed
 
     private void btnEliminarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDivisionActionPerformed
-        gd.eliminarDivision(this.cbEditarDivision.getSelectedIndex());
+        gd.eliminarDivision(this.cbEditarDivision.getSelectedItem().toString());
         dispose();
     }//GEN-LAST:event_btnEliminarDivisionActionPerformed
 
