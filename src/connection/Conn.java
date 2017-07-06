@@ -216,4 +216,25 @@ public class Conn {
             System.out.println(ex.getMessage());
         }
     }
+    
+     public void deleteTable(String tabla){
+        try{
+            String query = "DELETE FROM " + tabla + " ";
+            System.out.println(query);
+            Statement st = link.createStatement();
+            st.execute(query);
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        try{
+            String query2 = "ALTER TABLE " + tabla + " AUTO_INCREMENT = 1";
+            System.out.println(query2);
+            Statement st2 = link.createStatement();
+            st2.execute(query2);
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 }
