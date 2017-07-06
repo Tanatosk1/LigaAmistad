@@ -20,8 +20,6 @@ public class GestionarEquipos {
     public GestionarEquipos(Restricciones rest){
         this.r = rest;
     }
-
-
     
     public void gestionarEquipo(ArrayList<ORestriccion> condiciones){
         try {
@@ -54,6 +52,17 @@ public class GestionarEquipos {
             JOptionPane.showMessageDialog(null, "Equipo guardado con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+        
+    public void vaciarEquipo(){
+        try{
+            conn.conectar();
+            conn.deleteTable("equipos");
+            conn.getConection().commit();
+            conn.desconectar();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
