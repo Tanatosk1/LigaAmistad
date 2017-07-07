@@ -17,6 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -63,13 +64,13 @@ public class GeneraCalendario {
        
     private final String[] strDays = new String[]{"Domingo", "Lunes", "Martes", "Miércoles",
         			    "Jueves", "Viernes", "Sábado"};
-    //private int totalPartidosJornada;
     private int totalCamposDisponibles;
     private int totalHorariosDisponibles;
     private int totalPartidosMostrados;
     private int jornada;
     private ResultSet campeonato;
     private ResultSet restricciones;
+    private ResultSet camposDis;
     private ArrayList<oCampeonato> arrCampeonato;
     private ArrayList<oRestricciones> arrRestricciones;
   
@@ -82,35 +83,14 @@ public class GeneraCalendario {
         String dateInString = fInicio;
         String dateFinString = fFin;
         Calendar cInicio = Calendar.getInstance();
-        Calendar cFin = Calendar.getInstance();
-        //ArrayList fila = new ArrayList(); 
+        Calendar cFin = Calendar.getInstance(); 
         
         conn.conectar();
         totalHorariosDisponibles = conn.totalRegistros("campos INNER JOIN cam_horarios ON ID = ID_CAMPO", "CONGELADO = 0");
         totalCamposDisponibles = conn.totalRegistros("campos", "CONGELADO = 0");
         campeonato = conn.getValues("*", "campeonato", "", "JORNADA");
         restricciones = conn.getValues("*", "restricciones", "", "");
-        
-        /** Map con los campos disponibles **/
-        Hashtable<Integer, Integer> camposDisponibles = new Hashtable<>();
-        ResultSet camposDis = conn.getValues("*", "campos", "CONGELADO = 0", "");
-        int num = 1;
-        try {
-            while(camposDis.next()){
-                camposDisponibles.put(num, camposDis.getInt("ID"));
-                num++;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        Enumeration clave = camposDisponibles.keys();
-        while(clave.hasMoreElements()){
-            Object id = clave.nextElement();
-            Object id_campo = camposDisponibles.get(id);
-            System.out.println("Numero para aleatorio " + id + " id del campo " + id_campo);
-        }
-        /** Fin llenado del array asociativo **/
+        camposDis = conn.getValues("*", "campos INNER JOIN cam_horarios ON ID = ID_CAMPO", "CONGELADO = 0", "");
         
         try{
             Object[] fCampeonato = new Object[8];
@@ -143,24 +123,11 @@ public class GeneraCalendario {
         }   catch (SQLException ex) {
             Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        conn.desconectar();
-        
-        /**
-         * 1 - Saber la cantidad de horas disponibles en campos (HECHO)
-         * 2 - Comparar el numero de horas disponibles con los partidos mostrados en la rejilla (HECHO)
-         * 3 - Si son iguales o la cantidad de horas es mayor, punto 4 (HECHO)
-         * 3.1 - Si es menor la cantidad de horas, mostrar error. (HECHO)
-         * 4 - Asignamos aleatoriamente los campos disponibles a los partidos, se asigna el mismo campo a dos partidos
-         * 5 - Asignamos las horas a los partidos
-         * 6 - Verificamos restricciones de campo y hora en cada partido
-         * 7 - Verificamos restricciones de día en cada partido
-         * 8 - Verificamos restricciones de no coincidencia de cada partido
-         */
         
         /** Reparto de campos **/
         totalPartidosMostrados = model.getRowCount();
         int contadorPartidos = 0;
-        //System.out.println("Campos " +totalCamposDisponibles);
+        System.out.println("Campos " +totalCamposDisponibles);
         System.out.println("Horarios " +totalHorariosDisponibles);
         for(int d = 0; d < totalPartidosMostrados; d++){
             if(this.jornada == (int)model.getValueAt(d, 1)){
@@ -171,14 +138,39 @@ public class GeneraCalendario {
         
         if(totalHorariosDisponibles >= contadorPartidos){
             System.out.println("Hay suficientes horarios para los partidos");
-            generaNumerosAleatorios(totalHorariosDisponibles);
+            try{
+                for(int p = 0; p < totalPartidosMostrados; p++){
+                    camposDis.next();
+                    tabla.setValueAt(camposDis.getString("CAMPO"), p, 7);
+                    tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), p, 3);
+                    tabla.setValueAt(camposDis.getInt("ID_HORA"), p, 4);   
+                }
+                while (camposDis.next()){
+                    System.out.println("ID campos " + camposDis.getInt("ID") + " ID_DIA " + camposDis.getInt("ID_DIA"));
+                }
+            }catch(SQLException ex){
+                System.err.println(ex.getCause());
+            }
         }else{
-            System.out.println("NO hay suficientes horarios para los partidos");
+            JOptionPane.showMessageDialog(null, "NO hay suficientes horarios para los partidos mostrados", "Insuficientes horarios", JOptionPane.ERROR_MESSAGE);
         }
  
+        conn.desconectar();
         
         /** Fin reparto de campos **/
+        
         /** Generación de fechas aleatorias **/
+        
+        try{
+            Date dateIni = formatter.parse(dateInString);
+            Date dateFin = formatter.parse(dateFinString);
+            cInicio.setTime(dateIni);
+            cFin.setTime(dateFin);
+            Calendar setDay = Calendar.getInstance();
+            
+        }catch(ParseException ex){
+            
+        }
         /*try {
             totalPartidosMostrados = model.getRowCount();
             Date dateIni = formatter.parse(dateInString);
@@ -307,7 +299,7 @@ public class GeneraCalendario {
         }
     }
     
-    private void generaNumerosAleatorios(int valores){
+    /*private void generaNumerosAleatorios(int valores){
         int i=0, cantidad=valores, rango=valores;
         int arreglo[] = new int[cantidad];
 
@@ -324,10 +316,10 @@ public class GeneraCalendario {
         for(int k=0; k<cantidad; k++){
             System.out.print((k+1)+".- "+(arreglo[k]+1)+"\n");
         } 
-    }
+    }*/
     
-    private String generaFechaAleatoria(SimpleDateFormat formatter, Date dateIni, Date dateFin){
+    /*private String generaFechaAleatoria(SimpleDateFormat formatter, Date dateIni, Date dateFin){
         Date randomDate = new Date(ThreadLocalRandom.current().nextLong(dateIni.getTime(), dateFin.getTime()));      
         return formatter.format(randomDate);
-    }
+    }*/
 }
