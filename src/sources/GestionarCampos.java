@@ -187,9 +187,10 @@ public class GestionarCampos {
                 
             }
             cam.close();
-            ResultSet frozen = conn.getValues("congelado", "campos", "ID = " + idCampo, "");
+            String campo = (String) r.cbCampos.getSelectedItem();
+            ResultSet frozen = conn.getValues("CONGELADO", "campos", "CAMPO like '" + campo +"'", "");
             while (frozen.next()){
-                if(frozen.getInt("congelado")==1){
+                if(frozen.getInt("CONGELADO")==1){
                     r.ckCongelarCampo.setSelected(true);
                 }
             }
