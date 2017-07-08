@@ -159,7 +159,7 @@ public class GeneraCalendario {
         
         /** Fin reparto de campos **/
         
-        /** Generación de fechas aleatorias **/
+        /** Generación de fechas según campo asignado **/
         
         try{
             Date dateIni = formatter.parse(dateInString);
@@ -167,6 +167,26 @@ public class GeneraCalendario {
             cInicio.setTime(dateIni);
             cFin.setTime(dateFin);
             Calendar setDay = Calendar.getInstance();
+            int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
+            
+            
+            setDay.setTime(dateIni);
+            //System.out.println("Dia inicio " + (setDay.get(Calendar.DAY_OF_WEEK)-1));
+            //System.out.println(strDays[setDay.get(Calendar.DAY_OF_WEEK)-1]);
+            /*System.out.println("Fin "+dateFin);
+            setDay.setTime(dateFin);
+            System.out.println("Dia fin " + (setDay.get(Calendar.DAY_OF_WEEK)-1));
+            System.out.println(strDays[setDay.get(Calendar.DAY_OF_WEEK)-1]);
+            System.out.println("cantidad "+dias);*/
+            System.out.println("Inicio "+dateIni);
+            System.out.println(strDays[setDay.get(Calendar.DAY_OF_WEEK)-1]);
+            for(int d = 0; d < dias-1; d++){
+                
+                //System.out.println("Dia "+dateIni);
+                setDay.add(Calendar.DAY_OF_YEAR, 1);
+                System.out.println("Nuevo dia "+setDay.getTime());
+                System.out.println(strDays[setDay.get(Calendar.DAY_OF_WEEK)-1]);
+            }
             
         }catch(ParseException ex){
             
