@@ -1,19 +1,13 @@
 package sources;
 
 import connection.Conn;
-import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -80,10 +74,11 @@ public class GeneraCalendario {
         this.jornada = (int) jornada.getSelectedItem();
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        
         String dateInString = fInicio;
         String dateFinString = fFin;
-        Calendar cInicio = Calendar.getInstance();
-        Calendar cFin = Calendar.getInstance(); 
+        //Calendar cInicio = Calendar.getInstance();
+        //Calendar cFin = Calendar.getInstance(); 
         
         conn.conectar();
         totalHorariosDisponibles = conn.totalRegistros("campos INNER JOIN cam_horarios ON ID = ID_CAMPO", "CONGELADO = 0");
@@ -126,70 +121,68 @@ public class GeneraCalendario {
         
         /** Reparto de campos **/
         totalPartidosMostrados = model.getRowCount();
-        int contadorPartidos = 0;
-        System.out.println("Campos " +totalCamposDisponibles);
-        System.out.println("Horarios " +totalHorariosDisponibles);
+        boolean jornadaCorrecta = false;
+        //System.out.println("Campos " +totalCamposDisponibles);
+        //System.out.println("Horarios " +totalHorariosDisponibles);
         for(int d = 0; d < totalPartidosMostrados; d++){
             if(this.jornada == (int)model.getValueAt(d, 1)){
-                contadorPartidos++;
+                jornadaCorrecta = true;
+                if(totalHorariosDisponibles >= totalPartidosMostrados){
+                //if(totalHorariosDisponibles >= contadorPartidos){
+                    //System.out.println("Hay suficientes horarios para los partidos");
+                    try{
+                        for(int p = 0; p < totalPartidosMostrados; p++){
+                            camposDis.next();
+                            tabla.setValueAt(camposDis.getString("CAMPO"), p, 7);
+                            tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), p, 3);
+                            tabla.setValueAt(camposDis.getInt("ID_HORA"), p, 4);   
+                        }
+                        while (camposDis.next()){
+                            //System.out.println("ID campos " + camposDis.getInt("ID") + " ID_DIA " + camposDis.getInt("ID_DIA"));
+                        }
+                    }catch(SQLException ex){
+                        //System.err.println(ex.getCause());
+                    }
+                }else{
+                    jornadaCorrecta = false;
+                    JOptionPane.showMessageDialog(null, "NO hay suficientes horarios para los partidos mostrados", "Insuficientes horarios", JOptionPane.ERROR_MESSAGE);
+                    break;
+                }
             }
         }
-        System.out.println("Partidos "+contadorPartidos);
-        
-        if(totalHorariosDisponibles >= contadorPartidos){
-            System.out.println("Hay suficientes horarios para los partidos");
-            try{
-                for(int p = 0; p < totalPartidosMostrados; p++){
-                    camposDis.next();
-                    tabla.setValueAt(camposDis.getString("CAMPO"), p, 7);
-                    tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), p, 3);
-                    tabla.setValueAt(camposDis.getInt("ID_HORA"), p, 4);   
-                }
-                while (camposDis.next()){
-                    System.out.println("ID campos " + camposDis.getInt("ID") + " ID_DIA " + camposDis.getInt("ID_DIA"));
-                }
-            }catch(SQLException ex){
-                System.err.println(ex.getCause());
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "NO hay suficientes horarios para los partidos mostrados", "Insuficientes horarios", JOptionPane.ERROR_MESSAGE);
-        }
- 
+        //System.out.println("Partidos "+contadorPartidos);
         conn.desconectar();
         
         /** Fin reparto de campos **/
         
         /** Generación de fechas según campo asignado **/
-        
-        try{
-            Date dateIni = formatter.parse(dateInString);
-            Date dateFin = formatter.parse(dateFinString);
-            cInicio.setTime(dateIni);
-            cFin.setTime(dateFin);
-            Calendar setDay = Calendar.getInstance();
-            int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
-            
-            
-            setDay.setTime(dateIni);
-            //System.out.println("Dia inicio " + (setDay.get(Calendar.DAY_OF_WEEK)-1));
-            //System.out.println(strDays[setDay.get(Calendar.DAY_OF_WEEK)-1]);
-            /*System.out.println("Fin "+dateFin);
-            setDay.setTime(dateFin);
-            System.out.println("Dia fin " + (setDay.get(Calendar.DAY_OF_WEEK)-1));
-            System.out.println(strDays[setDay.get(Calendar.DAY_OF_WEEK)-1]);
-            System.out.println("cantidad "+dias);*/
-            System.out.println("Inicio "+dateIni);
-            System.out.println(strDays[setDay.get(Calendar.DAY_OF_WEEK)-1]);
-            for(int d = 0; d < dias-1; d++){
-                
-                //System.out.println("Dia "+dateIni);
-                setDay.add(Calendar.DAY_OF_YEAR, 1);
-                System.out.println("Nuevo dia "+setDay.getTime());
-                System.out.println(strDays[setDay.get(Calendar.DAY_OF_WEEK)-1]);
+        if(jornadaCorrecta){
+            try{
+                Date dateIni = formatter.parse(dateInString);
+                Date dateFin = formatter.parse(dateFinString);
+                //cInicio.setTime(dateIni);
+                //cFin.setTime(dateFin);
+                Calendar setDay = Calendar.getInstance();
+                int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
+
+
+                setDay.setTime(dateIni);
+                //System.out.println("Inicio "+dateIni);
+                String dayOfWeek = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
+                //System.out.println(dayOfWeek);
+                pintarFecha(dayOfWeek, dateIni, tabla);
+                for(int d = 0; d < dias-1; d++){  
+                    //System.out.println("Dia "+dateIni);
+                    setDay.add(Calendar.DAY_OF_YEAR, 1);
+                    String newDay = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
+                    pintarFecha(newDay, setDay.getTime(), tabla);
+                    //System.out.println("Nuevo dia "+setDay.getTime());
+                    //System.out.println(strDays[setDay.get(Calendar.DAY_OF_WEEK)-1]);
+                }
+
+            }catch(ParseException ex){
+
             }
-            
-        }catch(ParseException ex){
-            
         }
         /*try {
             totalPartidosMostrados = model.getRowCount();
@@ -316,6 +309,15 @@ public class GeneraCalendario {
             conn.desconectar();
         } catch (SQLException ex) {
             Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void pintarFecha(String dayOfWeek, Date dateIni, JTable tabla){
+        SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");
+        for(int q = 0; q < totalPartidosMostrados; q++){
+            if(dayOfWeek.equalsIgnoreCase(tabla.getValueAt(q,3).toString())){
+                tabla.setValueAt(formatterShow.format(dateIni), q, 2);
+            }
         }
     }
     
