@@ -153,6 +153,7 @@ public class GeneraCalendario {
         if(jornadaCorrecta){
             try{
                 Date dateIni = formatter.parse(dateInString);
+                System.out.println("formato " + dateIni);
                 Date dateFin = formatter.parse(dateFinString);
                 Calendar setDay = Calendar.getInstance();
                 int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
@@ -197,13 +198,13 @@ public class GeneraCalendario {
     public void guardarCalendario(JTable tabla, JComboBox jornada){
         try {
             Conn conn = new Conn();
-            DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+            model = (DefaultTableModel) tabla.getModel();
             this.jornada = (int) jornada.getSelectedItem();
             
             conn.conectar();
             for(int i = 0; i < tabla.getRowCount(); i++){
                 if(model.getValueAt(i, 2) != null){
-                    conn.updateData("campeonato", "fecha = '" + model.getValueAt(i, 2) + "'", "ID = " + model.getValueAt(i, 0));
+                    conn.updateData("campeonato", "fecha = '" + tabla.getValueAt(i, 2) + "', hora = '" + tabla.getValueAt(i, 4) +"'", "ID = " + model.getValueAt(i, 0));
                 }
             }
             conn.getConection().commit();
@@ -214,7 +215,7 @@ public class GeneraCalendario {
     }
     
     private void pintarFecha(String dayOfWeek, Date dateIni, JTable tabla){
-            SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat formatterShow = new SimpleDateFormat("yyyy-MM-dd");
             for(int q = 0; q < totalPartidosMostrados; q++){
                 if(this.jornada == (int)model.getValueAt(q, 1)){
                     if(dayOfWeek.equalsIgnoreCase(tabla.getValueAt(q,3).toString())){
