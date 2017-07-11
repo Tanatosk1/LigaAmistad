@@ -58,10 +58,12 @@ public class GeneraCalendario {
        
     private final String[] strDays = new String[]{"Domingo", "Lunes", "Martes", "Miércoles",
         			    "Jueves", "Viernes", "Sábado"};
-    private int totalCamposDisponibles;
+    private int camposDisponibles;
     private int totalHorariosDisponibles;
+    private int partidosPorJornada = 0;
     private int totalPartidosMostrados;
     private int jornada;
+    private DefaultTableModel model;
     private ResultSet campeonato;
     private ResultSet restricciones;
     private ResultSet camposDis;
@@ -70,22 +72,19 @@ public class GeneraCalendario {
   
     public void generaFechas(String fInicio, String fFin, JTable tabla, JComboBox jornada){
         Conn conn = new Conn();
-        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model = (DefaultTableModel) tabla.getModel();
         this.jornada = (int) jornada.getSelectedItem();
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         
         String dateInString = fInicio;
-        String dateFinString = fFin;
-        //Calendar cInicio = Calendar.getInstance();
-        //Calendar cFin = Calendar.getInstance(); 
+        String dateFinString = fFin; 
         
         conn.conectar();
         totalHorariosDisponibles = conn.totalRegistros("campos INNER JOIN cam_horarios ON ID = ID_CAMPO", "CONGELADO = 0");
-        totalCamposDisponibles = conn.totalRegistros("campos", "CONGELADO = 0");
         campeonato = conn.getValues("*", "campeonato", "", "JORNADA");
         restricciones = conn.getValues("*", "restricciones", "", "");
-        camposDis = conn.getValues("*", "campos INNER JOIN cam_horarios ON ID = ID_CAMPO", "CONGELADO = 0", "");
+        camposDis = conn.getValues("*", "campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO INNER JOIN hora h ON ch.ID_HORA = h.ID", "CONGELADO = 0", "c.ID");
         
         try{
             Object[] fCampeonato = new Object[8];
@@ -121,27 +120,24 @@ public class GeneraCalendario {
         
         /** Reparto de campos **/
         totalPartidosMostrados = model.getRowCount();
+        partidosPorJornada = 0;
+        camposDisponibles = 0;
+        for(int pa = 0; pa < totalPartidosMostrados; pa++){
+            if(this.jornada == (int)model.getValueAt(pa, 1)){
+                partidosPorJornada++;
+            }
+        }
         boolean jornadaCorrecta = false;
-        //System.out.println("Campos " +totalCamposDisponibles);
-        //System.out.println("Horarios " +totalHorariosDisponibles);
         for(int d = 0; d < totalPartidosMostrados; d++){
             if(this.jornada == (int)model.getValueAt(d, 1)){
                 jornadaCorrecta = true;
-                if(totalHorariosDisponibles >= totalPartidosMostrados){
-                //if(totalHorariosDisponibles >= contadorPartidos){
-                    //System.out.println("Hay suficientes horarios para los partidos");
+                if(totalHorariosDisponibles >= partidosPorJornada){
                     try{
-                        for(int p = 0; p < totalPartidosMostrados; p++){
-                            camposDis.next();
-                            tabla.setValueAt(camposDis.getString("CAMPO"), p, 7);
-                            tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), p, 3);
-                            tabla.setValueAt(camposDis.getInt("ID_HORA"), p, 4);   
-                        }
-                        while (camposDis.next()){
-                            //System.out.println("ID campos " + camposDis.getInt("ID") + " ID_DIA " + camposDis.getInt("ID_DIA"));
-                        }
+                        camposDis.next();
+                        tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
+                        tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), d, 3);
+                        tabla.setValueAt(camposDis.getString("HORA"), d, 4);
                     }catch(SQLException ex){
-                        //System.err.println(ex.getCause());
                     }
                 }else{
                     jornadaCorrecta = false;
@@ -150,9 +146,7 @@ public class GeneraCalendario {
                 }
             }
         }
-        //System.out.println("Partidos "+contadorPartidos);
         conn.desconectar();
-        
         /** Fin reparto de campos **/
         
         /** Generación de fechas según campo asignado **/
@@ -160,117 +154,24 @@ public class GeneraCalendario {
             try{
                 Date dateIni = formatter.parse(dateInString);
                 Date dateFin = formatter.parse(dateFinString);
-                //cInicio.setTime(dateIni);
-                //cFin.setTime(dateFin);
                 Calendar setDay = Calendar.getInstance();
                 int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
 
 
                 setDay.setTime(dateIni);
-                //System.out.println("Inicio "+dateIni);
                 String dayOfWeek = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
-                //System.out.println(dayOfWeek);
                 pintarFecha(dayOfWeek, dateIni, tabla);
                 for(int d = 0; d < dias-1; d++){  
-                    //System.out.println("Dia "+dateIni);
                     setDay.add(Calendar.DAY_OF_YEAR, 1);
                     String newDay = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
                     pintarFecha(newDay, setDay.getTime(), tabla);
-                    //System.out.println("Nuevo dia "+setDay.getTime());
-                    //System.out.println(strDays[setDay.get(Calendar.DAY_OF_WEEK)-1]);
                 }
 
             }catch(ParseException ex){
-
+                System.err.println(ex.getCause());
             }
         }
-        /*try {
-            totalPartidosMostrados = model.getRowCount();
-            Date dateIni = formatter.parse(dateInString);
-            Date dateFin = formatter.parse(dateFinString);
-            cInicio.setTime(dateIni);
-            cFin.setTime(dateFin);
-            Calendar setDay = Calendar.getInstance();
-            //int dia;
-            //int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
-            int day;
-            for(int i = 0; i < totalPartidosMostrados; i++){
-                if(this.jornada == (int)model.getValueAt(i, 1)){
-                    
-                    String fecha = generaFechaAleatoria(formatter, dateIni, dateFin);
-                    tabla.setValueAt(fecha, i, 2);
-                    setDay.setTime(formatter.parse(fecha));
-                    day = setDay.get(Calendar.DAY_OF_WEEK)-1;
-                    tabla.setValueAt(strDays[day], i, 3);
-                    
-                    for(int e = 0; e < arrCampeonato.size(); e++){
-                        //int numDia = 0;
-                        int local = 0;
-                        int visitante = 0;
-                        if((int)model.getValueAt(i, 0) == arrCampeonato.get(e).id){
-                            local = arrCampeonato.get(e).local;
-                            visitante = arrCampeonato.get(e).visitante;
-                        }
-                        for(int r = 0; r < arrRestricciones.size(); r++){
-                            
-                            if(arrRestricciones.get(r).id_equipo == local){
-                                
-                                if(arrRestricciones.get(r).id_dia != 0){
-                                    boolean rest = true;
-                                    
-                                   do{
-                                       
-                                        if(model.getValueAt(i, 3).equals(getDia(arrRestricciones.get(r).id_dia))){   
-                                            System.out.println("Local " + arrRestricciones.get(r).id_equipo +" no puede jugar en fecha anterior " + formatter.format(setDay.getTime()));
-                                            
-                                            /** Genero otra fecha aleatoria **/
-        /*                                  fecha = generaFechaAleatoria(formatter, dateIni, dateFin);
-                                            setDay.setTime(formatter.parse(fecha));                                            
-                                            tabla.setValueAt(fecha, i, 2);
-                                            day = setDay.get(Calendar.DAY_OF_WEEK)-1;
-                                            tabla.setValueAt(strDays[day], i, 3);
-                                            System.out.println("Nueva fecha " + formatter.format(setDay.getTime()));
-                                            System.out.println();
-                                            r = 0;                                       
-                                        }else{
-                                            rest = false;
-                                        }
-                                    }while(rest);
-                                }
-                            }
-                            if(arrRestricciones.get(r).id_equipo == visitante){
-                                
-                                if(arrRestricciones.get(r).id_dia != 0){
-                                    boolean rest = true;
-                                    
-                                    do{
-                                        if(model.getValueAt(i, 3).equals(getDia(arrRestricciones.get(r).id_dia))){
-                                            
-                                            System.out.println("visitante " + arrRestricciones.get(r).id_equipo +" no puede jugar en fecha anterior " + formatter.format(setDay.getTime()));
-                                            /** Genero otra fecha aleatoria **/
-        /*                                  fecha = generaFechaAleatoria(formatter, dateIni, dateFin);                                           
-                                            setDay.setTime(formatter.parse(fecha));
-                                            tabla.setValueAt(fecha, i, 2);
-                                            day = setDay.get(Calendar.DAY_OF_WEEK)-1;
-                                            tabla.setValueAt(strDays[day], i, 3);
-                                            System.out.println("Nueva fecha " + formatter.format(setDay.getTime()));
-                                            System.out.println();
-                                            r = 0;                                       
-                                        }else{
-                                            rest = false;
-                                        }
-                                    }while(rest);
-                                } 
-                            }
-                        }
-                    }
-                    //int campo = ThreadLocalRandom.current().nextInt(totalCamposDisponibles)+1;
-                    //System.out.println(campo);
-                }
-            }
-        } catch (ParseException e) {
-        }*/
-        /** Fin generación de fechas aleatorias **/
+        /** Fin Generación de fechas **/
     }
     
     public String getDia(int dia){
@@ -313,12 +214,14 @@ public class GeneraCalendario {
     }
     
     private void pintarFecha(String dayOfWeek, Date dateIni, JTable tabla){
-        SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");
-        for(int q = 0; q < totalPartidosMostrados; q++){
-            if(dayOfWeek.equalsIgnoreCase(tabla.getValueAt(q,3).toString())){
-                tabla.setValueAt(formatterShow.format(dateIni), q, 2);
+            SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");
+            for(int q = 0; q < totalPartidosMostrados; q++){
+                if(this.jornada == (int)model.getValueAt(q, 1)){
+                    if(dayOfWeek.equalsIgnoreCase(tabla.getValueAt(q,3).toString())){
+                        tabla.setValueAt(formatterShow.format(dateIni), q, 2);
+                    }
+                }
             }
-        }
     }
     
     /*private void generaNumerosAleatorios(int valores){
