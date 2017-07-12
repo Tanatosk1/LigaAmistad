@@ -6,13 +6,19 @@
 package views;
 
 import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import sources.GestionarEquipos;
+import sources.MostrarDatos;
 
 /**
  *
  * @author rob_a
  */
 public class EditarEquipo extends javax.swing.JDialog {
-
+    private final MostrarDatos md = new MostrarDatos();
+    private final GestionarEquipos ge = new GestionarEquipos();
+    private String campoAnterior = null;
     /**
      * Creates new form EditarCampo
      */
@@ -21,6 +27,10 @@ public class EditarEquipo extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(232, 245, 228));
+        
+        md.llenarComboEquipos(this.cbEditarEquipo);
+        md.llenarComboCategorias(this.cbEditarEquipoCategoria);
+        md.llenarComboDivisiones(this.cbEditarEquipoDivision);
     }
 
     /**
@@ -33,11 +43,13 @@ public class EditarEquipo extends javax.swing.JDialog {
     private void initComponents() {
 
         lblEditarEquipo = new javax.swing.JLabel();
-        cbEditarEquipo = new javax.swing.JComboBox<>();
         btnEditarEquipo = new javax.swing.JButton();
         btnEliminarEquipo = new javax.swing.JButton();
         btnCancelaEquipo = new javax.swing.JButton();
         lblLogoEditarEquipo = new javax.swing.JLabel();
+        cbEditarEquipo = new javax.swing.JComboBox<>();
+        cbEditarEquipoDivision = new javax.swing.JComboBox<>();
+        cbEditarEquipoCategoria = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar equipo");
@@ -47,10 +59,6 @@ public class EditarEquipo extends javax.swing.JDialog {
         lblEditarEquipo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         lblEditarEquipo.setForeground(new java.awt.Color(31, 87, 12));
         lblEditarEquipo.setText("Seleccione un equipo");
-
-        cbEditarEquipo.setBackground(new java.awt.Color(31, 87, 12));
-        cbEditarEquipo.setForeground(new java.awt.Color(255, 255, 255));
-        cbEditarEquipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnEditarEquipo.setBackground(new java.awt.Color(31, 87, 12));
         btnEditarEquipo.setForeground(new java.awt.Color(255, 255, 255));
@@ -81,26 +89,42 @@ public class EditarEquipo extends javax.swing.JDialog {
 
         lblLogoEditarEquipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/equipos_menu.png"))); // NOI18N
 
+        cbEditarEquipo.setBackground(new java.awt.Color(31, 87, 12));
+        cbEditarEquipo.setForeground(new java.awt.Color(255, 255, 255));
+        cbEditarEquipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un equipo" }));
+
+        cbEditarEquipoDivision.setBackground(new java.awt.Color(31, 87, 12));
+        cbEditarEquipoDivision.setForeground(new java.awt.Color(255, 255, 255));
+        cbEditarEquipoDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una división" }));
+        cbEditarEquipoDivision.setEnabled(false);
+
+        cbEditarEquipoCategoria.setBackground(new java.awt.Color(31, 87, 12));
+        cbEditarEquipoCategoria.setForeground(new java.awt.Color(255, 255, 255));
+        cbEditarEquipoCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una categoría" }));
+        cbEditarEquipoCategoria.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cbEditarEquipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblLogoEditarEquipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblEditarEquipo)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 60, Short.MAX_VALUE)
                         .addComponent(btnEditarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelaEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCancelaEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbEditarEquipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbEditarEquipoCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbEditarEquipoDivision, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -113,22 +137,48 @@ public class EditarEquipo extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(cbEditarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(cbEditarEquipoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(cbEditarEquipoDivision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelaEquipo)
                     .addComponent(btnEliminarEquipo)
                     .addComponent(btnEditarEquipo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEquipoActionPerformed
-        cbEditarEquipo.setEditable(true);
+        if(cbEditarEquipo.getSelectedItem()=="Seleccione un equipo"){
+            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Seleccione un equipo", JOptionPane.QUESTION_MESSAGE, icon);
+            
+        }else{           
+            cbEditarEquipo.setEditable(true);
+            cbEditarEquipoCategoria.setEnabled(true);
+            cbEditarEquipoDivision.setEnabled(true);
+            if(btnEditarEquipo.getText().equals("Editar")){
+                campoAnterior = this.cbEditarEquipo.getSelectedItem().toString();
+            }else{
+                ge.editarEquipo(campoAnterior, this.cbEditarEquipo.getSelectedItem().toString(), this.cbEditarEquipoCategoria.getSelectedIndex(), this.cbEditarEquipoDivision.getSelectedIndex());
+                dispose();
+            }
+            btnEditarEquipo.setText("Aceptar");
+        }
     }//GEN-LAST:event_btnEditarEquipoActionPerformed
 
     private void btnEliminarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEquipoActionPerformed
-        // TODO add your handling code here:
+         if(cbEditarEquipo.getSelectedItem()=="Seleccione un equipo"){
+            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Seleccione un equipo", JOptionPane.QUESTION_MESSAGE, icon);
+            
+        }else{
+            ge.eliminarEquipo(this.cbEditarEquipo.getSelectedItem().toString());
+            dispose();
+         }
     }//GEN-LAST:event_btnEliminarEquipoActionPerformed
 
     private void btnCancelaEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaEquipoActionPerformed
@@ -183,6 +233,8 @@ public class EditarEquipo extends javax.swing.JDialog {
     private javax.swing.JButton btnEditarEquipo;
     private javax.swing.JButton btnEliminarEquipo;
     private javax.swing.JComboBox<String> cbEditarEquipo;
+    private javax.swing.JComboBox<String> cbEditarEquipoCategoria;
+    private javax.swing.JComboBox<String> cbEditarEquipoDivision;
     private javax.swing.JLabel lblEditarEquipo;
     private javax.swing.JLabel lblLogoEditarEquipo;
     // End of variables declaration//GEN-END:variables
