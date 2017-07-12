@@ -20,14 +20,19 @@ import javax.swing.table.DefaultTableModel;
  * @author santy
  */
 public class GeneraCalendario {
-    class oCampeonato{
+
+    public GeneraCalendario() {
+        this.idcampos = new ArrayList();
+    }
+    /*class oCampeonato{
         int id;
         int jornada;
         String fecha;
         String hora;
         int local;
         int visitante;
-        int jugado;
+        int campo;
+        boolean jugado;
         public oCampeonato(Object[] datos){
             this.id = (int) datos[0];
             this.jornada = (int) datos[1];
@@ -35,7 +40,8 @@ public class GeneraCalendario {
             this.hora = (String) datos[3];
             this.local = (int) datos[4];
             this.visitante = (int) datos[5];
-            this.jugado = (int) datos[6];
+            this.campo = (int)datos[6];
+            this.jugado = (boolean) datos[7];
         }
     }
     
@@ -54,7 +60,7 @@ public class GeneraCalendario {
             this.id_campo = (int)datos[4];
             this.id_coindice = (int)datos[5];
         }
-    }
+    }*/
        
     private final String[] strDays = new String[]{"Domingo", "Lunes", "Martes", "Miércoles",
         			    "Jueves", "Viernes", "Sábado"};
@@ -64,11 +70,12 @@ public class GeneraCalendario {
     private int totalPartidosMostrados;
     private int jornada;
     private DefaultTableModel model;
-    private ResultSet campeonato;
-    private ResultSet restricciones;
+    //private ResultSet campeonato;
+    //private ResultSet restricciones;
     private ResultSet camposDis;
-    private ArrayList<oCampeonato> arrCampeonato;
-    private ArrayList<oRestricciones> arrRestricciones;
+    private final ArrayList idcampos;
+    //private ArrayList<oCampeonato> arrCampeonato;
+    //private ArrayList<oRestricciones> arrRestricciones;
   
     public void generaFechas(String fInicio, String fFin, JTable tabla, JComboBox jornada){
         Conn conn = new Conn();
@@ -82,11 +89,11 @@ public class GeneraCalendario {
         
         conn.conectar();
         totalHorariosDisponibles = conn.totalRegistros("campos INNER JOIN cam_horarios ON ID = ID_CAMPO", "CONGELADO = 0");
-        campeonato = conn.getValues("*", "campeonato", "", "JORNADA");
-        restricciones = conn.getValues("*", "restricciones", "", "");
+        //campeonato = conn.getValues("*", "campeonato", "", "JORNADA");
+        //restricciones = conn.getValues("*", "restricciones", "", "");
         camposDis = conn.getValues("*", "campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO INNER JOIN hora h ON ch.ID_HORA = h.ID", "CONGELADO = 0", "c.ID");
         
-        try{
+        /*try{
             Object[] fCampeonato = new Object[8];
             arrCampeonato = new ArrayList();
             while(campeonato.next()){
@@ -116,7 +123,7 @@ public class GeneraCalendario {
             
         }   catch (SQLException ex) {
             Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
         /** Reparto de campos **/
         totalPartidosMostrados = model.getRowCount();
@@ -135,6 +142,7 @@ public class GeneraCalendario {
                     try{
                         camposDis.next();
                         tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
+                        idcampos.add(camposDis.getInt("ID_CAMPO"));
                         tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), d, 3);
                         tabla.setValueAt(camposDis.getString("HORA"), d, 4);
                     }catch(SQLException ex){
@@ -153,7 +161,6 @@ public class GeneraCalendario {
         if(jornadaCorrecta){
             try{
                 Date dateIni = formatter.parse(dateInString);
-                System.out.println("formato " + dateIni);
                 Date dateFin = formatter.parse(dateFinString);
                 Calendar setDay = Calendar.getInstance();
                 int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
@@ -204,7 +211,7 @@ public class GeneraCalendario {
             conn.conectar();
             for(int i = 0; i < tabla.getRowCount(); i++){
                 if(model.getValueAt(i, 2) != null){
-                    conn.updateData("campeonato", "fecha = '" + tabla.getValueAt(i, 2) + "', hora = '" + tabla.getValueAt(i, 4) +"'", "ID = " + model.getValueAt(i, 0));
+                    conn.updateData("campeonato", "fecha = '" + tabla.getValueAt(i, 2) + "', hora = '" + tabla.getValueAt(i, 4) +"', ID_CAMPO = " + idcampos.get(i), "ID = " + model.getValueAt(i, 0));
                 }
             }
             conn.getConection().commit();
