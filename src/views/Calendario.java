@@ -439,7 +439,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCalendarioGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalendarioGenerarActionPerformed
-        ImageIcon icon = new ImageIcon("src/resources/guardar.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/guardar.png"));
         int input = JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios realizados en el calendario?", "Guardar cambios", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
@@ -463,70 +463,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
             //System.out.println("Save as file: " + fichero.getAbsolutePath()+"."+filter.getExtensions()[0]);
             //aqui debe coger los datos de la BBDD y guardarlos en un excel
             cd.crearExcel(fichero.getAbsolutePath()+"."+filter.getExtensions()[0], this.tCalendario);
-
         }
-//        String categoria2 = (String) cbCategoria.getSelectedItem();
-//        String division2 = (String) cbDivision.getSelectedItem();
-//        String jornada2 = (String) cbJornada.getSelectedItem();
-//        
-//        switch(categoria2) {
-//            
-//          case "Todas": 
-//            switch(division2){
-//                case "Primera":
-//                  switch(jornada2){
-//                    case "1": 
-//                        try {
-//                        File path = new File ("src\\calendarios\\EjemploCalendarioTODAS.xlsx");
-//                        Desktop.getDesktop().open(path);
-//                   }catch (IOException ex) {
-//                        ex.printStackTrace();
-//                   }
-//            }
-//            }
-//            break;
-//            
-//        case "Senior": 
-//            switch(division2){
-//                case "Primera":
-//                  switch(jornada2){
-//                    case "1": 
-//                        try {
-//                        File path = new File ("src\\calendarios\\EjemploCalendarioSenior.xlsx");
-//                        Desktop.getDesktop().open(path);
-//                   }catch (IOException ex) {
-//                        ex.printStackTrace();
-//                   }
-//            }
-//            }
-//            break;
-//        case "Veteranos+30": 
-//                switch(division2){
-//                case "Primera":
-//                  switch(jornada2){
-//                    case "1": 
-//                        try {
-//                        File path = new File ("src\\calendarios\\EjemploCalendarioVet+30.xlsx");
-//                        Desktop.getDesktop().open(path);
-//                   }catch (IOException ex) {
-//                    }
-//            }
-//            }
-//            break;
-//        case "Veteranos+35": 
-//            switch(division2){
-//                case "Primera":
-//                  switch(jornada2){
-//                    case "1": 
-//                        try {
-//                        File path = new File ("src\\calendarios\\EjemploCalendarioVet+35.xlsx");
-//                        Desktop.getDesktop().open(path);
-//                   }catch (IOException ex) {
-//                    }
-//            }
-//            }
-//            break;
-//        }  
+  
     }//GEN-LAST:event_miExportarExcelActionPerformed
 
     private void miExportarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExportarPDFActionPerformed
@@ -618,15 +556,15 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
     private void btnGenerarInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarInicioActionPerformed
         if(dFechaInicioTemporada.getDate()==null){
-            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fecha de inicio","Seleccione una  fecha de inicio", JOptionPane.QUESTION_MESSAGE, icon);
         
         }if(dFechaFinTemporada.getDate()==null){
-            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fecha de fin","Seleccione una  fecha de fin", JOptionPane.QUESTION_MESSAGE, icon);
         
         }if (cbGenerarJornada.getSelectedItem().toString().equals("Seleccione una Jornada")){
-            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una jornada","Seleccione una jornada", JOptionPane.QUESTION_MESSAGE, icon);
         
         }else{

@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -149,7 +150,8 @@ public class GeneraCalendario {
                     }
                 }else{
                     jornadaCorrecta = false;
-                    JOptionPane.showMessageDialog(null, "NO hay suficientes horarios para los partidos mostrados", "Insuficientes horarios", JOptionPane.ERROR_MESSAGE);
+                    ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+                    JOptionPane.showMessageDialog(null, "NO hay suficientes horarios para los partidos mostrados", "Insuficientes horarios", JOptionPane.QUESTION_MESSAGE, icon);
                     break;
                 }
             }

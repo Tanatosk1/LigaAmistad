@@ -186,7 +186,9 @@ public Restricciones() {
         if(correcto){
             ge.gestionarEquipo(condiciones);
         }else{
-            JOptionPane.showMessageDialog(null, "Selecciona una hora", "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Selecciona una hora", "Error", JOptionPane.QUESTION_MESSAGE, icon);
+  
         }
         /*String equipoSeleccionado = (String) cbEquipos.getSelectedItem();
         
@@ -1592,7 +1594,7 @@ public Restricciones() {
 
     private void btnEditarEquipos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEquipos1ActionPerformed
     if (cbCampos.getSelectedItem().toString().equals("Selecciona un campo")){
-        ImageIcon icon = new ImageIcon("src/resources/warning.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
         JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Seleccione un campo", JOptionPane.QUESTION_MESSAGE, icon);
     }else {
                 this.enableCampos();
@@ -1600,7 +1602,7 @@ public Restricciones() {
     }//GEN-LAST:event_btnEditarEquipos1ActionPerformed
 
     private void btnAceptarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarCamposActionPerformed
-        ImageIcon icon = new ImageIcon("src/resources/aceptar.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
         int input = JOptionPane.showConfirmDialog(null, "¿Desea guardar los horarios para el campo seleccionado?", "Gestión de campos", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
@@ -1721,7 +1723,7 @@ public Restricciones() {
     }//GEN-LAST:event_ckDomingoCamposActionPerformed
 
     private void btnAceptarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarEquiposActionPerformed
-        ImageIcon icon = new ImageIcon("src/resources/aceptar.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
         int input = JOptionPane.showConfirmDialog(null, "¿Desea aplicar las restricciones para el equipo seleccionado?", "Aplicar restricciones",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
@@ -1744,7 +1746,7 @@ public Restricciones() {
 
     private void btnEditarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEquiposActionPerformed
         if (cbEquipos.getSelectedItem().toString().equals("Selecciona un equipo")){
-            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un equipo","Seleccione un equipo", JOptionPane.QUESTION_MESSAGE, icon);
         }else {
             this.enableEquipos();

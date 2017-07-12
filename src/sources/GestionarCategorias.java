@@ -7,6 +7,7 @@ package sources;
 
 import connection.Conn;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,9 +29,11 @@ public class GestionarCategorias {
             conn.insertData("competicion", "null,'" + categoria + "'" );
             conn.getConection().commit();
             conn.desconectar();
-            JOptionPane.showMessageDialog(null, "Categoría guardada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
+            JOptionPane.showMessageDialog(null, "Categoría guardada con éxito", "Información", JOptionPane.QUESTION_MESSAGE, icon);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
     
@@ -41,7 +44,8 @@ public class GestionarCategorias {
             conn.getConection().commit();
             conn.desconectar();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al editar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al editar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
     
@@ -52,7 +56,8 @@ public class GestionarCategorias {
             conn.getConection().commit();
             conn.desconectar();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
     
@@ -63,7 +68,8 @@ public class GestionarCategorias {
             conn.getConection().commit();
             conn.desconectar();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
     

@@ -5,7 +5,8 @@
  */
 package views;
 
-import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import sources.GestionarDivisiones;
 import sources.MostrarDatos;
 
@@ -52,11 +53,11 @@ public class EditarDivision extends javax.swing.JDialog {
         lblEditarDivision.setBackground(new java.awt.Color(31, 87, 12));
         lblEditarDivision.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         lblEditarDivision.setForeground(new java.awt.Color(31, 87, 12));
-        lblEditarDivision.setText("Seleccione una división");
+        lblEditarDivision.setText("Editar división");
 
         cbEditarDivision.setBackground(new java.awt.Color(31, 87, 12));
         cbEditarDivision.setForeground(new java.awt.Color(255, 255, 255));
-        cbEditarDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una división" }));
+        cbEditarDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una división" }));
 
         btnEditarDivision.setBackground(new java.awt.Color(31, 87, 12));
         btnEditarDivision.setForeground(new java.awt.Color(255, 255, 255));
@@ -99,7 +100,7 @@ public class EditarDivision extends javax.swing.JDialog {
                         .addComponent(lblLogoEditarDivision)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblEditarDivision)
-                        .addGap(0, 48, Short.MAX_VALUE))
+                        .addGap(0, 145, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnEditarDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,20 +131,30 @@ public class EditarDivision extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDivisionActionPerformed
-        cbEditarDivision.setEditable(true);
+        if (cbEditarDivision.getSelectedItem().toString().equals("Selecciona una división")){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una división","Selecciona una división", JOptionPane.QUESTION_MESSAGE, icon);    
+        }else {
+            cbEditarDivision.setEditable(true);
 
-        if(btnEditarDivision.getText().equals("Editar")){
-            divisionAnterior = this.cbEditarDivision.getSelectedItem().toString();
-        }else{
-            gd.editarDivision(divisionAnterior, this.cbEditarDivision.getSelectedItem().toString());
-            dispose();
+            if(btnEditarDivision.getText().equals("Editar")){
+                divisionAnterior = this.cbEditarDivision.getSelectedItem().toString();
+            }else{
+                gd.editarDivision(divisionAnterior, this.cbEditarDivision.getSelectedItem().toString());
+                dispose();
+            }
+            btnEditarDivision.setText("Aceptar");
         }
-        btnEditarDivision.setText("Aceptar");
     }//GEN-LAST:event_btnEditarDivisionActionPerformed
 
     private void btnEliminarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDivisionActionPerformed
-        gd.eliminarDivision(this.cbEditarDivision.getSelectedItem().toString());
-        dispose();
+        if (cbEditarDivision.getSelectedItem().toString().equals("Selecciona una división")){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una división","Selecciona una división", JOptionPane.QUESTION_MESSAGE, icon);    
+        }else {
+            gd.eliminarDivision(this.cbEditarDivision.getSelectedItem().toString());
+            dispose();
+        }
     }//GEN-LAST:event_btnEliminarDivisionActionPerformed
 
     private void btnCancelarDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarDivisionActionPerformed

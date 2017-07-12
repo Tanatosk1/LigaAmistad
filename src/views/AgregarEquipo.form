@@ -40,7 +40,7 @@
                       <Component id="lblLogoAgregarEquipo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblAgreagarEquipo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="69" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="134" max="32767" attributes="0"/>
                   </Group>
                   <Component id="txtAgregarEquipo" alignment="0" max="32767" attributes="0"/>
                   <Component id="cbAgregarEquipoCategoria" alignment="0" max="32767" attributes="0"/>
@@ -94,7 +94,7 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="Seleccione una categor&#xed;a"/>
+            <StringItem index="0" value="Selecciona una categor&#xed;a"/>
           </StringArray>
         </Property>
       </Properties>
@@ -112,7 +112,7 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="Seleccione una divisi&#xf3;n"/>
+            <StringItem index="0" value="Selecciona una divisi&#xf3;n"/>
           </StringArray>
         </Property>
       </Properties>
@@ -159,7 +159,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="c" green="57" red="1f" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Seleccione un equipo"/>
+        <Property name="text" type="java.lang.String" value="Agregar equipo"/>
       </Properties>
     </Component>
   </SubComponents>

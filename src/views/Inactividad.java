@@ -212,15 +212,15 @@ public Inactividad() {
 
     private void btnFestivosAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFestivosAceptarActionPerformed
         if(dFestivosFechaInicio.getDate()==null){
-            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fecha de inicio","Seleccione una  fecha de inicio", JOptionPane.QUESTION_MESSAGE, icon);
         
         }if(dFestivosFechaFin.getDate()==null){
-            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fecha de fin","Seleccione una  fecha de fin", JOptionPane.QUESTION_MESSAGE, icon);
         
         }if (cbFestivosDescripcion.getSelectedItem().toString().equals("Seleccione un motivo")){
-            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources//warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un motivo","Seleccione un motivo", JOptionPane.QUESTION_MESSAGE, icon);
         
         }else{

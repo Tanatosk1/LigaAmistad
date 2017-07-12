@@ -5,7 +5,6 @@
  */
 package views;
 
-import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.GestionarEquipos;
@@ -153,7 +152,7 @@ public class EditarEquipo extends javax.swing.JDialog {
 
     private void btnEditarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEquipoActionPerformed
         if(cbEditarEquipo.getSelectedItem()=="Seleccione un equipo"){
-            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Seleccione un equipo", JOptionPane.QUESTION_MESSAGE, icon);
             
         }else{           
@@ -172,7 +171,7 @@ public class EditarEquipo extends javax.swing.JDialog {
 
     private void btnEliminarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEquipoActionPerformed
          if(cbEditarEquipo.getSelectedItem()=="Seleccione un equipo"){
-            ImageIcon icon = new ImageIcon("src/resources/warning.png");
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Seleccione un equipo", JOptionPane.QUESTION_MESSAGE, icon);
             
         }else{

@@ -35,7 +35,7 @@
                       <Component id="lblLogoEditarDivision" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblEditarDivision" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="48" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="145" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -83,7 +83,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="c" green="57" red="1f" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Seleccione una divisi&#xf3;n"/>
+        <Property name="text" type="java.lang.String" value="Editar divisi&#xf3;n"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbEditarDivision">
@@ -96,7 +96,7 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="Seleccione una divisi&#xf3;n"/>
+            <StringItem index="0" value="Selecciona una divisi&#xf3;n"/>
           </StringArray>
         </Property>
       </Properties>

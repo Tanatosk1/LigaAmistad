@@ -5,6 +5,8 @@
  */
 package views;
 
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import sources.GestionarCampos;
 import sources.MostrarDatos;
 
@@ -53,11 +55,11 @@ public class EditarCampo extends javax.swing.JDialog {
         lblEditarCampo.setBackground(new java.awt.Color(31, 87, 12));
         lblEditarCampo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         lblEditarCampo.setForeground(new java.awt.Color(31, 87, 12));
-        lblEditarCampo.setText("Seleccione un campo");
+        lblEditarCampo.setText("Editar campo");
 
         cbEditarCampo.setBackground(new java.awt.Color(31, 87, 12));
         cbEditarCampo.setForeground(new java.awt.Color(255, 255, 255));
-        cbEditarCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione campo" }));
+        cbEditarCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un campo" }));
 
         btnEditarCampo.setBackground(new java.awt.Color(31, 87, 12));
         btnEditarCampo.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,21 +133,30 @@ public class EditarCampo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarCampoActionPerformed
-        
-        cbEditarCampo.setEditable(true);
-        if(btnEditarCampo.getText().equals("Editar")){
-            campoAnterior = this.cbEditarCampo.getSelectedItem().toString();
-        }else{
-            gc.editarCampo(campoAnterior, this.cbEditarCampo.getSelectedItem().toString());
-            dispose();
+        if (cbEditarCampo.getSelectedItem().toString().equals("Selecciona un campo")){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Selecciona un campo", JOptionPane.QUESTION_MESSAGE, icon);    
+        }else {      
+            cbEditarCampo.setEditable(true);
+
+            if(btnEditarCampo.getText().equals("Editar")){
+                campoAnterior = this.cbEditarCampo.getSelectedItem().toString();
+            }else{
+                gc.editarCampo(campoAnterior, this.cbEditarCampo.getSelectedItem().toString());
+                dispose();
+            }
+            btnEditarCampo.setText("Aceptar");
         }
-        btnEditarCampo.setText("Aceptar");
-        
     }//GEN-LAST:event_btnEditarCampoActionPerformed
 
     private void btnEliminarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCampoActionPerformed
-        gc.eliminarCampo(this.cbEditarCampo.getSelectedItem().toString());
-        dispose();
+        if (cbEditarCampo.getSelectedItem().toString().equals("Selecciona un campo")){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Selecciona un campo", JOptionPane.QUESTION_MESSAGE, icon);    
+        }else {
+            gc.eliminarCampo(this.cbEditarCampo.getSelectedItem().toString());
+            dispose();
+        }
     }//GEN-LAST:event_btnEliminarCampoActionPerformed
 
     private void btnCancelarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCampoActionPerformed

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import views.Restricciones;
 
@@ -41,7 +42,8 @@ public class GestionarEquipos {
             
             conn.desconectar();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex, "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex, "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }finally{
             r.cbEquipos.setSelectedIndex(0);
         }
@@ -51,12 +53,13 @@ public class GestionarEquipos {
         try {
             conn.conectar();
             conn.insertData("equipos", "null,'" + equipo + "', '" + categoria + "','" + division + "', 1");
-//            conn.insertData("equipos", "null,'" + equipo + "', 1, 1, 1");
             conn.getConection().commit();
             conn.desconectar();
-            JOptionPane.showMessageDialog(null, "Equipo guardado con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
+            JOptionPane.showMessageDialog(null, "Equipo guardado con éxito", "Información", JOptionPane.QUESTION_MESSAGE, icon);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
         
@@ -67,7 +70,8 @@ public class GestionarEquipos {
             conn.getConection().commit();
             conn.desconectar();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al editar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al editar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
         
@@ -78,7 +82,8 @@ public class GestionarEquipos {
             conn.getConection().commit();
             conn.desconectar();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
         
@@ -89,7 +94,8 @@ public class GestionarEquipos {
             conn.getConection().commit();
             conn.desconectar();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
     

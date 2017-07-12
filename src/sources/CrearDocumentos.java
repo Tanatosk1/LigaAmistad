@@ -2,6 +2,7 @@ package sources;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -114,10 +115,12 @@ public class CrearDocumentos {
         workbook.write(fichero);
         fichero.close();
         // Se crea bien el fichero, muestra mensaje
-        JOptionPane.showMessageDialog(null, "Fichero creado correctamente", "Exportar Excel", JOptionPane.INFORMATION_MESSAGE);
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
+        JOptionPane.showMessageDialog(null, "Fichero creado correctamente", "Exportar Excel", JOptionPane.QUESTION_MESSAGE, icon);
     } catch (IOException | java.lang.ClassCastException e) {
         //Error al crear el fichero, muestra mensaje
-        JOptionPane.showMessageDialog(null, "No se ha creado el fichero\n" + e.getMessage(), "Exportar Excel", JOptionPane.INFORMATION_MESSAGE);
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+        JOptionPane.showMessageDialog(null, "No se ha creado el fichero\n" + e.getMessage(), "Exportar Excel", JOptionPane.QUESTION_MESSAGE, icon);
         
     }
     }

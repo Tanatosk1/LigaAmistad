@@ -8,6 +8,7 @@ package sources;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import connection.Conn;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -27,9 +28,11 @@ public class GestionarDivisiones {
             conn.insertData("division", "null,'" + division + "'" );
             conn.getConection().commit();
             conn.desconectar();
-            JOptionPane.showMessageDialog(null, "División guardada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
+            JOptionPane.showMessageDialog(null, "División guardada con éxito", "Información", JOptionPane.QUESTION_MESSAGE, icon);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
     
@@ -40,7 +43,8 @@ public class GestionarDivisiones {
             conn.getConection().commit();
             conn.desconectar();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al editar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al editar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
     
@@ -51,7 +55,8 @@ public class GestionarDivisiones {
             conn.getConection().commit();
             conn.desconectar();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
     public void vaciarDivision(){
@@ -61,8 +66,9 @@ public class GestionarDivisiones {
             conn.getConection().commit();
             conn.desconectar();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
+         }
     }
     
 }

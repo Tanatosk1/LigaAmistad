@@ -5,7 +5,8 @@
  */
 package views;
 
-import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import sources.GestionarCategorias;
 import sources.MostrarDatos;
 
@@ -48,17 +49,17 @@ public class EditarCategoria extends javax.swing.JDialog {
         lbllogoEditarCompeticion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Editar competición");
+        setTitle("Editar categoría");
         setBackground(new java.awt.Color(31, 87, 12));
 
         lblEditarCompeticion.setBackground(new java.awt.Color(31, 87, 12));
         lblEditarCompeticion.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         lblEditarCompeticion.setForeground(new java.awt.Color(31, 87, 12));
-        lblEditarCompeticion.setText("Seleccione una categoría");
+        lblEditarCompeticion.setText("Editar categoría");
 
         cbEditarCategoria.setBackground(new java.awt.Color(31, 87, 12));
         cbEditarCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        cbEditarCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una categoría" }));
+        cbEditarCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una categoría" }));
         cbEditarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbEditarCategoriaActionPerformed(evt);
@@ -136,20 +137,30 @@ public class EditarCategoria extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarCategoriaActionPerformed
-        cbEditarCategoria.setEditable(true);
+        if (cbEditarCategoria.getSelectedItem().toString().equals("Selecciona una categoría")){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una categoría","Selecciona una categoría", JOptionPane.QUESTION_MESSAGE, icon);    
+        }else { 
+            cbEditarCategoria.setEditable(true);
 
-        if(btnEditarCategoria.getText().equals("Editar")){
-            categoriaAnterior = this.cbEditarCategoria.getSelectedItem().toString();
-        }else{
-            gct.editarCategoria(categoriaAnterior, this.cbEditarCategoria.getSelectedItem().toString());
-            dispose();
+            if(btnEditarCategoria.getText().equals("Editar")){
+                categoriaAnterior = this.cbEditarCategoria.getSelectedItem().toString();
+            }else{
+                gct.editarCategoria(categoriaAnterior, this.cbEditarCategoria.getSelectedItem().toString());
+                dispose();
+            }
+            btnEditarCategoria.setText("Aceptar");
         }
-        btnEditarCategoria.setText("Aceptar");
     }//GEN-LAST:event_btnEditarCategoriaActionPerformed
 
     private void btnEliminarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCategoriaActionPerformed
-        gct.eliminarCategoria(this.cbEditarCategoria.getSelectedItem().toString());
-        dispose();
+        if (cbEditarCategoria.getSelectedItem().toString().equals("Selecciona una categoría")){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una categoría","Selecciona una categoría", JOptionPane.QUESTION_MESSAGE, icon);    
+        }else {
+            gct.eliminarCategoria(this.cbEditarCategoria.getSelectedItem().toString());
+            dispose();
+        }
     }//GEN-LAST:event_btnEliminarCategoriaActionPerformed
 
     private void btnCancelarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCategoriaActionPerformed

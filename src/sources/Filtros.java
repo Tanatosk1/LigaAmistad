@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -56,7 +57,8 @@ public class Filtros {
         ResultSet campeonato = con.getValues(select, from, where, order);    
             try {
                 if(!campeonato.first()){
-                    JOptionPane.showMessageDialog(null, "No hay datos con los campos seleccionados", "No hay datos", JOptionPane.INFORMATION_MESSAGE);
+                    ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+                    JOptionPane.showMessageDialog(null, "No hay datos con los campos seleccionados", "No hay datos", JOptionPane.QUESTION_MESSAGE, icon);
                 }else{
                     campeonato.absolute(0);
                     while(campeonato.next()){

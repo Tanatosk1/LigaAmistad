@@ -5,6 +5,8 @@
  */
 package views;
 
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import sources.GestionarEquipos;
 import sources.MostrarDatos;
 
@@ -56,11 +58,11 @@ public class AgregarEquipo extends javax.swing.JDialog {
 
         cbAgregarEquipoCategoria.setBackground(new java.awt.Color(31, 87, 12));
         cbAgregarEquipoCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        cbAgregarEquipoCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una categoría" }));
+        cbAgregarEquipoCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una categoría" }));
 
         cbAgregarEquipoDivision.setBackground(new java.awt.Color(31, 87, 12));
         cbAgregarEquipoDivision.setForeground(new java.awt.Color(255, 255, 255));
-        cbAgregarEquipoDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una división" }));
+        cbAgregarEquipoDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una división" }));
 
         btnAgregarEquipo.setBackground(new java.awt.Color(31, 87, 12));
         btnAgregarEquipo.setForeground(new java.awt.Color(255, 255, 255));
@@ -83,7 +85,7 @@ public class AgregarEquipo extends javax.swing.JDialog {
         lblAgreagarEquipo.setBackground(new java.awt.Color(31, 87, 12));
         lblAgreagarEquipo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         lblAgreagarEquipo.setForeground(new java.awt.Color(31, 87, 12));
-        lblAgreagarEquipo.setText("Seleccione un equipo");
+        lblAgreagarEquipo.setText("Agregar equipo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,7 +103,7 @@ public class AgregarEquipo extends javax.swing.JDialog {
                         .addComponent(lblLogoAgregarEquipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblAgreagarEquipo)
-                        .addGap(0, 69, Short.MAX_VALUE))
+                        .addGap(0, 134, Short.MAX_VALUE))
                     .addComponent(txtAgregarEquipo)
                     .addComponent(cbAgregarEquipoCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbAgregarEquipoDivision, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -134,9 +136,17 @@ public class AgregarEquipo extends javax.swing.JDialog {
             String nombre = txtAgregarEquipo.getText();
             int categoria = cbAgregarEquipoCategoria.getSelectedIndex();
             int division = cbAgregarEquipoDivision.getSelectedIndex();
-            ge.guardarEquipo(nombre, categoria, division);
-            dispose();
-        
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            if (txtAgregarEquipo.getText().equals("")){              
+                JOptionPane.showMessageDialog(rootPane, "Debe escribir el nombre de un equipo","Nombre del equipo", JOptionPane.QUESTION_MESSAGE, icon);
+            }if (cbAgregarEquipoCategoria.getSelectedItem().toString().equals("Selecciona una categoría")){
+                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una categoría","Selecciona una categoría", JOptionPane.QUESTION_MESSAGE, icon);
+            }if (cbAgregarEquipoDivision.getSelectedItem().toString().equals("Selecciona una división")){
+                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una división","Selecciona una división", JOptionPane.QUESTION_MESSAGE, icon);
+            }else{            
+                ge.guardarEquipo(nombre, categoria, division);
+                dispose();
+            }
     }//GEN-LAST:event_btnAgregarEquipoActionPerformed
 
     private void btnCancelarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEquipoActionPerformed
