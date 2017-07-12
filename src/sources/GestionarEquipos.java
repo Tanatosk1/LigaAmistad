@@ -21,6 +21,10 @@ public class GestionarEquipos {
         this.r = rest;
     }
     
+    public GestionarEquipos(){
+        r = null;
+    }
+    
     public void gestionarEquipo(ArrayList<ORestriccion> condiciones){
         try {
             int id = r.cbEquipos.getSelectedIndex();
@@ -43,15 +47,38 @@ public class GestionarEquipos {
         }
     }
     
-        public void guardarEquipo(String equipo){
+        public void guardarEquipo(String equipo, int categoria, int division){
         try {
             conn.conectar();
-            conn.insertData("equipos", "null,'" + equipo + "', 1, 1, 1");
+            conn.insertData("equipos", "null,'" + equipo + "', '" + categoria + "','" + division + "', 1");
+//            conn.insertData("equipos", "null,'" + equipo + "', 1, 1, 1");
             conn.getConection().commit();
             conn.desconectar();
             JOptionPane.showMessageDialog(null, "Equipo guardado con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+        
+        public void editarEquipo(String anterior, String nuevo, int categoria, int division){
+        try{
+            conn.conectar();
+            conn.updateData("equipos", "NOMBRE = '" + nuevo + "', ID_COMPETICION = '" +categoria + "', ID_DIVISION = '" + division + "'",  "NOMBRE LIKE '" + anterior+ "'");
+            conn.getConection().commit();
+            conn.desconectar();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al editar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+        
+    public void eliminarEquipo(String equipo){
+        try{
+            conn.conectar();
+            conn.deleteData("equipos", "NOMBRE like '" + equipo + "'");
+            conn.getConection().commit();
+            conn.desconectar();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
         
