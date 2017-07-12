@@ -650,13 +650,14 @@ private FondoPrincipal fondo;
     }//GEN-LAST:event_miAgregarDivisionActionPerformed
 
     private void miAgregarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAgregarEquiposActionPerformed
-        ImageIcon icon = new ImageIcon("src/resources/equipos_menu.png");
-        Object equipo = JOptionPane.showInputDialog(null, "Nombre del equipo", "Agregar equipo", JOptionPane.QUESTION_MESSAGE,icon,null,"");
-        if(equipo != null){
-           String sequipo = equipo.toString();
-            GestionarEquipos ge = new GestionarEquipos (null);
-            ge.guardarEquipo(sequipo); 
-        }
+        new AgregarEquipo(this, true).setVisible(true);
+//        ImageIcon icon = new ImageIcon("src/resources/equipos_menu.png");
+//        Object equipo = JOptionPane.showInputDialog(null, "Nombre del equipo", "Agregar equipo", JOptionPane.QUESTION_MESSAGE,icon,null,"");
+//        if(equipo != null){
+//           String sequipo = equipo.toString();
+//            GestionarEquipos ge = new GestionarEquipos (null);
+//            ge.guardarEquipo(sequipo); 
+//        }
     }//GEN-LAST:event_miAgregarEquiposActionPerformed
 
     private void miVaciarCalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVaciarCalendarioActionPerformed
