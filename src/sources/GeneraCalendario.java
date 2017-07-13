@@ -136,51 +136,91 @@ public class GeneraCalendario {
             }
         }
         boolean jornadaCorrecta = false;
+        boolean restriccion;
+        int row;
+        int cont = 0;
+        Date dateIni = null;
+        Date dateFin = null;
+        try {
+            dateIni = formatter.parse(dateInString);
+            dateFin = formatter.parse(dateFinString);
+        } catch (ParseException ex) {
+            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Calendar setDay = Calendar.getInstance();
+        int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
+        setDay.setTime(dateIni);
+System.out.println("Mostrados " +totalPartidosMostrados);
+        bucle:
         for(int d = 0; d < totalPartidosMostrados; d++){
             if(this.jornada == (int)model.getValueAt(d, 1)){
-                jornadaCorrecta = true;
+                //jornadaCorrecta = true;
                 if(totalHorariosDisponibles >= partidosPorJornada){
                     try{
                         camposDis.next();
-                        tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
-                        idcampos.add(camposDis.getInt("ID_CAMPO"));
-                        tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), d, 3);
-                        tabla.setValueAt(camposDis.getString("HORA"), d, 4);
+                        restriccion = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
+                        row = camposDis.getRow();
+                        while(restriccion){
+System.out.println("d = " + d + " El equipo " + tabla.getValueAt(d, 5) + " No puede jugar en el campo " + camposDis.getString("CAMPO"));
+                            camposDis.next();
+                            restriccion = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
+System.out.println(camposDis.getRow());
+                            if(camposDis.isLast()){
+                                camposDis.first();
+                                cont++;
+                                if (cont >=1){
+                                    continue bucle;
+                                }
+                            }
+                        }
+                        if(!restriccion){
+                            tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
+                            idcampos.add(camposDis.getInt("ID_CAMPO"));
+                            tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), d, 3);
+                            tabla.setValueAt(camposDis.getString("HORA"), d, 4);
+                            String dayOfWeek = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
+                            pintarFecha(d, dayOfWeek, dateIni, tabla);
+                            for(int a = 1; a < dias-1; a++){
+                                setDay.add(Calendar.DAY_OF_YEAR, 1);
+                                String newDay = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
+                                pintarFecha(d, newDay, setDay.getTime(), tabla);
+                            }
+                            camposDis.first();
+                        }
                     }catch(SQLException ex){
+//System.err.println(ex.getCause());
                     }
                 }else{
-                    jornadaCorrecta = false;
+                    //jornadaCorrecta = false;
                     ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
                     JOptionPane.showMessageDialog(null, "NO hay suficientes horarios para los partidos mostrados", "Insuficientes horarios", JOptionPane.QUESTION_MESSAGE, icon);
                     break;
                 }
             }
+            System.out.println("d = " + d);
+            System.out.println("Jornada = " + this.jornada);
+            System.out.println("Tabla = " + (int)model.getValueAt(d, 1));
         }
         conn.desconectar();
         /** Fin reparto de campos **/
         
         /** Generación de fechas según campo asignado **/
-        if(jornadaCorrecta){
-            try{
-                Date dateIni = formatter.parse(dateInString);
-                Date dateFin = formatter.parse(dateFinString);
-                Calendar setDay = Calendar.getInstance();
-                int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
-
-
-                setDay.setTime(dateIni);
-                String dayOfWeek = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
-                pintarFecha(dayOfWeek, dateIni, tabla);
-                for(int d = 0; d < dias-1; d++){  
-                    setDay.add(Calendar.DAY_OF_YEAR, 1);
-                    String newDay = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
-                    pintarFecha(newDay, setDay.getTime(), tabla);
-                }
-
-            }catch(ParseException ex){
-                System.err.println(ex.getCause());
+        /*if(jornadaCorrecta){
+            Date dateIni = formatter.parse(dateInString);
+            Date dateFin = formatter.parse(dateFinString);
+            Calendar setDay = Calendar.getInstance();
+            int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
+            
+            
+            setDay.setTime(dateIni);
+            String dayOfWeek = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
+            pintarFecha(0, dayOfWeek, dateIni, tabla);
+            for(int d = 1; d < dias-1; d++){
+                setDay.add(Calendar.DAY_OF_YEAR, 1);
+                String newDay = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
+                pintarFecha(d, newDay, setDay.getTime(), tabla);
             }
-        }
+        }*/
         /** Fin Generación de fechas **/
     }
     
@@ -223,15 +263,41 @@ public class GeneraCalendario {
         }
     }
     
-    private void pintarFecha(String dayOfWeek, Date dateIni, JTable tabla){
+    private void pintarFecha(int r, String dayOfWeek, Date dateIni, JTable tabla){
             SimpleDateFormat formatterShow = new SimpleDateFormat("yyyy-MM-dd");
-            for(int q = 0; q < totalPartidosMostrados; q++){
-                if(this.jornada == (int)model.getValueAt(q, 1)){
-                    if(dayOfWeek.equalsIgnoreCase(tabla.getValueAt(q,3).toString())){
-                        tabla.setValueAt(formatterShow.format(dateIni), q, 2);
+            //for(int q = 0; q < totalPartidosMostrados; q++){
+                if(this.jornada == (int)model.getValueAt(r, 1)){
+System.out.println("dayOfWeek "+dayOfWeek);
+System.out.println("tabla"+tabla.getValueAt(r, 3));
+                    if(dayOfWeek.equalsIgnoreCase(tabla.getValueAt(r,3).toString())){
+                        tabla.setValueAt(formatterShow.format(dateIni), r, 2);
+                    }
+                }
+            //}
+    }
+    
+    private boolean verificaRestriccionesCampos(int partido, JTable tabla, int jornada, String local, int campo){
+        Conn conn = new Conn();
+        ResultSet restricciones;
+        
+        conn.conectar();
+        restricciones = conn.getValues("*", "restricciones r INNER JOIN equipos e ON r.ID_EQUIPO = e.ID", "", "");
+        
+        try {
+            if((int)tabla.getValueAt(partido, 1) == jornada){
+                while(restricciones.next()){
+                    if(local.equals(restricciones.getString("NOMBRE"))){
+                        if(campo == restricciones.getInt("ID_CAMPO")){
+                            return true;
+                        }
                     }
                 }
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conn.desconectar();
+        return false;
     }
     
     /*private void generaNumerosAleatorios(int valores){
