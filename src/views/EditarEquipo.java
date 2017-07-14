@@ -7,6 +7,9 @@ package views;
 
 import connection.Conn;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -34,24 +37,6 @@ public class EditarEquipo extends javax.swing.JDialog {
         md.llenarComboEquipos(this.cbEditarEquipo);
         md.llenarComboCategorias(this.cbEditarEquipoCategoria);
         md.llenarComboDivisiones(this.cbEditarEquipoDivision);
-    }
-    
-    public void llenarComboAgregarEquiposCategoria(JComboBox cbAgregarEquipoCategoria){
-        String equipo = cbEditarEquipo.getSelectedItem().toString();
-        con.conectar();
-//        ResultSet equipos = con.getValues("competicion.COMPETICION", "competicion, equipos", "equipos.ID_COMPETICION = competicion.ID and equipos.NOMBRE = '" +equipo +"'" , "");
-        ResultSet equipos = con.getValues("competicion.COMPETICION", "competicion, equipos", "equipos.ID_COMPETICION = competicion.ID and equipos.NOMBRE = '" +equipo +"'" , "");        
-        cbAgregarEquipoCategoria.setSelectedItem(equipos);
-//            try {
-//                cbAgregarEquipoCategoria.setSelectedItem(equipos);
-//                
-////                while(equipos.next()){
-////                    cbEquipos.addItem(equipos.getString("NOMBRE"));
-////                } 
-//            }catch (SQLException ex) {
-//                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-        con.desconectar();
     }
 
     /**
@@ -113,6 +98,11 @@ public class EditarEquipo extends javax.swing.JDialog {
         cbEditarEquipo.setBackground(new java.awt.Color(31, 87, 12));
         cbEditarEquipo.setForeground(new java.awt.Color(255, 255, 255));
         cbEditarEquipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un equipo" }));
+        cbEditarEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbEditarEquipoActionPerformed(evt);
+            }
+        });
 
         cbEditarEquipoDivision.setBackground(new java.awt.Color(31, 87, 12));
         cbEditarEquipoDivision.setForeground(new java.awt.Color(255, 255, 255));
@@ -173,19 +163,21 @@ public class EditarEquipo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEquipoActionPerformed
-        llenarComboAgregarEquiposCategoria(this.cbEditarEquipoCategoria);
+        String nombre = cbEditarEquipo.getSelectedItem().toString();
+        String categoria = cbEditarEquipoCategoria.getSelectedItem().toString();
+        String division = cbEditarEquipoDivision.getSelectedItem().toString();
         if(cbEditarEquipo.getSelectedItem()=="Seleccione un equipo"){
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Seleccione un equipo", JOptionPane.QUESTION_MESSAGE, icon);
             
-        }else{           
+        }else{
             cbEditarEquipo.setEditable(true);
             cbEditarEquipoCategoria.setEnabled(true);
             cbEditarEquipoDivision.setEnabled(true);
             if(btnEditarEquipo.getText().equals("Editar")){
                 campoAnterior = this.cbEditarEquipo.getSelectedItem().toString();
             }else{
-                ge.editarEquipo(campoAnterior, this.cbEditarEquipo.getSelectedItem().toString(), this.cbEditarEquipoCategoria.getSelectedIndex(), this.cbEditarEquipoDivision.getSelectedIndex());
+                ge.editarEquipo(campoAnterior, nombre, categoria, division);
                 dispose();
             }
             btnEditarEquipo.setText("Aceptar");
@@ -206,6 +198,12 @@ public class EditarEquipo extends javax.swing.JDialog {
     private void btnCancelaEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaEquipoActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelaEquipoActionPerformed
+
+    private void cbEditarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEditarEquipoActionPerformed
+        String equipo = cbEditarEquipo.getSelectedItem().toString();
+        md.llenarComboAgregarEquiposCategoria(this.cbEditarEquipoCategoria, equipo);
+        md.llenarComboAgregarEquiposDivision(this.cbEditarEquipoDivision, equipo);
+    }//GEN-LAST:event_cbEditarEquipoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -49,26 +49,69 @@ public class GestionarEquipos {
         }
     }
     
-        public void guardarEquipo(String equipo, int categoria, int division){
+    public void guardarEquipo( String equipo, String scategoria, String sdivision ){
+        
         try {
             conn.conectar();
+            ResultSet rdivision = conn.getValues("ID", "division", "DIVISION = '" + sdivision + "'", "");
+            try {
+                while(rdivision.next()){
+                   sdivision=(rdivision.getString("ID")); 
+                } 
+            }catch (SQLException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+            ResultSet rcategoria = conn.getValues("ID", "competicion", "COMPETICION = '" + scategoria + "'", "");
+            try {
+                while(rcategoria.next()){
+                   scategoria=(rcategoria.getString("ID")); 
+                } 
+            }catch (SQLException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }           
+
+            int categoria = Integer.parseInt(scategoria);    
+            int division = Integer.parseInt(sdivision);
             conn.insertData("equipos", "null,'" + equipo + "', '" + categoria + "','" + division + "', 1");
             conn.getConection().commit();
             conn.desconectar();
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
             JOptionPane.showMessageDialog(null, "Equipo guardado con éxito", "Información", JOptionPane.QUESTION_MESSAGE, icon);
+        
         } catch (SQLException ex) {
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
-        
-        public void editarEquipo(String anterior, String nuevo, int categoria, int division){
+    
+    public void editarEquipo(String anterior, String nuevo, String scategoria, String sdivision){
         try{
             conn.conectar();
+            ResultSet rdivision = conn.getValues("ID", "division", "DIVISION = '" + sdivision + "'", "");
+            try {
+                while(rdivision.next()){
+                   sdivision=(rdivision.getString("ID")); 
+                } 
+            }catch (SQLException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+            ResultSet rcategoria = conn.getValues("ID", "competicion", "COMPETICION = '" + scategoria + "'", "");
+            try {
+                while(rcategoria.next()){
+                   scategoria=(rcategoria.getString("ID")); 
+                } 
+            }catch (SQLException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }           
+
+            int categoria = Integer.parseInt(scategoria);    
+            int division = Integer.parseInt(sdivision);
             conn.updateData("equipos", "NOMBRE = '" + nuevo + "', ID_COMPETICION = '" +categoria + "', ID_DIVISION = '" + division + "'",  "NOMBRE LIKE '" + anterior+ "'");
             conn.getConection().commit();
             conn.desconectar();
+        
         }catch(SQLException ex){
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(null, "Error al editar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);

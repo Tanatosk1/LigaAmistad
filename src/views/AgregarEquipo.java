@@ -135,19 +135,19 @@ public class AgregarEquipo extends javax.swing.JDialog {
 
     private void btnAgregarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEquipoActionPerformed
         String nombre = txtAgregarEquipo.getText();
-            int categoria = cbAgregarEquipoCategoria.getSelectedIndex();
-            int division = cbAgregarEquipoDivision.getSelectedIndex();
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            if (txtAgregarEquipo.getText().equals("")){              
-                JOptionPane.showMessageDialog(rootPane, "Debe escribir el nombre de un equipo","Nombre del equipo", JOptionPane.QUESTION_MESSAGE, icon);
-            }if (cbAgregarEquipoCategoria.getSelectedItem().toString().equals("Selecciona una categoría")){
-                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una categoría","Selecciona una categoría", JOptionPane.QUESTION_MESSAGE, icon);
-            }if (cbAgregarEquipoDivision.getSelectedItem().toString().equals("Selecciona una división")){
-                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una división","Selecciona una división", JOptionPane.QUESTION_MESSAGE, icon);
-            }else{            
-                ge.guardarEquipo(nombre, categoria, division);
-                dispose();
-            }
+        String categoria = cbAgregarEquipoCategoria.getSelectedItem().toString();
+        String division = cbAgregarEquipoDivision.getSelectedItem().toString();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+        if (txtAgregarEquipo.getText().equals("")){              
+            JOptionPane.showMessageDialog(rootPane, "Debe escribir el nombre de un equipo","Nombre del equipo", JOptionPane.QUESTION_MESSAGE, icon);
+        }if (cbAgregarEquipoCategoria.getSelectedItem().toString().equals("Selecciona una categoría")){
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una categoría","Selecciona una categoría", JOptionPane.QUESTION_MESSAGE, icon);
+        }if (cbAgregarEquipoDivision.getSelectedItem().toString().equals("Selecciona una división")){
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una división","Selecciona una división", JOptionPane.QUESTION_MESSAGE, icon);
+        }else{            
+            ge.guardarEquipo(nombre, categoria, division);
+            dispose();
+        }
     }//GEN-LAST:event_btnAgregarEquipoActionPerformed
 
     private void btnCancelarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEquipoActionPerformed

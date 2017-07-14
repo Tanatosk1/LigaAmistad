@@ -9,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import views.AgregarEquipo;
 import views.Restricciones;
 
 /**
@@ -147,6 +146,42 @@ public class MostrarDatos {
             }
         con.desconectar();
         tCalendario.setModel(model);
+    }
+    
+    public void llenarComboAgregarEquiposCategoria(JComboBox cbAgregarEquipoCategoria, String equipo) {
+        con.conectar();
+        String select ="c.COMPETICION";
+        String from ="competicion c INNER JOIN equipos e ON c.ID = e.ID_COMPETICION";
+        String where ="e.NOMBRE = '"+equipo+"'" ;
+        ResultSet equipos = con.getValues(select, from, where , "");        
+
+            try {
+                while(equipos.next()){
+                cbAgregarEquipoCategoria.setSelectedItem(equipos.getString("COMPETICION"));
+                }
+
+            }catch (SQLException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        con.desconectar();
+    }
+    
+    public void llenarComboAgregarEquiposDivision (JComboBox cbAgregarEquipoDivision, String equipo) {
+        con.conectar();
+        String select ="d.DIVISION";
+        String from ="division d INNER JOIN equipos e on d.ID = e.ID_DIVISION";
+        String where ="e.NOMBRE = '"+equipo+"'" ;
+        ResultSet equipos = con.getValues(select, from, where , "");        
+
+            try {
+                while(equipos.next()){
+                cbAgregarEquipoDivision.setSelectedItem(equipos.getString("DIVISION"));
+                }
+
+            }catch (SQLException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        con.desconectar();
     }
     
     private String calculaDia(Date fecha){
