@@ -5,7 +5,10 @@
  */
 package views;
 
+import connection.Conn;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import sources.GestionarEquipos;
 import sources.MostrarDatos;
@@ -17,6 +20,7 @@ import sources.MostrarDatos;
 public class EditarEquipo extends javax.swing.JDialog {
     private final MostrarDatos md = new MostrarDatos();
     private final GestionarEquipos ge = new GestionarEquipos();
+    private final Conn con = new Conn();
     private String campoAnterior = null;
     /**
      * Creates new form EditarCampo
@@ -30,6 +34,24 @@ public class EditarEquipo extends javax.swing.JDialog {
         md.llenarComboEquipos(this.cbEditarEquipo);
         md.llenarComboCategorias(this.cbEditarEquipoCategoria);
         md.llenarComboDivisiones(this.cbEditarEquipoDivision);
+    }
+    
+    public void llenarComboAgregarEquiposCategoria(JComboBox cbAgregarEquipoCategoria){
+        String equipo = cbEditarEquipo.getSelectedItem().toString();
+        con.conectar();
+//        ResultSet equipos = con.getValues("competicion.COMPETICION", "competicion, equipos", "equipos.ID_COMPETICION = competicion.ID and equipos.NOMBRE = '" +equipo +"'" , "");
+        ResultSet equipos = con.getValues("competicion.COMPETICION", "competicion, equipos", "equipos.ID_COMPETICION = competicion.ID and equipos.NOMBRE = '" +equipo +"'" , "");        
+        cbAgregarEquipoCategoria.setSelectedItem(equipos);
+//            try {
+//                cbAgregarEquipoCategoria.setSelectedItem(equipos);
+//                
+////                while(equipos.next()){
+////                    cbEquipos.addItem(equipos.getString("NOMBRE"));
+////                } 
+//            }catch (SQLException ex) {
+//                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+        con.desconectar();
     }
 
     /**
@@ -151,6 +173,7 @@ public class EditarEquipo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEquipoActionPerformed
+        llenarComboAgregarEquiposCategoria(this.cbEditarEquipoCategoria);
         if(cbEditarEquipo.getSelectedItem()=="Seleccione un equipo"){
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Seleccione un equipo", JOptionPane.QUESTION_MESSAGE, icon);

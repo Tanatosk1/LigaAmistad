@@ -19,6 +19,7 @@ public class AgregarEquipo extends javax.swing.JDialog {
     private final MostrarDatos md = new MostrarDatos();
     private final GestionarEquipos ge = new GestionarEquipos();
 
+
     /**
      * Creates new form EditarCampo
      */
@@ -133,7 +134,7 @@ public class AgregarEquipo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEquipoActionPerformed
-            String nombre = txtAgregarEquipo.getText();
+        String nombre = txtAgregarEquipo.getText();
             int categoria = cbAgregarEquipoCategoria.getSelectedIndex();
             int division = cbAgregarEquipoDivision.getSelectedIndex();
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
@@ -209,6 +210,6 @@ public class AgregarEquipo extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbAgregarEquipoDivision;
     private javax.swing.JLabel lblAgreagarEquipo;
     private javax.swing.JLabel lblLogoAgregarEquipo;
-    private javax.swing.JTextField txtAgregarEquipo;
+    public javax.swing.JTextField txtAgregarEquipo;
     // End of variables declaration//GEN-END:variables
 }

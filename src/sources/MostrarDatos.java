@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import views.AgregarEquipo;
 import views.Restricciones;
 
 /**
@@ -17,6 +18,7 @@ import views.Restricciones;
  */
 public class MostrarDatos {
     private final Conn con = new Conn();
+
     
     public void llenarComboCategorias(JComboBox cbCategoria){
         con.conectar();
@@ -71,7 +73,7 @@ public class MostrarDatos {
             }
         con.desconectar();
     }
-    
+       
     public void llenarComboNoCoincidir(JComboBox cbNoCoincidir, int id){
         cbNoCoincidir.removeAllItems();
         try {

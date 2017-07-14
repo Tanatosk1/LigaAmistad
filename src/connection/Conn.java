@@ -116,6 +116,7 @@ public class Conn {
 
             return resultSet;
         } catch (SQLException ex) {
+            System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Error en la adquisición de datos\n"+ex);
         }
         return null;
