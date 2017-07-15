@@ -141,7 +141,7 @@ public class GeneraCalendario {
         int cont = 0;
         Date dateIni = null;
         Date dateFin = null;
-        
+        ArrayList camposUsados = new ArrayList();
         bucle:
         for(int d = 0; d < totalPartidosMostrados; d++){
             try {
@@ -167,7 +167,7 @@ System.out.println("Verificamos si existe restricción restriccion = " + restric
 //System.out.println("El numero de la fila del resultset es " + row);
                         while(restriccion){
 System.out.println("Entramos en el while porque restricción es true");
-System.out.println("d = " + d + " El equipo " + tabla.getValueAt(d, 5) + " No puede jugar en el campo " + camposDis.getString("CAMPO"));
+System.out.println("d = " + d + " arraylist row = "+camposDis.getRow()+" El equipo " + tabla.getValueAt(d, 5) + " No puede jugar en el campo " + camposDis.getString("CAMPO"));
                             camposDis.next();
 System.out.println("Nos movemos al siguiente campo que es " + camposDis.getString("CAMPO"));
                             restriccion = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
@@ -185,6 +185,22 @@ System.out.println("Contador vale " + cont +" Salimos del bucle y continuamos la
                         }
                         if(!restriccion){
 System.out.println("Resulta que no hay restricción, restriccion = " + restriccion);
+System.out.println("Verifico si hay algo en el arraylist camposUsados");
+                            if(camposUsados.size() > 0){
+System.out.println("Si hay algo en el arraylist, lo comparo con el campo a asignar");
+                                for(int cu = 0; cu < camposUsados.size(); cu++){
+System.out.println("Entro en un for para verificar todos los añadidos, cu = "+cu);
+System.out.println("El dato en el arraylist es "+camposUsados.get(cu)+" la fila del resultset es "+camposDis.getRow());
+                                    if((int)camposUsados.get(cu) == (int)camposDis.getRow()){
+                                        camposDis.next();
+                                        System.out.println("Al ser iguales, muevo el resultset al siguiente, ahora es "+camposDis.getRow());
+                                        if(camposDis.isLast()){
+System.out.println("Ha llegado a la última fila del resultset, la muevo a la primera");
+                                            camposDis.first();
+                                        }
+                                    }
+                                }
+                            }
 System.out.println("Asigno el campo " + camposDis.getString("CAMPO") + " a la tabla");
                             tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
                             idcampos.add(camposDis.getInt("ID_CAMPO"));
@@ -204,12 +220,14 @@ System.out.println("Sumo un día a la fecha, ahora es "+setDay.getTime());
 System.out.println("Llamo al método que comprueba si el dia de la fecha indicada es igual al que se encuentra en la tabla y de coincidir la escribe en la tabla");
                                 pintarFecha(d, newDay, setDay.getTime(), tabla);
                             }
-System.out.println("Elimino el registro que acabo de agregar a la tabla, que es "+camposDis.getString("CAMPO")+" a las "+camposDis.getString("HORA"));
-                            camposDis.deleteRow();
-                            camposDis.first();
-System.err.println("Nos movemos al principio del resulset, ahora el campo es "+camposDis.getString("CAMPO") + " y el valor del for es "+d);
+System.out.println("Inserto en el array list la fila con el campo que he utilizado, que es "+camposDis.getRow());
+                            camposUsados.add(camposDis.getRow());
+                            camposDis.absolute(0);
+System.out.println("Nos movemos al principio del resulset, ahora el campo es "+camposDis.getString("CAMPO") + " y el valor del for es "+d);
+                        
                         }
                     }catch(SQLException ex){
+                        System.err.println(ex.getMessage());
                     }
                 }else{
                     ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
