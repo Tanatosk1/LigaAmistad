@@ -136,70 +136,90 @@ public class GeneraCalendario {
             }
         }
         boolean jornadaCorrecta = false;
-        boolean restriccion;
+        boolean restriccion = false;
         int row;
         int cont = 0;
         Date dateIni = null;
         Date dateFin = null;
-        try {
-            dateIni = formatter.parse(dateInString);
-            dateFin = formatter.parse(dateFinString);
-        } catch (ParseException ex) {
-            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Calendar setDay = Calendar.getInstance();
-        int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
-        setDay.setTime(dateIni);
-System.out.println("Mostrados " +totalPartidosMostrados);
+        
         bucle:
         for(int d = 0; d < totalPartidosMostrados; d++){
+            try {
+                dateIni = formatter.parse(dateInString);
+                dateFin = formatter.parse(dateFinString);
+            } catch (ParseException ex) {
+                Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Calendar setDay = Calendar.getInstance();
+            int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
+            setDay.setTime(dateIni);
+System.out.println("Entramos en el for d = " + d);
             if(this.jornada == (int)model.getValueAt(d, 1)){
-                //jornadaCorrecta = true;
+System.out.println("Combo jornada y celda iguales");
                 if(totalHorariosDisponibles >= partidosPorJornada){
+System.out.println("Campos disponibles mayor que partidos por jornada");
                     try{
                         camposDis.next();
+System.out.println("Primer campo " + camposDis.getString("CAMPO"));
                         restriccion = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
-                        row = camposDis.getRow();
+System.out.println("Verificamos si existe restricción restriccion = " + restriccion);
+                        //row = camposDis.getRow();
+//System.out.println("El numero de la fila del resultset es " + row);
                         while(restriccion){
+System.out.println("Entramos en el while porque restricción es true");
 System.out.println("d = " + d + " El equipo " + tabla.getValueAt(d, 5) + " No puede jugar en el campo " + camposDis.getString("CAMPO"));
                             camposDis.next();
+System.out.println("Nos movemos al siguiente campo que es " + camposDis.getString("CAMPO"));
                             restriccion = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
-System.out.println(camposDis.getRow());
+System.out.println("Verificamos nuevamente si existe restricción, restriccion = " + restriccion);
                             if(camposDis.isLast()){
+System.out.println("Hemos llegado al ultimo campo disponible que es "+camposDis.getString("CAMPO"));
                                 camposDis.first();
+System.out.println("Nos movemos al primer campo que es "+camposDis.getString("CAMPO"));
                                 cont++;
                                 if (cont >=1){
+System.out.println("Contador vale " + cont +" Salimos del bucle y continuamos la ejecución del for ahora con valor " +d);
                                     continue bucle;
                                 }
                             }
                         }
                         if(!restriccion){
+System.out.println("Resulta que no hay restricción, restriccion = " + restriccion);
+System.out.println("Asigno el campo " + camposDis.getString("CAMPO") + " a la tabla");
                             tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
                             idcampos.add(camposDis.getInt("ID_CAMPO"));
+System.out.println("Asigno el día (Calculado por su ID) a la tabla");
                             tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), d, 3);
+System.out.println("Asigno la hora a la tabla");
                             tabla.setValueAt(camposDis.getString("HORA"), d, 4);
                             String dayOfWeek = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
+System.out.println("Obtengo el día de la semana de la fecha de inicio indicada en la aplicación que es " +dayOfWeek);
                             pintarFecha(d, dayOfWeek, dateIni, tabla);
-                            for(int a = 1; a < dias-1; a++){
+System.out.println("Llamo al método que comprueba si el dia de la fecha indicada es igual al que se encuentra en la tabla y de coincidir la escribe en la tabla");
+                            for(int a = 1; a < dias; a++){
+System.out.println("Entro en un for para comprobar todas las fechas, con un rango del numero de días puestos en la app, ahora es " +a);
                                 setDay.add(Calendar.DAY_OF_YEAR, 1);
+System.out.println("Sumo un día a la fecha, ahora es "+setDay.getTime());
                                 String newDay = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
+System.out.println("Llamo al método que comprueba si el dia de la fecha indicada es igual al que se encuentra en la tabla y de coincidir la escribe en la tabla");
                                 pintarFecha(d, newDay, setDay.getTime(), tabla);
                             }
+System.out.println("Elimino el registro que acabo de agregar a la tabla, que es "+camposDis.getString("CAMPO")+" a las "+camposDis.getString("HORA"));
+                            camposDis.deleteRow();
                             camposDis.first();
+System.err.println("Nos movemos al principio del resulset, ahora el campo es "+camposDis.getString("CAMPO") + " y el valor del for es "+d);
                         }
                     }catch(SQLException ex){
-//System.err.println(ex.getCause());
                     }
                 }else{
-                    //jornadaCorrecta = false;
                     ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
                     JOptionPane.showMessageDialog(null, "NO hay suficientes horarios para los partidos mostrados", "Insuficientes horarios", JOptionPane.QUESTION_MESSAGE, icon);
                     break;
                 }
             }
-            System.out.println("d = " + d);
-            System.out.println("Jornada = " + this.jornada);
-            System.out.println("Tabla = " + (int)model.getValueAt(d, 1));
+/*System.out.println("d = " + d);
+System.out.println("Jornada = " + this.jornada);
+System.out.println("Tabla = " + (int)model.getValueAt(d, 1));*/
         }
         conn.desconectar();
         /** Fin reparto de campos **/
@@ -267,9 +287,10 @@ System.out.println(camposDis.getRow());
             SimpleDateFormat formatterShow = new SimpleDateFormat("yyyy-MM-dd");
             //for(int q = 0; q < totalPartidosMostrados; q++){
                 if(this.jornada == (int)model.getValueAt(r, 1)){
-System.out.println("dayOfWeek "+dayOfWeek);
-System.out.println("tabla"+tabla.getValueAt(r, 3));
+System.out.println("El combo jornada y el campos de la tabla coinciden");
+System.out.println("El día de la semana de la tabla es "+dayOfWeek+" y el día en la tabla es "+tabla.getValueAt(r,3));
                     if(dayOfWeek.equalsIgnoreCase(tabla.getValueAt(r,3).toString())){
+System.out.println("Como coinciden imprimo en la tabla la fecha " +formatterShow.format(dateIni) );
                         tabla.setValueAt(formatterShow.format(dateIni), r, 2);
                     }
                 }
