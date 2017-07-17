@@ -135,9 +135,10 @@ public class GeneraCalendario {
                 partidosPorJornada++;
             }
         }
-        boolean jornadaCorrecta = false;
-        boolean restriccion = false;
-        int row;
+        //boolean jornadaCorrecta = false;
+        boolean restriccionLocal;
+        boolean restriccionVisitante;
+        //int row;
         int cont = 0;
         Date dateIni = null;
         Date dateFin = null;
@@ -155,26 +156,30 @@ public class GeneraCalendario {
             setDay.setTime(dateIni);
 System.out.println("Entramos en el for d = " + d);
             if(this.jornada == (int)model.getValueAt(d, 1)){
-System.out.println("Combo jornada y celda iguales");
+//System.out.println("Combo jornada y celda iguales");
                 if(totalHorariosDisponibles >= partidosPorJornada){
-System.out.println("Campos disponibles mayor que partidos por jornada");
+//System.out.println("Campos disponibles mayor que partidos por jornada");
                     try{
                         camposDis.next();
 System.out.println("Primer campo " + camposDis.getString("CAMPO"));
-                        restriccion = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
-System.out.println("Verificamos si existe restricción restriccion = " + restriccion);
+                        restriccionLocal = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
+                        restriccionVisitante = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
+System.out.println("Verificamos si existe restricción equipo local restriccion = " + restriccionLocal);
+System.out.println("Verificamos si existe restricción equipo visitante restriccion = " + restriccionVisitante);
                         //row = camposDis.getRow();
 //System.out.println("El numero de la fila del resultset es " + row);
-                        while(restriccion){
+                        while(restriccionLocal | restriccionVisitante){
 System.out.println("Entramos en el while porque restricción es true");
-System.out.println("d = " + d + " arraylist row = "+camposDis.getRow()+" El equipo " + tabla.getValueAt(d, 5) + " No puede jugar en el campo " + camposDis.getString("CAMPO"));
+System.out.println("d = " + d + " arraylist row = "+camposDis.getRow()+" El equipo " + tabla.getValueAt(d, 5) + " o su visitante, no puede jugar en el campo " + camposDis.getString("CAMPO"));
                             camposDis.next();
 System.out.println("Nos movemos al siguiente campo que es " + camposDis.getString("CAMPO"));
-                            restriccion = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
-System.out.println("Verificamos nuevamente si existe restricción, restriccion = " + restriccion);
+                            restriccionLocal = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
+                            restriccionVisitante = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
+System.out.println("Verificamos nuevamente si existe restricción equipo local, restriccion = " + restriccionLocal);
+System.out.println("Verificamos nuevamente si existe restricción equipo visitante restriccion = " + restriccionVisitante);
                             if(camposDis.isLast()){
 System.out.println("Hemos llegado al ultimo campo disponible que es "+camposDis.getString("CAMPO"));
-                                camposDis.first();
+                                camposDis.absolute(0);
 System.out.println("Nos movemos al primer campo que es "+camposDis.getString("CAMPO"));
                                 cont++;
                                 if (cont >=1){
@@ -183,8 +188,8 @@ System.out.println("Contador vale " + cont +" Salimos del bucle y continuamos la
                                 }
                             }
                         }
-                        if(!restriccion){
-System.out.println("Resulta que no hay restricción, restriccion = " + restriccion);
+                        if(!restriccionLocal){
+System.out.println("Resulta que no hay restricción, restriccion = " + restriccionLocal);
 System.out.println("Verifico si hay algo en el arraylist camposUsados");
                             if(camposUsados.size() > 0){
 System.out.println("Si hay algo en el arraylist, lo comparo con el campo a asignar");
@@ -194,10 +199,10 @@ System.out.println("El dato en el arraylist es "+camposUsados.get(cu)+" la fila 
                                     if((int)camposUsados.get(cu) == (int)camposDis.getRow()){
                                         camposDis.next();
                                         System.out.println("Al ser iguales, muevo el resultset al siguiente, ahora es "+camposDis.getRow());
-                                        if(camposDis.isLast()){
-System.out.println("Ha llegado a la última fila del resultset, la muevo a la primera");
-                                            camposDis.first();
-                                        }
+                                        //if(camposDis.isLast()){
+//System.out.println("Ha llegado a la última fila del resultset, la muevo a la primera");
+                                        //    camposDis.first();
+                                        //}
                                     }
                                 }
                             }
