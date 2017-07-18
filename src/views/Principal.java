@@ -51,13 +51,13 @@ private FondoPrincipal fondo;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/logo1.png"));
+        ImageIcon icon = new ImageIcon("logo.png");
         Icon icono = new ImageIcon(icon.getImage().getScaledInstance(450, 450, Image.SCALE_DEFAULT));
         
         lblLogoPrincipal.setText(null);
         lblLogoPrincipal.setIcon( icono );
         
-        Image iconMenu = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/logo1.png"));
+        Image iconMenu = Toolkit.getDefaultToolkit().getImage("logo.png");
         setIconImage(iconMenu);
         
         
@@ -131,7 +131,6 @@ private FondoPrincipal fondo;
         setTitle("Gestión de Partidos");
         setIconImages(null);
         setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
         setSize(new java.awt.Dimension(1366, 768));
         addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -471,7 +470,7 @@ private FondoPrincipal fondo;
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
+                .addContainerGap(218, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lblLogoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -507,7 +506,7 @@ private FondoPrincipal fondo;
         int seleccion = fileChooser.showOpenDialog(new Principal());
         if (seleccion == JFileChooser.APPROVE_OPTION){
             File fichero = fileChooser.getSelectedFile();
-            File destino = new File ("src\\resources\\logo1.png");
+            File destino = new File ("logo.png");
             try{
 
                 if(!destino.exists()) {
@@ -523,7 +522,7 @@ private FondoPrincipal fondo;
                     Icon icono = new ImageIcon(icon.getImage().getScaledInstance(450, 450, Image.SCALE_DEFAULT));
                     lblLogoPrincipal.setText(null);
                     lblLogoPrincipal.setIcon( icono );
-                    Image iconMenu = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/logo1.png"));
+                    Image iconMenu = Toolkit.getDefaultToolkit().getImage("logo.png");
                     setIconImage(iconMenu);
                 }
                 finally {
