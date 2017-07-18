@@ -5,6 +5,9 @@
  */
 package views;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.GestionarEquipos;
@@ -145,7 +148,11 @@ public class AgregarEquipo extends javax.swing.JDialog {
         }if (cbAgregarEquipoDivision.getSelectedItem().toString().equals("Selecciona una división")){
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una división","Selecciona una división", JOptionPane.QUESTION_MESSAGE, icon);
         }else{            
-            ge.guardarEquipo(nombre, categoria, division);
+            try {
+                ge.guardarEquipo(nombre, categoria, division);
+            } catch (SQLException ex) {
+                Logger.getLogger(AgregarEquipo.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dispose();
         }
     }//GEN-LAST:event_btnAgregarEquipoActionPerformed
