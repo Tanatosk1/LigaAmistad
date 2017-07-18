@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.LeerExcel;
 
@@ -71,7 +72,8 @@ public class Conn {
             st.executeUpdate(Query);
         } catch (SQLException ex) {
             LeerExcel.terminar = true;
-            JOptionPane.showMessageDialog(null, "Verfica que la tabla equipo este actualizada" );
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Verfica que la tabla equipo este actualizada\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
     
@@ -86,10 +88,17 @@ public class Conn {
             Statement st = link.createStatement();
 
             st.executeUpdate(Query);
-            //JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
+//            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
+//            JOptionPane.showMessageDialog(null, "Datos guardados con éxito", "Información", JOptionPane.QUESTION_MESSAGE, icon);
         } catch (SQLException ex) {
-            System.err.println(ex);
-            //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos\n" + ex);
+            if (ex.getErrorCode() == 1062){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Registro duplicado", "Error", JOptionPane.QUESTION_MESSAGE, icon);
+            
+            }else{
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
+            }
         }
     }
     
@@ -117,7 +126,8 @@ public class Conn {
             return resultSet;
         } catch (SQLException ex) {
             System.out.println(ex);
-            JOptionPane.showMessageDialog(null,"Error en la adquisición de datos\n"+ex);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error en la adquisición de datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
         return null;
     }
@@ -165,9 +175,11 @@ public class Conn {
             String Query = "UPDATE " + table + " SET " + set +" WHERE " + where;
             Statement st = link.createStatement();
             st.executeUpdate(Query);
-            //JOptionPane.showMessageDialog(null, "Datos editados de forma exitosa");
+//            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
+//            JOptionPane.showMessageDialog(null, "Datos actualizados con éxito", "Información", JOptionPane.QUESTION_MESSAGE, icon);
         } catch (SQLException ex) {
-            //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos\n"+ex);  
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al actualizar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
     
@@ -181,9 +193,11 @@ public class Conn {
             String query = "DELETE FROM " + table + " WHERE " + where;
             Statement st = link.createStatement();
             st.executeUpdate(query);
-            //JOptionPane.showMessageDialog(null, "Datos eliminados de forma exitosa");
+//            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
+//            JOptionPane.showMessageDialog(null, "Datos eliminados con éxito", "Información", JOptionPane.QUESTION_MESSAGE, icon);
         } catch (SQLException ex) {
-            //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos\n"+ex);
+             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al eliminar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
     
@@ -226,7 +240,8 @@ public class Conn {
             st.execute(query);
             
         }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
         
         try{
@@ -235,7 +250,8 @@ public class Conn {
             Statement st2 = link.createStatement();
             st2.execute(query2);
         }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
         }
     }
 }
