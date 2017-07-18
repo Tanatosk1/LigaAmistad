@@ -22,55 +22,34 @@ public class GestionarCategorias {
     public GestionarCategorias(){
         
     }
-    
-    public void guardarCategoria(String categoria){
-        try {
+     
+    public void guardarCategoria(String categoria) throws SQLException{
+
             conn.conectar();
             conn.insertData("competicion", "null,'" + categoria + "'" );
             conn.getConection().commit();
             conn.desconectar();
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
-            JOptionPane.showMessageDialog(null, "Categoría guardada con éxito", "Información", JOptionPane.QUESTION_MESSAGE, icon);
-        } catch (SQLException ex) {
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
     }
     
-    public void editarCategoria(String anterior, String nuevo){
-        try{
+    public void editarCategoria(String anterior, String nuevo) throws SQLException{
             conn.conectar();
             conn.updateData("competicion", "COMPETICION = '" + nuevo + "'", "COMPETICION LIKE '" + anterior+ "'");
             conn.getConection().commit();
             conn.desconectar();
-        }catch(SQLException ex){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al editar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
     }
     
-    public void eliminarCategoria(String categoria){
-        try{
+    public void eliminarCategoria(String categoria) throws SQLException{
             conn.conectar();
             conn.deleteData("competicion", "COMPETICION like '" + categoria + "'");
             conn.getConection().commit();
             conn.desconectar();
-        }catch(SQLException ex){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
     }
     
-    public void vaciarCategoria(){
-        try{
+    public void vaciarCategoria() throws SQLException{
             conn.conectar();
             conn.deleteTable("competicion");
             conn.getConection().commit();
             conn.desconectar();
-        }catch(SQLException ex){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
     }
     
 }
