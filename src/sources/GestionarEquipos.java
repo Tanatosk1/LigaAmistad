@@ -49,10 +49,10 @@ public class GestionarEquipos {
         }
     }
     
-    public void guardarEquipo( String equipo, String scategoria, String sdivision ){
+    public void guardarEquipo( String equipo, String scategoria, String sdivision ) throws SQLException{
         
-        try {
             conn.conectar();
+             
             ResultSet rdivision = conn.getValues("ID", "division", "DIVISION = '" + sdivision + "'", "");
             try {
                 while(rdivision.next()){
@@ -73,20 +73,14 @@ public class GestionarEquipos {
 
             int categoria = Integer.parseInt(scategoria);    
             int division = Integer.parseInt(sdivision);
+
             conn.insertData("equipos", "null,'" + equipo + "', '" + categoria + "','" + division + "', 1");
             conn.getConection().commit();
-            conn.desconectar();
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
-            JOptionPane.showMessageDialog(null, "Equipo guardado con éxito", "Información", JOptionPane.QUESTION_MESSAGE, icon);
-        
-        } catch (SQLException ex) {
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
+            conn.desconectar();      
     }
     
-    public void editarEquipo(String anterior, String nuevo, String scategoria, String sdivision){
-        try{
+    public void editarEquipo(String anterior, String nuevo, String scategoria, String sdivision) throws SQLException{
+
             conn.conectar();
             ResultSet rdivision = conn.getValues("ID", "division", "DIVISION = '" + sdivision + "'", "");
             try {
@@ -112,45 +106,32 @@ public class GestionarEquipos {
             conn.getConection().commit();
             conn.desconectar();
         
-        }catch(SQLException ex){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al editar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
     }
         
-    public void eliminarEquipo(String equipo){
-        try{
+    public void eliminarEquipo(String equipo) throws SQLException{
+
             conn.conectar();
             conn.deleteData("equipos", "NOMBRE like '" + equipo + "'");
             conn.getConection().commit();
             conn.desconectar();
-        }catch(SQLException ex){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
+
     }
         
-    public void vaciarEquipo(){
-        try{
+    public void vaciarEquipo() throws SQLException{
+
             conn.conectar();
             conn.deleteTable("equipos");
             conn.getConection().commit();
             conn.desconectar();
-        }catch(SQLException ex){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
+
     }
     
-    public void congelarEquipo(int idEquipo, boolean estado){
-        try {
+    public void congelarEquipo(int idEquipo, boolean estado) throws SQLException{
             conn.conectar();
             conn.updateData("equipos", "congelado = " + estado, "ID = " + idEquipo);
             conn.getConection().commit();
             conn.desconectar();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex, "Error", JOptionPane.ERROR_MESSAGE);
-        }
+
     }
     
     public void mostrarRestricciones(){
