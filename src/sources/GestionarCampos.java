@@ -26,54 +26,32 @@ public class GestionarCampos {
         
     }
     
-    public void guardarCampo(String campo){
-        try {
+    public void guardarCampo(String campo) throws SQLException{
             conn.conectar();
             conn.insertData("campos", "null,'" + campo + "', 1");
             conn.getConection().commit();
             conn.desconectar();
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
-            JOptionPane.showMessageDialog(null, "Campo guardado con éxito", "Información", JOptionPane.QUESTION_MESSAGE, icon);
-        } catch (SQLException ex) {
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
     }
     
-    public void editarCampo(String anterior, String nuevo){
-        try{
+    public void editarCampo(String anterior, String nuevo) throws SQLException{
             conn.conectar();
             conn.updateData("campos", "CAMPO = '" + nuevo + "'", "CAMPO LIKE '" + anterior+ "'");
             conn.getConection().commit();
             conn.desconectar();
-        }catch(SQLException ex){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al editar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
     }
     
-    public void eliminarCampo(String campo){
-        try{
+    public void eliminarCampo(String campo) throws SQLException{
             conn.conectar();
             conn.deleteData("campos", "CAMPO like '" + campo + "'");
             conn.getConection().commit();
             conn.desconectar();
-        }catch(SQLException ex){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al borrar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
     }
     
-    public void vaciarCampo(){
-        try{
+    public void vaciarCampo() throws SQLException{
             conn.conectar();
             conn.deleteTable("campos");
             conn.getConection().commit();
             conn.desconectar();
-        }catch(SQLException ex){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
     }
     
     public void gestionarCampo(ArrayList<OCampos> condiciones){
@@ -98,16 +76,11 @@ public class GestionarCampos {
         }
     }
     
-    public void congelarCampo(String campo, boolean estado){
-        try {
+    public void congelarCampo(String campo, boolean estado) throws SQLException{
             conn.conectar();
             conn.updateData("campos", "CONGELADO = " + estado, "CAMPO like '" + campo + "'");
             conn.getConection().commit();
             conn.desconectar();
-        } catch (SQLException ex) {
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(null, "Error al guardar los datos\n"+ex, "Error", JOptionPane.QUESTION_MESSAGE, icon);
-        }
     }
     
     public void mostrarDatos(){
