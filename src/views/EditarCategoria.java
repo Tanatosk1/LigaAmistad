@@ -5,6 +5,9 @@
  */
 package views;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.GestionarCategorias;
@@ -146,7 +149,11 @@ public class EditarCategoria extends javax.swing.JDialog {
             if(btnEditarCategoria.getText().equals("Editar")){
                 categoriaAnterior = this.cbEditarCategoria.getSelectedItem().toString();
             }else{
-                gct.editarCategoria(categoriaAnterior, this.cbEditarCategoria.getSelectedItem().toString());
+                try {
+                    gct.editarCategoria(categoriaAnterior, this.cbEditarCategoria.getSelectedItem().toString());
+                } catch (SQLException ex) {
+                    Logger.getLogger(EditarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 dispose();
             }
             btnEditarCategoria.setText("Aceptar");
@@ -158,7 +165,11 @@ public class EditarCategoria extends javax.swing.JDialog {
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una categoría","Selecciona una categoría", JOptionPane.QUESTION_MESSAGE, icon);    
         }else {
-            gct.eliminarCategoria(this.cbEditarCategoria.getSelectedItem().toString());
+            try {
+                gct.eliminarCategoria(this.cbEditarCategoria.getSelectedItem().toString());
+            } catch (SQLException ex) {
+                Logger.getLogger(EditarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dispose();
         }
     }//GEN-LAST:event_btnEliminarCategoriaActionPerformed

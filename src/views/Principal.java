@@ -13,6 +13,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -579,7 +582,11 @@ private FondoPrincipal fondo;
                 int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
                 if (confir == JOptionPane.YES_OPTION) {
-                    gc.vaciarCampo();
+                    try {
+                        gc.vaciarCampo();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
         } 
     }//GEN-LAST:event_miVaciarCamposActionPerformed
@@ -632,7 +639,11 @@ private FondoPrincipal fondo;
                 int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
                 if (confir == JOptionPane.YES_OPTION) {
-                    gct.vaciarCategoria();
+                    try {
+                        gct.vaciarCategoria();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
         }  
     }//GEN-LAST:event_miVaciarCategoriaActionPerformed
@@ -645,7 +656,11 @@ private FondoPrincipal fondo;
                 int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
                 if (confir == JOptionPane.YES_OPTION) {
-                    gd.vaciarDivision();
+                    try {
+                        gd.vaciarDivision();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
         }  
     }//GEN-LAST:event_mivaciarDivisionActionPerformed
@@ -658,7 +673,11 @@ private FondoPrincipal fondo;
                 int confir = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta acción?\nEste cambio no se puede deshacer ", "Advertencia de seguridad", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
                 if (confir == JOptionPane.YES_OPTION) {
-                    ge.vaciarEquipo();
+                    try {
+                        ge.vaciarEquipo();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
         } 
     }//GEN-LAST:event_mivaciarEquiposActionPerformed

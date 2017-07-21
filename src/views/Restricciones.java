@@ -1607,9 +1607,17 @@ public Restricciones() {
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
             if(this.ckCongelarCampo.isSelected()){
-                gc.congelarCampo(this.cbCampos.getSelectedItem().toString(), true);
+                try {
+                    gc.congelarCampo(this.cbCampos.getSelectedItem().toString(), true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }else{  
-                gc.congelarCampo(this.cbCampos.getSelectedItem().toString(), false);
+                try {
+                    gc.congelarCampo(this.cbCampos.getSelectedItem().toString(), false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             this.restriccionesDeCampo();
             this.disableCampos();
@@ -1728,9 +1736,17 @@ public Restricciones() {
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
             if(this.ckCongelarEquipo.isSelected()){
-                ge.congelarEquipo(this.cbEquipos.getSelectedIndex(), true);
+                try {
+                    ge.congelarEquipo(this.cbEquipos.getSelectedIndex(), true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }else{  
-                ge.congelarEquipo(this.cbEquipos.getSelectedIndex(), false);
+                try {
+                    ge.congelarEquipo(this.cbEquipos.getSelectedIndex(), false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             this.restriccionesDeEquipo();
             if(correcto){

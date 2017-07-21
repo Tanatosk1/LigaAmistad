@@ -5,6 +5,9 @@
  */
 package views;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.GestionarDivisiones;
@@ -140,7 +143,11 @@ public class EditarDivision extends javax.swing.JDialog {
             if(btnEditarDivision.getText().equals("Editar")){
                 divisionAnterior = this.cbEditarDivision.getSelectedItem().toString();
             }else{
-                gd.editarDivision(divisionAnterior, this.cbEditarDivision.getSelectedItem().toString());
+                try {
+                    gd.editarDivision(divisionAnterior, this.cbEditarDivision.getSelectedItem().toString());
+                } catch (SQLException ex) {
+                    Logger.getLogger(EditarDivision.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 dispose();
             }
             btnEditarDivision.setText("Aceptar");
@@ -152,7 +159,11 @@ public class EditarDivision extends javax.swing.JDialog {
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una división","Selecciona una división", JOptionPane.QUESTION_MESSAGE, icon);    
         }else {
-            gd.eliminarDivision(this.cbEditarDivision.getSelectedItem().toString());
+            try {
+                gd.eliminarDivision(this.cbEditarDivision.getSelectedItem().toString());
+            } catch (SQLException ex) {
+                Logger.getLogger(EditarDivision.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dispose();
         }
     }//GEN-LAST:event_btnEliminarDivisionActionPerformed

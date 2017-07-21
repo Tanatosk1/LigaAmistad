@@ -5,6 +5,9 @@
  */
 package views;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.GestionarCampos;
@@ -115,7 +118,11 @@ public class AgregarCampo extends javax.swing.JDialog {
                 ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
                 JOptionPane.showMessageDialog(rootPane, "Debe escribir el nombre de un campo","Nombre del campo", JOptionPane.QUESTION_MESSAGE, icon);
             }else{
-                gc.guardarCampo(campo);
+                try {
+                    gc.guardarCampo(campo);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AgregarCampo.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 dispose();
             }
         

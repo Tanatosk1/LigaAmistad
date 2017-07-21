@@ -5,6 +5,9 @@
  */
 package views;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.GestionarCampos;
@@ -142,7 +145,11 @@ public class EditarCampo extends javax.swing.JDialog {
             if(btnEditarCampo.getText().equals("Editar")){
                 campoAnterior = this.cbEditarCampo.getSelectedItem().toString();
             }else{
-                gc.editarCampo(campoAnterior, this.cbEditarCampo.getSelectedItem().toString());
+                try {
+                    gc.editarCampo(campoAnterior, this.cbEditarCampo.getSelectedItem().toString());
+                } catch (SQLException ex) {
+                    Logger.getLogger(EditarCampo.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 dispose();
             }
             btnEditarCampo.setText("Aceptar");
@@ -154,7 +161,11 @@ public class EditarCampo extends javax.swing.JDialog {
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Selecciona un campo", JOptionPane.QUESTION_MESSAGE, icon);    
         }else {
-            gc.eliminarCampo(this.cbEditarCampo.getSelectedItem().toString());
+            try {
+                gc.eliminarCampo(this.cbEditarCampo.getSelectedItem().toString());
+            } catch (SQLException ex) {
+                Logger.getLogger(EditarCampo.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dispose();
         }
     }//GEN-LAST:event_btnEliminarCampoActionPerformed

@@ -5,6 +5,9 @@
  */
 package views;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.GestionarDivisiones;
@@ -115,7 +118,11 @@ public class AgregarDivision extends javax.swing.JDialog {
                 ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
                 JOptionPane.showMessageDialog(rootPane, "Debe escribir el nombre de una división","Nombre de la división", JOptionPane.QUESTION_MESSAGE, icon);
             }else{
-                gd.guardarDivision(division);
+                try {
+                    gd.guardarDivision(division);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AgregarDivision.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 dispose();
             }
         

@@ -5,6 +5,9 @@
  */
 package views;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.GestionarCategorias;
@@ -117,7 +120,11 @@ public class AgregarCategoria extends javax.swing.JDialog {
                 ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
                 JOptionPane.showMessageDialog(rootPane, "Debe escribir el nombre de una categoría","Nombre de la categoría", JOptionPane.QUESTION_MESSAGE, icon);
             }else{
-                gct.guardarCategoria(categoria);
+                try {
+                    gct.guardarCategoria(categoria);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AgregarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 dispose();
             }
         

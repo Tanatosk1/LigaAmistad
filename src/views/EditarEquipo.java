@@ -177,7 +177,11 @@ public class EditarEquipo extends javax.swing.JDialog {
             if(btnEditarEquipo.getText().equals("Editar")){
                 campoAnterior = this.cbEditarEquipo.getSelectedItem().toString();
             }else{
-                ge.editarEquipo(campoAnterior, nombre, categoria, division);
+                try {
+                    ge.editarEquipo(campoAnterior, nombre, categoria, division);
+                } catch (SQLException ex) {
+                    Logger.getLogger(EditarEquipo.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 dispose();
             }
             btnEditarEquipo.setText("Aceptar");
@@ -190,7 +194,11 @@ public class EditarEquipo extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Seleccione un equipo", JOptionPane.QUESTION_MESSAGE, icon);
             
         }else{
-            ge.eliminarEquipo(this.cbEditarEquipo.getSelectedItem().toString());
+             try {
+                 ge.eliminarEquipo(this.cbEditarEquipo.getSelectedItem().toString());
+             } catch (SQLException ex) {
+                 Logger.getLogger(EditarEquipo.class.getName()).log(Level.SEVERE, null, ex);
+             }
             dispose();
          }
     }//GEN-LAST:event_btnEliminarEquipoActionPerformed
