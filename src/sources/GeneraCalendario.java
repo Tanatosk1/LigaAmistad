@@ -136,13 +136,17 @@ public class GeneraCalendario {
             }
         }
         //boolean jornadaCorrecta = false;
-        boolean restriccionLocal;
-        boolean restriccionVisitante;
+        boolean restriccionLocalCampo;
+        boolean restriccionVisitanteCampo;
+        boolean restriccionLocalDia;
+        boolean restriccionVisitanteDia;
+        boolean restriccionLocalHora;
+        boolean restriccionVisitanteHora;
         //int row;
-        int cont = 0;
+        //int cont = 0;
         Date dateIni = null;
         Date dateFin = null;
-        ArrayList camposUsados = new ArrayList();
+        //ArrayList camposUsados = new ArrayList();
         bucle:
         for(int d = 0; d < totalPartidosMostrados; d++){
             try {
@@ -152,98 +156,157 @@ public class GeneraCalendario {
                 Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
             }
             Calendar setDay = Calendar.getInstance();
-            int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
+            //int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
             setDay.setTime(dateIni);
-System.out.println("Entramos en el for d = " + d);
-            if(this.jornada == (int)model.getValueAt(d, 1)){
-//System.out.println("Combo jornada y celda iguales");
-                if(totalHorariosDisponibles >= partidosPorJornada){
-//System.out.println("Campos disponibles mayor que partidos por jornada");
-                    try{
-                        camposDis.next();
-System.out.println("Primer campo " + camposDis.getString("CAMPO"));
-                        restriccionLocal = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
-                        restriccionVisitante = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
-System.out.println("Verificamos si existe restricción equipo local restriccion = " + restriccionLocal);
-System.out.println("Verificamos si existe restricción equipo visitante restriccion = " + restriccionVisitante);
-                        //row = camposDis.getRow();
-//System.out.println("El numero de la fila del resultset es " + row);
-                        while(restriccionLocal | restriccionVisitante){
-System.out.println("Entramos en el while porque restricción es true");
-System.out.println("d = " + d + " arraylist row = "+camposDis.getRow()+" El equipo " + tabla.getValueAt(d, 5) + " o su visitante, no puede jugar en el campo " + camposDis.getString("CAMPO"));
-                            camposDis.next();
-System.out.println("Nos movemos al siguiente campo que es " + camposDis.getString("CAMPO"));
-                            restriccionLocal = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
-                            restriccionVisitante = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
-System.out.println("Verificamos nuevamente si existe restricción equipo local, restriccion = " + restriccionLocal);
-System.out.println("Verificamos nuevamente si existe restricción equipo visitante restriccion = " + restriccionVisitante);
-                            if(camposDis.isLast()){
-System.out.println("Hemos llegado al ultimo campo disponible que es "+camposDis.getString("CAMPO"));
-                                camposDis.absolute(0);
-System.out.println("Nos movemos al primer campo que es "+camposDis.getString("CAMPO"));
-                                cont++;
-                                if (cont >=1){
-System.out.println("Contador vale " + cont +" Salimos del bucle y continuamos la ejecución del for ahora con valor " +d);
-                                    continue bucle;
-                                }
-                            }
+
+            try {
+                if(this.jornada == (int)model.getValueAt(d, 1)){
+                    if(totalHorariosDisponibles >= partidosPorJornada){
+                        System.out.println("Estoy en el valor "+d+" del bucle");
+                        System.out.println("Antes de entrar al while, camposDis = "+camposDis.getRow());
+                        if(camposDis.isLast()){
+                            System.out.println("Estoy antes del último, me muevo al primero");
+                            camposDis.beforeFirst();
                         }
-                        if(!restriccionLocal){
-System.out.println("Resulta que no hay restricción, restriccion = " + restriccionLocal);
-System.out.println("Verifico si hay algo en el arraylist camposUsados");
-                            if(camposUsados.size() > 0){
-System.out.println("Si hay algo en el arraylist, lo comparo con el campo a asignar");
-                                for(int cu = 0; cu < camposUsados.size(); cu++){
-System.out.println("Entro en un for para verificar todos los añadidos, cu = "+cu);
-System.out.println("El dato en el arraylist es "+camposUsados.get(cu)+" la fila del resultset es "+camposDis.getRow());
-                                    if((int)camposUsados.get(cu) == (int)camposDis.getRow()){
-                                        camposDis.next();
-                                        System.out.println("Al ser iguales, muevo el resultset al siguiente, ahora es "+camposDis.getRow());
-                                        //if(camposDis.isLast()){
-//System.out.println("Ha llegado a la última fila del resultset, la muevo a la primera");
-                                        //    camposDis.first();
-                                        //}
+                        while(camposDis.next()){
+                            System.out.println("Iniciado el while, camposDis = " + camposDis.getRow());
+                            restriccionLocalCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
+                            if(!restriccionLocalCampo){
+                                restriccionVisitanteCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
+                                if(!restriccionVisitanteCampo){
+                                    restriccionLocalDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.getInt("ID_DIA"));
+                                    if(!restriccionLocalDia){
+                                        restriccionVisitanteDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_DIA"));
+                                        if(!restriccionVisitanteDia){
+                                            restriccionLocalHora = verificaRestriccionesHora(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.getInt("ID_HORA"));
+                                            if(!restriccionLocalHora){
+                                                restriccionVisitanteHora = verificaRestriccionesHora(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_HORA"));
+                                                if(!restriccionVisitanteHora){
+                                                    tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
+                                                    tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), d, 3);
+                                                    tabla.setValueAt(camposDis.getString("HORA"), d, 4);System.out.println("Después de imprimir en la tabla, camposDis = "+camposDis.getRow());
+                                                    continue bucle;
+                                                }
+                                            }
+                                        }
                                     }
                                 }
+                            }else{
+                                System.out.println("EL equipo local no puede jugar en el campo "+camposDis.getString("CAMPO"));
                             }
-System.out.println("Asigno el campo " + camposDis.getString("CAMPO") + " a la tabla");
-                            tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
-                            idcampos.add(camposDis.getInt("ID_CAMPO"));
-System.out.println("Asigno el día (Calculado por su ID) a la tabla");
-                            tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), d, 3);
-System.out.println("Asigno la hora a la tabla");
-                            tabla.setValueAt(camposDis.getString("HORA"), d, 4);
-                            String dayOfWeek = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
-System.out.println("Obtengo el día de la semana de la fecha de inicio indicada en la aplicación que es " +dayOfWeek);
-                            pintarFecha(d, dayOfWeek, dateIni, tabla);
-System.out.println("Llamo al método que comprueba si el dia de la fecha indicada es igual al que se encuentra en la tabla y de coincidir la escribe en la tabla");
-                            for(int a = 1; a < dias; a++){
-System.out.println("Entro en un for para comprobar todas las fechas, con un rango del numero de días puestos en la app, ahora es " +a);
-                                setDay.add(Calendar.DAY_OF_YEAR, 1);
-System.out.println("Sumo un día a la fecha, ahora es "+setDay.getTime());
-                                String newDay = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
-System.out.println("Llamo al método que comprueba si el dia de la fecha indicada es igual al que se encuentra en la tabla y de coincidir la escribe en la tabla");
-                                pintarFecha(d, newDay, setDay.getTime(), tabla);
-                            }
-System.out.println("Inserto en el array list la fila con el campo que he utilizado, que es "+camposDis.getRow());
-                            camposUsados.add(camposDis.getRow());
-                            camposDis.absolute(0);
-System.out.println("Nos movemos al principio del resulset, ahora el campo es "+camposDis.getString("CAMPO") + " y el valor del for es "+d);
-                        
                         }
-                    }catch(SQLException ex){
-                        System.err.println(ex.getMessage());
+                        System.out.println("Fuera del while, camposDis = "+camposDis.getRow());
+                    }else{
+                        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+                        JOptionPane.showMessageDialog(null, "NO hay suficientes horarios para los partidos mostrados", "Insuficientes horarios", JOptionPane.QUESTION_MESSAGE, icon);
+                        break;
                     }
-                }else{
-                    ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-                    JOptionPane.showMessageDialog(null, "NO hay suficientes horarios para los partidos mostrados", "Insuficientes horarios", JOptionPane.QUESTION_MESSAGE, icon);
-                    break;
                 }
+            } catch (SQLException ex) {
+                System.err.println(ex.getCause());
             }
-/*System.out.println("d = " + d);
-System.out.println("Jornada = " + this.jornada);
-System.out.println("Tabla = " + (int)model.getValueAt(d, 1));*/
+            
         }
+                
+                
+                
+                
+                
+                
+                /**************************************************************************/
+                /*
+                
+                System.out.println("Entramos en el for d = " + d);
+                if(this.jornada == (int)model.getValueAt(d, 1)){
+                //System.out.println("Combo jornada y celda iguales");
+                if(totalHorariosDisponibles >= partidosPorJornada){
+                //System.out.println("Campos disponibles mayor que partidos por jornada");
+                try{
+                System.out.println(camposDis.getRow());
+                camposDis.next();
+                System.out.println("Primer campo " + camposDis.getString("CAMPO"));
+                restriccionLocal = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
+                restriccionVisitante = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
+                System.out.println("Verificamos si existe restricción equipo local restriccion = " + restriccionLocal);
+                System.out.println("Verificamos si existe restricción equipo visitante restriccion = " + restriccionVisitante);
+                //row = camposDis.getRow();
+                //System.out.println("El numero de la fila del resultset es " + row);
+                while(restriccionLocal | restriccionVisitante){
+                System.out.println("Entramos en el while porque restricción es true");
+                System.out.println("d = " + d + " arraylist row = "+camposDis.getRow()+" El equipo " + tabla.getValueAt(d, 5) + " o su visitante, no puede jugar en el campo " + camposDis.getString("CAMPO"));
+                camposDis.next();
+                System.out.println("Nos movemos al siguiente campo que es " + camposDis.getString("CAMPO"));
+                restriccionLocal = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
+                restriccionVisitante = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
+                System.out.println("Verificamos nuevamente si existe restricción equipo local, restriccion = " + restriccionLocal);
+                System.out.println("Verificamos nuevamente si existe restricción equipo visitante restriccion = " + restriccionVisitante);
+                if(camposDis.isLast()){
+                System.out.println("Hemos llegado al ultimo campo disponible que es "+camposDis.getString("CAMPO"));
+                camposDis.absolute(0);
+                System.out.println("Nos movemos al primer campo que es "+camposDis.getString("CAMPO"));
+                cont++;
+                if (cont >=1){
+                System.out.println("Contador vale " + cont +" Salimos del bucle y continuamos la ejecución del for ahora con valor " +d);
+                continue bucle;
+                }
+                }
+                }
+                if(!restriccionLocal){
+                System.out.println("Resulta que no hay restricción, restriccion = " + restriccionLocal);
+                System.out.println("Verifico si hay algo en el arraylist camposUsados");
+                if(camposUsados.size() > 0){
+                System.out.println("Si hay algo en el arraylist, lo comparo con el campo a asignar");
+                for(int cu = 0; cu < camposUsados.size(); cu++){
+                System.out.println("Entro en un for para verificar todos los añadidos, cu = "+cu);
+                System.out.println("El dato en el arraylist es "+camposUsados.get(cu)+" la fila del resultset es "+camposDis.getRow());
+                if((int)camposUsados.get(cu) == (int)camposDis.getRow()){
+                camposDis.next();
+                System.out.println("Al ser iguales, muevo el resultset al siguiente, ahora es "+camposDis.getRow());
+                //if(camposDis.isLast()){
+                //System.out.println("Ha llegado a la última fila del resultset, la muevo a la primera");
+                //    camposDis.first();
+                //}
+                }
+                }
+                }
+                System.out.println("Asigno el campo " + camposDis.getString("CAMPO") + " a la tabla");
+                tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
+                idcampos.add(camposDis.getInt("ID_CAMPO"));
+                System.out.println("Asigno el día (Calculado por su ID) a la tabla");
+                tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), d, 3);
+                System.out.println("Asigno la hora a la tabla");
+                tabla.setValueAt(camposDis.getString("HORA"), d, 4);
+                String dayOfWeek = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
+                System.out.println("Obtengo el día de la semana de la fecha de inicio indicada en la aplicación que es " +dayOfWeek);
+                pintarFecha(d, dayOfWeek, dateIni, tabla);
+                System.out.println("Llamo al método que comprueba si el dia de la fecha indicada es igual al que se encuentra en la tabla y de coincidir la escribe en la tabla");
+                for(int a = 1; a < dias; a++){
+                System.out.println("Entro en un for para comprobar todas las fechas, con un rango del numero de días puestos en la app, ahora es " +a);
+                setDay.add(Calendar.DAY_OF_YEAR, 1);
+                System.out.println("Sumo un día a la fecha, ahora es "+setDay.getTime());
+                String newDay = strDays[setDay.get(Calendar.DAY_OF_WEEK)-1];
+                System.out.println("Llamo al método que comprueba si el dia de la fecha indicada es igual al que se encuentra en la tabla y de coincidir la escribe en la tabla");
+                pintarFecha(d, newDay, setDay.getTime(), tabla);
+                }
+                System.out.println("Inserto en el array list la fila con el campo que he utilizado, que es "+camposDis.getRow());
+                camposUsados.add(camposDis.getRow());
+                camposDis.beforeFirst();
+                System.out.println("Nos movemos al principio del resulset, ahora el campo es "+camposDis.getString("CAMPO") + " y el valor del for es "+d);
+                }
+                }catch(SQLException ex){
+                System.out.println(ex.getMessage());
+                }
+                }else{
+                ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+                JOptionPane.showMessageDialog(null, "NO hay suficientes horarios para los partidos mostrados", "Insuficientes horarios", JOptionPane.QUESTION_MESSAGE, icon);
+                break;
+                }
+                }
+                /********************************************************************************/
+                
+                /*System.out.println("d = " + d);
+                System.out.println("Jornada = " + this.jornada);
+                System.out.println("Tabla = " + (int)model.getValueAt(d, 1));*/
         conn.desconectar();
         /** Fin reparto de campos **/
         
@@ -332,6 +395,54 @@ System.out.println("Como coinciden imprimo en la tabla la fecha " +formatterShow
                 while(restricciones.next()){
                     if(local.equals(restricciones.getString("NOMBRE"))){
                         if(campo == restricciones.getInt("ID_CAMPO")){
+                            return true;
+                        }
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conn.desconectar();
+        return false;
+    }
+    
+    private boolean verificaRestriccionesDias(int partido, JTable tabla, int jornada, String local, int dias){
+        Conn conn = new Conn();
+        ResultSet restricciones;
+        
+        conn.conectar();
+        restricciones = conn.getValues("*", "restricciones r INNER JOIN equipos e ON r.ID_EQUIPO = e.ID", "", "");
+        
+        try {
+            if((int)tabla.getValueAt(partido, 1) == jornada){
+                while(restricciones.next()){
+                    if(local.equals(restricciones.getString("NOMBRE"))){
+                        if(dias == restricciones.getInt("ID_DIA")){
+                            return true;
+                        }
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conn.desconectar();
+        return false;
+    }
+    
+    private boolean verificaRestriccionesHora(int partido, JTable tabla, int jornada, String local, int hora){
+        Conn conn = new Conn();
+        ResultSet restricciones;
+        
+        conn.conectar();
+        restricciones = conn.getValues("*", "restricciones r INNER JOIN equipos e ON r.ID_EQUIPO = e.ID", "", "");
+        
+        try {
+            if((int)tabla.getValueAt(partido, 1) == jornada){
+                while(restricciones.next()){
+                    if(local.equals(restricciones.getString("NOMBRE"))){
+                        if(hora == restricciones.getInt("HORA")){
                             return true;
                         }
                     }
