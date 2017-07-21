@@ -165,7 +165,7 @@ public class GeneraCalendario {
                         System.out.println("Estoy en el valor "+d+" del bucle");
                         System.out.println("Antes de entrar al while, camposDis = "+camposDis.getRow());
                         if(camposDis.isLast()){
-                            System.out.println("Estoy antes del último, me muevo al primero");
+                            System.out.println("Estoy en el último, me muevo al primero");
                             camposDis.beforeFirst();
                         }
                         while(camposDis.next()){
