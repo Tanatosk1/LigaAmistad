@@ -196,7 +196,11 @@ public class GeneraCalendario {
                                                     continue bucle;
                                                 }
                                             }
+                                        }else{
+                                            System.out.println("EL equipo Visitanto no puede jugar el día "+camposDis.getInt("ID_DIA"));
                                         }
+                                    }else{
+                                        System.out.println("EL equipo local no puede jugar el día "+camposDis.getInt("ID_DIA"));
                                     }
                                 }else{
                                     System.out.println("EL equipo visitante no puede jugar en el campo "+camposDis.getString("CAMPO"));
