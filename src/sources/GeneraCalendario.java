@@ -142,11 +142,11 @@ public class GeneraCalendario {
         boolean restriccionVisitanteDia;
         boolean restriccionLocalHora;
         boolean restriccionVisitanteHora;
-        //int row;
+        int row;
         //int cont = 0;
         Date dateIni = null;
         Date dateFin = null;
-        //ArrayList camposUsados = new ArrayList();
+        ArrayList camposUsados = new ArrayList();
         bucle:
         for(int d = 0; d < totalPartidosMostrados; d++){
             try {
@@ -164,10 +164,11 @@ public class GeneraCalendario {
                     if(totalHorariosDisponibles >= partidosPorJornada){
                         System.out.println("Estoy en el valor "+d+" del bucle");
                         System.out.println("Antes de entrar al while, camposDis = "+camposDis.getRow());
-                        if(camposDis.isLast()){
+                        if(camposDis.isLast() | camposDis.isAfterLast()){
                             System.out.println("Estoy en el último, me muevo al primero");
                             camposDis.beforeFirst();
                         }
+                        cambioCampo:
                         while(camposDis.next()){
                             System.out.println("Iniciado el while, camposDis = " + camposDis.getRow());
                             restriccionLocalCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
@@ -182,14 +183,23 @@ public class GeneraCalendario {
                                             if(!restriccionLocalHora){
                                                 restriccionVisitanteHora = verificaRestriccionesHora(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_HORA"));
                                                 if(!restriccionVisitanteHora){
+                                                    for(int it = 0; it < camposUsados.size(); it++){
+                                                        if((int)camposUsados.get(it) == camposDis.getRow()){
+                                                            continue cambioCampo;
+                                                        }
+                                                    }
                                                     tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
                                                     tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), d, 3);
                                                     tabla.setValueAt(camposDis.getString("HORA"), d, 4);System.out.println("Después de imprimir en la tabla, camposDis = "+camposDis.getRow());
+                                                    System.out.println("Guardo la fila "+camposDis.getRow()+" del ResultSet en un ArrayList");
+                                                    camposUsados.add(camposDis.getRow());
                                                     continue bucle;
                                                 }
                                             }
                                         }
                                     }
+                                }else{
+                                    System.out.println("EL equipo visitante no puede jugar en el campo "+camposDis.getString("CAMPO"));
                                 }
                             }else{
                                 System.out.println("EL equipo local no puede jugar en el campo "+camposDis.getString("CAMPO"));
