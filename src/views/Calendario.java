@@ -38,7 +38,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         initComponents();
         setLocationRelativeTo(null);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-        Image icon = Toolkit.getDefaultToolkit().getImage("logo1.png");
+        Image icon = Toolkit.getDefaultToolkit().getImage("logo.png");
         setIconImage(icon);       
         fondo = new FondoVentana();
         this.add(fondo);
