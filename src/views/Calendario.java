@@ -38,7 +38,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         initComponents();
         setLocationRelativeTo(null);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/logo1.png"));
+        Image icon = Toolkit.getDefaultToolkit().getImage("logo1.png");
         setIconImage(icon);       
         fondo = new FondoVentana();
         this.add(fondo);
@@ -131,7 +131,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
         lbInicioFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
         lbInicioFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbInicioFechaInicio.setText("Fecha de Incio");
+        lbInicioFechaInicio.setText("Fecha de Inicio");
 
         lblInicioFechaFin.setBackground(new java.awt.Color(255, 255, 255));
         lblInicioFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
