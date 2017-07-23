@@ -175,27 +175,27 @@ public class GeneraCalendario {
                             if(!restriccionLocalCampo){
                                 restriccionVisitanteCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
                                 if(!restriccionVisitanteCampo){
-                                    restriccionLocalDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.getInt("ID_DIA"));
+                                    restriccionLocalDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.getInt("ID_DIA"), camposDis.getInt("HORA"));
                                     if(!restriccionLocalDia){
-                                        restriccionVisitanteDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_DIA"));
+                                        restriccionVisitanteDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_DIA"), camposDis.getInt("HORA"));
                                         if(!restriccionVisitanteDia){
-                                            restriccionLocalHora = verificaRestriccionesHora(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.getInt("ID_HORA"));
-                                            if(!restriccionLocalHora){
-                                                restriccionVisitanteHora = verificaRestriccionesHora(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_HORA"));
-                                                if(!restriccionVisitanteHora){
-                                                    for(int it = 0; it < camposUsados.size(); it++){
-                                                        if((int)camposUsados.get(it) == camposDis.getRow()){
-                                                            continue cambioCampo;
-                                                        }
-                                                    }
-                                                    tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
-                                                    tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), d, 3);
-                                                    tabla.setValueAt(camposDis.getString("HORA"), d, 4);System.out.println("Después de imprimir en la tabla, camposDis = "+camposDis.getRow());
-                                                    System.out.println("Guardo la fila "+camposDis.getRow()+" del ResultSet en un ArrayList");
-                                                    camposUsados.add(camposDis.getRow());
-                                                    continue bucle;
+                                            //restriccionLocalHora = verificaRestriccionesHora(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.getInt("ID_HORA"));
+                                            //if(!restriccionLocalHora){
+                                                //restriccionVisitanteHora = verificaRestriccionesHora(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_HORA"));
+                                                //if(!restriccionVisitanteHora){
+                                            for(int it = 0; it < camposUsados.size(); it++){
+                                                if((int)camposUsados.get(it) == camposDis.getRow()){
+                                                    continue cambioCampo;
                                                 }
                                             }
+                                            tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
+                                            tabla.setValueAt(getDia(camposDis.getInt("ID_DIA")), d, 3);
+                                            tabla.setValueAt(camposDis.getString("HORA"), d, 4);System.out.println("Después de imprimir en la tabla, camposDis = "+camposDis.getRow());
+                                            System.out.println("Guardo la fila "+camposDis.getRow()+" del ResultSet en un ArrayList");
+                                            camposUsados.add(camposDis.getRow());
+                                            continue bucle;
+                                                //}
+                                            //}
                                         }else{
                                             System.out.println("EL equipo Visitanto no puede jugar el día "+camposDis.getInt("ID_DIA"));
                                         }
@@ -421,7 +421,7 @@ System.out.println("Como coinciden imprimo en la tabla la fecha " +formatterShow
         return false;
     }
     
-    private boolean verificaRestriccionesDias(int partido, JTable tabla, int jornada, String local, int dias){
+    private boolean verificaRestriccionesDias(int partido, JTable tabla, int jornada, String local, int dias, int hora){
         Conn conn = new Conn();
         ResultSet restricciones;
         
@@ -433,7 +433,9 @@ System.out.println("Como coinciden imprimo en la tabla la fecha " +formatterShow
                 while(restricciones.next()){
                     if(local.equals(restricciones.getString("NOMBRE"))){
                         if(dias == restricciones.getInt("ID_DIA")){
-                            return true;
+                            if(hora == restricciones.getInt("HORA")){
+                                return true;
+                            }
                         }
                     }
                 }
