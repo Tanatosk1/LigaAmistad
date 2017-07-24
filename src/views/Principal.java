@@ -561,7 +561,7 @@ private FondoPrincipal fondo;
             File fichero = fileChooser.getSelectedFile();
             //Desktop.getDesktop().open(fichero);
             //aqui debe coger los datos del excel y cargarlos a la BBDD
-            new Thread(new LeerExcel(fichero)).start();
+            //new Thread(new LeerExcel(fichero)).start();
 
         }
     }//GEN-LAST:event_miImportarCamposActionPerformed
@@ -601,7 +601,7 @@ private FondoPrincipal fondo;
             File fichero = fileChooser.getSelectedFile();
             //Desktop.getDesktop().open(fichero);
             //aqui debe coger los datos del excel y cargarlos a la BBDD
-            new Thread(new LeerExcel(fichero)).start();
+            //new Thread(new LeerExcel(fichero)).start();
 
         }
     }//GEN-LAST:event_miImportarEquiposActionPerformed

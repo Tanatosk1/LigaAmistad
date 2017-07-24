@@ -587,8 +587,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
             File fichero = fileChooser.getSelectedFile();
             //Desktop.getDesktop().open(fichero);
             //aqui debe coger los datos del excel y cargarlos a la BBDD
-            new Thread(new LeerExcel(fichero)).start();
-
+            new Thread(new LeerExcel(fichero, this.tCalendario)).start();
         }
     }//GEN-LAST:event_miImportarcalendarioActionPerformed
 
