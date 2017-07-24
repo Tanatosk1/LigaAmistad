@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -23,10 +24,12 @@ import org.apache.poi.xssf.usermodel.*;
 public class LeerExcel implements Runnable{
     public static int max;
     public static boolean terminar;
-    private File file;
+    private final File file;
+    private static JTable tCalendario;
     
-    public LeerExcel(File file) {               
+    public LeerExcel(File file, JTable tCalendario) {               
         this.file = file;
+        LeerExcel.tCalendario = tCalendario;
         terminar  = false;
         max = 0;
     }
@@ -141,6 +144,8 @@ public class LeerExcel implements Runnable{
         //Si no hay problemas, mostramos mensaje
         if(!LeerExcel.terminar){
             JOptionPane.showMessageDialog(null, "Datos importados con exito");
+            MostrarDatos md = new MostrarDatos();
+            md.llenarTCalendario(tCalendario);
         }
     }
 }
