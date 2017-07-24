@@ -212,22 +212,12 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
         cbDivision.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas" }));
-        cbDivision.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbDivisionActionPerformed(evt);
-            }
-        });
 
         lblJornada.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblJornada.setText("Jornada");
 
         cbJornada.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbJornada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas" }));
-        cbJornada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbJornadaActionPerformed(evt);
-            }
-        });
 
         lblFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblFechaInicio.setText("Fecha de Incio");
@@ -550,10 +540,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
     }//GEN-LAST:event_btnFiltroAceptarActionPerformed
 
-    private void cbDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDivisionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbDivisionActionPerformed
-
     private void btnGenerarInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarInicioActionPerformed
         if(dFechaInicioTemporada.getDate()==null){
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
@@ -587,7 +573,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
             File fichero = fileChooser.getSelectedFile();
             //Desktop.getDesktop().open(fichero);
             //aqui debe coger los datos del excel y cargarlos a la BBDD
-            new Thread(new LeerExcel(fichero, this.tCalendario)).start();
+            new Thread(new LeerExcel(fichero, this.tCalendario, this.cbJornada, this.cbGenerarJornada)).start();
         }
     }//GEN-LAST:event_miImportarcalendarioActionPerformed
 
@@ -601,10 +587,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
               this.cbJornada.getSelectedIndex(), this.tCalendario);
         
     }//GEN-LAST:event_btnFiltroLimpiarActionPerformed
-
-    private void cbJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbJornadaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbJornadaActionPerformed
 
     private void cbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCategoriaActionPerformed
         // TODO add your handling code here:
