@@ -19,7 +19,7 @@ public class CrearDocumentos {
     
     public void crearExcel(String ruta, JTable tabla){
     try{    
-        String[] headers = {"ID","JORNADA", "FECHA", "DÍA", "HORA", "LOCAL", "VISITANTE", "CAMPO", "COMPETICION"};
+        String[] headers = {"","JORNADA", "FECHA", "DÍA", "HORA", "LOCAL", "VISITANTE", "CAMPO", "COMPETICION"};
 
         //Creamos un libro excel
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -27,6 +27,7 @@ public class CrearDocumentos {
         //Creamos una hoja de excel
         XSSFSheet sheet = workbook.createSheet("Liga La Amistad");
         //Asignamos tamaño a las columnas
+        sheet.setColumnWidth(0, 250);
         sheet.setColumnWidth(2, 4096);
         sheet.setColumnWidth(3, 4096);
         sheet.setColumnWidth(5, 10350);
@@ -46,11 +47,15 @@ public class CrearDocumentos {
         CellStyle dataStyle = workbook.createCellStyle();
         dataStyle.setAlignment(HorizontalAlignment.CENTER);
         
+        // Encabezado de la página excel        
+        XSSFRow logo = sheet.createRow(0);
+        logo.createCell(1).setCellValue("Hola");
+        
         // Crea la fila para los encabezados
-        XSSFRow headerRow = sheet.createRow(0);
+        XSSFRow headerRow = sheet.createRow(1);
         
         // Crea las celdas y agrega el texto para cada encabezado
-        for (int i = 0; i < headers.length; ++i) {
+        for (int i = 1; i < headers.length; ++i) {
             String header = headers[i];
             XSSFCell cell = headerRow.createCell(i);
             cell.setCellStyle(headerStyle);
@@ -75,11 +80,11 @@ public class CrearDocumentos {
         //Creamos una fila por cada registro y asignamos los textos a cada celda
         for(int i = 0; i < datos.length; ++i){
             //Se crea una fila
-            XSSFRow dataRow = sheet.createRow(i+1);
+            XSSFRow dataRow = sheet.createRow(i+2);
             
             //Extraemos los datos de la matriz
             Object[] d = datos[i];
-            int id = (int) d[0];
+            //int id = (int) d[0];
             int jornada = (int) d[1];
             String fecha = (String) d[2];
             String dia = (String) d[3];
@@ -90,8 +95,8 @@ public class CrearDocumentos {
             String competicion = (String) d[8];
             
             //Agregamos el texto a cada celda del excel y centramos el contenido
-            dataRow.createCell(0).setCellValue(id);
-            dataRow.getCell(0).setCellStyle(dataStyle);
+            //dataRow.createCell(0).setCellValue(id);
+            //dataRow.getCell(0).setCellStyle(dataStyle);
             dataRow.createCell(1).setCellValue(jornada);
             dataRow.getCell(1).setCellStyle(dataStyle);
             dataRow.createCell(2).setCellValue(fecha);
