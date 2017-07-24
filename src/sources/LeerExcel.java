@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import org.apache.poi.ss.usermodel.Cell;
@@ -26,10 +27,14 @@ public class LeerExcel implements Runnable{
     public static boolean terminar;
     private final File file;
     private static JTable tCalendario;
+    private static JComboBox cJornada;
+    private static JComboBox cGeneraJornada;
     
-    public LeerExcel(File file, JTable tCalendario) {               
+    public LeerExcel(File file, JTable tCalendario, JComboBox cJornadas, JComboBox cGeneraJornada) {               
         this.file = file;
         LeerExcel.tCalendario = tCalendario;
+        LeerExcel.cJornada = cJornadas;
+        LeerExcel.cGeneraJornada = cGeneraJornada;
         terminar  = false;
         max = 0;
     }
@@ -146,6 +151,8 @@ public class LeerExcel implements Runnable{
             JOptionPane.showMessageDialog(null, "Datos importados con exito");
             MostrarDatos md = new MostrarDatos();
             md.llenarTCalendario(tCalendario);
+            md.llenarComboJornadas(cJornada);
+            md.llenarComboJornadas(cGeneraJornada);
         }
     }
 }
