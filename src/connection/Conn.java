@@ -207,10 +207,10 @@ public class Conn {
             for (String parametro : parametros) {
                 query += parametro;
             }
-            query += ")";
+            query += ") ENGINE=InnoDB DEFAULT CHARSET=latin1";
             System.out.println(query);
             Statement st = link.createStatement();
-            st.execute(query);
+            //st.execute(query);
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -225,7 +225,7 @@ public class Conn {
             }
             System.out.println(query);
             Statement st = link.createStatement();
-            st.execute(query);
+            //st.execute(query);
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
