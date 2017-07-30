@@ -16,7 +16,7 @@ public class GestionarBBDD {
         //try {
             conn.conectar();
             nombre = "db"+nombre;
-            String[] parametros = {"ID int(11) NOT NULL AUTO_INCREMENT,",
+            String[] parametros = {"ID int(11) NOT NULL,",
                 "JORNADA int(10) unsigned NOT NULL,",
                 "FECHA date DEFAULT NULL,",
                 "HORA time DEFAULT NULL,",
@@ -27,19 +27,23 @@ public class GestionarBBDD {
                 "ID_ARBITRO int(11) DEFAULT NULL"};
             conn.createTable(nombre, parametros);
             
-            String[] parametrosKeys = {"ADD PRIMARY KEY('ID'), ",
-                                "ADD KEY 'LOCAL' ('ID_LOCAL'), ",
-                                "ADD KEY 'VISITANTE' ('ID_VISITANTE'), ",
-                                "ADD KEY 'CAMPO' ('ID_CAMPO'), ",
-                                "ADD KEY 'ID_ARBITRO' ('ID_ARBITRO')"};
+            String[] parametrosKeys = {"ADD PRIMARY KEY(ID), ",
+                                "ADD KEY LOCAL (ID_LOCAL), ",
+                                "ADD KEY VISITANTE (ID_VISITANTE), ",
+                                "ADD KEY CAMPO (ID_CAMPO), ",
+                                "ADD KEY ID_ARBITRO (ID_ARBITRO)"};
             
             
             conn.alterTable(nombre, parametrosKeys);
             
-            String[] parametrosFiltros = {"ADD CONSTRAINT 'campeonato_ibfk_4' FOREIGN KEY ('ID_ARBITRO') REFERENCES 'arbitros' ('ID'), ",
-                                    "ADD CONSTRAINT 'campeonato_ibfk_1' FOREIGN KEY ('ID_LOCAL') REFERENCES 'equipos' ('ID'), ",
-                                    "ADD CONSTRAINT 'campeonato_ibfk_2' FOREIGN KEY ('ID_VISITANTE') REFERENCES 'equipos' ('ID'), ",
-                                    "ADD CONSTRAINT 'campeonato_ibfk_3' FOREIGN KEY ('ID_CAMPO') REFERENCES 'campos' ('ID'), ",};
+            String[] parametrosModify = {"MODIFY ID int(11) NOT NULL AUTO_INCREMENT"};
+            
+            conn.alterTable(nombre, parametrosModify);
+            
+            String[] parametrosFiltros = {"ADD CONSTRAINT "+nombre+"_ibfk_4 FOREIGN KEY (ID_ARBITRO) REFERENCES arbitros (ID), ",
+                                    "ADD CONSTRAINT "+nombre+"_ibfk_1 FOREIGN KEY (ID_LOCAL) REFERENCES equipos (ID), ",
+                                    "ADD CONSTRAINT "+nombre+"_ibfk_2 FOREIGN KEY (ID_VISITANTE) REFERENCES equipos (ID), ",
+                                    "ADD CONSTRAINT "+nombre+"_ibfk_3 FOREIGN KEY (ID_CAMPO) REFERENCES campos (ID)"};
             
             conn.alterTable(nombre, parametrosFiltros);
             //conn.getConection().commit();
