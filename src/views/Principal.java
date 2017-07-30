@@ -21,6 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import sources.CargarDatos;
 import sources.GestionarBBDD;
 import sources.GestionarCampeonato;
 import sources.GestionarCampos;
@@ -559,9 +560,8 @@ private FondoPrincipal fondo;
         if (seleccion == JFileChooser.APPROVE_OPTION)
         {
             File fichero = fileChooser.getSelectedFile();
-            //Desktop.getDesktop().open(fichero);
-            //aqui debe coger los datos del excel y cargarlos a la BBDD
-            //new Thread(new LeerExcel(fichero)).start();
+            CargarDatos cd = new CargarDatos();
+            cd.cargarCampos(fichero);
 
         }
     }//GEN-LAST:event_miImportarCamposActionPerformed
@@ -599,9 +599,8 @@ private FondoPrincipal fondo;
         if (seleccion == JFileChooser.APPROVE_OPTION)
         {
             File fichero = fileChooser.getSelectedFile();
-            //Desktop.getDesktop().open(fichero);
-            //aqui debe coger los datos del excel y cargarlos a la BBDD
-            //new Thread(new LeerExcel(fichero)).start();
+            CargarDatos cd = new CargarDatos();
+            cd.cargarEquipos(fichero);
 
         }
     }//GEN-LAST:event_miImportarEquiposActionPerformed
