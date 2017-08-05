@@ -64,9 +64,6 @@ public class GeneraCalendario {
         boolean restriccionVisitanteCampo;
         boolean restriccionLocalDia;
         boolean restriccionVisitanteDia;
-        //boolean restriccionLocalHora;
-        //boolean restriccionVisitanteHora;
-        //int row;
         Date dateIni = null;
         Date dateFin = null;
         ArrayList camposUsados = new ArrayList();
@@ -79,21 +76,16 @@ public class GeneraCalendario {
                 Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
             }
             Calendar setDay = Calendar.getInstance();
-            //int dias=(int) ((dateFin.getTime()- dateIni.getTime())/86400000) + 1;
             setDay.setTime(dateIni);
 
             try {
                 if(this.jornada == (int)model.getValueAt(d, 1)){
                     if(totalHorariosDisponibles >= partidosPorJornada){
-                        //System.out.println("Estoy en el valor "+d+" del bucle");
-                        //System.out.println("Antes de entrar al while, camposDis = "+camposDis.getRow());
                         if(camposDis.isLast() | camposDis.isAfterLast()){
-                            //System.out.println("Estoy en el último, me muevo al primero");
                             camposDis.beforeFirst();
                         }
                         cambioCampo:
                         while(camposDis.next()){
-                            //System.out.println("Iniciado el while, camposDis = " + camposDis.getRow());
                             restriccionLocalCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
                             if(!restriccionLocalCampo){
                                 restriccionVisitanteCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
@@ -115,10 +107,8 @@ public class GeneraCalendario {
                                             String diaSemana = getDia(camposDis.getInt("ID_DIA"));
                                             tabla.setValueAt(diaSemana, d, 3);
                                             System.out.println("Llamo a pintar fecha");
-                                            pintarFecha(d, diaSemana, dateIni, dateFin, tabla);
+                                            pintarFecha(d, dateIni, dateFin, tabla);
                                             tabla.setValueAt(camposDis.getString("HORA"), d, 4);
-                                            //System.out.println("Después de imprimir en la tabla, camposDis = "+camposDis.getRow());
-                                            //System.out.println("Guardo la fila "+camposDis.getRow()+" del ResultSet en un ArrayList");
                                             camposUsados.add(camposDis.getRow());
                                             continue bucle;
                                                 //}
@@ -192,7 +182,7 @@ public class GeneraCalendario {
         }
     }
     
-    private void pintarFecha(int r, String diaSemana, Date dateIni, Date dateFin, JTable tabla){
+    private void pintarFecha(int r, Date dateIni, Date dateFin, JTable tabla){
         SimpleDateFormat formatterShow = new SimpleDateFormat("yyyy-MM-dd");
         if(this.jornada == (int)model.getValueAt(r, 1)){
             while(dateIni.getTime() <= dateFin.getTime()){
