@@ -108,10 +108,10 @@ public class MostrarDatos {
     
     public void llenarTCalendario(JTable tCalendario){
         DefaultTableModel model = (DefaultTableModel) tCalendario.getModel();
-        Object[] fila = new Object[9];
+        Object[] fila = new Object[10];
         con.conectar();
         String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, l.NOMBRE AS \"LOCAL\", "
-                + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.JUGADO, com.COMPETICION AS \"CATEGORIA\", "
+                + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.APLAZADO, com.COMPETICION AS \"CATEGORIA\", "
                 + "d.DIVISION AS \"DIVISION\"";
         String from = " Campeonato c INNER JOIN Equipos l ON c.ID_LOCAL = l.ID "
                 + "INNER JOIN Equipos v ON c.ID_VISITANTE = v.ID "
@@ -137,6 +137,11 @@ public class MostrarDatos {
                         fila[8] = campeonato.getString("CATEGORIA");
                     }else{
                         fila[8] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
+                    }
+                    if(campeonato.getInt("APLAZADO") == 1){
+                        fila[9] = true;
+                    }else{
+                        fila[9] = null;
                     }
                     model.addRow(fila);
                     

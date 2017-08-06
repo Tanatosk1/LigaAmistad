@@ -50,7 +50,7 @@ public class GeneraCalendario {
         conn.conectar();
         totalHorariosDisponibles = conn.totalRegistros("campos INNER JOIN cam_horarios ON ID = ID_CAMPO", "CONGELADO = 0");
         camposDis = conn.getValues("*", "campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO INNER JOIN hora h ON ch.ID_HORA = h.ID", "CONGELADO = 0", "c.ID");
-                
+        
         /** Reparto de campos **/
         totalPartidosMostrados = model.getRowCount();
         partidosPorJornada = 0;
@@ -104,9 +104,9 @@ public class GeneraCalendario {
                                                 }
                                             }
                                             tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
+                                            idcampos.add(camposDis.getInt("ID"));
                                             String diaSemana = getDia(camposDis.getInt("ID_DIA"));
                                             tabla.setValueAt(diaSemana, d, 3);
-                                            System.out.println("Llamo a pintar fecha");
                                             pintarFecha(d, dateIni, dateFin, tabla);
                                             tabla.setValueAt(camposDis.getString("HORA"), d, 4);
                                             camposUsados.add(camposDis.getRow());
@@ -167,12 +167,16 @@ public class GeneraCalendario {
         try {
             Conn conn = new Conn();
             model = (DefaultTableModel) tabla.getModel();
-            this.jornada = (int) jornada.getSelectedItem();
+            //this.jornada = (int) jornada.getSelectedItem();
             
             conn.conectar();
             for(int i = 0; i < tabla.getRowCount(); i++){
-                if(model.getValueAt(i, 2) != null){
-                    conn.updateData("campeonato", "fecha = '" + tabla.getValueAt(i, 2) + "', hora = '" + tabla.getValueAt(i, 4) +"', ID_CAMPO = " + idcampos.get(i), "ID = " + model.getValueAt(i, 0));
+                if(tabla.getValueAt(i, 2) != null){
+                    int aplazado = 0;
+                    if(tabla.getValueAt(i, 9) != null){
+                        aplazado = 1;
+                    }
+                    conn.updateData("campeonato", "fecha = '"+tabla.getValueAt(i, 2)+"', hora = '"+tabla.getValueAt(i, 4)+"', ID_CAMPO = "+idcampos.get(i)+", APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
                 }
             }
             conn.getConection().commit();

@@ -24,7 +24,7 @@ public class Filtros {
         vaciarTabla(tabla);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
-        Object[] fila = new Object[9];
+        Object[] fila = new Object[10];
         String where = "";
         Calendar getDay = Calendar.getInstance();
         con.conectar();
@@ -32,7 +32,7 @@ public class Filtros {
         int div = division;
         int jor = jornada;
         String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, l.NOMBRE AS \"LOCAL\", "
-                + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.JUGADO, com.COMPETICION AS \"CATEGORIA\", "
+                + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.APLAZADO, com.COMPETICION AS \"CATEGORIA\", "
                 + "d.DIVISION AS \"DIVISION\"";
         String from = " Campeonato c INNER JOIN Equipos l ON c.ID_LOCAL = l.ID "
                 + "INNER JOIN Equipos v ON c.ID_VISITANTE = v.ID "
@@ -81,7 +81,11 @@ public class Filtros {
                         }else{
                             fila[8] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
                         }
-        
+                        if(campeonato.getInt("APLAZADO") == 1){
+                            fila[9] = true;
+                        }else{
+                            fila[9] = null;
+                        }
                         model.addRow(fila);
                     }
                 } 
