@@ -21,10 +21,6 @@ import javax.swing.table.DefaultTableModel;
  * @author santy
  */
 public class GeneraCalendario {
-
-    public GeneraCalendario() {
-        this.idcampos = new ArrayList();
-    }
            
     private final String[] strDays = new String[]{"Domingo", "Lunes", "Martes", "Miércoles",
         			    "Jueves", "Viernes", "Sábado"};
@@ -35,13 +31,15 @@ public class GeneraCalendario {
     private int jornada;
     private DefaultTableModel model;
     private ResultSet camposDis;
-    private final ArrayList idcampos;
+    private final ArrayList idcampos = new ArrayList();
+
   
     public void generaFechas(String fInicio, String fFin, JTable tabla, JComboBox jornada){
         Conn conn = new Conn();
         model = (DefaultTableModel) tabla.getModel();
         this.jornada = (int) jornada.getSelectedItem();
-
+        //this.idcampos = new ArrayList();
+        
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         
         String dateInString = fInicio;
@@ -54,7 +52,6 @@ public class GeneraCalendario {
         /** Reparto de campos **/
         totalPartidosMostrados = model.getRowCount();
         partidosPorJornada = 0;
-        //camposDisponibles = 0;
         for(int pa = 0; pa < totalPartidosMostrados; pa++){
             if(this.jornada == (int)model.getValueAt(pa, 1)){
                 partidosPorJornada++;
@@ -167,7 +164,6 @@ public class GeneraCalendario {
         try {
             Conn conn = new Conn();
             model = (DefaultTableModel) tabla.getModel();
-            //this.jornada = (int) jornada.getSelectedItem();
             
             conn.conectar();
             for(int i = 0; i < tabla.getRowCount(); i++){
@@ -176,7 +172,12 @@ public class GeneraCalendario {
                     if(tabla.getValueAt(i, 9) != null){
                         aplazado = 1;
                     }
-                    conn.updateData("campeonato", "fecha = '"+tabla.getValueAt(i, 2)+"', hora = '"+tabla.getValueAt(i, 4)+"', ID_CAMPO = "+idcampos.get(i)+", APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
+                    System.out.println(idcampos.size());
+                    if(idcampos.size() == 0){
+                        conn.updateData("campeonato", "APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
+                    }else{
+                        conn.updateData("campeonato", "fecha = '"+tabla.getValueAt(i, 2)+"', hora = '"+tabla.getValueAt(i, 4)+"', ID_CAMPO = "+idcampos.get(i)+", APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
+                    }
                 }
             }
             conn.getConection().commit();

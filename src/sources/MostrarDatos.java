@@ -17,8 +17,7 @@ import views.Restricciones;
  */
 public class MostrarDatos {
     private final Conn con = new Conn();
-
-    
+        
     public void llenarComboCategorias(JComboBox cbCategoria){
         con.conectar();
         ResultSet categoria = con.getValues("COMPETICION", "Competicion", "", "ID");
