@@ -142,36 +142,78 @@ public class GestionarEquipos {
             ResultSet equi = conn.getValues("r.*, d.dia, e.nombre",
                     "restricciones r LEFT JOIN dias d ON r.ID_DIA = d.ID LEFT JOIN equipos e ON r.ID_COINCIDE = e.ID",
                     "r.ID_EQUIPO = " + idEquipo, "");
+            int ambasLunes = 0;
+            int ambasMartes = 0;
+            int ambasMiercoles = 0;
+            int ambasJueves = 0;
+            int ambasViernes = 0;
+            int ambasSabado = 0;
+            int ambasDomingo = 0;
             while(equi.next()){
                 if(equi.getString("dia") != null){
                     switch (equi.getString("dia")){
                         case "Lunes":
+                            ambasLunes++;
                             r.ckLunesEquipos.setSelected(true);
-                            r.cbLunes.setSelectedIndex(equi.getInt("HORA"));
+                            if(ambasLunes == 2){
+                                r.cbLunes.setSelectedIndex(3); 
+                            }else{
+                               r.cbLunes.setSelectedIndex(equi.getInt("HORA")); 
+                            }
                             break;
                         case "Martes":
+                            ambasMartes++;
                             r.ckMartesEquipos.setSelected(true);
-                            r.cbMartes.setSelectedIndex(equi.getInt("HORA"));
+                            if(ambasMartes == 2){
+                                r.cbMartes.setSelectedIndex(3);
+                            }else{
+                                r.cbMartes.setSelectedIndex(equi.getInt("HORA"));
+                            }
                             break;
                         case "Miércoles":
+                            ambasMiercoles++;
                             r.ckMiercolesEquipos.setSelected(true);
-                            r.cbMiercoles.setSelectedIndex(equi.getInt("HORA"));
+                            if(ambasMiercoles == 2){
+                                r.cbMiercoles.setSelectedIndex(3);
+                            }else{
+                                r.cbMiercoles.setSelectedIndex(equi.getInt("HORA"));
+                            }
                             break;
                         case "Jueves":
+                            ambasJueves++;
                             r.ckJuevesEquipos.setSelected(true);
-                            r.cbJueves.setSelectedIndex(equi.getInt("HORA"));
+                            if(ambasJueves == 2){
+                               r.cbJueves.setSelectedIndex(3); 
+                            }else{
+                                r.cbJueves.setSelectedIndex(equi.getInt("HORA"));
+                            }
                             break;
                         case "Viernes":
+                            ambasViernes++;
                             r.ckViernesEquipos.setSelected(true);
-                            r.cbViernes.setSelectedIndex(equi.getInt("HORA"));
+                            if(ambasViernes == 2){
+                                r.cbViernes.setSelectedIndex(3);
+                            }else{
+                                r.cbViernes.setSelectedIndex(equi.getInt("HORA"));
+                            }
                             break;
                         case "Sábado":
+                            ambasSabado++;
                             r.ckSabadoEquipos.setSelected(true);
-                            r.cbSabado.setSelectedIndex(equi.getInt("HORA"));
+                            if(ambasSabado == 2){
+                                r.cbSabado.setSelectedIndex(3);
+                            }else{
+                                r.cbSabado.setSelectedIndex(equi.getInt("HORA"));
+                            }
                             break;
                         case "Domingo":
+                            ambasDomingo++;
                             r.ckDomingoEquipos.setSelected(true);
-                            r.cbDomingo.setSelectedIndex(equi.getInt("HORA"));
+                            if(ambasDomingo == 2){
+                                r.cbDomingo.setSelectedIndex(3);
+                            }else{
+                                r.cbDomingo.setSelectedIndex(equi.getInt("HORA"));
+                            }
                             break;
                     }
                 }

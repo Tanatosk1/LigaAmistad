@@ -87,9 +87,9 @@ public class GeneraCalendario {
                             if(!restriccionLocalCampo){
                                 restriccionVisitanteCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
                                 if(!restriccionVisitanteCampo){
-                                    restriccionLocalDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.getInt("ID_DIA"), camposDis.getInt("HORA"));
+                                    restriccionLocalDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.getInt("ID_DIA"), camposDis.getInt("ID_HORA"));
                                     if(!restriccionLocalDia){
-                                        restriccionVisitanteDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_DIA"), camposDis.getInt("HORA"));
+                                        restriccionVisitanteDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_DIA"), camposDis.getInt("ID_HORA"));
                                         if(!restriccionVisitanteDia){
                                             //restriccionLocalHora = verificaRestriccionesHora(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.getInt("ID_HORA"));
                                             //if(!restriccionLocalHora){
@@ -229,7 +229,6 @@ public class GeneraCalendario {
     private boolean verificaRestriccionesDias(int partido, JTable tabla, int jornada, String local, int dias, int hora){
         Conn conn = new Conn();
         ResultSet restricciones;
-        
         conn.conectar();
         restricciones = conn.getValues("*", "restricciones r INNER JOIN equipos e ON r.ID_EQUIPO = e.ID", "", "");
         
@@ -239,6 +238,7 @@ public class GeneraCalendario {
                     if(local.equals(restricciones.getString("NOMBRE"))){
                         if(dias == restricciones.getInt("ID_DIA")){
                             if(hora == restricciones.getInt("HORA")){
+                                System.out.println("Equipo "+restricciones.getString("NOMBRE")+" DIA "+restricciones.getInt("ID_DIA")+" Hora "+restricciones.getInt("HORA"));
                                 return true;
                             }
                         }

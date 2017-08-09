@@ -99,7 +99,8 @@ public class GestionarCampos {
                             if(cam.getString("horario").equalsIgnoreCase("primera")){
                                 r.ckLunesPrimera.setSelected(true);
                                 r.txtLunesPrimera.setText(cam.getString("hora"));
-                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                            }
+                            if(cam.getString("horario").equalsIgnoreCase("segunda")){
                                 r.ckLunesSegunda.setSelected(true);
                                 r.txtLunesSegunda.setText(cam.getString("hora"));
                             }
@@ -109,7 +110,8 @@ public class GestionarCampos {
                             if(cam.getString("horario").equalsIgnoreCase("primera")){
                                 r.ckMartesPrimera.setSelected(true);
                                 r.txtMartesPrimera.setText(cam.getString("hora"));
-                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                            }
+                            if(cam.getString("horario").equalsIgnoreCase("segunda")){
                                 r.ckMartesSegunda.setSelected(true);
                                 r.txtMartesSegunda.setText(cam.getString("hora"));
                             }
@@ -119,7 +121,8 @@ public class GestionarCampos {
                             if(cam.getString("horario").equalsIgnoreCase("primera")){
                                 r.ckMiercolesPrimera.setSelected(true);
                                 r.txtMiercolesPrimera.setText(cam.getString("hora"));
-                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                            }
+                            if(cam.getString("horario").equalsIgnoreCase("segunda")){
                                 r.ckMiercolesSegunda.setSelected(true);
                                 r.txtMiercolesSegunda.setText(cam.getString("hora"));
                             }
@@ -129,7 +132,8 @@ public class GestionarCampos {
                             if(cam.getString("horario").equalsIgnoreCase("primera")){
                                 r.ckJuevesPrimera.setSelected(true);
                                 r.txtJuevesPrimera.setText(cam.getString("hora"));
-                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                            }
+                            if(cam.getString("horario").equalsIgnoreCase("segunda")){
                                 r.ckJuevesSegunda.setSelected(true);
                                 r.txtJuevesSegunda.setText(cam.getString("hora"));
                             }
@@ -139,7 +143,8 @@ public class GestionarCampos {
                             if(cam.getString("horario").equalsIgnoreCase("primera")){
                                 r.ckViernesPrimera.setSelected(true);
                                 r.txtViernesPrimera.setText(cam.getString("hora"));
-                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                            }
+                            if(cam.getString("horario").equalsIgnoreCase("segunda")){
                                 r.ckViernesSegunda.setSelected(true);
                                 r.txtViernesSegunda.setText(cam.getString("hora"));
                             }
@@ -149,7 +154,8 @@ public class GestionarCampos {
                             if(cam.getString("horario").equalsIgnoreCase("primera")){
                                 r.ckSabadoPrimera.setSelected(true);
                                 r.txtSabadoPrimera.setText(cam.getString("hora"));
-                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                            }
+                            if(cam.getString("horario").equalsIgnoreCase("segunda")){
                                 r.ckSabadoSegunda.setSelected(true);
                                 r.txtSabadoSegunda.setText(cam.getString("hora"));
                             }
@@ -159,7 +165,8 @@ public class GestionarCampos {
                             if(cam.getString("horario").equalsIgnoreCase("primera")){
                                 r.ckDomingoPrimera.setSelected(true);
                                 r.txtDomingoPrimera.setText(cam.getString("hora"));
-                            }else if(cam.getString("horario").equalsIgnoreCase("segunda")){
+                            }
+                            if(cam.getString("horario").equalsIgnoreCase("segunda")){
                                 r.ckDomingoSegunda.setSelected(true);
                                 r.txtDomingoSegunda.setText(cam.getString("hora"));
                             }

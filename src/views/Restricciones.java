@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
 
 import connection.Conn;
@@ -37,7 +32,6 @@ public class Restricciones extends javax.swing.JFrame {
         private boolean correcto = true;
         public int total = 0;
         public javax.swing.JCheckBox[] ckCampos;
-        //Vector v=new Vector();
         
 public Restricciones() {
         initComponents();
@@ -102,59 +96,143 @@ public Restricciones() {
         ArrayList<ORestriccion> condiciones = new ArrayList<>();
         
         if(this.ckLunesEquipos.isSelected()){
-            if(this.cbLunes.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(1,this.cbLunes.getSelectedIndex(),null,null));
-                correcto = true;
-            }else{
-                correcto = false;
+            switch (this.cbLunes.getSelectedIndex()) {
+                case 1:
+                    condiciones.add(new ORestriccion(1,this.cbLunes.getSelectedIndex(),null,null));
+                    correcto = true;
+                    break;
+                case 2:
+                    condiciones.add(new ORestriccion(1,this.cbLunes.getSelectedIndex(),null,null));
+                    correcto = true;
+                    break;
+                case 3:
+                    condiciones.add(new ORestriccion(1,1,null,null));
+                    condiciones.add(new ORestriccion(1,2,null,null));
+                    correcto = true;
+                    break;
+                default:
+                    correcto = false;
+                    break;
             }
         }
         if(this.ckMartesEquipos.isSelected()){
-            if(this.cbMartes.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(2,this.cbMartes.getSelectedIndex(),null,null));
-                correcto = true;
-            }else{
-                correcto = false;
+            switch (this.cbMartes.getSelectedIndex()) {
+                case 1:
+                    condiciones.add(new ORestriccion(2,1,null,null));
+                    correcto = true;
+                    break;
+                case 2:
+                    condiciones.add(new ORestriccion(2,2,null,null));
+                    correcto = true;
+                    break;
+                case 3:
+                    condiciones.add(new ORestriccion(2,1,null,null));
+                    condiciones.add(new ORestriccion(2,2,null,null));
+                    correcto = true;
+                    break;
+                default:
+                    correcto = false;
+                    break;
             }
         }
         if(this.ckMiercolesEquipos.isSelected()){
-            if(this.cbMiercoles.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(3,this.cbMiercoles.getSelectedIndex(),null,null));
-                correcto = true;
-            }else{
-                correcto = false;
+            switch (this.cbMiercoles.getSelectedIndex()) {
+                case 1:
+                    condiciones.add(new ORestriccion(3,1,null,null));
+                    correcto = true;
+                    break;
+                case 2:
+                    condiciones.add(new ORestriccion(3,2,null,null));
+                    correcto = true;
+                    break;
+                case 3:
+                    condiciones.add(new ORestriccion(3,1,null,null));
+                    condiciones.add(new ORestriccion(3,2,null,null));
+                    correcto = true;
+                    break;
+                default:
+                    correcto = false;
+                    break;
             }
         }
         if(this.ckJuevesEquipos.isSelected()){
-            if(this.cbJueves.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(4,this.cbJueves.getSelectedIndex(),null,null));
-                correcto = true;
-            }else{
-                correcto = false;
+            switch (this.cbJueves.getSelectedIndex()) {
+                case 1:
+                    condiciones.add(new ORestriccion(4,1,null,null));
+                    correcto = true;
+                    break;
+                case 2:
+                    condiciones.add(new ORestriccion(4,2,null,null));
+                    correcto = true;
+                    break;
+                case 3:
+                    condiciones.add(new ORestriccion(4,1,null,null));
+                    condiciones.add(new ORestriccion(4,2,null,null));
+                    correcto = true;
+                    break;
+                default:
+                    correcto = false;
+                    break;
             }
         }
         if(this.ckViernesEquipos.isSelected()){
-            if(this.cbViernes.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(5,this.cbViernes.getSelectedIndex(),null,null));
-                correcto = true;
-            }else{
-                correcto = false;
+            switch (this.cbViernes.getSelectedIndex()) {
+                case 1:
+                    condiciones.add(new ORestriccion(5,1,null,null));
+                    correcto = true;
+                    break;
+                case 2:
+                    condiciones.add(new ORestriccion(5,2,null,null));
+                    correcto = true;
+                    break;
+                case 3:
+                    condiciones.add(new ORestriccion(5,1,null,null));
+                    condiciones.add(new ORestriccion(5,2,null,null));
+                    correcto = true;
+                    break;
+                default:
+                    correcto = false;
+                    break;
             }
         }
         if(this.ckSabadoEquipos.isSelected()){
-            if(this.cbSabado.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(6,this.cbSabado.getSelectedIndex(),null,null));
-                correcto = true;
-            }else{
-                correcto = false;
+            switch (this.cbSabado.getSelectedIndex()) {
+                case 1:
+                    condiciones.add(new ORestriccion(6,1,null,null));
+                    correcto = true;
+                    break;
+                case 2:
+                    condiciones.add(new ORestriccion(6,2,null,null));
+                    correcto = true;
+                    break;
+                case 3:
+                    condiciones.add(new ORestriccion(6,1,null,null));
+                    condiciones.add(new ORestriccion(6,2,null,null));
+                    correcto = true;
+                    break;
+                default:
+                    correcto = false;
+                    break;
             }
         }
         if(this.ckDomingoEquipos.isSelected()){
-            if(this.cbDomingo.getSelectedIndex() > 0){
-                condiciones.add(new ORestriccion(7,this.cbDomingo.getSelectedIndex(),null,null));
-                correcto = true;
-            }else{
-                correcto = false;
+            switch (this.cbDomingo.getSelectedIndex()) {
+                case 1:
+                    condiciones.add(new ORestriccion(7,1,null,null));
+                    correcto = true;
+                    break;
+                case 2:
+                    condiciones.add(new ORestriccion(7,2,null,null));
+                    correcto = true;
+                    break;
+                case 3:
+                    condiciones.add(new ORestriccion(7,1,null,null));
+                    condiciones.add(new ORestriccion(7,2,null,null));
+                    correcto = true;
+                    break;
+                default:
+                    correcto = false;
+                    break;
             }
         }
         
@@ -338,7 +416,7 @@ public Restricciones() {
         if(this.ckLunesCampos.isSelected()){
             if(this.ckLunesPrimera.isSelected()){
                 condiciones.add(new OCampos(1,1));
-            }
+            } 
             if(this.ckLunesSegunda.isSelected()){
                 condiciones.add(new OCampos(1,2));
             }
