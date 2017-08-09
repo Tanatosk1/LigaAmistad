@@ -156,4 +156,3 @@ public class LeerExcel implements Runnable{
         }
     }
 }
-//SELECT c.ID, c.FECHA, c.HORA, l.NOMBRE, v.NOMBRE FROM Campeonato c INNER JOIN Equipos l ON c.ID_LOCAL = l.ID INNER JOIN Equipos v ON c.ID_VISITANTE = v.ID ORDER BY c.ID 

@@ -100,7 +100,7 @@ public class CargarDatos {
                 list.set(2, idDivision.getInt("ID"));
             }
             //Enviamos la sentencia SQL para insertar los datos
-            conn.insertData("equipos", "ID, NOMBRE, ID_COMPETICION, ID_DIVISION, CONGELADO", "NULL,'"+list.get(0)+"',"+list.get(1)+","+list.get(2)+",0");
+            conn.insertData("equipos", "ID, NOMBRE, ID_COMPETICION, ID_DIVISION, CONGELADO", "NULL,\""+list.get(0)+"\","+list.get(1)+","+list.get(2)+",0");
         }
         conn.getConection().commit();
         conn.desconectar();
