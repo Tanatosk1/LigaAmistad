@@ -152,6 +152,53 @@ public class MostrarDatos {
         tCalendario.setModel(model);
     }
     
+    public void llenarTAplazados(JTable tAplazados){
+        DefaultTableModel model = (DefaultTableModel) tAplazados.getModel();
+        Object[] fila = new Object[10];
+        con.conectar();
+        String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, l.NOMBRE AS \"LOCAL\", "
+                + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.APLAZADO, com.COMPETICION AS \"CATEGORIA\", "
+                + "d.DIVISION AS \"DIVISION\"";
+        String from = " Campeonato c INNER JOIN Equipos l ON c.ID_LOCAL = l.ID "
+                + "INNER JOIN Equipos v ON c.ID_VISITANTE = v.ID "
+                + "LEFT JOIN Campos ca ON c.ID_CAMPO = ca.ID INNER JOIN Competicion com ON l.ID_COMPETICION = com.ID "
+                + "INNER JOIN Division d ON l.ID_DIVISION = d.ID";
+        String order = "c.JORNADA, com.ID, d.ID"; 
+        ResultSet campeonato = con.getValues(select, from, "APLAZADO = 1", order);
+            try {
+                while(campeonato.next()){
+                    fila[0] = campeonato.getInt("ID");
+                    fila[1] = campeonato.getInt("JORNADA");
+                    fila[2] = campeonato.getDate("FECHA");
+                    if(campeonato.getDate("FECHA") != null){
+                        fila[3] = calculaDia((Date)campeonato.getDate("FECHA"));
+                    }else{
+                        fila[3] = "";
+                    }
+                    fila[4] = campeonato.getString("HORA");
+                    fila[5] = campeonato.getString("LOCAL");
+                    fila[6] = campeonato.getString("VISITANTE");
+                    fila[7] = campeonato.getString("CAMPO");
+                    if(campeonato.getString("DIVISION").equalsIgnoreCase("sin división")){
+                        fila[8] = campeonato.getString("CATEGORIA");
+                    }else{
+                        fila[8] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
+                    }
+                    if(campeonato.getInt("APLAZADO") == 1){
+                        fila[9] = true;
+                    }else{
+                        fila[9] = null;
+                    }
+                    model.addRow(fila);
+                    
+                } 
+            }catch (SQLException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        con.desconectar();
+        tAplazados.setModel(model);
+    }
+    
     public void llenarComboAgregarEquiposCategoria(JComboBox cbAgregarEquipoCategoria, String equipo) {
         con.conectar();
         String select ="c.COMPETICION";
