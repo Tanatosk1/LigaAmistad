@@ -8,19 +8,10 @@ package views;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
-import java.io.File;
-import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import sources.CrearDocumentos;
-import sources.Filtros;
-import sources.GeneraCalendario;
 import sources.MostrarDatos;
-import java.util.Date;
-import sources.LeerExcel;
-import sources.ModelTable;
+
 
 /**
  *
@@ -30,9 +21,6 @@ public class Aplazados extends javax.swing.JFrame {
     
 private FondoVentana fondo;
 private final MostrarDatos md = new MostrarDatos();
-private final GeneraCalendario gc = new GeneraCalendario();
-private Filtros filtro;
-private final CrearDocumentos cd = new CrearDocumentos();
 
     public Aplazados() {
         initComponents();
@@ -54,21 +42,16 @@ private final CrearDocumentos cd = new CrearDocumentos();
         tAplazados.getColumnModel().getColumn(8).setPreferredWidth(300);
         tAplazados.getColumnModel().getColumn(9).setPreferredWidth(120);
         
-        //md.llenarComboCategorias(this.cbCategoria);
-        //md.llenarComboDivisiones(this.cbDivision);
-        //md.llenarComboJornadas(this.cbJornada);
-        md.llenarComboJornadas(this.cbGenerarJornada);
-        md.llenarTCalendario(this.tAplazados);
+        md.llenarComboJornadas(this.cbJornadaAplazado);
+        
+
+        md.llenarTAplazados(this.tAplazados);
         //this.tCalendario.setDefaultRenderer(Object.class, new ModelTable(0, 3));
         
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 close();
-            }
-
-            private void close() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
    
         });
@@ -93,96 +76,16 @@ private final CrearDocumentos cd = new CrearDocumentos();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pInicioCalendario = new javax.swing.JPanel();
-        lbInicioFechaInicio = new javax.swing.JLabel();
-        dFechaInicioTemporada = new com.toedter.calendar.JDateChooser();
-        lblInicioFechaFin = new javax.swing.JLabel();
-        dFechaFinTemporada = new com.toedter.calendar.JDateChooser();
-        btnAñadir = new javax.swing.JButton();
-        cbGenerarJornada = new javax.swing.JComboBox<>();
-        lJoranda = new javax.swing.JLabel();
         scrollCalendario = new javax.swing.JScrollPane();
         tAplazados = new javax.swing.JTable();
         btnCalendarioGenerar = new javax.swing.JButton();
-        mbCalendario = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        miImportarcalendario = new javax.swing.JMenuItem();
-        mExportar = new javax.swing.JMenu();
-        miExportarExcel = new javax.swing.JMenuItem();
-        miExportarPDF = new javax.swing.JMenuItem();
+        cbJornadaAplazado = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Generación de Calendario");
+        setTitle("Partidos aplazados");
         setMinimumSize(new java.awt.Dimension(1366, 768));
         setSize(new java.awt.Dimension(1366, 768));
-
-        pInicioCalendario.setBackground(new java.awt.Color(255, 255, 255));
-        pInicioCalendario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  FECHA DE INICIO DE TEMPORADA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12))); // NOI18N
-        pInicioCalendario.setPreferredSize(new java.awt.Dimension(978, 67));
-
-        lbInicioFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
-        lbInicioFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbInicioFechaInicio.setText("Fecha de Inicio");
-
-        lblInicioFechaFin.setBackground(new java.awt.Color(255, 255, 255));
-        lblInicioFechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblInicioFechaFin.setText("Fecha de Fin");
-
-        btnAñadir.setBackground(new java.awt.Color(31, 87, 12));
-        btnAñadir.setForeground(new java.awt.Color(255, 255, 255));
-        btnAñadir.setText("Añadir a Jornada");
-        btnAñadir.setMaximumSize(new java.awt.Dimension(120, 23));
-        btnAñadir.setMinimumSize(new java.awt.Dimension(120, 23));
-        btnAñadir.setPreferredSize(new java.awt.Dimension(120, 23));
-        btnAñadir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAñadirActionPerformed(evt);
-            }
-        });
-
-        cbGenerarJornada.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cbGenerarJornada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Jornada" }));
-
-        lJoranda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lJoranda.setText("Jornada");
-
-        javax.swing.GroupLayout pInicioCalendarioLayout = new javax.swing.GroupLayout(pInicioCalendario);
-        pInicioCalendario.setLayout(pInicioCalendarioLayout);
-        pInicioCalendarioLayout.setHorizontalGroup(
-            pInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pInicioCalendarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbInicioFechaInicio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dFechaInicioTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblInicioFechaFin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dFechaFinTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lJoranda)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbGenerarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 491, Short.MAX_VALUE)
-                .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        pInicioCalendarioLayout.setVerticalGroup(
-            pInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pInicioCalendarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dFechaFinTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lbInicioFechaInicio)
-                        .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbGenerarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lJoranda))
-                    .addGroup(pInicioCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblInicioFechaFin)
-                        .addComponent(dFechaInicioTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10))
-        );
 
         tAplazados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -213,68 +116,17 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
         btnCalendarioGenerar.setBackground(new java.awt.Color(31, 87, 12));
         btnCalendarioGenerar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCalendarioGenerar.setText("Guardar Calendario");
+        btnCalendarioGenerar.setText("Añadir partido");
         btnCalendarioGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCalendarioGenerarActionPerformed(evt);
             }
         });
 
-        mbCalendario.setBackground(new java.awt.Color(31, 87, 12));
-        mbCalendario.setForeground(new java.awt.Color(255, 255, 255));
+        cbJornadaAplazado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cbJornadaAplazado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una jornada" }));
 
-        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu1.setText("Importar");
-
-        miImportarcalendario.setBackground(new java.awt.Color(31, 87, 12));
-        miImportarcalendario.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        miImportarcalendario.setForeground(new java.awt.Color(255, 255, 255));
-        miImportarcalendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/calendario.png"))); // NOI18N
-        miImportarcalendario.setText("Calendario");
-        miImportarcalendario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miImportarcalendarioActionPerformed(evt);
-            }
-        });
-        jMenu1.add(miImportarcalendario);
-
-        mbCalendario.add(jMenu1);
-
-        mExportar.setForeground(new java.awt.Color(255, 255, 255));
-        mExportar.setText("Exportar");
-        mExportar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mExportarActionPerformed(evt);
-            }
-        });
-
-        miExportarExcel.setBackground(new java.awt.Color(31, 87, 12));
-        miExportarExcel.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        miExportarExcel.setForeground(new java.awt.Color(255, 255, 255));
-        miExportarExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/excel.png"))); // NOI18N
-        miExportarExcel.setText("A Excel...");
-        miExportarExcel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miExportarExcelActionPerformed(evt);
-            }
-        });
-        mExportar.add(miExportarExcel);
-
-        miExportarPDF.setBackground(new java.awt.Color(31, 87, 12));
-        miExportarPDF.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        miExportarPDF.setForeground(new java.awt.Color(255, 255, 255));
-        miExportarPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pdf.png"))); // NOI18N
-        miExportarPDF.setText("A PDF...");
-        miExportarPDF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miExportarPDFActionPerformed(evt);
-            }
-        });
-        mExportar.add(miExportarPDF);
-
-        mbCalendario.add(mExportar);
-
-        setJMenuBar(mbCalendario);
+        jLabel1.setText("Jornada en la que se jugará el partido aplazado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -283,10 +135,13 @@ private final CrearDocumentos cd = new CrearDocumentos();
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollCalendario)
-                    .addComponent(pInicioCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
+                    .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbJornadaAplazado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCalendarioGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -294,11 +149,12 @@ private final CrearDocumentos cd = new CrearDocumentos();
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pInicioCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
-                .addGap(30, 30, 30)
-                .addComponent(btnCalendarioGenerar)
+                .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCalendarioGenerar)
+                    .addComponent(cbJornadaAplazado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
 
@@ -307,146 +163,16 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
     private void btnCalendarioGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalendarioGenerarActionPerformed
         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/guardar.png"));
-        int input = JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios realizados en el calendario?", "Guardar cambios", 
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea añadir el partido aplazado a la jornada?", "Añadir partido aplazado", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-              gc.guardarCalendario(this.tAplazados, this.cbGenerarJornada);
+
         }      
         
     }//GEN-LAST:event_btnCalendarioGenerarActionPerformed
 
-    private void mExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mExportarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mExportarActionPerformed
-
-    private void miExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExportarExcelActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de Excel (*.xlsx)", "xlsx");
-        fileChooser.setFileFilter(filter);
-        int seleccion = fileChooser.showSaveDialog(new Principal());
-        if (seleccion == JFileChooser.APPROVE_OPTION)
-        {
-            File fichero = fileChooser.getSelectedFile();
-            //System.out.println("Save as file: " + fichero.getAbsolutePath()+"."+filter.getExtensions()[0]);
-            //aqui debe coger los datos de la BBDD y guardarlos en un excel
-            cd.crearExcel(fichero.getAbsolutePath()+"."+filter.getExtensions()[0], this.tAplazados);
-        }
-  
-    }//GEN-LAST:event_miExportarExcelActionPerformed
-
-    private void miExportarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExportarPDFActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo PDF (*.pdf)", "pdf");
-        fileChooser.setFileFilter(filter);
-        int seleccion = fileChooser.showSaveDialog(new Principal());
-        if (seleccion == JFileChooser.APPROVE_OPTION)
-        {
-            File fichero = fileChooser.getSelectedFile();
-            System.out.println("Save as file: " + fichero.getAbsolutePath());
-            //aqui debe coger los datos de la BBDD y guardarlos en un PDF
-
-        }
-//        String categoria = (String) cbCategoria.getSelectedItem();
-//        String division = (String) cbDivision.getSelectedItem();
-//        String jornada = (String) cbJornada.getSelectedItem();
-//        
-//        switch(categoria) {
-//            
-//        case "Todas": 
-//            switch(division){
-//                case "Primera":
-//                  switch(jornada){
-//                    case "1": 
-//                        try {
-//                        File path = new File ("src\\calendarios\\EjemploCalendarioTODAS.pdf");
-//                        Desktop.getDesktop().open(path);
-//                   }catch (IOException ex) {
-//                        ex.printStackTrace();
-//                   }
-//            }
-//            }
-//            break;
-//            
-//        case "Senior": 
-//            switch(division){
-//                case "Primera":
-//                  switch(jornada){
-//                    case "1": 
-//                        try {
-//                        File path = new File ("src\\calendarios\\EjemploCalendarioSenior.pdf");
-//                        Desktop.getDesktop().open(path);
-//                   }catch (IOException ex) {
-//                        ex.printStackTrace();
-//                   }
-//            }
-//            }
-//            break;
-//        case "Veteranos+30": 
-//                switch(division){
-//                case "Primera":
-//                  switch(jornada){
-//                    case "1": 
-//                        try {
-//                        File path = new File ("src\\calendarios\\EjemploCalendarioVet+30.pdf");
-//                        Desktop.getDesktop().open(path);
-//                   }catch (IOException ex) {
-//                    }
-//            }
-//            }
-//            break;
-//        case "Veteranos+35": 
-//            switch(division){
-//                case "Primera":
-//                  switch(jornada){
-//                    case "1": 
-//                        try {
-//                        File path = new File ("src\\calendarios\\EjemploCalendarioVet+35.pdf");
-//                        Desktop.getDesktop().open(path);
-//                   }catch (IOException ex) {
-//                    }
-//            }
-//            }
-//            break;
-//        }
-    }//GEN-LAST:event_miExportarPDFActionPerformed
-
-    private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
-        if(dFechaInicioTemporada.getDate()==null){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fecha de inicio","Seleccione una  fecha de inicio", JOptionPane.QUESTION_MESSAGE, icon);
-        
-        }if(dFechaFinTemporada.getDate()==null){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fecha de fin","Seleccione una  fecha de fin", JOptionPane.QUESTION_MESSAGE, icon);
-        
-        }if (cbGenerarJornada.getSelectedItem().toString().equals("Seleccione una Jornada")){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una jornada","Seleccione una jornada", JOptionPane.QUESTION_MESSAGE, icon);
-        
-        }else{
-              Date fechaInicio = this.dFechaInicioTemporada.getDate();
-              Date fechaFin = this.dFechaFinTemporada.getDate();
-              SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-              gc.generaFechas(formato.format(fechaInicio), formato.format(fechaFin), this.tAplazados, this.cbGenerarJornada);
-        }      
-    //        gc.generaFechas(this.dFechaInicio.getText(), this.dFechaFin.getText(), this.tCalendario);
-
-    }//GEN-LAST:event_btnAñadirActionPerformed
-
-    private void miImportarcalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miImportarcalendarioActionPerformed
-        /*JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Excel (*.xlsx)","xlsx");
-        fileChooser.setFileFilter(filtro);
-        int seleccion = fileChooser.showOpenDialog(new Principal());
-        if (seleccion == JFileChooser.APPROVE_OPTION)
-        {
-            File fichero = fileChooser.getSelectedFile();
-            //Desktop.getDesktop().open(fichero);
-            //aqui debe coger los datos del excel y cargarlos a la BBDD
-            new Thread(new LeerExcel(fichero, this.tAplazados, this.cbJornada, this.cbGenerarJornada)).start();
-        }
-    }//GEN-LAST:event_miImportarcalendarioActionPerformed
-    */
+        public void close() {
+             dispose();             
     }
     /**
      * @param args the command line arguments
@@ -485,21 +211,9 @@ private final CrearDocumentos cd = new CrearDocumentos();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAñadir;
     private javax.swing.JButton btnCalendarioGenerar;
-    private javax.swing.JComboBox<String> cbGenerarJornada;
-    private com.toedter.calendar.JDateChooser dFechaFinTemporada;
-    private com.toedter.calendar.JDateChooser dFechaInicioTemporada;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JLabel lJoranda;
-    private javax.swing.JLabel lbInicioFechaInicio;
-    private javax.swing.JLabel lblInicioFechaFin;
-    private javax.swing.JMenu mExportar;
-    private javax.swing.JMenuBar mbCalendario;
-    private javax.swing.JMenuItem miExportarExcel;
-    private javax.swing.JMenuItem miExportarPDF;
-    private javax.swing.JMenuItem miImportarcalendario;
-    private javax.swing.JPanel pInicioCalendario;
+    private javax.swing.JComboBox<String> cbJornadaAplazado;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane scrollCalendario;
     private javax.swing.JTable tAplazados;
     // End of variables declaration//GEN-END:variables

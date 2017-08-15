@@ -47,11 +47,7 @@ private FondoPrincipal fondo;
      * Creates new form Panel
      */
     public Principal() {
-
         initComponents();
-
-
-    
         setLocationRelativeTo(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
@@ -130,7 +126,6 @@ private FondoPrincipal fondo;
         miVaciarCategoria = new javax.swing.JMenuItem();
         mivaciarDivision = new javax.swing.JMenuItem();
         mivaciarEquipos = new javax.swing.JMenuItem();
-        miAplazados = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de Partidos");
@@ -454,14 +449,6 @@ private FondoPrincipal fondo;
 
         mBBDD.add(mVaciarBBDD);
 
-        miAplazados.setText("Aplazados");
-        miAplazados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miAplazadosActionPerformed(evt);
-            }
-        });
-        mBBDD.add(miAplazados);
-
         mbprincipal.add(mBBDD);
 
         setJMenuBar(mbprincipal);
@@ -719,11 +706,6 @@ private FondoPrincipal fondo;
         }
     }//GEN-LAST:event_miNuevaJornadaActionPerformed
 
-    private void miAplazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAplazadosActionPerformed
-        Aplazados apl = new Aplazados();
-        apl.setVisible(true);
-    }//GEN-LAST:event_miAplazadosActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -789,7 +771,6 @@ private FondoPrincipal fondo;
     private javax.swing.JMenuItem miAgregarCategoria;
     private javax.swing.JMenuItem miAgregarDivision;
     private javax.swing.JMenuItem miAgregarEquipos;
-    private javax.swing.JMenuItem miAplazados;
     private javax.swing.JMenuItem miCambiarLogo;
     private javax.swing.JMenuItem miEditarCampos;
     private javax.swing.JMenuItem miEditarCategoria;

@@ -20,7 +20,6 @@ import sources.GeneraCalendario;
 import sources.MostrarDatos;
 import java.util.Date;
 import sources.LeerExcel;
-import sources.ModelTable;
 
 /**
  *
@@ -59,7 +58,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
         md.llenarComboJornadas(this.cbJornada);
         md.llenarComboJornadas(this.cbGenerarJornada);
         md.llenarTCalendario(this.tCalendario);
-        //this.tCalendario.setDefaultRenderer(Object.class, new ModelTable(0, 3));
         
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -114,7 +112,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         tCalendario = new javax.swing.JTable();
         btnCalendarioGenerar = new javax.swing.JButton();
         mbCalendario = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mImportar = new javax.swing.JMenu();
         miImportarcalendario = new javax.swing.JMenuItem();
         mExportar = new javax.swing.JMenu();
         miExportarExcel = new javax.swing.JMenuItem();
@@ -126,7 +124,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         setSize(new java.awt.Dimension(1366, 768));
 
         pInicioCalendario.setBackground(new java.awt.Color(255, 255, 255));
-        pInicioCalendario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  FECHA DE INICIO DE TEMPORADA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12))); // NOI18N
+        pInicioCalendario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  FECHA DE INICIO DE JORNADA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12))); // NOI18N
         pInicioCalendario.setPreferredSize(new java.awt.Dimension(978, 67));
 
         lbInicioFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
@@ -218,6 +216,11 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
         cbJornada.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbJornada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas" }));
+        cbJornada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbJornadaActionPerformed(evt);
+            }
+        });
 
         lblFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblFechaInicio.setText("Fecha de Incio");
@@ -343,8 +346,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
         mbCalendario.setBackground(new java.awt.Color(31, 87, 12));
         mbCalendario.setForeground(new java.awt.Color(255, 255, 255));
 
-        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu1.setText("Importar");
+        mImportar.setForeground(new java.awt.Color(255, 255, 255));
+        mImportar.setText("Importar");
 
         miImportarcalendario.setBackground(new java.awt.Color(31, 87, 12));
         miImportarcalendario.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
@@ -356,9 +359,9 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 miImportarcalendarioActionPerformed(evt);
             }
         });
-        jMenu1.add(miImportarcalendario);
+        mImportar.add(miImportarcalendario);
 
-        mbCalendario.add(jMenu1);
+        mbCalendario.add(mImportar);
 
         mExportar.setForeground(new java.awt.Color(255, 255, 255));
         mExportar.setText("Exportar");
@@ -450,8 +453,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
         if (seleccion == JFileChooser.APPROVE_OPTION)
         {
             File fichero = fileChooser.getSelectedFile();
-            //System.out.println("Save as file: " + fichero.getAbsolutePath()+"."+filter.getExtensions()[0]);
-            //aqui debe coger los datos de la BBDD y guardarlos en un excel
             cd.crearExcel(fichero.getAbsolutePath()+"."+filter.getExtensions()[0], this.tCalendario);
         }
   
@@ -469,68 +470,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
             //aqui debe coger los datos de la BBDD y guardarlos en un PDF
 
         }
-//        String categoria = (String) cbCategoria.getSelectedItem();
-//        String division = (String) cbDivision.getSelectedItem();
-//        String jornada = (String) cbJornada.getSelectedItem();
-//        
-//        switch(categoria) {
-//            
-//        case "Todas": 
-//            switch(division){
-//                case "Primera":
-//                  switch(jornada){
-//                    case "1": 
-//                        try {
-//                        File path = new File ("src\\calendarios\\EjemploCalendarioTODAS.pdf");
-//                        Desktop.getDesktop().open(path);
-//                   }catch (IOException ex) {
-//                        ex.printStackTrace();
-//                   }
-//            }
-//            }
-//            break;
-//            
-//        case "Senior": 
-//            switch(division){
-//                case "Primera":
-//                  switch(jornada){
-//                    case "1": 
-//                        try {
-//                        File path = new File ("src\\calendarios\\EjemploCalendarioSenior.pdf");
-//                        Desktop.getDesktop().open(path);
-//                   }catch (IOException ex) {
-//                        ex.printStackTrace();
-//                   }
-//            }
-//            }
-//            break;
-//        case "Veteranos+30": 
-//                switch(division){
-//                case "Primera":
-//                  switch(jornada){
-//                    case "1": 
-//                        try {
-//                        File path = new File ("src\\calendarios\\EjemploCalendarioVet+30.pdf");
-//                        Desktop.getDesktop().open(path);
-//                   }catch (IOException ex) {
-//                    }
-//            }
-//            }
-//            break;
-//        case "Veteranos+35": 
-//            switch(division){
-//                case "Primera":
-//                  switch(jornada){
-//                    case "1": 
-//                        try {
-//                        File path = new File ("src\\calendarios\\EjemploCalendarioVet+35.pdf");
-//                        Desktop.getDesktop().open(path);
-//                   }catch (IOException ex) {
-//                    }
-//            }
-//            }
-//            break;
-//        }
     }//GEN-LAST:event_miExportarPDFActionPerformed
 
     private void btnFiltroAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroAceptarActionPerformed
@@ -559,8 +498,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
               SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
               gc.generaFechas(formato.format(fechaInicio), formato.format(fechaFin), this.tCalendario, this.cbGenerarJornada);
         }      
-    //        gc.generaFechas(this.dFechaInicio.getText(), this.dFechaFin.getText(), this.tCalendario);
-
+ 
     }//GEN-LAST:event_btnGenerarInicioActionPerformed
 
     private void miImportarcalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miImportarcalendarioActionPerformed
@@ -571,8 +509,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
         if (seleccion == JFileChooser.APPROVE_OPTION)
         {
             File fichero = fileChooser.getSelectedFile();
-            //Desktop.getDesktop().open(fichero);
-            //aqui debe coger los datos del excel y cargarlos a la BBDD
             new Thread(new LeerExcel(fichero, this.tCalendario, this.cbJornada, this.cbGenerarJornada)).start();
         }
     }//GEN-LAST:event_miImportarcalendarioActionPerformed
@@ -591,6 +527,10 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private void cbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCategoriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCategoriaActionPerformed
+
+    private void cbJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbJornadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbJornadaActionPerformed
     
     public void close() {
              dispose();             
@@ -644,7 +584,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private com.toedter.calendar.JDateChooser dFechaFinTemporada;
     private com.toedter.calendar.JDateChooser dFechaInicioTemporada;
     private com.toedter.calendar.JDateChooser dFechaInicoFiltro;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lJoranda;
     private javax.swing.JLabel lbInicioFechaInicio;
     private javax.swing.JLabel lblCategoria;
@@ -654,6 +593,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private javax.swing.JLabel lblInicioFechaFin;
     private javax.swing.JLabel lblJornada;
     private javax.swing.JMenu mExportar;
+    private javax.swing.JMenu mImportar;
     private javax.swing.JMenuBar mbCalendario;
     private javax.swing.JMenuItem miExportarExcel;
     private javax.swing.JMenuItem miExportarPDF;

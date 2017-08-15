@@ -268,87 +268,9 @@ public Restricciones() {
             JOptionPane.showMessageDialog(rootPane, "Selecciona una hora", "Error", JOptionPane.QUESTION_MESSAGE, icon);
   
         }
-        /*String equipoSeleccionado = (String) cbEquipos.getSelectedItem();
-        
-        if(!"Selecciona un equipo".equals(equipoSeleccionado)){
-            System.out.println("Mandar " + equipoSeleccionado + " a la BBDD.");
-        }
-        
-        
-        //this.comprobarCamposExcluidos();
-        //this.comprobarHorasExcluidas();
-        //this.comprobarEquiposDiasExcluidos();
-        String equipoNoCoincidir = (String) cbNoCoincidir.getSelectedItem();
-                if ("".equals(equipoNoCoincidir)){
-                    
-                }else{
-                    System.out.println("Mandar " + equipoNoCoincidir + " a la BBDD.");
-                }*/
     }
     
    
-    /*public void comprobarEquiposDiasExcluidos(){
-
-            if(ckLunesEquipos.isSelected()){
-                System.out.println("Mandar Lunes a BBDD");
-            }
-            if(ckMartesEquipos.isSelected()){
-                System.out.println("Mandar Martes a BBDD");
-            }
-            if(ckMiercolesEquipos.isSelected()){
-                System.out.println("Mandar Miercoles a BBDD");
-            }
-            if(ckJuevesEquipos.isSelected()){
-                System.out.println("Mandar Jueves a BBDD");
-            }
-            if(ckViernesEquipos.isSelected()){
-                System.out.println("Mandar Viernes a BBDD");
-            }
-            if(ckSabadoEquipos.isSelected()){
-                System.out.println("Mandar Sabado a BBDD");
-            }
-            if(ckDomingoEquipos.isSelected()){
-                System.out.println("Mandar Domingo a BBDD");
-            }
-    }*/
-    
-    public void comprobarHorasExcluidas(){
-//        if(ckPrimeraEquipos.isSelected()){
-//                System.out.println("Mandar Primera Hora a BBDD");
-//            }
-//        if(ckSegundaEquipos.isSelected()){
-//                System.out.println("Mandar Segunda Hora a BBDD");
-//            }
-    }
-    
-/*    public void comprobarCamposExcluidos(){
-        
-        if(ckMP3.isSelected()){
-                System.out.println("Mandar MP3 a BBDD");
-            }
-        if(ckMP4.isSelected()){
-                System.out.println("Mandar MP4 a BBDD");
-            }
-        if(ckSTM.isSelected()){
-                System.out.println("Mandar STM a BBDD");
-            }
-        if(ckTNC.isSelected()){
-                System.out.println("Mandar TNC a BBDD");
-            }
-        if(ckCHU.isSelected()){
-                System.out.println("Mandar CHU a BBDD");
-            }
-        if(ckDEL.isSelected()){
-                System.out.println("Mandar DEL a BBDD");
-            }
-        if(ckCHO.isSelected()){
-                System.out.println("Mandar CHO a BBDD");
-            }
-        if(ckDRA.isSelected()){
-                System.out.println("Mandar DRA a BBDD");
-            }
-    }*/
-
     public void enableEquipos(){
                 ckLunesEquipos.setEnabled(true);
                 ckMartesEquipos.setEnabled(true);
@@ -357,14 +279,6 @@ public Restricciones() {
                 ckViernesEquipos.setEnabled(true);
                 ckSabadoEquipos.setEnabled(true);
                 ckDomingoEquipos.setEnabled(true);
-//                ckMP3.setEnabled(true);
-//                ckMP4.setEnabled(true);
-//                ckSTM.setEnabled(true);
-//                ckTNC.setEnabled(true);
-//                ckCHU.setEnabled(true);
-//                ckDEL.setEnabled(true);
-//                ckCHO.setEnabled(true);
-//                ckDRA.setEnabled(true);
                 cbNoCoincidir.setEnabled(true);
                 ckCongelarEquipo.setEnabled(true);
                 for(int i = 1; i < total+1; i++){
@@ -387,14 +301,6 @@ public Restricciones() {
                 cbViernes.setEnabled(false);
                 cbSabado.setEnabled(false);
                 cbDomingo.setEnabled(false);
-//                ckMP3.setEnabled(false);
-//                ckMP4.setEnabled(false);
-//                ckSTM.setEnabled(false);
-//                ckTNC.setEnabled(false);
-//                ckCHU.setEnabled(false);
-//                ckDEL.setEnabled(false);
-//                ckCHO.setEnabled(false);
-//                ckDRA.setEnabled(false);
                 cbNoCoincidir.setEnabled(false);
                 ckCongelarEquipo.setEnabled(false);
                 for(int i = 1; i < total+1; i++){
@@ -405,12 +311,7 @@ public Restricciones() {
     
      public void restriccionesDeCampo(){
          
-        /*String campoSeleccionado = (String) cbCampos.getSelectedItem();
-        
-        if(!"Selecciona un campo".equals(campoSeleccionado)){
-            System.out.println("Mandar " + campoSeleccionado + " a la BBDD.");
-        }*/
-        
+       
         ArrayList<OCampos> condiciones = new ArrayList<>();
         
         if(this.ckLunesCampos.isSelected()){
@@ -472,169 +373,10 @@ public Restricciones() {
         
         gc.gestionarCampo(condiciones);
         
-        /*this.comprobarCampoTexto();
-        this.comprobarCampoHoraExcluida();
-        this.comprobarCampoDiaExcluido();*/
-
     }
      
-    /*public void comprobarCampoDiaExcluido(){
-            if(ckLunesCampos.isSelected()){
-                System.out.println("Mandar Lunes a BBDD");
-            }
-            if(ckMartesCampos.isSelected()){
-                System.out.println("Mandar Martes a BBDD");
-            }
-            if(ckMiercolesCampos.isSelected()){
-                System.out.println("Mandar Miercoles a BBDD");
-            }
-            if(ckJuevesCampos.isSelected()){
-                System.out.println("Mandar Jueves a BBDD");
-            }
-            if(ckViernesCampos.isSelected()){
-                System.out.println("Mandar Viernes a BBDD");
-            }
-            if(ckSabadoCampos.isSelected()){
-                System.out.println("Mandar Sabado a BBDD");
-            }
-            if(ckDomingoCampos.isSelected()){
-                System.out.println("Mandar Domingo a BBDD");
-            }
-     }
-     
-     public void comprobarCampoHoraExcluida(){
-            if(ckLunesPrimera.isSelected()){
-                System.out.println("Mandar Lunes Primera a BBDD");
-            }
-            if(ckLunesSegunda.isSelected()){
-                System.out.println("Mandar Lunes Segunda a BBDD");
-            }
-            if(ckMartesPrimera.isSelected()){
-                System.out.println("Mandar Martes Primera a BBDD");
-            }
-            if(ckMartesSegunda.isSelected()){
-                System.out.println("Mandar Martes Segunda a BBDD");
-            }
-            if(ckMiercolesPrimera.isSelected()){
-                System.out.println("Mandar Miercoles Primera a BBDD");
-            }
-            if(ckMiercolesSegunda.isSelected()){
-                System.out.println("Mandar Miercoles Segunda a BBDD");
-            }
-            if(ckJuevesPrimera.isSelected()){
-                System.out.println("Mandar Jueves Primera a BBDD");
-            }
-            if(ckJuevesSegunda.isSelected()){
-                System.out.println("Mandar Jueves Segunda a BBDD");
-            }
-            if(ckViernesPrimera.isSelected()){
-                System.out.println("Mandar Viernes Primera a BBDD");
-            }
-            if(ckViernesSegunda.isSelected()){
-                System.out.println("Mandar Viernes Segunda a BBDD");
-            }
-            if(ckSabadoPrimera.isSelected()){
-                System.out.println("Mandar Sabado Primera a BBDD");
-            }
-            if(ckSabadoSegunda.isSelected()){
-                System.out.println("Mandar Sabado Segunda a BBDD");
-            }
-            if(ckDomingoPrimera.isSelected()){
-                System.out.println("Mandar Domingo Primera a BBDD");
-            }
-            if(ckDomingoSegunda.isSelected()){
-                System.out.println("Mandar Domingo Segunda a BBDD");
-            }
-     }
-     
-     public void comprobarCampoTexto(){
-         if(txtLunesPrimera.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtLunesPrimera.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtLunesSegunda.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtLunesSegunda.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtMartesPrimera.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtMartesPrimera.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtMartesSegunda.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtMartesSegunda.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtMiercolesPrimera.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtMiercolesPrimera.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtMiercolesSegunda.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtMiercolesSegunda.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtJuevesPrimera.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtJuevesPrimera.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtJuevesSegunda.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtJuevesSegunda.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtViernesPrimera.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtViernesPrimera.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtViernesSegunda.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtViernesSegunda.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtSabadoPrimera.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtSabadoPrimera.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtSabadoSegunda.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtSabadoSegunda.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtDomingoPrimera.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtDomingoPrimera.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-         if(txtDomingoSegunda.getText().isEmpty()){
-             //System.out.println("No hacer nada");
-         }else{
-             String hora = txtDomingoSegunda.getText();
-             System.out.println("Mandar " + hora + "a la BBDD.");
-         }
-     }*/
-    
     public void enableCampos(){
+        
                 cbEquipos.setEnabled(true);
                 ckLunesCampos.setEnabled(true);
                 ckMartesCampos.setEnabled(true);
@@ -644,39 +386,11 @@ public Restricciones() {
                 ckSabadoCampos.setEnabled(true);
                 ckDomingoCampos.setEnabled(true);
                 btnAceptarCampos.setEnabled(true);
-                /*ckLunesPrimera.setEnabled(true);
-                ckLunesSegunda.setEnabled(true);
-                ckMartesPrimera.setEnabled(true);
-                ckMartesSegunda.setEnabled(true);                
-                ckMiercolesPrimera.setEnabled(true);
-                ckMiercolesSegunda.setEnabled(true);
-                ckJuevesPrimera.setEnabled(true);
-                ckJuevesSegunda.setEnabled(true); 
-                ckViernesPrimera.setEnabled(true);
-                ckViernesSegunda.setEnabled(true);
-                ckSabadoPrimera.setEnabled(true);
-                ckSabadoSegunda.setEnabled(true);
-                ckDomingoPrimera.setEnabled(true);
-                ckDomingoSegunda.setEnabled(true);                
-                txtLunesPrimera.setEnabled(true);
-                txtLunesSegunda.setEnabled(true);
-                txtMartesPrimera.setEnabled(true);
-                txtMartesSegunda.setEnabled(true);
-                txtMiercolesPrimera.setEnabled(true);
-                txtMiercolesSegunda.setEnabled(true);
-                txtJuevesPrimera.setEnabled(true);
-                txtJuevesSegunda.setEnabled(true);
-                txtViernesPrimera.setEnabled(true);
-                txtViernesSegunda.setEnabled(true);
-                txtSabadoPrimera.setEnabled(true);
-                txtSabadoSegunda.setEnabled(true);
-                txtDomingoPrimera.setEnabled(true);
-                txtDomingoSegunda.setEnabled(true);*/
                 ckCongelarCampo.setEnabled(true);
     }
     
     public void disableCampos(){
-  
+        
                 ckLunesCampos.setEnabled(false);
                 ckMartesCampos.setEnabled(false);
                 ckMiercolesCampos.setEnabled(false);
@@ -715,6 +429,63 @@ public Restricciones() {
                 ckCongelarCampo.setEnabled(false);
     }
     
+    public void horasEquipossEnabled (){
+    
+                if (ckLunesEquipos.isSelected()){
+                    cbLunes.setEnabled(true);
+                }
+                if (ckMartesEquipos.isSelected()){
+                    cbMartes.setEnabled(true);
+                } 
+                if (ckMiercolesEquipos.isSelected()){
+                    cbMiercoles.setEnabled(true);
+                }
+                if (ckJuevesEquipos.isSelected()){
+                    cbJueves.setEnabled(true);
+                }                 
+                if (ckViernesEquipos.isSelected()){
+                    cbViernes.setEnabled(true);
+                }
+                if (ckSabadoEquipos.isSelected()){
+                    cbSabado.setEnabled(true);
+                } 
+                if (ckDomingoEquipos.isSelected()){
+                    cbDomingo.setEnabled(true);
+                }              
+    }
+    public void horasCamposEnabled (){
+    
+                if (ckLunesCampos.isSelected()){
+                    ckLunesPrimera.setEnabled(true);
+                    ckLunesSegunda.setEnabled(true);
+                }
+                if (ckMartesCampos.isSelected()){
+                    ckMartesPrimera.setEnabled(true);
+                    ckMartesSegunda.setEnabled(true); 
+                } 
+                if (ckMiercolesCampos.isSelected()){
+                    ckMiercolesPrimera.setEnabled(true);
+                    ckMiercolesSegunda.setEnabled(true);
+                }
+                if (ckJuevesCampos.isSelected()){
+                    ckJuevesPrimera.setEnabled(true);
+                    ckJuevesSegunda.setEnabled(true); 
+                }                 
+                if (ckViernesCampos.isSelected()){
+                    ckViernesPrimera.setEnabled(true);
+                    ckViernesSegunda.setEnabled(true);
+                }
+                if (ckSabadoCampos.isSelected()){
+                    ckSabadoPrimera.setEnabled(true);
+                    ckSabadoSegunda.setEnabled(true);
+                } 
+                if (ckDomingoCampos.isSelected()){
+                    ckDomingoPrimera.setEnabled(true);
+                    ckDomingoSegunda.setEnabled(true); 
+                }              
+    }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -807,9 +578,10 @@ public Restricciones() {
         separadorCampos9 = new javax.swing.JSeparator();
         btnEditarEquipos1 = new javax.swing.JButton();
         btnAceptarCampos = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mbRestricciones = new javax.swing.JMenuBar();
+        mGestionarRestricciones = new javax.swing.JMenu();
+        miGestionarFestivos = new javax.swing.JMenuItem();
+        miGestionarAplazados = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Configuración");
@@ -1620,27 +1392,39 @@ public Restricciones() {
                 .addContainerGap())
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(31, 87, 12));
-        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+        mbRestricciones.setBackground(new java.awt.Color(31, 87, 12));
+        mbRestricciones.setForeground(new java.awt.Color(255, 255, 255));
 
-        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu1.setText("Días Festivos");
+        mGestionarRestricciones.setForeground(new java.awt.Color(255, 255, 255));
+        mGestionarRestricciones.setText("Gestión");
 
-        jMenuItem1.setBackground(new java.awt.Color(31, 87, 12));
-        jMenuItem1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/configuracion.png"))); // NOI18N
-        jMenuItem1.setText(" Gestionar días festivos");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        miGestionarFestivos.setBackground(new java.awt.Color(31, 87, 12));
+        miGestionarFestivos.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miGestionarFestivos.setForeground(new java.awt.Color(255, 255, 255));
+        miGestionarFestivos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/configuracion.png"))); // NOI18N
+        miGestionarFestivos.setText(" Gestionar días festivos");
+        miGestionarFestivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                miGestionarFestivosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        mGestionarRestricciones.add(miGestionarFestivos);
 
-        jMenuBar1.add(jMenu1);
+        miGestionarAplazados.setBackground(new java.awt.Color(31, 87, 12));
+        miGestionarAplazados.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miGestionarAplazados.setForeground(new java.awt.Color(255, 255, 255));
+        miGestionarAplazados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/configuracion.png"))); // NOI18N
+        miGestionarAplazados.setText(" Gestionar partidos aplazados");
+        miGestionarAplazados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miGestionarAplazadosActionPerformed(evt);
+            }
+        });
+        mGestionarRestricciones.add(miGestionarAplazados);
 
-        setJMenuBar(jMenuBar1);
+        mbRestricciones.add(mGestionarRestricciones);
+
+        setJMenuBar(mbRestricciones);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1675,7 +1459,9 @@ public Restricciones() {
         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
         JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Seleccione un campo", JOptionPane.QUESTION_MESSAGE, icon);
     }else {
-                this.enableCampos();
+            horasCamposEnabled ();    
+            cbCampos.setEnabled(false);
+            this.enableCampos();
         }
     }//GEN-LAST:event_btnEditarEquipos1ActionPerformed
 
@@ -1684,6 +1470,7 @@ public Restricciones() {
         int input = JOptionPane.showConfirmDialog(null, "¿Desea guardar los horarios para el campo seleccionado?", "Gestión de campos", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
+            cbCampos.setEnabled(true);
             if(this.ckCongelarCampo.isSelected()){
                 try {
                     gc.congelarCampo(this.cbCampos.getSelectedItem().toString(), true);
@@ -1699,10 +1486,12 @@ public Restricciones() {
             }
             this.restriccionesDeCampo();
             this.disableCampos();
+            
         }else{
             this.disableCampos();
             btnAceptarCampos.setEnabled(false);
             cbCampos.setSelectedItem("Selecciona un campo");
+            cbCampos.setEnabled(true);
         }  
     }//GEN-LAST:event_btnAceptarCamposActionPerformed
 
@@ -1813,6 +1602,7 @@ public Restricciones() {
         int input = JOptionPane.showConfirmDialog(null, "¿Desea aplicar las restricciones para el equipo seleccionado?", "Aplicar restricciones",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
+            cbEquipos.setEnabled(true);
             if(this.ckCongelarEquipo.isSelected()){
                 try {
                     ge.congelarEquipo(this.cbEquipos.getSelectedIndex(), true);
@@ -1830,7 +1620,8 @@ public Restricciones() {
             if(correcto){
                 this.disableEquipos();
             }
-        } else {         
+        } else {
+            cbEquipos.setEnabled(true);
             this.disableEquipos();
             btnAceptarEquipos.setEnabled(false);
             cbEquipos.setSelectedItem("Selecciona un equipo");
@@ -1843,6 +1634,8 @@ public Restricciones() {
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un equipo","Seleccione un equipo", JOptionPane.QUESTION_MESSAGE, icon);
         }else {
+            horasEquipossEnabled ();
+            cbEquipos.setEnabled(false);
             this.enableEquipos();
             btnAceptarEquipos.setEnabled(true);
 
@@ -1941,10 +1734,10 @@ public Restricciones() {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbLunesActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void miGestionarFestivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miGestionarFestivosActionPerformed
         Inactividad  frm = new Inactividad ();
         frm.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_miGestionarFestivosActionPerformed
 
     private void cbEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEquiposActionPerformed
         // TODO add your handling code here:
@@ -1953,6 +1746,11 @@ public Restricciones() {
     private void cbCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCamposActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCamposActionPerformed
+
+    private void miGestionarAplazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miGestionarAplazadosActionPerformed
+        Aplazados  frm = new Aplazados ();
+        frm.setVisible(true);
+    }//GEN-LAST:event_miGestionarAplazadosActionPerformed
    
     public void close() {
              dispose();             
@@ -2040,9 +1838,6 @@ public Restricciones() {
     public javax.swing.JCheckBox ckViernesEquipos;
     public javax.swing.JCheckBox ckViernesPrimera;
     public javax.swing.JCheckBox ckViernesSegunda;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblCampos;
     private javax.swing.JLabel lblCamposExcluidos;
     private javax.swing.JLabel lblDiasEquipos;
@@ -2050,6 +1845,10 @@ public Restricciones() {
     private javax.swing.JLabel lblLogoCampos;
     private javax.swing.JLabel lblLogoEquipos;
     private javax.swing.JLabel lblNoCoincidir;
+    private javax.swing.JMenu mGestionarRestricciones;
+    private javax.swing.JMenuBar mbRestricciones;
+    private javax.swing.JMenuItem miGestionarAplazados;
+    private javax.swing.JMenuItem miGestionarFestivos;
     private javax.swing.JPanel pCampos;
     private javax.swing.JPanel pCamposExcluidos;
     private javax.swing.JPanel pEquipos;

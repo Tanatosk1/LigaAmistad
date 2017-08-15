@@ -6,9 +6,7 @@
 package sources;
 
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import connection.Conn;
-import javax.swing.ImageIcon;
 
 /**
  *

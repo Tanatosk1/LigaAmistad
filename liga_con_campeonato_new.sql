@@ -184,8 +184,8 @@ CREATE TABLE IF NOT EXISTS `hora` (
 --
 
 INSERT INTO `hora` (`ID`, `HORA`, `HORARIO`) VALUES
-(1, '8:30', 'Primera'),
-(2, '9:30', 'Segunda');
+(1, '20:30', 'Primera'),
+(2, '21:30', 'Segunda');
 
 -- --------------------------------------------------------
 
