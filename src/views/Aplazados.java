@@ -44,9 +44,8 @@ private final MostrarDatos md = new MostrarDatos();
         
         md.llenarComboJornadas(this.cbJornadaAplazado);
         
-
         md.llenarTAplazados(this.tAplazados);
-        //this.tCalendario.setDefaultRenderer(Object.class, new ModelTable(0, 3));
+
         
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
