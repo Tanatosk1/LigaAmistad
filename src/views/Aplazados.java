@@ -58,7 +58,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         //md.llenarComboDivisiones(this.cbDivision);
         //md.llenarComboJornadas(this.cbJornada);
         md.llenarComboJornadas(this.cbGenerarJornada);
-        md.llenarTCalendario(this.tAplazados);
+        md.llenarTAplazados(this.tAplazados);
         //this.tCalendario.setDefaultRenderer(Object.class, new ModelTable(0, 3));
         
         addWindowListener(new java.awt.event.WindowAdapter() {
