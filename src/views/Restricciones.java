@@ -482,7 +482,8 @@ public Restricciones() {
                 if (ckDomingoCampos.isSelected()){
                     ckDomingoPrimera.setEnabled(true);
                     ckDomingoSegunda.setEnabled(true); 
-                }              
+                } 
+                
     }
     
    
