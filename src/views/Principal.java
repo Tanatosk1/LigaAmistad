@@ -42,6 +42,7 @@ public class Principal extends javax.swing.JFrame {
     private final GestionarDivisiones gd = new GestionarDivisiones ();
     private final GestionarEquipos ge = new GestionarEquipos ();
 
+    
 private FondoPrincipal fondo;
     /**
      * Creates new form Panel

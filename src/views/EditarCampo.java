@@ -31,8 +31,7 @@ public class EditarCampo extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(232, 245, 228));
         
-        md.llenarComboCampos(this.cbEditarCampo);
-        
+        md.llenarComboCampos(this.cbEditarCampo);  
     }
 
     /**

@@ -28,7 +28,8 @@ public class MostrarDatos {
             }catch (SQLException ex) {
                 Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
             }
-        con.desconectar();
+  
+            con.desconectar();
     }
     
     public void llenarComboDivisiones(JComboBox cbDivision){

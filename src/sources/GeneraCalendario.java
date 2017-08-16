@@ -33,6 +33,7 @@ public class GeneraCalendario {
     private ResultSet camposDis;
     private final ArrayList idcampos = new ArrayList();
 
+    
   
     public void generaFechas(String fInicio, String fFin, JTable tabla, JComboBox jornada){
         Conn conn = new Conn();

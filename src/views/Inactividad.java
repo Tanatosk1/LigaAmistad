@@ -32,6 +32,7 @@ public class Inactividad extends javax.swing.JFrame {
         private FondoVentana fondo;
 
         
+        
 public Inactividad() {
         initComponents();
         setLocationRelativeTo(null);

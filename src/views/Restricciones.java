@@ -484,6 +484,7 @@ public Restricciones() {
                     ckDomingoSegunda.setEnabled(true); 
                 } 
                 
+                
     }
     
    

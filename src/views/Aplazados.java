@@ -63,7 +63,8 @@ private final MostrarDatos md = new MostrarDatos();
                   y = Aplazados.this.getHeight();
                   fondo.fondoZize(x, y);
             }
-        });   
+        });  
+        
     }
 
     /**
