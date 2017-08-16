@@ -1404,7 +1404,7 @@ public Restricciones() {
         miGestionarFestivos.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         miGestionarFestivos.setForeground(new java.awt.Color(255, 255, 255));
         miGestionarFestivos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/configuracion.png"))); // NOI18N
-        miGestionarFestivos.setText(" Gestionar días festivos");
+        miGestionarFestivos.setText(" Gestionar días festivos ");
         miGestionarFestivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miGestionarFestivosActionPerformed(evt);

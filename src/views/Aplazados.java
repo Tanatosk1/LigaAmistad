@@ -126,6 +126,8 @@ private final MostrarDatos md = new MostrarDatos();
         cbJornadaAplazado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbJornadaAplazado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una jornada" }));
 
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Jornada en la que se jugará el partido aplazado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -149,7 +151,7 @@ private final MostrarDatos md = new MostrarDatos();
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
+                .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCalendarioGenerar)
