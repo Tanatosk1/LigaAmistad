@@ -9,6 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableColumn;
 import views.Restricciones;
 
 /**
@@ -105,7 +107,7 @@ public class MostrarDatos {
             }
         con.desconectar();
     }
-    
+      
     public void llenarTCalendario(JTable tCalendario){
         DefaultTableModel model = (DefaultTableModel) tCalendario.getModel();
         Object[] fila = new Object[10];
@@ -155,7 +157,7 @@ public class MostrarDatos {
     
     public void llenarTAplazados(JTable tAplazados){
         DefaultTableModel model = (DefaultTableModel) tAplazados.getModel();
-        Object[] fila = new Object[10];
+        Object[] fila = new Object[9];
         con.conectar();
         String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, l.NOMBRE AS \"LOCAL\", "
                 + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.APLAZADO, com.COMPETICION AS \"CATEGORIA\", "
@@ -176,22 +178,50 @@ public class MostrarDatos {
                     }else{
                         fila[3] = "";
                     }
+                    fila[4]="Seleccione una hora";
+//                    Creamos un combo box sin modelo
+                    JComboBox< Object > jc = new JComboBox<>();
+                    //Creamos un modelo de combobox y le añadimos 3 elementos
+                    DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+                    modelo.addElement("Primero");
+                    modelo.addElement("Segundo");
+                    modelo.addElement("Tercero");
+                    //Asignamos el modelo al combobox
+                    jc.setModel(modelo);
+                    //Ahora vamos a recoger una columna que será donde insertemos el combobox
+                    TableColumn columna = tAplazados.getColumnModel().getColumn(4);
+                    //Creamos un nuevo editor de celda. Tambien puede insertarse checkboxs y textfields
+                    TableCellEditor editor = new DefaultCellEditor(jc);
+                    //Le asignamos a la columna el editor creado
+                    columna.setCellEditor(editor);
                     fila[4] = campeonato.getString("HORA");
                     fila[5] = campeonato.getString("LOCAL");
                     fila[6] = campeonato.getString("VISITANTE");
-                    fila[7] = campeonato.getString("CAMPO");
+                    fila[7] = "Seleccione un campo";
+                    JComboBox< Object > jc2 = new JComboBox<>();
+                    DefaultComboBoxModel modelo2 = new DefaultComboBoxModel();
+                    
+                    con.conectar();
+                    ResultSet campos = con.getValues("CAMPO", "Campos", "", "ID");
+                        try {
+                            while(campos.next()){
+                                modelo2.addElement(campos.getString("CAMPO"));
+                            } 
+                        }catch (SQLException ex) {
+                            Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    con.desconectar();
+                    
+                    jc2.setModel(modelo2);
+                    TableColumn columna2 = tAplazados.getColumnModel().getColumn(7);
+                    TableCellEditor editor2 = new DefaultCellEditor(jc2);
+                    columna2.setCellEditor(editor2);
                     if(campeonato.getString("DIVISION").equalsIgnoreCase("sin división")){
                         fila[8] = campeonato.getString("CATEGORIA");
                     }else{
                         fila[8] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
                     }
-                    if(campeonato.getInt("APLAZADO") == 1){
-                        fila[9] = true;
-                    }else{
-                        fila[9] = null;
-                    }
-                    model.addRow(fila);
-                    
+                    model.addRow(fila);                   
                 } 
             }catch (SQLException ex) {
                 Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);

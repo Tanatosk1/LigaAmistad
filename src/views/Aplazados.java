@@ -38,9 +38,9 @@ private final MostrarDatos md = new MostrarDatos();
         tAplazados.getColumnModel().getColumn(4).setPreferredWidth(120);
         tAplazados.getColumnModel().getColumn(5).setPreferredWidth(325);
         tAplazados.getColumnModel().getColumn(6).setPreferredWidth(325);
-        tAplazados.getColumnModel().getColumn(7).setPreferredWidth(325);
-        tAplazados.getColumnModel().getColumn(8).setPreferredWidth(300);
-        tAplazados.getColumnModel().getColumn(9).setPreferredWidth(120);
+        tAplazados.getColumnModel().getColumn(7).setPreferredWidth(390);
+        tAplazados.getColumnModel().getColumn(8).setPreferredWidth(370);
+ //       tAplazados.getColumnModel().getColumn(9).setPreferredWidth(120);
         
         md.llenarComboJornadas(this.cbJornadaAplazado);
         
@@ -92,19 +92,12 @@ private final MostrarDatos md = new MostrarDatos();
 
             },
             new String [] {
-                "ID", "Jornada", "Fecha", "Día", "Hora", "Equipo Local", "Equipo Visitante", "Campo", "Competición", "Partido aplazado"
+                "ID", "Jornada", "Fecha", "Día", "Hora", "Equipo Local", "Equipo Visitante", "Campo", "Competición"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, true, false, false, true, false, true
+                false, false, true, false, true, false, false, true, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
