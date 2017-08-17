@@ -183,9 +183,13 @@ public class MostrarDatos {
                     JComboBox< Object > jc = new JComboBox<>();
                     //Creamos un modelo de combobox y le añadimos 3 elementos
                     DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-                    modelo.addElement("Primero");
-                    modelo.addElement("Segundo");
-                    modelo.addElement("Tercero");
+                    
+                    ResultSet campos_horas = con.getValues("DISTINCT ch.ID_CAMPO, h.hora", "cam_horarios ch inner join hora h on ch.ID_HORA = h.ID", "", "ch.ID_CAMPO");
+                    try{
+                        while(campos_horas.next()){
+                            modelo.addElement(campos_horas.getString("hora"));
+                        }
+                    }catch(SQLException ex){}
                     //Asignamos el modelo al combobox
                     jc.setModel(modelo);
                     //Ahora vamos a recoger una columna que será donde insertemos el combobox
@@ -200,17 +204,15 @@ public class MostrarDatos {
                     fila[7] = "Seleccione un campo";
                     JComboBox< Object > jc2 = new JComboBox<>();
                     DefaultComboBoxModel modelo2 = new DefaultComboBoxModel();
-                    
-                    con.conectar();
-                    ResultSet campos = con.getValues("CAMPO", "Campos", "", "ID");
-                        try {
-                            while(campos.next()){
-                                modelo2.addElement(campos.getString("CAMPO"));
-                            } 
-                        }catch (SQLException ex) {
-                            Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    con.desconectar();
+
+                    ResultSet campos = con.getValues("CAMPO", "Campos", "CONGELADO = 0", "ID");
+                    try {
+                        while(campos.next()){
+                            modelo2.addElement(campos.getString("CAMPO"));
+                        } 
+                    }catch (SQLException ex) {
+                        Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     
                     jc2.setModel(modelo2);
                     TableColumn columna2 = tAplazados.getColumnModel().getColumn(7);
