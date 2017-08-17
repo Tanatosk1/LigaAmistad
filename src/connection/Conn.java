@@ -172,8 +172,14 @@ public class Conn {
      */
     public void updateData(String table, String set, String where){
         try {
-            String Query = "UPDATE " + table + " SET " + set +" WHERE " + where;
+            String Query;
+            if(!where.isEmpty()){
+                Query = "UPDATE " + table + " SET " + set +" WHERE " + where;
+            }else{
+                Query = "UPDATE " + table + " SET " + set;
+            }
             Statement st = link.createStatement();
+            System.out.println(Query);
             st.executeUpdate(Query);
 //            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
 //            JOptionPane.showMessageDialog(null, "Datos actualizados con éxito", "Información", JOptionPane.QUESTION_MESSAGE, icon);
