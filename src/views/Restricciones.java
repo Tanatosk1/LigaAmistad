@@ -581,9 +581,6 @@ public Restricciones() {
         btnEditarEquipos1 = new javax.swing.JButton();
         btnAceptarCampos = new javax.swing.JButton();
         mbRestricciones = new javax.swing.JMenuBar();
-        mGestionarRestricciones = new javax.swing.JMenu();
-        miGestionarFestivos = new javax.swing.JMenuItem();
-        miGestionarAplazados = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Configuración");
@@ -1396,36 +1393,6 @@ public Restricciones() {
 
         mbRestricciones.setBackground(new java.awt.Color(31, 87, 12));
         mbRestricciones.setForeground(new java.awt.Color(255, 255, 255));
-
-        mGestionarRestricciones.setForeground(new java.awt.Color(255, 255, 255));
-        mGestionarRestricciones.setText("Gestión");
-
-        miGestionarFestivos.setBackground(new java.awt.Color(31, 87, 12));
-        miGestionarFestivos.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        miGestionarFestivos.setForeground(new java.awt.Color(255, 255, 255));
-        miGestionarFestivos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/configuracion.png"))); // NOI18N
-        miGestionarFestivos.setText(" Gestionar días festivos ");
-        miGestionarFestivos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miGestionarFestivosActionPerformed(evt);
-            }
-        });
-        mGestionarRestricciones.add(miGestionarFestivos);
-
-        miGestionarAplazados.setBackground(new java.awt.Color(31, 87, 12));
-        miGestionarAplazados.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        miGestionarAplazados.setForeground(new java.awt.Color(255, 255, 255));
-        miGestionarAplazados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/configuracion.png"))); // NOI18N
-        miGestionarAplazados.setText(" Gestionar partidos aplazados");
-        miGestionarAplazados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miGestionarAplazadosActionPerformed(evt);
-            }
-        });
-        mGestionarRestricciones.add(miGestionarAplazados);
-
-        mbRestricciones.add(mGestionarRestricciones);
-
         setJMenuBar(mbRestricciones);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1444,8 +1411,8 @@ public Restricciones() {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
-                    .addComponent(pEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE))
+                    .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
+                    .addComponent(pEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1736,11 +1703,6 @@ public Restricciones() {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbLunesActionPerformed
 
-    private void miGestionarFestivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miGestionarFestivosActionPerformed
-        Inactividad  frm = new Inactividad ();
-        frm.setVisible(true);
-    }//GEN-LAST:event_miGestionarFestivosActionPerformed
-
     private void cbEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEquiposActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbEquiposActionPerformed
@@ -1748,11 +1710,6 @@ public Restricciones() {
     private void cbCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCamposActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCamposActionPerformed
-
-    private void miGestionarAplazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miGestionarAplazadosActionPerformed
-        Aplazados  frm = new Aplazados ();
-        frm.setVisible(true);
-    }//GEN-LAST:event_miGestionarAplazadosActionPerformed
    
     public void close() {
              dispose();             
@@ -1847,10 +1804,7 @@ public Restricciones() {
     private javax.swing.JLabel lblLogoCampos;
     private javax.swing.JLabel lblLogoEquipos;
     private javax.swing.JLabel lblNoCoincidir;
-    private javax.swing.JMenu mGestionarRestricciones;
     private javax.swing.JMenuBar mbRestricciones;
-    private javax.swing.JMenuItem miGestionarAplazados;
-    private javax.swing.JMenuItem miGestionarFestivos;
     private javax.swing.JPanel pCampos;
     private javax.swing.JPanel pCamposExcluidos;
     private javax.swing.JPanel pEquipos;
