@@ -231,6 +231,28 @@ public class MostrarDatos {
         con.desconectar();
         tAplazados.setModel(model);
     }
+
+        public void llenarTInactivos(JTable tInactivos){
+        DefaultTableModel model = (DefaultTableModel) tInactivos.getModel();
+        Object[] fila = new Object[10];
+        con.conectar();
+        String select = "ID, FECHA, MOTIVO";
+        String from = "festivos";
+        String order = "ID, FECHA, MOTIVO";  
+        ResultSet festivos = con.getValues(select, from, "", order);
+            try {
+                while(festivos.next()){
+                    fila[0] = festivos.getInt("ID");
+                    fila[1] = festivos.getDate("FECHA");
+                    fila[2] = festivos.getString("MOTIVO");
+                    model.addRow(fila);                   
+                } 
+            }catch (SQLException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        con.desconectar();
+        tInactivos.setModel(model);
+    }
     
     public void llenarComboAgregarEquiposCategoria(JComboBox cbAgregarEquipoCategoria, String equipo) {
         con.conectar();
