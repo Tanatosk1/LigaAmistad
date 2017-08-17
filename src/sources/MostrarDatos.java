@@ -184,7 +184,7 @@ public class MostrarDatos {
                     //Creamos un modelo de combobox y le añadimos 3 elementos
                     DefaultComboBoxModel modelo = new DefaultComboBoxModel();
                     
-                    ResultSet campos_horas = con.getValues("DISTINCT ch.ID_CAMPO, h.hora", "cam_horarios ch inner join hora h on ch.ID_HORA = h.ID", "", "ch.ID_CAMPO");
+                    ResultSet campos_horas = con.getValues("DISTINCT ch.ID_CAMPO, h.hora", "cam_horarios ch inner join hora h on ch.ID_HORA = h.ID inner join campos c on ch.ID_CAMPO = c.ID", "c.CONGELADO = 0", "ch.ID_CAMPO LIMIT 2");
                     try{
                         while(campos_horas.next()){
                             modelo.addElement(campos_horas.getString("hora"));
@@ -205,7 +205,7 @@ public class MostrarDatos {
                     JComboBox< Object > jc2 = new JComboBox<>();
                     DefaultComboBoxModel modelo2 = new DefaultComboBoxModel();
 
-                    ResultSet campos = con.getValues("CAMPO", "Campos", "CONGELADO = 0", "ID");
+                    ResultSet campos = con.getValues("DISTINCT c.ID, c.CAMPO", "campos c inner join cam_horarios ch on c.ID = ch.ID_CAMPO", "c.CONGELADO = 0 and ch.ASIGNADO = 0", "c.ID");
                     try {
                         while(campos.next()){
                             modelo2.addElement(campos.getString("CAMPO"));

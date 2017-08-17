@@ -37,6 +37,13 @@ public class GeneraCalendario {
   
     public void generaFechas(String fInicio, String fFin, JTable tabla, JComboBox jornada){
         Conn conn = new Conn();
+        conn.conectar();
+        conn.updateData("cam_horarios", "ASIGNADO = 0");
+        try {
+            conn.getConection().commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(MostrarDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         model = (DefaultTableModel) tabla.getModel();
         this.jornada = (int) jornada.getSelectedItem();
         //this.idcampos = new ArrayList();
@@ -46,9 +53,9 @@ public class GeneraCalendario {
         String dateInString = fInicio;
         String dateFinString = fFin; 
         
-        conn.conectar();
-        totalHorariosDisponibles = conn.totalRegistros("campos INNER JOIN cam_horarios ON ID = ID_CAMPO", "CONGELADO = 0");
-        camposDis = conn.getValues("*", "campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO INNER JOIN hora h ON ch.ID_HORA = h.ID", "CONGELADO = 0", "c.ID");
+        
+        totalHorariosDisponibles = conn.totalRegistros("campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO", "c.CONGELADO = 0");
+        camposDis = conn.getValues("c.ID, c.CAMPO, ch.ID_DIA, ch.ID_HORA, ch.ID as ID_CAM_HORA, h.HORA", "campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO INNER JOIN hora h ON ch.ID_HORA = h.ID", "CONGELADO = 0", "c.ID");
         
         /** Reparto de campos **/
         totalPartidosMostrados = model.getRowCount();
@@ -108,6 +115,9 @@ public class GeneraCalendario {
                                             pintarFecha(d, dateIni, dateFin, tabla);
                                             tabla.setValueAt(camposDis.getString("HORA"), d, 4);
                                             camposUsados.add(camposDis.getRow());
+                                            conn.conectar();
+                                            conn.updateData("cam_horarios", "ASIGNADO = 1", "ID = " + camposDis.getInt("ID_CAM_HORA"));
+                                            conn.getConection().commit();
                                             continue bucle;
                                                 //}
                                             //}

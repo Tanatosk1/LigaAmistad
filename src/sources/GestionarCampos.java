@@ -62,7 +62,7 @@ public class GestionarCampos {
             conn.getConection().commit();
             
             for(int i = 0; i < condiciones.size(); i++){
-                conn.insertData("cam_horarios", id +","+condiciones.get(i).getDia()+","+condiciones.get(i).getHora());
+                conn.insertData("cam_horarios", "NULL," + id +","+condiciones.get(i).getDia()+","+condiciones.get(i).getHora()+", 0");
                 conn.getConection().commit();
             }
             
