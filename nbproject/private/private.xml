@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/views/Aplazados.java</file>
-            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/sources/CargarDatos.java</file>
-            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/sources/Filtros.java</file>
-            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/views/Restricciones.java</file>
-            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/sources/CrearDocumentos.java</file>
-            <file>file:/C:/Users/rob_a/OneDrive/Documents/NetBeansProjects/LigaAmistad/src/sources/GeneraCalendario.java</file>
+            <file>file:/C:/Users/sgonzalez/Documents/LigaAmistad/src/sources/GeneraCalendario.java</file>
+            <file>file:/C:/Users/sgonzalez/Documents/LigaAmistad/src/sources/MostrarDatos.java</file>
+            <file>file:/C:/Users/sgonzalez/Documents/LigaAmistad/src/connection/Conn.java</file>
+            <file>file:/C:/Users/sgonzalez/Documents/LigaAmistad/src/views/Aplazados.java</file>
+            <file>file:/C:/Users/sgonzalez/Documents/LigaAmistad/src/sources/GestionarCampos.java</file>
         </group>
     </open-files>
 </project-private>
