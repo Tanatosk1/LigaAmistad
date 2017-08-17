@@ -5,23 +5,14 @@
  */
 package views;
 
-import connection.Conn;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import sources.GestionarCampos;
-import sources.GestionarEquipos;
 import sources.MostrarDatos;
-import sources.OCampos;
 
 
 /**
@@ -29,7 +20,8 @@ import sources.OCampos;
  * @author A644308
  */
 public class Inactividad extends javax.swing.JFrame {
-        private FondoVentana fondo;
+    private FondoVentana fondo;
+    private final MostrarDatos md = new MostrarDatos();
 
         
         
@@ -41,6 +33,13 @@ public Inactividad() {
         setIconImage(icon);
         fondo = new FondoVentana();
         this.add(fondo);
+        
+        tInactivos.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tInactivos.getColumnModel().getColumn(1).setPreferredWidth(75);
+        tInactivos.getColumnModel().getColumn(2).setPreferredWidth(120);
+
+        
+        md.llenarTInactivos(this.tInactivos);
             
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -80,7 +79,7 @@ public Inactividad() {
         cbFestivosDescripcion = new javax.swing.JComboBox<>();
         btnFestivosAceptar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tFestivos = new javax.swing.JTable();
+        tInactivos = new javax.swing.JTable();
         btnEliminarFestivos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -104,7 +103,12 @@ public Inactividad() {
         lblFestivosDescripcion.setText("Descripción");
 
         cbFestivosDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cbFestivosDescripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un motivo", "Periodo hábil", "Fiesta nacional", "Fiesta local", "Periodo vacacional", "Otros" }));
+        cbFestivosDescripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un motivo", "Periodo inhábil", "Fiesta nacional", "Fiesta local", "Periodo vacacional", "Otros" }));
+        cbFestivosDescripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFestivosDescripcionActionPerformed(evt);
+            }
+        });
 
         btnFestivosAceptar.setBackground(new java.awt.Color(31, 87, 12));
         btnFestivosAceptar.setForeground(new java.awt.Color(255, 255, 255));
@@ -155,19 +159,27 @@ public Inactividad() {
                 .addGap(10, 10, 10))
         );
 
-        tFestivos.setModel(new javax.swing.table.DefaultTableModel(
+        tInactivos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Fecha de Inicio", "Fecha de Fin", "Descripción"
+                "ID", "Fecha", "Descripción"
             }
-        ));
-        tFestivos.setEnabled(false);
-        jScrollPane1.setViewportView(tFestivos);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tInactivos.setEnabled(false);
+        jScrollPane1.setViewportView(tInactivos);
+        if (tInactivos.getColumnModel().getColumnCount() > 0) {
+            tInactivos.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         btnEliminarFestivos.setBackground(new java.awt.Color(31, 87, 12));
         btnEliminarFestivos.setForeground(new java.awt.Color(255, 255, 255));
@@ -213,7 +225,7 @@ public Inactividad() {
 
     private void btnFestivosAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFestivosAceptarActionPerformed
         if(dFestivosFechaInicio.getDate()==null){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/resources/warning.png"));
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fecha de inicio","Seleccione una  fecha de inicio", JOptionPane.QUESTION_MESSAGE, icon);
         
         }if(dFestivosFechaFin.getDate()==null){
@@ -221,7 +233,7 @@ public Inactividad() {
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fecha de fin","Seleccione una  fecha de fin", JOptionPane.QUESTION_MESSAGE, icon);
         
         }if (cbFestivosDescripcion.getSelectedItem().toString().equals("Seleccione un motivo")){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/resources//warning.png"));
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un motivo","Seleccione un motivo", JOptionPane.QUESTION_MESSAGE, icon);
         
         }else{
@@ -235,6 +247,10 @@ public Inactividad() {
     private void btnEliminarFestivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFestivosActionPerformed
 
     }//GEN-LAST:event_btnEliminarFestivosActionPerformed
+
+    private void cbFestivosDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFestivosDescripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbFestivosDescripcionActionPerformed
    
     public void close() {
              dispose();             
@@ -292,6 +308,6 @@ public Inactividad() {
     private javax.swing.JLabel lblFestivosDescripcion;
     private javax.swing.JLabel lblFestivosFechaFin;
     private javax.swing.JPanel pFestivos;
-    private javax.swing.JTable tFestivos;
+    private javax.swing.JTable tInactivos;
     // End of variables declaration//GEN-END:variables
 }
