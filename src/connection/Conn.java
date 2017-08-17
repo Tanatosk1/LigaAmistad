@@ -165,6 +165,22 @@ public class Conn {
     }
     
     /**
+     * Proceso para actualizar todos los datos en la BBDD
+     * @param table Tabla donde se realizará la actualización
+     * @param set Datos a actualizar
+     */
+    public void updateData(String table, String set){
+        try {
+            String Query = "UPDATE " + table + " SET " + set;
+            Statement st = link.createStatement();
+            st.executeUpdate(Query);
+        } catch (SQLException ex) {
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(null, "Error al actualizar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
+        }
+    }
+    
+    /**
      * Proceso para actualizar los datos en la BBDD
      * @param table Tabla donde se realizará la actualización
      * @param set Datos a actualizar
