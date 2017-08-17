@@ -118,6 +118,9 @@ private final CrearDocumentos cd = new CrearDocumentos();
         mExportar = new javax.swing.JMenu();
         miExportarExcel = new javax.swing.JMenuItem();
         miExportarPDF = new javax.swing.JMenuItem();
+        mGestionarRestricciones = new javax.swing.JMenu();
+        miGestionarFestivos = new javax.swing.JMenuItem();
+        miGestionarAplazados = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Generación de Calendario");
@@ -398,6 +401,36 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
         mbCalendario.add(mExportar);
 
+        mGestionarRestricciones.setForeground(new java.awt.Color(255, 255, 255));
+        mGestionarRestricciones.setText("Gestión");
+
+        miGestionarFestivos.setBackground(new java.awt.Color(31, 87, 12));
+        miGestionarFestivos.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miGestionarFestivos.setForeground(new java.awt.Color(255, 255, 255));
+        miGestionarFestivos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/configuracion.png"))); // NOI18N
+        miGestionarFestivos.setText(" Gestionar días festivos ");
+        miGestionarFestivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miGestionarFestivosActionPerformed(evt);
+            }
+        });
+        mGestionarRestricciones.add(miGestionarFestivos);
+
+        miGestionarAplazados.setBackground(new java.awt.Color(31, 87, 12));
+        miGestionarAplazados.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miGestionarAplazados.setForeground(new java.awt.Color(255, 255, 255));
+        miGestionarAplazados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/configuracion.png"))); // NOI18N
+        miGestionarAplazados.setText(" Gestionar partidos aplazados");
+        miGestionarAplazados.setEnabled(false);
+        miGestionarAplazados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miGestionarAplazadosActionPerformed(evt);
+            }
+        });
+        mGestionarRestricciones.add(miGestionarAplazados);
+
+        mbCalendario.add(mGestionarRestricciones);
+
         setJMenuBar(mbCalendario);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -438,6 +471,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
               gc.guardarCalendario(this.tCalendario, this.cbGenerarJornada);
+              miGestionarAplazados.setEnabled(true);            
         }      
         
     }//GEN-LAST:event_btnCalendarioGenerarActionPerformed
@@ -532,6 +566,16 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private void cbJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbJornadaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbJornadaActionPerformed
+
+    private void miGestionarFestivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miGestionarFestivosActionPerformed
+        Inactividad  frm = new Inactividad ();
+        frm.setVisible(true);
+    }//GEN-LAST:event_miGestionarFestivosActionPerformed
+
+    private void miGestionarAplazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miGestionarAplazadosActionPerformed
+        Aplazados  frm = new Aplazados ();
+        frm.setVisible(true);
+    }//GEN-LAST:event_miGestionarAplazadosActionPerformed
     
     public void close() {
              dispose();             
@@ -594,10 +638,13 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private javax.swing.JLabel lblInicioFechaFin;
     private javax.swing.JLabel lblJornada;
     private javax.swing.JMenu mExportar;
+    private javax.swing.JMenu mGestionarRestricciones;
     private javax.swing.JMenu mImportar;
     private javax.swing.JMenuBar mbCalendario;
     private javax.swing.JMenuItem miExportarExcel;
     private javax.swing.JMenuItem miExportarPDF;
+    private javax.swing.JMenuItem miGestionarAplazados;
+    private javax.swing.JMenuItem miGestionarFestivos;
     private javax.swing.JMenuItem miImportarcalendario;
     private javax.swing.JPanel pCalendario;
     private javax.swing.JPanel pInicioCalendario;
