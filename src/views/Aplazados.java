@@ -41,9 +41,6 @@ private final MostrarDatos md = new MostrarDatos();
         tAplazados.getColumnModel().getColumn(7).setPreferredWidth(390);
         tAplazados.getColumnModel().getColumn(8).setPreferredWidth(370);
  //       tAplazados.getColumnModel().getColumn(9).setPreferredWidth(120);
-        
-        md.llenarComboJornadas(this.cbJornadaAplazado);
-        
         md.llenarTAplazados(this.tAplazados);
 
         
@@ -79,8 +76,6 @@ private final MostrarDatos md = new MostrarDatos();
         scrollCalendario = new javax.swing.JScrollPane();
         tAplazados = new javax.swing.JTable();
         btnCalendarioGenerar = new javax.swing.JButton();
-        cbJornadaAplazado = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Partidos aplazados");
@@ -116,13 +111,6 @@ private final MostrarDatos md = new MostrarDatos();
             }
         });
 
-        cbJornadaAplazado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cbJornadaAplazado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una jornada" }));
-
-        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Jornada en la que se jugará el partido aplazado");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,10 +121,6 @@ private final MostrarDatos md = new MostrarDatos();
                     .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbJornadaAplazado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCalendarioGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -144,12 +128,9 @@ private final MostrarDatos md = new MostrarDatos();
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCalendarioGenerar)
-                    .addComponent(cbJornadaAplazado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addComponent(btnCalendarioGenerar)
                 .addContainerGap())
         );
 
@@ -207,8 +188,6 @@ private final MostrarDatos md = new MostrarDatos();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalendarioGenerar;
-    private javax.swing.JComboBox<String> cbJornadaAplazado;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane scrollCalendario;
     private javax.swing.JTable tAplazados;
     // End of variables declaration//GEN-END:variables
