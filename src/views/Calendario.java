@@ -470,8 +470,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         int input = JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios realizados en el calendario?", "Guardar cambios", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-              gc.guardarCalendario(this.tCalendario, this.cbGenerarJornada);
-              miGestionarAplazados.setEnabled(true);            
+              gc.guardarCalendario(this.tCalendario, this.cbGenerarJornada);           
         }      
         
     }//GEN-LAST:event_btnCalendarioGenerarActionPerformed
@@ -509,8 +508,9 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
     private void btnFiltroAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroAceptarActionPerformed
 
-              filtro = new Filtros(this.cbCategoria.getSelectedIndex(), this.cbDivision.getSelectedIndex(),
-              this.cbJornada.getSelectedIndex(), this.tCalendario);
+        filtro = new Filtros(this.cbCategoria.getSelectedIndex(), this.cbDivision.getSelectedIndex(),
+        this.cbJornada.getSelectedIndex(), this.tCalendario);
+        miGestionarAplazados.setEnabled(true); 
 
     }//GEN-LAST:event_btnFiltroAceptarActionPerformed
 
