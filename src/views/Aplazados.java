@@ -42,7 +42,6 @@ private final MostrarDatos md = new MostrarDatos();
         tAplazados.getColumnModel().getColumn(8).setPreferredWidth(370);
  //       tAplazados.getColumnModel().getColumn(9).setPreferredWidth(120);
         md.llenarTAplazados(this.tAplazados);
-
         
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
