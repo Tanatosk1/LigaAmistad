@@ -8,10 +8,16 @@ package views;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import sources.GestionarFestivos;
 import sources.MostrarDatos;
 
 
@@ -22,7 +28,7 @@ import sources.MostrarDatos;
 public class Inactividad extends javax.swing.JFrame {
     private FondoVentana fondo;
     private final MostrarDatos md = new MostrarDatos();
-
+    GestionarFestivos gf = new GestionarFestivos ();
         
         
 public Inactividad() {
@@ -239,8 +245,30 @@ public Inactividad() {
         }else{
               Date fechaInicio = this.dFestivosFechaInicio.getDate();
               Date fechaFin = this.dFestivosFechaFin.getDate();
-              SimpleDateFormat formato = new SimpleDateFormat("d/MM/yyyy");
- 
+              SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+//              String fechaInicioFormateada = formato.format(fechaInicio);
+//              String fechaFinFormateada = formato.format(fechaFin);
+              int ndias  = md.diferenciasDeFechas(fechaInicio,fechaFin);
+              Calendar cal = Calendar.getInstance();
+              cal.setTime(fechaInicio);
+              cal.add(Calendar.DAY_OF_WEEK, 0);
+              fechaInicio = cal.getTime();
+                try {
+                    gf.guardarAplazado(formato.format(fechaInicio), cbFestivosDescripcion.getSelectedItem().toString());
+                } catch (SQLException ex) {
+                    Logger.getLogger(Inactividad.class.getName()).log(Level.SEVERE, null, ex);
+                }
+              for(int i = 1; i <= ndias; i++){
+                cal.add(Calendar.DAY_OF_WEEK, 1); 
+                  fechaInicio = cal.getTime();
+                  try {
+                      gf.guardarAplazado(formato.format(fechaInicio), cbFestivosDescripcion.getSelectedItem().toString());
+                  } catch (SQLException ex) {
+                      Logger.getLogger(Inactividad.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+              }
+              md.reiniciarTablaInactivos(tInactivos);
+              md.llenarTInactivos(this.tInactivos);
         }   
     }//GEN-LAST:event_btnFestivosAceptarActionPerformed
 
