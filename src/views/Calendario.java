@@ -510,7 +510,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
         filtro = new Filtros(this.cbCategoria.getSelectedIndex(), this.cbDivision.getSelectedIndex(),
         this.cbJornada.getSelectedIndex(), this.tCalendario);
-        miGestionarAplazados.setEnabled(true); 
 
     }//GEN-LAST:event_btnFiltroAceptarActionPerformed
 
@@ -532,6 +531,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
               Date fechaFin = this.dFechaFinTemporada.getDate();
               SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
               gc.generaFechas(formato.format(fechaInicio), formato.format(fechaFin), this.tCalendario, this.cbGenerarJornada);
+              miGestionarAplazados.setEnabled(true); 
         }      
  
     }//GEN-LAST:event_btnGenerarInicioActionPerformed
