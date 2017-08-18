@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import sources.ActualizarDatosAplazados;
 import sources.MostrarDatos;
 
 
@@ -42,6 +43,9 @@ private final MostrarDatos md = new MostrarDatos();
         tAplazados.getColumnModel().getColumn(8).setPreferredWidth(370);
  //       tAplazados.getColumnModel().getColumn(9).setPreferredWidth(120);
         md.llenarTAplazados(this.tAplazados);
+        
+        ActualizarDatosAplazados ada = new ActualizarDatosAplazados(this.tAplazados);
+        tAplazados.getModel().addTableModelListener(ada);
         
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -90,7 +94,7 @@ private final MostrarDatos md = new MostrarDatos();
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, true, false, false, true, false
+                false, false, false, true, true, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

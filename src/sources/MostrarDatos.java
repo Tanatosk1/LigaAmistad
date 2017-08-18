@@ -172,33 +172,23 @@ public class MostrarDatos {
                 while(campeonato.next()){
                     fila[0] = campeonato.getInt("ID");
                     fila[1] = campeonato.getInt("JORNADA");
-                    fila[2] = campeonato.getDate("FECHA");
-                    if(campeonato.getDate("FECHA") != null){
-                        fila[3] = calculaDia((Date)campeonato.getDate("FECHA"));
-                    }else{
-                        fila[3] = "";
-                    }
-                    fila[4]="Seleccione una hora";
-//                    Creamos un combo box sin modelo
-                    JComboBox< Object > jc = new JComboBox<>();
-                    //Creamos un modelo de combobox y le añadimos 3 elementos
-                    DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+                    //fila[2] = campeonato.getDate("FECHA");
+                    //if(campeonato.getDate("FECHA") != null){
+                    //    fila[3] = calculaDia((Date)campeonato.getDate("FECHA"));
+                    //}else{
+                    //    fila[3] = "";
+                    //}
+                    //fila[4]="Seleccione una hora";
+                    
                     
                     ResultSet campos_horas = con.getValues("DISTINCT ch.ID_CAMPO, h.hora", "cam_horarios ch inner join hora h on ch.ID_HORA = h.ID inner join campos c on ch.ID_CAMPO = c.ID", "c.CONGELADO = 0", "ch.ID_CAMPO LIMIT 2");
                     try{
                         while(campos_horas.next()){
-                            modelo.addElement(campos_horas.getString("hora"));
+                            
                         }
                     }catch(SQLException ex){}
-                    //Asignamos el modelo al combobox
-                    jc.setModel(modelo);
-                    //Ahora vamos a recoger una columna que será donde insertemos el combobox
-                    TableColumn columna = tAplazados.getColumnModel().getColumn(4);
-                    //Creamos un nuevo editor de celda. Tambien puede insertarse checkboxs y textfields
-                    TableCellEditor editor = new DefaultCellEditor(jc);
-                    //Le asignamos a la columna el editor creado
-                    columna.setCellEditor(editor);
-                    fila[4] = campeonato.getString("HORA");
+                    
+                    //fila[4] = campeonato.getString("HORA");
                     fila[5] = campeonato.getString("LOCAL");
                     fila[6] = campeonato.getString("VISITANTE");
                     fila[7] = "Seleccione un campo";
@@ -218,6 +208,7 @@ public class MostrarDatos {
                     TableColumn columna2 = tAplazados.getColumnModel().getColumn(7);
                     TableCellEditor editor2 = new DefaultCellEditor(jc2);
                     columna2.setCellEditor(editor2);
+                    
                     if(campeonato.getString("DIVISION").equalsIgnoreCase("sin división")){
                         fila[8] = campeonato.getString("CATEGORIA");
                     }else{
