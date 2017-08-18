@@ -3,6 +3,8 @@ package sources;
 import connection.Conn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
@@ -290,5 +292,39 @@ public class MostrarDatos {
         d.setTime(fecha);
         dia = strDays[d.get(Calendar.DAY_OF_WEEK)-1];
         return dia;
+    }
+    
+    public void reiniciarTablaInactivos(JTable tInactivos){
+        try{
+            DefaultTableModel temp = (DefaultTableModel) tInactivos.getModel();
+            int a =temp.getRowCount()-0;
+            for(int i=0; i<a; i++)
+                temp.removeRow(0); 
+            }catch(Exception e){
+            System.out.println(e);
+            }
+
+    }
+    
+
+    public static int diferenciasDeFechas(Date fechaInicial, Date fechaFinal) {
+            DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            String fechaInicioString = df.format(fechaInicial);
+            try {
+            fechaInicial = df.parse(fechaInicioString);
+            } catch (ParseException ex) {
+            }
+            String fechaFinalString = df.format(fechaFinal);
+             try {
+            fechaFinal = df.parse(fechaFinalString);
+            } catch (ParseException ex) {
+            }
+             long fechaInicialMs = fechaInicial.getTime();
+             long fechaFinalMs = fechaFinal.getTime();
+            long diferencia = fechaFinalMs - fechaInicialMs;
+            double dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            System.out.println(dias);
+            return ((int) dias);
+            
     }
 }
