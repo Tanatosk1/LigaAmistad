@@ -76,9 +76,10 @@ private final MostrarDatos md = new MostrarDatos();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        scrollCalendario = new javax.swing.JScrollPane();
+        scrollAplazados = new javax.swing.JScrollPane();
         tAplazados = new javax.swing.JTable();
-        btnCalendarioGenerar = new javax.swing.JButton();
+        btnGenerarAplazados = new javax.swing.JButton();
+        btnGuardarAplazados = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Partidos aplazados");
@@ -103,14 +104,23 @@ private final MostrarDatos md = new MostrarDatos();
         });
         tAplazados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tAplazados.getTableHeader().setReorderingAllowed(false);
-        scrollCalendario.setViewportView(tAplazados);
+        scrollAplazados.setViewportView(tAplazados);
 
-        btnCalendarioGenerar.setBackground(new java.awt.Color(31, 87, 12));
-        btnCalendarioGenerar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCalendarioGenerar.setText("Añadir partido");
-        btnCalendarioGenerar.addActionListener(new java.awt.event.ActionListener() {
+        btnGenerarAplazados.setBackground(new java.awt.Color(31, 87, 12));
+        btnGenerarAplazados.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenerarAplazados.setText("Añadir partido");
+        btnGenerarAplazados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalendarioGenerarActionPerformed(evt);
+                btnGenerarAplazadosActionPerformed(evt);
+            }
+        });
+
+        btnGuardarAplazados.setBackground(new java.awt.Color(31, 87, 12));
+        btnGuardarAplazados.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardarAplazados.setText("Añadir partido");
+        btnGuardarAplazados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarAplazadosActionPerformed(evt);
             }
         });
 
@@ -121,26 +131,30 @@ private final MostrarDatos md = new MostrarDatos();
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
+                    .addComponent(scrollAplazados, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnCalendarioGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnGuardarAplazados, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGenerarAplazados, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
+                .addComponent(scrollAplazados, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnCalendarioGenerar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGenerarAplazados)
+                    .addComponent(btnGuardarAplazados))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCalendarioGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalendarioGenerarActionPerformed
+    private void btnGenerarAplazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarAplazadosActionPerformed
         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/guardar.png"));
         int input = JOptionPane.showConfirmDialog(null, "¿Desea añadir el partido aplazado a la jornada?", "Añadir partido aplazado", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
@@ -148,7 +162,11 @@ private final MostrarDatos md = new MostrarDatos();
 
         }      
         
-    }//GEN-LAST:event_btnCalendarioGenerarActionPerformed
+    }//GEN-LAST:event_btnGenerarAplazadosActionPerformed
+
+    private void btnGuardarAplazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAplazadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarAplazadosActionPerformed
 
         public void close() {
              dispose();             
@@ -190,8 +208,9 @@ private final MostrarDatos md = new MostrarDatos();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCalendarioGenerar;
-    private javax.swing.JScrollPane scrollCalendario;
+    private javax.swing.JButton btnGenerarAplazados;
+    private javax.swing.JButton btnGuardarAplazados;
+    private javax.swing.JScrollPane scrollAplazados;
     private javax.swing.JTable tAplazados;
     // End of variables declaration//GEN-END:variables
 }
