@@ -117,7 +117,7 @@ private final MostrarDatos md = new MostrarDatos();
 
         btnGuardarAplazados.setBackground(new java.awt.Color(31, 87, 12));
         btnGuardarAplazados.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardarAplazados.setText("Añadir partido");
+        btnGuardarAplazados.setText("Giuardar cambios");
         btnGuardarAplazados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarAplazadosActionPerformed(evt);
