@@ -303,8 +303,15 @@ public class MostrarDatos {
             }catch(Exception e){
             System.out.println(e);
             }
-
     }
+    
+//    public void eliminarSeleccionadaInactivos(JTable tInactivos){
+//        DefaultTableModel model = (DefaultTableModel) tInactivos.getModel();
+//        int[] rows = tInactivos.getSelectedRows();
+//        for(int i=0;i<rows.length;i++){
+//          model.removeRow(rows[i]-i);
+//   }
+//}
     
 
     public static int diferenciasDeFechas(Date fechaInicial, Date fechaFinal) {
@@ -323,7 +330,6 @@ public class MostrarDatos {
              long fechaFinalMs = fechaFinal.getTime();
             long diferencia = fechaFinalMs - fechaInicialMs;
             double dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-            System.out.println(dias);
             return ((int) dias);
             
     }
