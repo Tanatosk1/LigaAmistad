@@ -2,12 +2,18 @@ package sources;
 
 import connection.Conn;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -31,6 +37,7 @@ public class GeneraCalendario {
     private int jornada;
     private DefaultTableModel model;
     private ResultSet camposDis;
+    private ArrayList campos = new ArrayList();
     private final ArrayList idcampos = new ArrayList();
 
     
@@ -56,6 +63,32 @@ public class GeneraCalendario {
         
         totalHorariosDisponibles = conn.totalRegistros("campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO", "c.CONGELADO = 0");
         camposDis = conn.getValues("c.ID, c.CAMPO, ch.ID_DIA, ch.ID_HORA, ch.ID as ID_CAM_HORA, h.HORA", "campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO INNER JOIN hora h ON ch.ID_HORA = h.ID", "CONGELADO = 0", "c.ID");
+        //crearAleatorio();
+        try {
+            ResultSetMetaData metaData = camposDis.getMetaData();
+            int columns = metaData.getColumnCount();
+            while(camposDis.next()){
+                HashMap row = new HashMap();
+                campos.add(row);
+                
+                for(int i = 1; i <= columns; i++){
+                    row.put(metaData.getColumnName(i), camposDis.getObject(i));
+                }
+            }
+            System.out.println("-------------------------------------------------------");
+            System.out.println("Solo el 0");
+            System.out.println("-------------------------------------------------------");
+            System.out.println(campos.get(0).toString());
+            String[] linea = campos.get(0).toString().split(",");
+            for(int l = 0; l < linea.length; l++){
+                System.out.println(linea[l].trim().replace("{", "").replace("}", ""));
+            }
+            System.out.println(linea[4].trim().replace("}", "").substring(3));
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         /** Reparto de campos **/
         totalPartidosMostrados = model.getRowCount();
@@ -89,9 +122,14 @@ public class GeneraCalendario {
                         if(camposDis.isLast() | camposDis.isAfterLast()){
                             camposDis.beforeFirst();
                         }
+                        int f = 0;
                         cambioCampo:
-                        while(camposDis.next()){
-                            restriccionLocalCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
+                        System.out.println("Tamaño arraylist campos " + campos.size());
+                        while(campos.size() <= f){
+                        //while(camposDis.next()){
+                            String[] linea = campos.get(f).toString().split(",");
+                            restriccionLocalCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), Integer.parseInt(linea[4].trim().replace("}", "").substring(0, 3)));
+                            //restriccionLocalCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
                             if(!restriccionLocalCampo){
                                 restriccionVisitanteCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
                                 if(!restriccionVisitanteCampo){
@@ -99,10 +137,6 @@ public class GeneraCalendario {
                                     if(!restriccionLocalDia){
                                         restriccionVisitanteDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_DIA"), camposDis.getInt("ID_HORA"));
                                         if(!restriccionVisitanteDia){
-                                            //restriccionLocalHora = verificaRestriccionesHora(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.getInt("ID_HORA"));
-                                            //if(!restriccionLocalHora){
-                                                //restriccionVisitanteHora = verificaRestriccionesHora(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_HORA"));
-                                                //if(!restriccionVisitanteHora){
                                             for(int it = 0; it < camposUsados.size(); it++){
                                                 if((int)camposUsados.get(it) == camposDis.getRow()){
                                                     continue cambioCampo;
@@ -119,8 +153,6 @@ public class GeneraCalendario {
                                             conn.updateData("cam_horarios", "ASIGNADO = 1", "ID = " + camposDis.getInt("ID_CAM_HORA"));
                                             conn.getConection().commit();
                                             continue bucle;
-                                                //}
-                                            //}
                                         }else{
                                             System.out.println("EL equipo Visitanto no puede jugar el día "+camposDis.getInt("ID_DIA"));
                                         }
@@ -149,6 +181,30 @@ public class GeneraCalendario {
              
         conn.desconectar();
         /** Fin reparto de campos **/
+    }
+    
+    private void crearAleatorio(){
+        
+        
+        for(int i = 0; i < 19; i++){
+            campos.add(i);
+        }
+        
+        Iterator c = campos.iterator();
+        int pos = 1;
+        while(c.hasNext()){
+            System.out.println("Posiscio "+pos +" nº: " + c.next());
+            pos++;
+        }
+        System.out.println("Vamos a desordenar");
+        Collections.shuffle(campos);
+        Iterator c1 = campos.iterator();
+        int pos1 = 1;
+        while(c1.hasNext()){
+            System.out.println("Posiscio "+pos1 +" nº: " + c1.next());
+            pos1++;
+        }
+        
     }
     
     public String getDia(int dia){
@@ -263,27 +319,27 @@ public class GeneraCalendario {
         return false;
     }
     
-    private boolean verificaRestriccionesHora(int partido, JTable tabla, int jornada, String local, int hora){
-        Conn conn = new Conn();
-        ResultSet restricciones;
-        
-        conn.conectar();
-        restricciones = conn.getValues("*", "restricciones r INNER JOIN equipos e ON r.ID_EQUIPO = e.ID", "", "");
-        
-        try {
-            if((int)tabla.getValueAt(partido, 1) == jornada){
-                while(restricciones.next()){
-                    if(local.equals(restricciones.getString("NOMBRE"))){
-                        if(hora == restricciones.getInt("HORA")){
-                            return true;
-                        }
-                    }
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        conn.desconectar();
-        return false;
-    }
+//    private boolean verificaRestriccionesHora(int partido, JTable tabla, int jornada, String local, int hora){
+//        Conn conn = new Conn();
+//        ResultSet restricciones;
+//        
+//        conn.conectar();
+//        restricciones = conn.getValues("*", "restricciones r INNER JOIN equipos e ON r.ID_EQUIPO = e.ID", "", "");
+//        
+//        try {
+//            if((int)tabla.getValueAt(partido, 1) == jornada){
+//                while(restricciones.next()){
+//                    if(local.equals(restricciones.getString("NOMBRE"))){
+//                        if(hora == restricciones.getInt("HORA")){
+//                            return true;
+//                        }
+//                    }
+//                }
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        conn.desconectar();
+//        return false;
+//    }
 }
