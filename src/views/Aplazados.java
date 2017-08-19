@@ -78,7 +78,7 @@ private final MostrarDatos md = new MostrarDatos();
 
         scrollAplazados = new javax.swing.JScrollPane();
         tAplazados = new javax.swing.JTable();
-        btnGenerarAplazados = new javax.swing.JButton();
+        btnAnadirAplazados = new javax.swing.JButton();
         btnGuardarAplazados = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -106,12 +106,12 @@ private final MostrarDatos md = new MostrarDatos();
         tAplazados.getTableHeader().setReorderingAllowed(false);
         scrollAplazados.setViewportView(tAplazados);
 
-        btnGenerarAplazados.setBackground(new java.awt.Color(31, 87, 12));
-        btnGenerarAplazados.setForeground(new java.awt.Color(255, 255, 255));
-        btnGenerarAplazados.setText("Añadir partido");
-        btnGenerarAplazados.addActionListener(new java.awt.event.ActionListener() {
+        btnAnadirAplazados.setBackground(new java.awt.Color(31, 87, 12));
+        btnAnadirAplazados.setForeground(new java.awt.Color(255, 255, 255));
+        btnAnadirAplazados.setText("Añadir partido");
+        btnAnadirAplazados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarAplazadosActionPerformed(evt);
+                btnAnadirAplazadosActionPerformed(evt);
             }
         });
 
@@ -136,7 +136,7 @@ private final MostrarDatos md = new MostrarDatos();
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnGuardarAplazados, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnGenerarAplazados, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnAnadirAplazados, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -146,7 +146,7 @@ private final MostrarDatos md = new MostrarDatos();
                 .addComponent(scrollAplazados, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGenerarAplazados)
+                    .addComponent(btnAnadirAplazados)
                     .addComponent(btnGuardarAplazados))
                 .addContainerGap())
         );
@@ -154,7 +154,7 @@ private final MostrarDatos md = new MostrarDatos();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGenerarAplazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarAplazadosActionPerformed
+    private void btnAnadirAplazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirAplazadosActionPerformed
         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/guardar.png"));
         int input = JOptionPane.showConfirmDialog(null, "¿Desea añadir el partido aplazado a la jornada?", "Añadir partido aplazado", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
@@ -162,7 +162,7 @@ private final MostrarDatos md = new MostrarDatos();
 
         }      
         
-    }//GEN-LAST:event_btnGenerarAplazadosActionPerformed
+    }//GEN-LAST:event_btnAnadirAplazadosActionPerformed
 
     private void btnGuardarAplazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAplazadosActionPerformed
         // TODO add your handling code here:
@@ -208,7 +208,7 @@ private final MostrarDatos md = new MostrarDatos();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGenerarAplazados;
+    private javax.swing.JButton btnAnadirAplazados;
     private javax.swing.JButton btnGuardarAplazados;
     private javax.swing.JScrollPane scrollAplazados;
     private javax.swing.JTable tAplazados;
