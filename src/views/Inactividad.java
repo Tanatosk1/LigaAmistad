@@ -5,10 +5,13 @@
  */
 package views;
 
+import connection.Conn;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import sources.GestionarFestivos;
 import sources.MostrarDatos;
 
@@ -29,7 +34,7 @@ public class Inactividad extends javax.swing.JFrame {
     private FondoVentana fondo;
     private final MostrarDatos md = new MostrarDatos();
     GestionarFestivos gf = new GestionarFestivos ();
-        
+    private final Conn conn = new Conn();
         
 public Inactividad() {
         initComponents();
@@ -174,14 +179,13 @@ public Inactividad() {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tInactivos.setEnabled(false);
         jScrollPane1.setViewportView(tInactivos);
         if (tInactivos.getColumnModel().getColumnCount() > 0) {
             tInactivos.getColumnModel().getColumn(0).setResizable(false);
@@ -254,7 +258,7 @@ public Inactividad() {
               cal.add(Calendar.DAY_OF_WEEK, 0);
               fechaInicio = cal.getTime();
                 try {
-                    gf.guardarAplazado(formato.format(fechaInicio), cbFestivosDescripcion.getSelectedItem().toString());
+                    gf.guardarFestivo(formato.format(fechaInicio), cbFestivosDescripcion.getSelectedItem().toString());
                 } catch (SQLException ex) {
                     Logger.getLogger(Inactividad.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -262,7 +266,7 @@ public Inactividad() {
                 cal.add(Calendar.DAY_OF_WEEK, 1); 
                   fechaInicio = cal.getTime();
                   try {
-                      gf.guardarAplazado(formato.format(fechaInicio), cbFestivosDescripcion.getSelectedItem().toString());
+                      gf.guardarFestivo(formato.format(fechaInicio), cbFestivosDescripcion.getSelectedItem().toString());
                   } catch (SQLException ex) {
                       Logger.getLogger(Inactividad.class.getName()).log(Level.SEVERE, null, ex);
                   }
@@ -273,6 +277,24 @@ public Inactividad() {
     }//GEN-LAST:event_btnFestivosAceptarActionPerformed
 
     private void btnEliminarFestivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFestivosActionPerformed
+        
+        DefaultTableModel model = (DefaultTableModel) tInactivos.getModel();
+        int[] rows = tInactivos.getSelectedRows();
+        int filsel = tInactivos.getSelectedRow();
+        if(filsel == -1){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fila","Seleccione una  fila de la tabla", JOptionPane.QUESTION_MESSAGE, icon);
+        }else{
+            try {
+                for(int i=0;i<rows.length;i++){
+                    int id = (int) model.getValueAt(filsel, 0);
+                    gf.eliminarDiaFestivo(id);
+                    model.removeRow(rows[i]-i);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
     }//GEN-LAST:event_btnEliminarFestivosActionPerformed
 
