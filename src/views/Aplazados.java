@@ -5,12 +5,15 @@
  */
 package views;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import sources.ActualizarDatosAplazados;
+import sources.GestionarCampeonato;
 import sources.MostrarDatos;
 
 
@@ -22,6 +25,7 @@ public class Aplazados extends javax.swing.JFrame {
     
 private FondoVentana fondo;
 private final MostrarDatos md = new MostrarDatos();
+private final GestionarCampeonato gc = new GestionarCampeonato  ();
 
     public Aplazados() {
         initComponents();
@@ -79,7 +83,6 @@ private final MostrarDatos md = new MostrarDatos();
         scrollAplazados = new javax.swing.JScrollPane();
         tAplazados = new javax.swing.JTable();
         btnAnadirAplazados = new javax.swing.JButton();
-        btnGuardarAplazados = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Partidos aplazados");
@@ -115,15 +118,6 @@ private final MostrarDatos md = new MostrarDatos();
             }
         });
 
-        btnGuardarAplazados.setBackground(new java.awt.Color(31, 87, 12));
-        btnGuardarAplazados.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardarAplazados.setText("Giuardar cambios");
-        btnGuardarAplazados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarAplazadosActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,8 +128,6 @@ private final MostrarDatos md = new MostrarDatos();
                     .addComponent(scrollAplazados, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGuardarAplazados, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(btnAnadirAplazados, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -145,9 +137,7 @@ private final MostrarDatos md = new MostrarDatos();
                 .addContainerGap()
                 .addComponent(scrollAplazados, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAnadirAplazados)
-                    .addComponent(btnGuardarAplazados))
+                .addComponent(btnAnadirAplazados)
                 .addContainerGap())
         );
 
@@ -159,14 +149,34 @@ private final MostrarDatos md = new MostrarDatos();
         int input = JOptionPane.showConfirmDialog(null, "¿Desea añadir el partido aplazado a la jornada?", "Añadir partido aplazado", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         if (input == JOptionPane.YES_OPTION) {
-
-        }      
+               
+            DefaultTableModel model = (DefaultTableModel) tAplazados.getModel();
+            int[] rows = tAplazados.getSelectedRows();
+            int filsel = tAplazados.getSelectedRow();
+            if(filsel == -1){
+                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fila","Seleccione una  fila de la tabla", JOptionPane.QUESTION_MESSAGE, icon);
+            }else{
+                try {
+                    for(int i=0;i<rows.length;i++){
+                        int id = (int) model.getValueAt(filsel, 0);
+//                        String fecha = (String) model.getValueAt(filsel, 2);
+                        String fecha = "2017-08-28";
+                        String hora = (String) model.getValueAt(filsel, 4);
+                        String campo = (String) model.getValueAt(filsel, 7);
+                        
+                        System.out.println(id);
+                        System.out.println(fecha);
+                        System.out.println(hora);
+                        System.out.println(campo);
+                        gc.actualizarAplazados (id, fecha, hora, campo);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         
     }//GEN-LAST:event_btnAnadirAplazadosActionPerformed
-
-    private void btnGuardarAplazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAplazadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarAplazadosActionPerformed
 
         public void close() {
              dispose();             
@@ -209,7 +219,6 @@ private final MostrarDatos md = new MostrarDatos();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnadirAplazados;
-    private javax.swing.JButton btnGuardarAplazados;
     private javax.swing.JScrollPane scrollAplazados;
     private javax.swing.JTable tAplazados;
     // End of variables declaration//GEN-END:variables
