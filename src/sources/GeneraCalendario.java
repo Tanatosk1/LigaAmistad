@@ -36,8 +36,10 @@ public class GeneraCalendario {
     private int totalPartidosMostrados;
     private int jornada;
     private DefaultTableModel model;
-    private ResultSet camposDis;
-    private ArrayList campos = new ArrayList();
+    private ResultSet rs;
+    //private ResultSet camposDis;
+    //private ArrayList campos = new ArrayList();
+    private ArrayList<OPartido> camposDis = new ArrayList();
     private final ArrayList idcampos = new ArrayList();
 
     
@@ -61,8 +63,8 @@ public class GeneraCalendario {
         
         
         totalHorariosDisponibles = conn.totalRegistros("campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO", "c.CONGELADO = 0");
-        camposDis = conn.getValues("c.ID, c.CAMPO, ch.ID_DIA, ch.ID_HORA, ch.ID as ID_CAM_HORA, h.HORA", "campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO INNER JOIN hora h ON ch.ID_HORA = h.ID", "CONGELADO = 0", "c.ID");
-        //crearAleatorio();
+        rs = conn.getValues("c.ID, c.CAMPO, ch.ID_DIA, ch.ID_HORA, ch.ID as ID_CAM_HORA, h.HORA", "campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO INNER JOIN hora h ON ch.ID_HORA = h.ID", "CONGELADO = 0", "c.ID");
+        crearAleatorio(rs);
                
         /** Reparto de campos **/
         totalPartidosMostrados = model.getRowCount();
@@ -93,51 +95,62 @@ public class GeneraCalendario {
             try {
                 if(this.jornada == (int)model.getValueAt(d, 1)){
                     if(totalHorariosDisponibles >= partidosPorJornada){
-                        if(camposDis.isLast() | camposDis.isAfterLast()){
-                            camposDis.beforeFirst();
-                        }
+//                        if(camposDis.isLast() | camposDis.isAfterLast()){
+//                            camposDis.beforeFirst();
+//                        }
                         int f = 0;
-                        System.out.println("Tamaño arraylist campos " + campos.size());
+//                        System.out.println("Tamaño arraylist campos " + campos.size());
                         cambioCampo:
-                        while(camposDis.next()){
-                            restriccionLocalCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
+                        for(int l = 0; l < camposDis.size(); l++){
+                        //while(camposDis.next()){
+                            restriccionLocalCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.get(l).getIdCampo());
+                            //restriccionLocalCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
+//                            System.out.println("restriccionLocalCampo " + restriccionLocalCampo);
                             if(!restriccionLocalCampo){
-                                restriccionVisitanteCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
+                                restriccionVisitanteCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.get(l).getIdCampo());
+//                                restriccionVisitanteCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
                                 if(!restriccionVisitanteCampo){
-                                    restriccionLocalDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.getInt("ID_DIA"), camposDis.getInt("ID_HORA"));
+                                    restriccionLocalDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.get(l).getIdDia(), camposDis.get(l).getIdHora());
+//                                    restriccionLocalDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,5), camposDis.getInt("ID_DIA"), camposDis.getInt("ID_HORA"));
                                     if(!restriccionLocalDia){
-                                        restriccionVisitanteDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_DIA"), camposDis.getInt("ID_HORA"));
+                                        restriccionVisitanteDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.get(l).getIdDia(), camposDis.get(l).getIdHora());
+//                                        restriccionVisitanteDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.getInt("ID_DIA"), camposDis.getInt("ID_HORA"));
                                         if(!restriccionVisitanteDia){
                                             for(int it = 0; it < camposUsados.size(); it++){
-                                                if((int)camposUsados.get(it) == camposDis.getRow()){
+                                                if((int)camposUsados.get(it) == camposDis.get(l).getIdCamHora()){
                                                     continue cambioCampo;
                                                 }
                                             }
-                                            tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
-                                            idcampos.add(camposDis.getInt("ID"));
-                                            String diaSemana = getDia(camposDis.getInt("ID_DIA"));
+                                            tabla.setValueAt(camposDis.get(l).getCampo(), d, 7);
+//                                            tabla.setValueAt(camposDis.getString("CAMPO"), d, 7);
+                                            idcampos.add(camposDis.get(l).getIdCampo());
+//                                            idcampos.add(camposDis.getInt("ID"));
+                                            String diaSemana = getDia(camposDis.get(l).getIdDia());
+//                                            String diaSemana = getDia(camposDis.getInt("ID_DIA"));
                                             tabla.setValueAt(diaSemana, d, 3);
                                             pintarFecha(d, dateIni, dateFin, tabla);
-                                            tabla.setValueAt(camposDis.getString("HORA"), d, 4);
-                                            camposUsados.add(camposDis.getRow());
+                                            tabla.setValueAt(camposDis.get(l).getHora(), d, 4);
+//                                            tabla.setValueAt(camposDis.getString("HORA"), d, 4);
+                                            camposUsados.add(camposDis.get(l).getIdCamHora());
+//                                            camposUsados.add(camposDis.getRow());
                                             conn.conectar();
-                                            conn.updateData("cam_horarios", "ASIGNADO = 1", "ID = " + camposDis.getInt("ID_CAM_HORA"));
+                                            conn.updateData("cam_horarios", "ASIGNADO = 1", "ID = " + camposDis.get(l).getIdCamHora());
                                             conn.getConection().commit();
                                             continue bucle;
                                         }else{
-                                            System.out.println("EL equipo Visitanto no puede jugar el día "+camposDis.getInt("ID_DIA"));
+//                                            System.out.println("EL equipo Visitanto no puede jugar el día "+camposDis.getInt("ID_DIA"));
                                         }
                                     }else{
-                                        System.out.println("EL equipo local no puede jugar el día "+camposDis.getInt("ID_DIA"));
+//                                        System.out.println("EL equipo local no puede jugar el día "+camposDis.getInt("ID_DIA"));
                                     }
                                 }else{
-                                    System.out.println("EL equipo visitante no puede jugar en el campo "+camposDis.getString("CAMPO"));
+//                                    System.out.println("EL equipo visitante no puede jugar en el campo "+camposDis.getString("CAMPO"));
                                 }
                             }else{
-                                System.out.println("EL equipo local no puede jugar en el campo "+camposDis.getString("CAMPO"));
+//                                System.out.println("EL equipo local no puede jugar en el campo "+camposDis.getString("CAMPO"));
                             }
                         }
-                        System.out.println("Fuera del while, camposDis = "+camposDis.getRow());
+//                        System.out.println("Fuera del while, camposDis = "+camposDis.getRow());
                     }else{
                         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
                         JOptionPane.showMessageDialog(null, "NO hay suficientes horarios para los partidos mostrados", "Insuficientes horarios", JOptionPane.QUESTION_MESSAGE, icon);
@@ -149,13 +162,22 @@ public class GeneraCalendario {
             }
             
         }
-             
+                  
         conn.desconectar();
         /** Fin reparto de campos **/
     }
     
-    private void crearAleatorio(){
-        
+    private void crearAleatorio(ResultSet camposDisponibles){
+        try {
+            while(camposDisponibles.next()){
+                
+                camposDis.add(new OPartido(camposDisponibles.getInt("ID"), camposDisponibles.getString("CAMPO"), camposDisponibles.getInt("ID_DIA"),
+                camposDisponibles.getInt("ID_HORA"), camposDisponibles.getInt("ID_CAM_HORA"), camposDisponibles.getString("HORA")));
+            }
+            Collections.shuffle(camposDis);
+        } catch (SQLException ex) {
+            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public String getDia(int dia){
