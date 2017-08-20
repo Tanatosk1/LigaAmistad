@@ -53,7 +53,6 @@ public class GeneraCalendario {
         }
         model = (DefaultTableModel) tabla.getModel();
         this.jornada = (int) jornada.getSelectedItem();
-        //this.idcampos = new ArrayList();
         
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         
@@ -64,32 +63,7 @@ public class GeneraCalendario {
         totalHorariosDisponibles = conn.totalRegistros("campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO", "c.CONGELADO = 0");
         camposDis = conn.getValues("c.ID, c.CAMPO, ch.ID_DIA, ch.ID_HORA, ch.ID as ID_CAM_HORA, h.HORA", "campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO INNER JOIN hora h ON ch.ID_HORA = h.ID", "CONGELADO = 0", "c.ID");
         //crearAleatorio();
-        try {
-            ResultSetMetaData metaData = camposDis.getMetaData();
-            int columns = metaData.getColumnCount();
-            while(camposDis.next()){
-                HashMap row = new HashMap();
-                campos.add(row);
-                
-                for(int i = 1; i <= columns; i++){
-                    row.put(metaData.getColumnName(i), camposDis.getObject(i));
-                }
-            }
-            System.out.println("-------------------------------------------------------");
-            System.out.println("Solo el 0");
-            System.out.println("-------------------------------------------------------");
-            System.out.println(campos.get(0).toString());
-            String[] linea = campos.get(0).toString().split(",");
-            for(int l = 0; l < linea.length; l++){
-                System.out.println(linea[l].trim().replace("{", "").replace("}", ""));
-            }
-            System.out.println(linea[4].trim().replace("}", "").substring(3));
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+               
         /** Reparto de campos **/
         totalPartidosMostrados = model.getRowCount();
         partidosPorJornada = 0;
@@ -123,13 +97,10 @@ public class GeneraCalendario {
                             camposDis.beforeFirst();
                         }
                         int f = 0;
-                        cambioCampo:
                         System.out.println("Tamaño arraylist campos " + campos.size());
-                        while(campos.size() <= f){
-                        //while(camposDis.next()){
-                            String[] linea = campos.get(f).toString().split(",");
-                            restriccionLocalCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), Integer.parseInt(linea[4].trim().replace("}", "").substring(0, 3)));
-                            //restriccionLocalCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
+                        cambioCampo:
+                        while(camposDis.next()){
+                            restriccionLocalCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5), camposDis.getInt("ID"));
                             if(!restriccionLocalCampo){
                                 restriccionVisitanteCampo = verificaRestriccionesCampos(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6), camposDis.getInt("ID"));
                                 if(!restriccionVisitanteCampo){
@@ -184,26 +155,6 @@ public class GeneraCalendario {
     }
     
     private void crearAleatorio(){
-        
-        
-        for(int i = 0; i < 19; i++){
-            campos.add(i);
-        }
-        
-        Iterator c = campos.iterator();
-        int pos = 1;
-        while(c.hasNext()){
-            System.out.println("Posiscio "+pos +" nº: " + c.next());
-            pos++;
-        }
-        System.out.println("Vamos a desordenar");
-        Collections.shuffle(campos);
-        Iterator c1 = campos.iterator();
-        int pos1 = 1;
-        while(c1.hasNext()){
-            System.out.println("Posiscio "+pos1 +" nº: " + c1.next());
-            pos1++;
-        }
         
     }
     
