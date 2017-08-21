@@ -69,7 +69,7 @@
               <Table columnCount="9" rowCount="0">
                 <Column editable="false" title="ID" type="java.lang.Object"/>
                 <Column editable="false" title="Jornada" type="java.lang.Object"/>
-                <Column editable="false" title="Fecha" type="java.lang.Object"/>
+                <Column editable="true" title="Fecha" type="java.lang.Object"/>
                 <Column editable="true" title="D&#xed;a" type="java.lang.Object"/>
                 <Column editable="true" title="Hora" type="java.lang.Object"/>
                 <Column editable="false" title="Equipo Local" type="java.lang.Object"/>
@@ -145,9 +145,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="A&#xf1;adir partido"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnadirAplazadosActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

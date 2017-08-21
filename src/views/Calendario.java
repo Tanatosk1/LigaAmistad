@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -17,9 +18,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import sources.CrearDocumentos;
 import sources.Filtros;
 import sources.GeneraCalendario;
-import sources.MostrarDatos;
-import java.util.Date;
 import sources.LeerExcel;
+import sources.MostrarDatos;
 
 
 /**
@@ -573,7 +573,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
     }//GEN-LAST:event_miGestionarFestivosActionPerformed
 
     private void miGestionarAplazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miGestionarAplazadosActionPerformed
-        Aplazados  frm = new Aplazados ();
+        Aplazados  frm = new Aplazados (this.dFechaInicioTemporada.getDate(), this.dFechaFinTemporada.getDate());
         frm.setVisible(true);
     }//GEN-LAST:event_miGestionarAplazadosActionPerformed
     

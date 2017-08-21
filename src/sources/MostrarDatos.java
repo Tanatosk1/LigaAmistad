@@ -174,23 +174,12 @@ public class MostrarDatos {
                 while(campeonato.next()){
                     fila[0] = campeonato.getInt("ID");
                     fila[1] = campeonato.getInt("JORNADA");
-                    //fila[2] = campeonato.getDate("FECHA");
-                    //if(campeonato.getDate("FECHA") != null){
-                    //    fila[3] = calculaDia((Date)campeonato.getDate("FECHA"));
-                    //}else{
-                    //    fila[3] = "";
-                    //}
-                    //fila[4]="Seleccione una hora";
-                    
-                    
                     ResultSet campos_horas = con.getValues("DISTINCT ch.ID_CAMPO, h.hora", "cam_horarios ch inner join hora h on ch.ID_HORA = h.ID inner join campos c on ch.ID_CAMPO = c.ID", "c.CONGELADO = 0", "ch.ID_CAMPO LIMIT 2");
                     try{
                         while(campos_horas.next()){
                             
                         }
                     }catch(SQLException ex){}
-                    
-                    //fila[4] = campeonato.getString("HORA");
                     fila[5] = campeonato.getString("LOCAL");
                     fila[6] = campeonato.getString("VISITANTE");
                     fila[7] = "Seleccione un campo";

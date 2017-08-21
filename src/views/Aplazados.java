@@ -5,15 +5,11 @@
  */
 package views;
 
-import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import java.util.Date;
 import sources.ActualizarDatosAplazados;
-import sources.GestionarCampeonato;
 import sources.MostrarDatos;
 
 
@@ -25,9 +21,10 @@ public class Aplazados extends javax.swing.JFrame {
     
 private FondoVentana fondo;
 private final MostrarDatos md = new MostrarDatos();
-private final GestionarCampeonato gc = new GestionarCampeonato  ();
+private ActualizarDatosAplazados ada = new ActualizarDatosAplazados();
 
-    public Aplazados() {
+
+    public Aplazados(Date fInicio, Date fFin) {
         initComponents();
         setLocationRelativeTo(null);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
@@ -35,6 +32,8 @@ private final GestionarCampeonato gc = new GestionarCampeonato  ();
         setIconImage(icon);       
         fondo = new FondoVentana();
         this.add(fondo);
+        
+        System.out.println("F inicio " + fInicio);
         
         tAplazados.getColumnModel().getColumn(0).setPreferredWidth(50);
         tAplazados.getColumnModel().getColumn(1).setPreferredWidth(75);
@@ -45,10 +44,10 @@ private final GestionarCampeonato gc = new GestionarCampeonato  ();
         tAplazados.getColumnModel().getColumn(6).setPreferredWidth(325);
         tAplazados.getColumnModel().getColumn(7).setPreferredWidth(390);
         tAplazados.getColumnModel().getColumn(8).setPreferredWidth(370);
- //       tAplazados.getColumnModel().getColumn(9).setPreferredWidth(120);
         md.llenarTAplazados(this.tAplazados);
+        btnAnadirAplazados.addActionListener(ada);
         
-        ActualizarDatosAplazados ada = new ActualizarDatosAplazados(this.tAplazados);
+        ada = new ActualizarDatosAplazados(this.tAplazados, fInicio, fFin);
         tAplazados.getModel().addTableModelListener(ada);
         
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -98,7 +97,7 @@ private final GestionarCampeonato gc = new GestionarCampeonato  ();
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true, false, false, true, false
+                false, false, true, true, true, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -112,11 +111,6 @@ private final GestionarCampeonato gc = new GestionarCampeonato  ();
         btnAnadirAplazados.setBackground(new java.awt.Color(31, 87, 12));
         btnAnadirAplazados.setForeground(new java.awt.Color(255, 255, 255));
         btnAnadirAplazados.setText("Añadir partido");
-        btnAnadirAplazados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAnadirAplazadosActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,40 +137,6 @@ private final GestionarCampeonato gc = new GestionarCampeonato  ();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAnadirAplazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirAplazadosActionPerformed
-        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/guardar.png"));
-        int input = JOptionPane.showConfirmDialog(null, "¿Desea añadir el partido aplazado a la jornada?", "Añadir partido aplazado", 
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
-        if (input == JOptionPane.YES_OPTION) {
-               
-            DefaultTableModel model = (DefaultTableModel) tAplazados.getModel();
-            int[] rows = tAplazados.getSelectedRows();
-            int filsel = tAplazados.getSelectedRow();
-            if(filsel == -1){
-                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una fila","Seleccione una  fila de la tabla", JOptionPane.QUESTION_MESSAGE, icon);
-            }else{
-                try {
-                    for(int i=0;i<rows.length;i++){
-                        int id = (int) model.getValueAt(filsel, 0);
-//                        String fecha = (String) model.getValueAt(filsel, 2);
-                        String fecha = "2017-08-28";
-                        String hora = (String) model.getValueAt(filsel, 4);
-                        String campo = (String) model.getValueAt(filsel, 7);
-                        
-                        System.out.println(id);
-                        System.out.println(fecha);
-                        System.out.println(hora);
-                        System.out.println(campo);
-                        gc.actualizarAplazados (id, fecha, hora, campo);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        
-    }//GEN-LAST:event_btnAnadirAplazadosActionPerformed
 
         public void close() {
              dispose();             

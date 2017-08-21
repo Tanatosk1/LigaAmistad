@@ -2,18 +2,13 @@ package sources;
 
 import connection.Conn;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -30,20 +25,15 @@ public class GeneraCalendario {
            
     private final String[] strDays = new String[]{"Domingo", "Lunes", "Martes", "Miércoles",
         			    "Jueves", "Viernes", "Sábado"};
-    //private int camposDisponibles;
     private int totalHorariosDisponibles;
     private int partidosPorJornada = 0;
     private int totalPartidosMostrados;
     private int jornada;
     private DefaultTableModel model;
     private ResultSet rs;
-    //private ResultSet camposDis;
-    //private ArrayList campos = new ArrayList();
     private ArrayList<OPartido> camposDis = new ArrayList();
     private final ArrayList idcampos = new ArrayList();
 
-    
-  
     public void generaFechas(String fInicio, String fFin, JTable tabla, JComboBox jornada){
         Conn conn = new Conn();
         conn.conectar();
@@ -137,20 +127,11 @@ public class GeneraCalendario {
                                             conn.updateData("cam_horarios", "ASIGNADO = 1", "ID = " + camposDis.get(l).getIdCamHora());
                                             conn.getConection().commit();
                                             continue bucle;
-                                        }else{
-//                                            System.out.println("EL equipo Visitanto no puede jugar el día "+camposDis.getInt("ID_DIA"));
                                         }
-                                    }else{
-//                                        System.out.println("EL equipo local no puede jugar el día "+camposDis.getInt("ID_DIA"));
                                     }
-                                }else{
-//                                    System.out.println("EL equipo visitante no puede jugar en el campo "+camposDis.getString("CAMPO"));
                                 }
-                            }else{
-//                                System.out.println("EL equipo local no puede jugar en el campo "+camposDis.getString("CAMPO"));
                             }
                         }
-//                        System.out.println("Fuera del while, camposDis = "+camposDis.getRow());
                     }else{
                         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
                         JOptionPane.showMessageDialog(null, "NO hay suficientes horarios para los partidos mostrados", "Insuficientes horarios", JOptionPane.QUESTION_MESSAGE, icon);
@@ -160,9 +141,7 @@ public class GeneraCalendario {
             } catch (SQLException ex) {
                 System.err.println(ex.getCause());
             }
-            
-        }
-                  
+        }       
         conn.desconectar();
         /** Fin reparto de campos **/
     }
@@ -180,7 +159,7 @@ public class GeneraCalendario {
         }
     }
     
-    public String getDia(int dia){
+    private String getDia(int dia){
         switch(dia){
             case 1:
                 return "Lunes";
@@ -204,16 +183,16 @@ public class GeneraCalendario {
         try {
             Conn conn = new Conn();
             model = (DefaultTableModel) tabla.getModel();
-            
+            int aplazado;
             conn.conectar();
             for(int i = 0; i < tabla.getRowCount(); i++){
                 if(tabla.getValueAt(i, 2) != null){
-                    int aplazado = 0;
                     if(tabla.getValueAt(i, 9) != null){
                         aplazado = 1;
+                    }else{
+                        aplazado = 0;
                     }
-                    System.out.println(idcampos.size());
-                    if(idcampos.size() == 0){
+                    if(idcampos.isEmpty()){
                         conn.updateData("campeonato", "APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
                     }else{
                         conn.updateData("campeonato", "fecha = '"+tabla.getValueAt(i, 2)+"', hora = '"+tabla.getValueAt(i, 4)+"', ID_CAMPO = "+idcampos.get(i)+", APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
