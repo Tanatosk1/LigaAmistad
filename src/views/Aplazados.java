@@ -32,9 +32,7 @@ private ActualizarDatosAplazados ada = new ActualizarDatosAplazados();
         setIconImage(icon);       
         fondo = new FondoVentana();
         this.add(fondo);
-        
-        System.out.println("F inicio " + fInicio);
-        
+                
         tAplazados.getColumnModel().getColumn(0).setPreferredWidth(50);
         tAplazados.getColumnModel().getColumn(1).setPreferredWidth(75);
         tAplazados.getColumnModel().getColumn(2).setPreferredWidth(120);

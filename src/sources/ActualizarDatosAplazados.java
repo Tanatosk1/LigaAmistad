@@ -75,7 +75,7 @@ public class ActualizarDatosAplazados implements TableModelListener, ActionListe
                     JComboBox<Object> hor = new JComboBox<>();
                     //Creamos un modelo de combobox y le añadimos 3 elementos
                     DefaultComboBoxModel modeloHor = new DefaultComboBoxModel();
-                    ResultSet horas = conn.getValues("DISTINCT h.HORA", "hora h INNER JOIN cam_horarios ch ON h.id = ch.ID_HORA", "ID_CAMPO = (SELECT ID FROM campos where CAMPO like '"+model.getValueAt(e.getFirstRow(), 7)+"') AND ASIGNADO = 0", "");
+                    ResultSet horas = conn.getValues("DISTINCT h.HORA", "hora h INNER JOIN cam_horarios ch ON h.id = ch.ID_HORA", "ID_CAMPO = (SELECT ID FROM campos where CAMPO like '"+model.getValueAt(e.getFirstRow(), 7)+"') AND ASIGNADO = 0 AND ID_DIA = (SELECT ID FROM dias WHERE dia like '"+model.getValueAt(e.getFirstRow(), 3)+"')", "");
                     while (horas.next()){
                         modeloHor.addElement(horas.getString("HORA"));
                     }
