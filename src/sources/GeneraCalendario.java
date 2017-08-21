@@ -183,15 +183,22 @@ public class GeneraCalendario {
         try {
             Conn conn = new Conn();
             model = (DefaultTableModel) tabla.getModel();
-            int aplazado;
+            int aplazado = 0;
             conn.conectar();
             for(int i = 0; i < tabla.getRowCount(); i++){
                 if(tabla.getValueAt(i, 2) != null){
-                    if(tabla.getValueAt(i, 9) != null){
+                    System.out.println("Valor del check " + tabla.getValueAt(i, 9));
+                    boolean estado = true;
+                    if(tabla.getValueAt(i, 9) == null || (boolean)tabla.getValueAt(i, 9) == false){
+                        estado = false;
+                    }
+                    System.out.println(estado);
+                    if(estado){
                         aplazado = 1;
                     }else{
                         aplazado = 0;
                     }
+                    
                     if(idcampos.isEmpty()){
                         conn.updateData("campeonato", "APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
                     }else{
@@ -199,6 +206,7 @@ public class GeneraCalendario {
                     }
                 }
             }
+            System.out.println("----------------------");
             conn.getConection().commit();
             conn.desconectar();
         } catch (SQLException ex) {
