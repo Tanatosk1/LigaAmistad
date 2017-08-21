@@ -187,12 +187,10 @@ public class GeneraCalendario {
             conn.conectar();
             for(int i = 0; i < tabla.getRowCount(); i++){
                 if(tabla.getValueAt(i, 2) != null){
-                    System.out.println("Valor del check " + tabla.getValueAt(i, 9));
                     boolean estado = true;
                     if(tabla.getValueAt(i, 9) == null || (boolean)tabla.getValueAt(i, 9) == false){
                         estado = false;
                     }
-                    System.out.println(estado);
                     if(estado){
                         aplazado = 1;
                     }else{

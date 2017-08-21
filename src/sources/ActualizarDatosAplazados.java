@@ -28,7 +28,7 @@ import javax.swing.table.TableColumn;
  */
 public class ActualizarDatosAplazados implements TableModelListener, ActionListener{
     
-    private JTable tAplazados;
+    private static JTable tAplazados;
     private final Conn conn = new Conn();
     private MostrarDatos md;
     private Date fechaInicio;
@@ -39,7 +39,7 @@ public class ActualizarDatosAplazados implements TableModelListener, ActionListe
     }
     
     public ActualizarDatosAplazados(JTable table, Date fInicio, Date fFin){
-        this.tAplazados = table;
+        ActualizarDatosAplazados.tAplazados = table;
         this.fechaInicio = fInicio;
         this.fechaFin = fFin;
     }
@@ -93,9 +93,7 @@ public class ActualizarDatosAplazados implements TableModelListener, ActionListe
                 case 4:                    
                     break;
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ActualizarDatosAplazados.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } catch (SQLException ex) {}finally{
             conn.desconectar();
         }
     }
@@ -138,47 +136,89 @@ public class ActualizarDatosAplazados implements TableModelListener, ActionListe
         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/guardar.png"));
         int input = JOptionPane.showConfirmDialog(null, "¿Desea añadir el partido aplazado a la jornada?", "Añadir partido aplazado", 
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
-        if (input == JOptionPane.YES_OPTION) {             
-            DefaultTableModel model = (DefaultTableModel) tAplazados.getModel();
-            int[] rows = tAplazados.getSelectedRows();
-            int filsel = tAplazados.getSelectedRow();
-            if(filsel == -1){
-                JOptionPane.showMessageDialog(null, "Debe seleccionar una fila","Seleccione una  fila de la tabla", JOptionPane.QUESTION_MESSAGE, icon);
-            }else{
-//                try {
-//                    for(int i=0;i<rows.length;i++){
-//                        int id = (int) model.getValueAt(filsel, 0);
-////                        String fecha = (String) model.getValueAt(filsel, 2);
-//                        //String fecha = "2017-08-28";
-//                        String hora = (String) model.getValueAt(filsel, 4);
-//                        String campo = (String) model.getValueAt(filsel, 7);
-//                        
-////                        System.out.println(id);
-////                        System.out.println(fecha);
-////                        System.out.println(hora);
-////                        System.out.println(campo);
-//                        //gc.actualizarAplazados (id, fecha, hora, campo);
-//                        
-//                        conn.conectar();
-//                        ResultSet rcampo = conn.getValues("ID", "campos", "CAMPO = '" + campo + "'", "");
-//                        try {
-//                            while(rcampo.next()){
-//                               campo=(rcampo.getString("ID")); 
-//                            } 
-//                        }catch (SQLException ex) {
-//                            //Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
-//                        }
-//                    int scampo = Integer.parseInt(campo);
-//                    System.out.println("ID CAMPO " +scampo );
-//                    conn.updateData("campeonato", "FECHA = '" + fecha + "', HORA = '" + hora + "', ID_CAMPO = '" + scampo + "'",  "ID = '" + id + "'");
-//                    conn.getConection().commit();
-//                    conn.desconectar();
-//                    }
-//                } catch (NumberFormatException | SQLException e) {
-//                    e.printStackTrace();
-//                }
+        if (input == JOptionPane.YES_OPTION) {   
+            for(int i = 0; i < ActualizarDatosAplazados.tAplazados.getRowCount(); i++){
+                if(ActualizarDatosAplazados.tAplazados.getValueAt(i, 2) != null){
+                    try {
+                        conn.conectar();
+                        int campo = 0;
+                        ResultSet rcampo = conn.getValues("ID", "campos", "CAMPO like '" + ActualizarDatosAplazados.tAplazados.getValueAt(i, 7) + "'", "");
+                        try {
+                            while(rcampo.next()){
+                                campo = (rcampo.getInt("ID"));
+                            }
+                        }catch (SQLException ex) {}
+
+                        conn.updateData("campeonato", "FECHA = '"+tAplazados.getValueAt(i, 2)+"', HORA = '"+tAplazados.getValueAt(i, 4)+"', ID_CAMPO = "+ campo +", APLAZADO = 0", "ID = " + tAplazados.getValueAt(i, 0));
+                        conn.getConection().commit();
+
+                    }catch (SQLException ex) {
+                        Logger.getLogger(ActualizarDatosAplazados.class.getName()).log(Level.SEVERE, null, ex);
+                    }finally{
+                        conn.desconectar();
+                    }
+                }
             }
+            DefaultTableModel model = (DefaultTableModel) ActualizarDatosAplazados.tAplazados.getModel();
+            for (int i = 0; i < model.getRowCount(); i++) {
+                model.removeRow(i);
+                i-=1;
+            }
+            llenarTAplazados(ActualizarDatosAplazados.tAplazados);
         }
+    }
+    
+    private void llenarTAplazados(JTable tAplazados){
+        DefaultTableModel model = (DefaultTableModel) tAplazados.getModel();
+        Object[] fila = new Object[9];
+        conn.conectar();
+        String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, l.NOMBRE AS \"LOCAL\", "
+                + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.APLAZADO, com.COMPETICION AS \"CATEGORIA\", "
+                + "d.DIVISION AS \"DIVISION\"";
+        String from = " Campeonato c INNER JOIN Equipos l ON c.ID_LOCAL = l.ID "
+                + "INNER JOIN Equipos v ON c.ID_VISITANTE = v.ID "
+                + "LEFT JOIN Campos ca ON c.ID_CAMPO = ca.ID INNER JOIN Competicion com ON l.ID_COMPETICION = com.ID "
+                + "INNER JOIN Division d ON l.ID_DIVISION = d.ID";
+        String order = "c.JORNADA, com.ID, d.ID"; 
+        ResultSet campeonato = conn.getValues(select, from, "APLAZADO = 1", order);
+            try {
+                while(campeonato.next()){
+                    fila[0] = campeonato.getInt("ID");
+                    fila[1] = campeonato.getInt("JORNADA");
+                    ResultSet campos_horas = conn.getValues("DISTINCT ch.ID_CAMPO, h.hora", "cam_horarios ch inner join hora h on ch.ID_HORA = h.ID inner join campos c on ch.ID_CAMPO = c.ID", "c.CONGELADO = 0", "ch.ID_CAMPO LIMIT 2");
+                    try{
+                        while(campos_horas.next()){
+                            
+                        }
+                    }catch(SQLException ex){}
+                    fila[5] = campeonato.getString("LOCAL");
+                    fila[6] = campeonato.getString("VISITANTE");
+                    fila[7] = "Seleccione un campo";
+                    JComboBox< Object > jc2 = new JComboBox<>();
+                    DefaultComboBoxModel modelo2 = new DefaultComboBoxModel();
+
+                    ResultSet campos = conn.getValues("DISTINCT c.ID, c.CAMPO", "campos c inner join cam_horarios ch on c.ID = ch.ID_CAMPO", "c.CONGELADO = 0 and ch.ASIGNADO = 0", "c.ID");
+                    try {
+                        while(campos.next()){
+                            modelo2.addElement(campos.getString("CAMPO"));
+                        } 
+                    }catch (SQLException ex) {}
+                    
+                    jc2.setModel(modelo2);
+                    TableColumn columna2 = tAplazados.getColumnModel().getColumn(7);
+                    TableCellEditor editor2 = new DefaultCellEditor(jc2);
+                    columna2.setCellEditor(editor2);
+                    
+                    if(campeonato.getString("DIVISION").equalsIgnoreCase("sin división")){
+                        fila[8] = campeonato.getString("CATEGORIA");
+                    }else{
+                        fila[8] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
+                    }
+                    model.addRow(fila);                   
+                } 
+            }catch (SQLException ex) {}
+        conn.desconectar();
+        tAplazados.setModel(model);
     }
     
 }
