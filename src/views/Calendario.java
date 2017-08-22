@@ -507,9 +507,13 @@ private final CrearDocumentos cd = new CrearDocumentos();
     }//GEN-LAST:event_miExportarPDFActionPerformed
 
     private void btnFiltroAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroAceptarActionPerformed
-
-        filtro = new Filtros(this.cbCategoria.getSelectedIndex(), this.cbDivision.getSelectedIndex(),
-        this.cbJornada.getSelectedIndex(), this.tCalendario);
+        if(this.dFechaInicoFiltro.getDate() == null && this.dFechaFinFiltro.getDate() == null){
+            filtro = new Filtros(this.cbCategoria.getSelectedIndex(), this.cbDivision.getSelectedIndex(),
+                this.cbJornada.getSelectedIndex(), this.tCalendario);
+        }else if(this.dFechaInicoFiltro.getDate() != null && this.dFechaFinFiltro.getDate() != null){
+            filtro = new Filtros(this.tCalendario, this.dFechaInicoFiltro.getDate(), this.dFechaFinFiltro.getDate());
+        }
+        
 
     }//GEN-LAST:event_btnFiltroAceptarActionPerformed
 
