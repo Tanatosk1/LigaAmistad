@@ -580,6 +580,8 @@ public Restricciones() {
         separadorCampos9 = new javax.swing.JSeparator();
         btnEditarEquipos1 = new javax.swing.JButton();
         btnAceptarCampos = new javax.swing.JButton();
+        lblCamposActivos = new javax.swing.JLabel();
+        lblNumeroCamposActivos = new javax.swing.JLabel();
         mbRestricciones = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -907,7 +909,7 @@ public Restricciones() {
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 76, Short.MAX_VALUE)
                 .addComponent(separadorEquipos4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1200,6 +1202,12 @@ public Restricciones() {
             }
         });
 
+        lblCamposActivos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblCamposActivos.setText("Número de campos activos: ");
+
+        lblNumeroCamposActivos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblNumeroCamposActivos.setText("0");
+
         javax.swing.GroupLayout pCamposLayout = new javax.swing.GroupLayout(pCampos);
         pCampos.setLayout(pCamposLayout);
         pCamposLayout.setHorizontalGroup(
@@ -1217,7 +1225,7 @@ public Restricciones() {
                         .addComponent(ckLunesSegunda)
                         .addGap(18, 18, 18)
                         .addComponent(txtLunesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(separadorCampos5)
@@ -1304,7 +1312,12 @@ public Restricciones() {
                                 .addComponent(lblCampos)
                                 .addGap(18, 18, 18)
                                 .addComponent(cbCampos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(pCamposLayout.createSequentialGroup()
+                        .addComponent(lblCamposActivos)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblNumeroCamposActivos)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pCamposLayout.setVerticalGroup(
             pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1384,6 +1397,10 @@ public Restricciones() {
                 .addComponent(ckCongelarCampo)
                 .addGap(10, 10, 10)
                 .addComponent(separadorCampos9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCamposActivos)
+                    .addComponent(lblNumeroCamposActivos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarCampos)
@@ -1798,12 +1815,14 @@ public Restricciones() {
     public javax.swing.JCheckBox ckViernesPrimera;
     public javax.swing.JCheckBox ckViernesSegunda;
     private javax.swing.JLabel lblCampos;
+    private javax.swing.JLabel lblCamposActivos;
     private javax.swing.JLabel lblCamposExcluidos;
     private javax.swing.JLabel lblDiasEquipos;
     private javax.swing.JLabel lblEquipos;
     private javax.swing.JLabel lblLogoCampos;
     private javax.swing.JLabel lblLogoEquipos;
     private javax.swing.JLabel lblNoCoincidir;
+    private javax.swing.JLabel lblNumeroCamposActivos;
     private javax.swing.JMenuBar mbRestricciones;
     private javax.swing.JPanel pCampos;
     private javax.swing.JPanel pCamposExcluidos;
