@@ -121,6 +121,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         mGestionarRestricciones = new javax.swing.JMenu();
         miGestionarFestivos = new javax.swing.JMenuItem();
         miGestionarAplazados = new javax.swing.JMenuItem();
+        miVerCamposHabiles = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Generación de Calendario");
@@ -429,6 +430,19 @@ private final CrearDocumentos cd = new CrearDocumentos();
         });
         mGestionarRestricciones.add(miGestionarAplazados);
 
+        miVerCamposHabiles.setBackground(new java.awt.Color(31, 87, 12));
+        miVerCamposHabiles.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miVerCamposHabiles.setForeground(new java.awt.Color(255, 255, 255));
+        miVerCamposHabiles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lupa.png"))); // NOI18N
+        miVerCamposHabiles.setText(" Ver campos hábiles");
+        miVerCamposHabiles.setEnabled(false);
+        miVerCamposHabiles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miVerCamposHabilesActionPerformed(evt);
+            }
+        });
+        mGestionarRestricciones.add(miVerCamposHabiles);
+
         mbCalendario.add(mGestionarRestricciones);
 
         setJMenuBar(mbCalendario);
@@ -535,7 +549,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
               Date fechaFin = this.dFechaFinTemporada.getDate();
               SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
               gc.generaFechas(formato.format(fechaInicio), formato.format(fechaFin), this.tCalendario, this.cbGenerarJornada);
-              miGestionarAplazados.setEnabled(true); 
+              miGestionarAplazados.setEnabled(true);
+              miVerCamposHabiles.setEnabled(true);
         }      
  
     }//GEN-LAST:event_btnGenerarInicioActionPerformed
@@ -580,6 +595,11 @@ private final CrearDocumentos cd = new CrearDocumentos();
         Aplazados  frm = new Aplazados (this.dFechaInicioTemporada.getDate(), this.dFechaFinTemporada.getDate());
         frm.setVisible(true);
     }//GEN-LAST:event_miGestionarAplazadosActionPerformed
+
+    private void miVerCamposHabilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVerCamposHabilesActionPerformed
+        CamposHabiles  frm = new CamposHabiles ();
+        frm.setVisible(true);
+    }//GEN-LAST:event_miVerCamposHabilesActionPerformed
     
     public void close() {
              dispose();             
@@ -650,6 +670,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private javax.swing.JMenuItem miGestionarAplazados;
     private javax.swing.JMenuItem miGestionarFestivos;
     private javax.swing.JMenuItem miImportarcalendario;
+    private javax.swing.JMenuItem miVerCamposHabiles;
     private javax.swing.JPanel pCalendario;
     private javax.swing.JPanel pInicioCalendario;
     private javax.swing.JScrollPane scrollCalendario;
