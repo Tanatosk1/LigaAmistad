@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
@@ -113,6 +114,7 @@ public class MostrarDatos {
     public void llenarTCalendario(JTable tCalendario){
         DefaultTableModel model = (DefaultTableModel) tCalendario.getModel();
         Object[] fila = new Object[10];
+        Date fechaFila = null;
         con.conectar();
         String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, l.NOMBRE AS \"LOCAL\", "
                 + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.APLAZADO, com.COMPETICION AS \"CATEGORIA\", "
@@ -123,14 +125,17 @@ public class MostrarDatos {
                 + "INNER JOIN Division d ON l.ID_DIVISION = d.ID";
         String order = "c.JORNADA, com.ID, d.ID"; 
         ResultSet campeonato = con.getValues(select, from, "", order);
+            SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");
             try {
                 while(campeonato.next()){
                     fila[0] = campeonato.getInt("ID");
                     fila[1] = campeonato.getInt("JORNADA");
-                    fila[2] = campeonato.getDate("FECHA");
                     if(campeonato.getDate("FECHA") != null){
+                        fechaFila = campeonato.getDate("FECHA");
+                        fila[2] = formatterShow.format(fechaFila);
                         fila[3] = calculaDia((Date)campeonato.getDate("FECHA"));
                     }else{
+                        fila[2] = "";
                         fila[3] = "";
                     }
                     fila[4] = campeonato.getString("HORA");

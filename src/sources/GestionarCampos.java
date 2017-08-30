@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import views.Restricciones;
 
 /**
@@ -81,6 +84,13 @@ public class GestionarCampos {
             conn.updateData("campos", "CONGELADO = " + estado, "CAMPO like '" + campo + "'");
             conn.getConection().commit();
             conn.desconectar();
+    }
+    
+    public void contarHorarios(JLabel lblTotal){
+        conn.conectar();
+        int total = conn.totalRegistros("cam_horarios ch INNER JOIN campos c ON ch.ID_CAMPO = c.ID", "c.CONGELADO = 0");
+        lblTotal.setText(String.valueOf(total));
+        conn.desconectar();
     }
     
     public void mostrarDatos(){
@@ -188,6 +198,28 @@ public class GestionarCampos {
         } catch (SQLException ex) {
             Logger.getLogger(GestionarCampos.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void mostrarCamposHabiles(JTable tabla){
+        DefaultTableModel model = (DefaultTableModel)tabla.getModel();
+        try {
+            Object[] fila = new Object[4];
+            conn.conectar();
+            ResultSet camposHabiles = conn.getValues("c.ID, c.CAMPO, d.dia, h.hora", "campos c inner join cam_horarios ch on c.ID = ch.ID_CAMPO INNER JOIN dias d ON ch.ID_DIA = d.ID INNER JOIN hora h ON ch.ID_HORA = h.ID", "c.CONGELADO = 0 and ch.ASIGNADO = 0", "c.ID");
+            while (camposHabiles.next()){
+                fila[0] = camposHabiles.getInt("ID");
+                fila[1] = camposHabiles.getString("CAMPO");
+                fila[2] = camposHabiles.getString("dia");
+                fila[3] = camposHabiles.getString("hora");
+                
+                model.addRow(fila);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionarCampos.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            conn.desconectar();
+        }
+        tabla.setModel(model);
     }
     
     private void limpiarSeleccion(){

@@ -132,7 +132,7 @@ public class GeneraCalendario {
                                             idcampos.add(camposDis.get(l).getIdCampo());
                                             String diaSemana = getDia(camposDis.get(l).getIdDia());
                                             tabla.setValueAt(diaSemana, d, 3);
-                                            pintarFecha(d, dateIni, dateFin, tabla);
+                                            pintarFechaMostrar(d, dateIni, dateFin, tabla);
                                             tabla.setValueAt(camposDis.get(l).getHora(), d, 4);
                                             camposUsados.add(camposDis.get(l).getIdCamHora());
                                             conn.conectar();
@@ -196,6 +196,7 @@ public class GeneraCalendario {
             Conn conn = new Conn();
             model = (DefaultTableModel) tabla.getModel();
             int aplazado = 0;
+            int f = 0;
             conn.conectar();
             for(int i = 0; i < tabla.getRowCount(); i++){
                 if(tabla.getValueAt(i, 2) != null){
@@ -212,7 +213,11 @@ public class GeneraCalendario {
                     if(idcampos.isEmpty()){
                         conn.updateData("campeonato", "APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
                     }else{
-                        conn.updateData("campeonato", "fecha = '"+tabla.getValueAt(i, 2)+"', hora = '"+tabla.getValueAt(i, 4)+"', ID_CAMPO = "+idcampos.get(i)+", APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
+                        while(tabla.getValueAt(i, 1).equals(jornada.getSelectedItem())){
+                            conn.updateData("campeonato", "fecha = '"+formatoFechaGuardar(String.valueOf(tabla.getValueAt(i,2)))+"', hora = '"+tabla.getValueAt(i, 4)+"', ID_CAMPO = "+idcampos.get(f)+", APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
+                            f++;
+                            i++;
+                        }
                     }
                 }
             }
@@ -223,8 +228,8 @@ public class GeneraCalendario {
         }
     }
     
-    private void pintarFecha(int r, Date dateIni, Date dateFin, JTable tabla){
-        SimpleDateFormat formatterShow = new SimpleDateFormat("yyyy-MM-dd");
+    private void pintarFechaMostrar(int r, Date dateIni, Date dateFin, JTable tabla){
+        SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");
         if(this.jornada == (int)model.getValueAt(r, 1)){
             while(dateIni.getTime() <= dateFin.getTime()){
                 Calendar cal = Calendar.getInstance();
@@ -236,6 +241,19 @@ public class GeneraCalendario {
                 dateIni = cal.getTime();
             }
         }
+    }
+    
+    private String formatoFechaGuardar(String fecha){
+        try {
+            SimpleDateFormat formatInput = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat formatterSave = new SimpleDateFormat("yyyy-MM-dd");
+            Date fe = formatInput.parse(fecha);
+            String salida = formatterSave.format(fe);
+            return salida;
+        } catch (ParseException ex) {
+            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     private boolean verificaRestriccionesCampos(int partido, JTable tabla, int jornada, String local, int campo){

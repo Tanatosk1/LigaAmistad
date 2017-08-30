@@ -8,6 +8,7 @@ package views;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
+import sources.GestionarCampos;
 
 
 /**
@@ -16,6 +17,7 @@ import java.awt.event.ComponentEvent;
  */
 public class CamposHabiles extends javax.swing.JFrame {
     private FondoVentana fondo;
+    private final GestionarCampos gc = new GestionarCampos();
 
         
 public CamposHabiles() {
@@ -26,6 +28,8 @@ public CamposHabiles() {
         setIconImage(icon);
         fondo = new FondoVentana();
         this.add(fondo);
+        
+        gc.mostrarCamposHabiles(tCamposHabiles);
             
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override

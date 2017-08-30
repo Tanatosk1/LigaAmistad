@@ -56,6 +56,8 @@ public class Filtros {
         }
         String order = "c.JORNADA, com.ID, d.ID"; 
         ResultSet campeonato = con.getValues(select, from, where, order);    
+        SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");
+        Date fechaFila = null;
             try {
                 if(!campeonato.first()){
                     ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
@@ -65,12 +67,15 @@ public class Filtros {
                     while(campeonato.next()){
                         fila[0] = campeonato.getInt("ID");
                         fila[1] = campeonato.getInt("JORNADA");
-                        fila[2] = campeonato.getString("FECHA");
+                        //fila[2] = campeonato.getString("FECHA");
                         if(campeonato.getDate("FECHA") != null){
+                            fechaFila = campeonato.getDate("FECHA");
+                            fila[2] = formatterShow.format(fechaFila);
                             getDay.setTime(campeonato.getDate("FECHA"));
                             int day = getDay.get(Calendar.DAY_OF_WEEK)-1;
                             fila[3] = getDia(day);
                         }else{
+                            fila[2] = null;
                             fila[3] = null;
                         }
                         fila[4] = campeonato.getString("HORA");
