@@ -71,6 +71,8 @@ public Restricciones() {
         }
         conn.desconectar();
         
+        gc.contarHorarios(lblNumeroCamposActivos);
+        
         
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -1470,9 +1472,15 @@ public Restricciones() {
                     Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            
             this.restriccionesDeCampo();
             this.disableCampos();
-            
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            gc.contarHorarios(lblNumeroCamposActivos);
         }else{
             this.disableCampos();
             btnAceptarCampos.setEnabled(false);

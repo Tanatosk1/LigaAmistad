@@ -67,7 +67,6 @@ public class Filtros {
                     while(campeonato.next()){
                         fila[0] = campeonato.getInt("ID");
                         fila[1] = campeonato.getInt("JORNADA");
-                        //fila[2] = campeonato.getString("FECHA");
                         if(campeonato.getDate("FECHA") != null){
                             fechaFila = campeonato.getDate("FECHA");
                             fila[2] = formatterShow.format(fechaFila);
