@@ -198,6 +198,7 @@ public class GeneraCalendario {
             int aplazado = 0;
             int f = 0;
             conn.conectar();
+            aumentoFila:
             for(int i = 0; i < tabla.getRowCount(); i++){
                 if(tabla.getValueAt(i, 2) != null){
                     boolean estado = true;
@@ -216,7 +217,7 @@ public class GeneraCalendario {
                         while(tabla.getValueAt(i, 1).equals(jornada.getSelectedItem())){
                             conn.updateData("campeonato", "fecha = '"+formatoFechaGuardar(String.valueOf(tabla.getValueAt(i,2)))+"', hora = '"+tabla.getValueAt(i, 4)+"', ID_CAMPO = "+idcampos.get(f)+", APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
                             f++;
-                            i++;
+                            continue aumentoFila;
                         }
                     }
                 }

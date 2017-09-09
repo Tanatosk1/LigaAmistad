@@ -126,7 +126,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Generación de Calendario");
         setMinimumSize(new java.awt.Dimension(1366, 768));
-        setSize(new java.awt.Dimension(1366, 768));
 
         pInicioCalendario.setBackground(new java.awt.Color(255, 255, 255));
         pInicioCalendario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 4, true), "  FECHA DE INICIO DE JORNADA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(31, 87, 12))); // NOI18N
