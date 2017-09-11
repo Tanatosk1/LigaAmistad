@@ -96,6 +96,8 @@ public class GeneraCalendario {
         boolean restriccionVisitanteCampo;
         boolean restriccionLocalDia;
         boolean restriccionVisitanteDia;
+        String restriccionesCoincidirLocal;
+        String restriccionesCoincidirVisitante;
         Date dateIni = null;
         Date dateFin = null;
         ArrayList camposUsados = new ArrayList();
@@ -123,6 +125,8 @@ public class GeneraCalendario {
                                     if(!restriccionLocalDia){
                                         restriccionVisitanteDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.get(l).getIdDia(), camposDis.get(l).getIdHora());
                                         if(!restriccionVisitanteDia){
+                                            restriccionesCoincidirLocal = verificaRestriccionesCoincidir(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5));
+                                            restriccionesCoincidirVisitante = verificaRestriccionesCoincidir(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6));
                                             for(int it = 0; it < camposUsados.size(); it++){
                                                 if((int)camposUsados.get(it) == camposDis.get(l).getIdCamHora()){
                                                     continue cambioCampo;
@@ -131,6 +135,12 @@ public class GeneraCalendario {
                                             tabla.setValueAt(camposDis.get(l).getCampo(), d, 7);
                                             idcampos.add(camposDis.get(l).getIdCampo());
                                             String diaSemana = getDia(camposDis.get(l).getIdDia());
+                                            if(diaSemana.equals(restriccionesCoincidirLocal)){
+                                                continue cambioCampo;
+                                            }
+                                            if(diaSemana.equals(restriccionesCoincidirVisitante)){
+                                                continue cambioCampo;
+                                            }
                                             tabla.setValueAt(diaSemana, d, 3);
                                             pintarFechaMostrar(d, dateIni, dateFin, tabla);
                                             tabla.setValueAt(camposDis.get(l).getHora(), d, 4);
@@ -305,5 +315,47 @@ public class GeneraCalendario {
         }
         conn.desconectar();
         return false;
+    }
+    
+    private String verificaRestriccionesCoincidir(int partido, JTable tabla, int jornada, String equipo){
+        Conn conn = new Conn();
+        ResultSet restricciones;
+        conn.conectar();
+        restricciones = conn.getValues("*", "restricciones r INNER JOIN equipos e ON r.ID_EQUIPO = e.ID", "", "");
+        String equipoCoincide = "";
+        try {
+            if((int)tabla.getValueAt(partido, 1) == jornada){
+                while(restricciones.next()){
+                    if(equipo.equals(restricciones.getString("NOMBRE"))){
+                        int idCoincidir = restricciones.getInt("ID_COINCIDE");
+                        ResultSet nomEquipo = conn.getValues("NOMBRE", "equipos", "ID = " + idCoincidir, "");
+                        while(nomEquipo.next()){
+                            equipoCoincide = nomEquipo.getString("NOMBRE");
+                        }
+                        
+                        for(int i = 0; i < tabla.getRowCount(); i++){
+                            if((int)tabla.getValueAt(i, 1) == jornada){
+                               if(equipoCoincide.equals((String)tabla.getValueAt(i, 5))){
+                                   if((String)tabla.getValueAt(i, 3) != null){
+                                       return (String)tabla.getValueAt(i, 3);
+                                   }
+                               }
+                               if(equipoCoincide.equals((String)tabla.getValueAt(i, 6))){
+                                   if((String)tabla.getValueAt(i, 3) != null){
+                                       return (String)tabla.getValueAt(i, 3);
+                                   }
+                               }
+                            }
+                        }
+                        System.out.println("ID_COINCIDE "+idCoincidir+" Nombre " + equipoCoincide);
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GeneraCalendario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conn.desconectar();
+        
+        return "";
     }
 }

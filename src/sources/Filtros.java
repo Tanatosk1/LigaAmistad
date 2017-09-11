@@ -54,7 +54,7 @@ public class Filtros {
         }else if(cat != 0 && div != 0 && jor != 0){
             where = "com.ID = " + cat + " and d.ID = " + div + " and c.JORNADA = " + jor;
         }
-        String order = "c.JORNADA, com.ID, d.ID"; 
+        String order = "c.JORNADA, com.COMPETICION, d.DIVISION"; 
         ResultSet campeonato = con.getValues(select, from, where, order);    
         SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");
         Date fechaFila = null;
@@ -73,11 +73,12 @@ public class Filtros {
                             getDay.setTime(campeonato.getDate("FECHA"));
                             int day = getDay.get(Calendar.DAY_OF_WEEK)-1;
                             fila[3] = getDia(day);
+                            fila[4] = campeonato.getString("HORA").substring(0, 5);
                         }else{
                             fila[2] = null;
                             fila[3] = null;
+                            fila[4] = null;
                         }
-                        fila[4] = campeonato.getString("HORA");
                         fila[5] = campeonato.getString("LOCAL");
                         fila[6] = campeonato.getString("VISITANTE");
                         fila[7] = campeonato.getString("CAMPO");
