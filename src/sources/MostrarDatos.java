@@ -123,7 +123,7 @@ public class MostrarDatos {
                 + "INNER JOIN Equipos v ON c.ID_VISITANTE = v.ID "
                 + "LEFT JOIN Campos ca ON c.ID_CAMPO = ca.ID INNER JOIN Competicion com ON l.ID_COMPETICION = com.ID "
                 + "INNER JOIN Division d ON l.ID_DIVISION = d.ID";
-        String order = "c.JORNADA, com.ID, d.ID"; 
+        String order = "c.JORNADA, com.COMPETICION, d.DIVISION"; 
         ResultSet campeonato = con.getValues(select, from, "", order);
             SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");
             try {
@@ -134,11 +134,12 @@ public class MostrarDatos {
                         fechaFila = campeonato.getDate("FECHA");
                         fila[2] = formatterShow.format(fechaFila);
                         fila[3] = calculaDia((Date)campeonato.getDate("FECHA"));
+                        fila[4] = campeonato.getString("HORA").substring(0, 5);
                     }else{
                         fila[2] = "";
                         fila[3] = "";
+                        fila[4] = "";
                     }
-                    fila[4] = campeonato.getString("HORA");
                     fila[5] = campeonato.getString("LOCAL");
                     fila[6] = campeonato.getString("VISITANTE");
                     fila[7] = campeonato.getString("CAMPO");
