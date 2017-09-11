@@ -1205,7 +1205,7 @@ public Restricciones() {
         });
 
         lblCamposActivos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblCamposActivos.setText("Número de campos activos: ");
+        lblCamposActivos.setText("Número de horas activas: ");
 
         lblNumeroCamposActivos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblNumeroCamposActivos.setText("0");
