@@ -39,8 +39,10 @@ public class GestionarEquipos {
                                  condiciones.get(i).getNoCoincidir());
                 conn.getConection().commit();
                 
-                conn.insertData("restricciones", "null,"+condiciones.get(i).getNoCoincidir()+",null, null, null,"+id);
-                conn.getConection().commit();
+                if(condiciones.get(i).getNoCoincidir() != null){
+                    conn.insertData("restricciones", "null,"+condiciones.get(i).getNoCoincidir()+",null, null, null,"+id);
+                    conn.getConection().commit();
+                }
             }
             
             conn.desconectar();
