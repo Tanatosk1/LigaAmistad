@@ -13,24 +13,24 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class PintarFilas extends DefaultTableCellRenderer{
 
     private final ArrayList row;
-    
+        
     public PintarFilas(ArrayList row){
-        System.out.println("PintarFilas");
         this.row = row;
     }
+    
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        
-        for (Object row1 : this.row) {
-            System.out.println(row1);
-            if(table.getValueAt(row, 5).equals(row1)){
+
+        component.setBackground(Color.white);
+        if(!this.row.isEmpty()){
+        for (int l = 0; l < this.row.size(); l++) {
+            if(value.equals(this.row.get(l))){
                 component.setBackground(Color.red);
             }
-            if(table.getValueAt(row, 6).equals(row1)){
-                component.setBackground(Color.red);
-            }
-        }        
+        }
+        }
+        this.row.clear();
         return component;
     }
     

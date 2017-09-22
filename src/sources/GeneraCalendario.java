@@ -360,16 +360,14 @@ public class GeneraCalendario {
     
     private void pintarFilasConRestricciones(JTable tabla){
         Conn conn = new Conn();
-        ArrayList<String> arrayFilas = null;
+        ArrayList<String> arrayFilas = new ArrayList();
         conn.conectar();
         
         ResultSet filas = conn.getValues("DISTINCT r.ID_EQUIPO, e.NOMBRE", "restricciones r INNER JOIN equipos e ON r.ID_EQUIPO = e.ID", "", "");
         try{
             while(filas.next()){
-                System.out.println("Fila " + filas.getString("NOMBRE"));
                 arrayFilas.add(filas.getString("NOMBRE"));
             }
-            
             PintarFilas pf = new PintarFilas(arrayFilas);
             tabla.setDefaultRenderer(Object.class, pf);
             filas.close();
