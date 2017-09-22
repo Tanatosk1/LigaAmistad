@@ -165,6 +165,7 @@ public class GeneraCalendario {
             }
         }       
         conn.desconectar();
+        pintarFilasConRestricciones(tabla);
         /** Fin reparto de campos **/
     }
     
@@ -303,7 +304,6 @@ public class GeneraCalendario {
                     if(local.equals(restricciones.getString("NOMBRE"))){
                         if(dias == restricciones.getInt("ID_DIA")){
                             if(hora == restricciones.getInt("HORA")){
-                                System.out.println("Equipo "+restricciones.getString("NOMBRE")+" DIA "+restricciones.getInt("ID_DIA")+" Hora "+restricciones.getInt("HORA"));
                                 return true;
                             }
                         }
@@ -347,7 +347,6 @@ public class GeneraCalendario {
                                }
                             }
                         }
-                        System.out.println("ID_COINCIDE "+idCoincidir+" Nombre " + equipoCoincide);
                     }
                 }
             }
@@ -357,5 +356,24 @@ public class GeneraCalendario {
         conn.desconectar();
         
         return "";
+    }
+    
+    private void pintarFilasConRestricciones(JTable tabla){
+        Conn conn = new Conn();
+        ArrayList<String> arrayFilas = null;
+        conn.conectar();
+        
+        ResultSet filas = conn.getValues("DISTINCT r.ID_EQUIPO, e.NOMBRE", "restricciones r INNER JOIN equipos e ON r.ID_EQUIPO = e.ID", "", "");
+        try{
+            while(filas.next()){
+                System.out.println("Fila " + filas.getString("NOMBRE"));
+                arrayFilas.add(filas.getString("NOMBRE"));
+            }
+            
+            PintarFilas pf = new PintarFilas(arrayFilas);
+            tabla.setDefaultRenderer(Object.class, pf);
+            filas.close();
+        }catch(SQLException ex){}
+        conn.desconectar();
     }
 }
