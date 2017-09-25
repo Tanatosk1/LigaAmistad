@@ -323,7 +323,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, true, false, false, true, false, true
+                false, false, false, false, true, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {

@@ -615,12 +615,12 @@
               <Table columnCount="10" rowCount="0">
                 <Column editable="false" title="ID" type="java.lang.Object"/>
                 <Column editable="false" title="Jornada" type="java.lang.Object"/>
-                <Column editable="true" title="Fecha" type="java.lang.Object"/>
+                <Column editable="false" title="Fecha" type="java.lang.Object"/>
                 <Column editable="false" title="D&#xed;a" type="java.lang.Object"/>
                 <Column editable="true" title="Hora" type="java.lang.Object"/>
                 <Column editable="false" title="Equipo Local" type="java.lang.Object"/>
                 <Column editable="false" title="Equipo Visitante" type="java.lang.Object"/>
-                <Column editable="true" title="Campo" type="java.lang.Object"/>
+                <Column editable="false" title="Campo" type="java.lang.Object"/>
                 <Column editable="false" title="Competici&#xf3;n" type="java.lang.Object"/>
                 <Column editable="true" title="Partido aplazado" type="java.lang.Boolean"/>
               </Table>

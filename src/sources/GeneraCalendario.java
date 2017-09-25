@@ -368,7 +368,7 @@ public class GeneraCalendario {
             while(filas.next()){
                 arrayFilas.add(filas.getString("NOMBRE"));
             }
-            PintarFilas pf = new PintarFilas(arrayFilas);
+            PintarFilas pf = new PintarFilas(arrayFilas, this.jornada);
             tabla.setDefaultRenderer(Object.class, pf);
             filas.close();
         }catch(SQLException ex){}
