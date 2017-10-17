@@ -89,13 +89,19 @@ public class GeneraCalendario {
         partidosPorJornada = 0;
         for(int pa = 0; pa < totalPartidosMostrados; pa++){
             if(this.jornada == (int)model.getValueAt(pa, 1)){
-                partidosPorJornada++;
+                if(!verificarEquipoCongelado((String)tabla.getValueAt(pa, 5))){
+                    if(!verificarEquipoCongelado((String)tabla.getValueAt(pa, 6))){
+                        partidosPorJornada++;
+                    }
+                }
             }
         }
         boolean restriccionLocalCampo;
         boolean restriccionVisitanteCampo;
         boolean restriccionLocalDia;
         boolean restriccionVisitanteDia;
+        boolean equipoCongeladoLocal;
+        boolean equipoCongeladoVisitante;
         String restriccionesCoincidirLocal;
         String restriccionesCoincidirVisitante;
         Date dateIni = null;
@@ -125,30 +131,36 @@ public class GeneraCalendario {
                                     if(!restriccionLocalDia){
                                         restriccionVisitanteDia = verificaRestriccionesDias(d, tabla, this.jornada, (String)tabla.getValueAt(d,6), camposDis.get(l).getIdDia(), camposDis.get(l).getIdHora());
                                         if(!restriccionVisitanteDia){
-                                            restriccionesCoincidirLocal = verificaRestriccionesCoincidir(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5));
-                                            restriccionesCoincidirVisitante = verificaRestriccionesCoincidir(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6));
-                                            for(int it = 0; it < camposUsados.size(); it++){
-                                                if((int)camposUsados.get(it) == camposDis.get(l).getIdCamHora()){
-                                                    continue cambioCampo;
+                                            equipoCongeladoLocal = verificarEquipoCongelado((String)tabla.getValueAt(d,5));
+                                            if(!equipoCongeladoLocal){
+                                                equipoCongeladoVisitante = verificarEquipoCongelado((String)tabla.getValueAt(d,6));
+                                                if(!equipoCongeladoVisitante){
+                                                    restriccionesCoincidirLocal = verificaRestriccionesCoincidir(d, tabla, this.jornada, (String)tabla.getValueAt(d, 5));
+                                                    restriccionesCoincidirVisitante = verificaRestriccionesCoincidir(d, tabla, this.jornada, (String)tabla.getValueAt(d, 6));
+                                                    for(int it = 0; it < camposUsados.size(); it++){
+                                                        if((int)camposUsados.get(it) == camposDis.get(l).getIdCamHora()){
+                                                            continue cambioCampo;
+                                                        }
+                                                    }
+                                                    tabla.setValueAt(camposDis.get(l).getCampo(), d, 7);
+                                                    idcampos.add(camposDis.get(l).getIdCampo());
+                                                    String diaSemana = getDia(camposDis.get(l).getIdDia());
+                                                    if(diaSemana.equals(restriccionesCoincidirLocal)){
+                                                        continue cambioCampo;
+                                                    }
+                                                    if(diaSemana.equals(restriccionesCoincidirVisitante)){
+                                                        continue cambioCampo;
+                                                    }
+                                                    tabla.setValueAt(diaSemana, d, 3);
+                                                    pintarFechaMostrar(d, dateIni, dateFin, tabla);
+                                                    tabla.setValueAt(camposDis.get(l).getHora(), d, 4);
+                                                    camposUsados.add(camposDis.get(l).getIdCamHora());
+                                                    conn.conectar();
+                                                    conn.updateData("cam_horarios", "ASIGNADO = 1", "ID = " + camposDis.get(l).getIdCamHora());
+                                                    conn.getConection().commit();
+                                                    continue bucle;
                                                 }
                                             }
-                                            tabla.setValueAt(camposDis.get(l).getCampo(), d, 7);
-                                            idcampos.add(camposDis.get(l).getIdCampo());
-                                            String diaSemana = getDia(camposDis.get(l).getIdDia());
-                                            if(diaSemana.equals(restriccionesCoincidirLocal)){
-                                                continue cambioCampo;
-                                            }
-                                            if(diaSemana.equals(restriccionesCoincidirVisitante)){
-                                                continue cambioCampo;
-                                            }
-                                            tabla.setValueAt(diaSemana, d, 3);
-                                            pintarFechaMostrar(d, dateIni, dateFin, tabla);
-                                            tabla.setValueAt(camposDis.get(l).getHora(), d, 4);
-                                            camposUsados.add(camposDis.get(l).getIdCamHora());
-                                            conn.conectar();
-                                            conn.updateData("cam_horarios", "ASIGNADO = 1", "ID = " + camposDis.get(l).getIdCamHora());
-                                            conn.getConection().commit();
-                                            continue bucle;
                                         }
                                     }
                                 }
@@ -356,6 +368,22 @@ public class GeneraCalendario {
         conn.desconectar();
         
         return "";
+    }
+    
+    private boolean verificarEquipoCongelado(String equipo){
+        Conn conn = new Conn();
+        conn.conectar();
+        ResultSet congelado = conn.getValues("CONGELADO", "equipos", "NOMBRE like \"" + equipo + "\" LIMIT 1", "");
+        try {
+            while (congelado.next()){
+                if(congelado.getInt("CONGELADO") == 1){
+                    return true;
+                }
+            }
+            congelado.close();
+        } catch (SQLException ex) {}
+        conn.desconectar();
+        return false;
     }
     
     private void pintarFilasConRestricciones(JTable tabla){
