@@ -115,11 +115,13 @@ private FondoPrincipal fondo;
         miAgregarCategoria = new javax.swing.JMenuItem();
         miAgregarDivision = new javax.swing.JMenuItem();
         miAgregarEquipos = new javax.swing.JMenuItem();
+        miAgregarArbitros = new javax.swing.JMenuItem();
         mEditarPrincipal = new javax.swing.JMenu();
         miEditarCampos = new javax.swing.JMenuItem();
         miEditarCategoria = new javax.swing.JMenuItem();
         miEditarDivision = new javax.swing.JMenuItem();
         miEditarEquipos = new javax.swing.JMenuItem();
+        miEditarArbitros = new javax.swing.JMenuItem();
         mBBDD = new javax.swing.JMenu();
         mVaciarBBDD = new javax.swing.JMenu();
         miVaciarCalendario = new javax.swing.JMenuItem();
@@ -325,6 +327,18 @@ private FondoPrincipal fondo;
         });
         mAgregarPrincipal.add(miAgregarEquipos);
 
+        miAgregarArbitros.setBackground(new java.awt.Color(31, 87, 12));
+        miAgregarArbitros.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miAgregarArbitros.setForeground(new java.awt.Color(255, 255, 255));
+        miAgregarArbitros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu_arbitros.png"))); // NOI18N
+        miAgregarArbitros.setText(" Árbitro");
+        miAgregarArbitros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAgregarArbitrosActionPerformed(evt);
+            }
+        });
+        mAgregarPrincipal.add(miAgregarArbitros);
+
         mGestion.add(mAgregarPrincipal);
 
         mEditarPrincipal.setText("Editar");
@@ -376,6 +390,18 @@ private FondoPrincipal fondo;
             }
         });
         mEditarPrincipal.add(miEditarEquipos);
+
+        miEditarArbitros.setBackground(new java.awt.Color(31, 87, 12));
+        miEditarArbitros.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miEditarArbitros.setForeground(new java.awt.Color(255, 255, 255));
+        miEditarArbitros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu_arbitros.png"))); // NOI18N
+        miEditarArbitros.setText(" Árbitro");
+        miEditarArbitros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEditarArbitrosActionPerformed(evt);
+            }
+        });
+        mEditarPrincipal.add(miEditarArbitros);
 
         mGestion.add(mEditarPrincipal);
 
@@ -707,6 +733,14 @@ private FondoPrincipal fondo;
         }
     }//GEN-LAST:event_miNuevaJornadaActionPerformed
 
+    private void miAgregarArbitrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAgregarArbitrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_miAgregarArbitrosActionPerformed
+
+    private void miEditarArbitrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarArbitrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_miEditarArbitrosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -768,11 +802,13 @@ private FondoPrincipal fondo;
     private javax.swing.JMenu mVaciarBBDD;
     private javax.swing.JMenuBar mbprincipal;
     private javax.swing.JMenuItem miAcerca;
+    private javax.swing.JMenuItem miAgregarArbitros;
     private javax.swing.JMenuItem miAgregarCampos;
     private javax.swing.JMenuItem miAgregarCategoria;
     private javax.swing.JMenuItem miAgregarDivision;
     private javax.swing.JMenuItem miAgregarEquipos;
     private javax.swing.JMenuItem miCambiarLogo;
+    private javax.swing.JMenuItem miEditarArbitros;
     private javax.swing.JMenuItem miEditarCampos;
     private javax.swing.JMenuItem miEditarCategoria;
     private javax.swing.JMenuItem miEditarDivision;

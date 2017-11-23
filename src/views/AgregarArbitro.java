@@ -152,11 +152,11 @@ public class AgregarArbitro extends javax.swing.JDialog {
         if (txtAgregarEquipo.getText().equals("")){              
             JOptionPane.showMessageDialog(rootPane, "Debe escribir el nombre de un equipo","Nombre del equipo", JOptionPane.QUESTION_MESSAGE, icon);
         }else{            
-            try {
-                ge.guardarEquipo(nombre);
+            /*try {
+                //ge.guardarEquipo(nombre);
             } catch (SQLException ex) {
                 Logger.getLogger(AgregarArbitro.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
             dispose();
         }
     }//GEN-LAST:event_btnAgregarEquipoActionPerformed
