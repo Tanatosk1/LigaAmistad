@@ -734,7 +734,7 @@ private FondoPrincipal fondo;
     }//GEN-LAST:event_miNuevaJornadaActionPerformed
 
     private void miAgregarArbitrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAgregarArbitrosActionPerformed
-        // TODO add your handling code here:
+        new AgregarArbitro(this, true).setVisible(true);
     }//GEN-LAST:event_miAgregarArbitrosActionPerformed
 
     private void miEditarArbitrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarArbitrosActionPerformed

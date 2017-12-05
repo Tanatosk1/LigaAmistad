@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import sources.GestionarArbitros;
 import sources.GestionarEquipos;
 import sources.MostrarDatos;
 
@@ -20,7 +21,7 @@ import sources.MostrarDatos;
 public class AgregarArbitro extends javax.swing.JDialog {
 
     private final MostrarDatos md = new MostrarDatos();
-    private final GestionarEquipos ge = new GestionarEquipos();
+    private final GestionarArbitros ga = new GestionarArbitros();
 
 
     /**
@@ -44,14 +45,14 @@ public class AgregarArbitro extends javax.swing.JDialog {
     private void initComponents() {
 
         lblLogoAgregarEquipo = new javax.swing.JLabel();
-        txtAgregarEquipo = new javax.swing.JTextField();
-        btnAgregarEquipo = new javax.swing.JButton();
-        btnCancelarEquipo = new javax.swing.JButton();
+        txtNombreArbitro = new javax.swing.JTextField();
+        btnAgregarArbitro = new javax.swing.JButton();
+        btnCancelarArbitro = new javax.swing.JButton();
         lblAgreagarEquipo = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        chkEspecial = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtApellidoArbitro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar equipo");
@@ -59,21 +60,21 @@ public class AgregarArbitro extends javax.swing.JDialog {
 
         lblLogoAgregarEquipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/equipos_menu.png"))); // NOI18N
 
-        btnAgregarEquipo.setBackground(new java.awt.Color(31, 87, 12));
-        btnAgregarEquipo.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregarEquipo.setText("Aceptar");
-        btnAgregarEquipo.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarArbitro.setBackground(new java.awt.Color(31, 87, 12));
+        btnAgregarArbitro.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarArbitro.setText("Aceptar");
+        btnAgregarArbitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarEquipoActionPerformed(evt);
+                btnAgregarArbitroActionPerformed(evt);
             }
         });
 
-        btnCancelarEquipo.setBackground(new java.awt.Color(31, 87, 12));
-        btnCancelarEquipo.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelarEquipo.setText("Cancelar");
-        btnCancelarEquipo.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelarArbitro.setBackground(new java.awt.Color(31, 87, 12));
+        btnCancelarArbitro.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelarArbitro.setText("Cancelar");
+        btnCancelarArbitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarEquipoActionPerformed(evt);
+                btnCancelarArbitroActionPerformed(evt);
             }
         });
 
@@ -82,10 +83,10 @@ public class AgregarArbitro extends javax.swing.JDialog {
         lblAgreagarEquipo.setForeground(new java.awt.Color(31, 87, 12));
         lblAgreagarEquipo.setText("Agregar Arbitro");
 
-        jCheckBox1.setText("Especiales");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        chkEspecial.setText("Especiales");
+        chkEspecial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                chkEspecialActionPerformed(evt);
             }
         });
 
@@ -100,23 +101,23 @@ public class AgregarArbitro extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtAgregarEquipo)
+                    .addComponent(txtNombreArbitro)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnAgregarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregarArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCancelarArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblLogoAgregarEquipo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblAgreagarEquipo))
-                            .addComponent(jCheckBox1)
+                            .addComponent(chkEspecial)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addGap(0, 135, Short.MAX_VALUE))
-                    .addComponent(jTextField1))
+                    .addComponent(txtApellidoArbitro))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -129,45 +130,53 @@ public class AgregarArbitro extends javax.swing.JDialog {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtAgregarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombreArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtApellidoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(jCheckBox1)
+                .addComponent(chkEspecial)
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregarEquipo)
-                    .addComponent(btnCancelarEquipo))
+                    .addComponent(btnAgregarArbitro)
+                    .addComponent(btnCancelarArbitro))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEquipoActionPerformed
-        String nombre = txtAgregarEquipo.getText();
+    private void btnAgregarArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArbitroActionPerformed
+        String nombre = txtNombreArbitro.getText();
+        String apellido = txtApellidoArbitro.getText();
+        int especial = 0;
         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-        if (txtAgregarEquipo.getText().equals("")){              
-            JOptionPane.showMessageDialog(rootPane, "Debe escribir el nombre de un equipo","Nombre del equipo", JOptionPane.QUESTION_MESSAGE, icon);
-        }else{            
-            /*try {
-                //ge.guardarEquipo(nombre);
+        if (txtNombreArbitro.getText().equals("")){              
+            JOptionPane.showMessageDialog(rootPane, "Debe escribir el nombre del árbitro","Nombre del árbitro", JOptionPane.QUESTION_MESSAGE, icon);
+        }else{     
+            System.out.println(nombre);
+            System.out.println(apellido);
+            if(chkEspecial.isSelected()){
+                System.out.println("Especial");
+                especial = 1;
+            }
+            try {
+                ga.guardarArbitro(nombre, apellido, especial);
             } catch (SQLException ex) {
                 Logger.getLogger(AgregarArbitro.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
+            }
             dispose();
         }
-    }//GEN-LAST:event_btnAgregarEquipoActionPerformed
+    }//GEN-LAST:event_btnAgregarArbitroActionPerformed
 
-    private void btnCancelarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEquipoActionPerformed
+    private void btnCancelarArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarArbitroActionPerformed
         dispose();
-    }//GEN-LAST:event_btnCancelarEquipoActionPerformed
+    }//GEN-LAST:event_btnCancelarArbitroActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void chkEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkEspecialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_chkEspecialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,14 +236,14 @@ public class AgregarArbitro extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarEquipo;
-    private javax.swing.JButton btnCancelarEquipo;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton btnAgregarArbitro;
+    private javax.swing.JButton btnCancelarArbitro;
+    private javax.swing.JCheckBox chkEspecial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAgreagarEquipo;
     private javax.swing.JLabel lblLogoAgregarEquipo;
-    public javax.swing.JTextField txtAgregarEquipo;
+    private javax.swing.JTextField txtApellidoArbitro;
+    public javax.swing.JTextField txtNombreArbitro;
     // End of variables declaration//GEN-END:variables
 }
