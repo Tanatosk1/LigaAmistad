@@ -738,7 +738,7 @@ private FondoPrincipal fondo;
     }//GEN-LAST:event_miAgregarArbitrosActionPerformed
 
     private void miEditarArbitrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditarArbitrosActionPerformed
-        // TODO add your handling code here:
+        new EditarArbitro(this, true).setVisible(true);
     }//GEN-LAST:event_miEditarArbitrosActionPerformed
 
     /**

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
 
 import java.sql.SQLException;
@@ -11,14 +6,13 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sources.GestionarArbitros;
-import sources.GestionarEquipos;
 import sources.MostrarDatos;
 
 /**
  *
  * @author rob_a
  */
-public class AgregarArbitro extends javax.swing.JDialog {
+public class EditarArbitro extends javax.swing.JDialog {
 
     private final MostrarDatos md = new MostrarDatos();
     private final GestionarArbitros ga = new GestionarArbitros();
@@ -27,12 +21,13 @@ public class AgregarArbitro extends javax.swing.JDialog {
     /**
      * Creates new form EditarCampo
      */
-    public AgregarArbitro(java.awt.Frame parent, boolean modal) {
+    public EditarArbitro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(232, 245, 228));
-       
+        this.cmbArbitros.addItem("");
+        md.llenarComboEditarArbitros(cmbArbitros);
     }
 
     /**
@@ -46,13 +41,15 @@ public class AgregarArbitro extends javax.swing.JDialog {
 
         lblLogoAgregarEquipo = new javax.swing.JLabel();
         txtNombreArbitro = new javax.swing.JTextField();
-        btnAgregarArbitro = new javax.swing.JButton();
+        btnEditarArbitro = new javax.swing.JButton();
         btnCancelarArbitro = new javax.swing.JButton();
         lblAgreagarEquipo = new javax.swing.JLabel();
         chkEspecial = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtApellidoArbitro = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        cmbArbitros = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar equipo");
@@ -60,12 +57,12 @@ public class AgregarArbitro extends javax.swing.JDialog {
 
         lblLogoAgregarEquipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/equipos_menu.png"))); // NOI18N
 
-        btnAgregarArbitro.setBackground(new java.awt.Color(31, 87, 12));
-        btnAgregarArbitro.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregarArbitro.setText("Aceptar");
-        btnAgregarArbitro.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarArbitro.setBackground(new java.awt.Color(31, 87, 12));
+        btnEditarArbitro.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarArbitro.setText("Aceptar");
+        btnEditarArbitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarArbitroActionPerformed(evt);
+                btnEditarArbitroActionPerformed(evt);
             }
         });
 
@@ -81,7 +78,7 @@ public class AgregarArbitro extends javax.swing.JDialog {
         lblAgreagarEquipo.setBackground(new java.awt.Color(31, 87, 12));
         lblAgreagarEquipo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         lblAgreagarEquipo.setForeground(new java.awt.Color(31, 87, 12));
-        lblAgreagarEquipo.setText("Agregar Arbitro");
+        lblAgreagarEquipo.setText("Editar Arbitro");
 
         chkEspecial.setText("Especiales");
         chkEspecial.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +91,14 @@ public class AgregarArbitro extends javax.swing.JDialog {
 
         jLabel2.setText("Apellidos");
 
+        jLabel3.setText("Seleciona");
+
+        cmbArbitros.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbArbitrosItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,12 +106,13 @@ public class AgregarArbitro extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNombreArbitro)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnAgregarArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 151, Short.MAX_VALUE)
+                        .addComponent(btnEditarArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelarArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombreArbitro)
+                    .addComponent(txtApellidoArbitro)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -115,9 +121,10 @@ public class AgregarArbitro extends javax.swing.JDialog {
                                 .addComponent(lblAgreagarEquipo))
                             .addComponent(chkEspecial)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(0, 135, Short.MAX_VALUE))
-                    .addComponent(txtApellidoArbitro))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(cmbArbitros, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,7 +134,11 @@ public class AgregarArbitro extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblLogoAgregarEquipo)
                     .addComponent(lblAgreagarEquipo))
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cmbArbitros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNombreArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,11 +146,11 @@ public class AgregarArbitro extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtApellidoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(chkEspecial)
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregarArbitro)
+                    .addComponent(btnEditarArbitro)
                     .addComponent(btnCancelarArbitro))
                 .addContainerGap())
         );
@@ -147,25 +158,30 @@ public class AgregarArbitro extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArbitroActionPerformed
+    private void btnEditarArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarArbitroActionPerformed
+        String arbitro = cmbArbitros.getSelectedItem().toString();
         String nombre = txtNombreArbitro.getText();
         String apellido = txtApellidoArbitro.getText();
         int especial = 0;
         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
         if (txtNombreArbitro.getText().equals("")){              
             JOptionPane.showMessageDialog(rootPane, "Debe escribir el nombre del árbitro","Nombre del árbitro", JOptionPane.QUESTION_MESSAGE, icon);
-        }else{
+        }else{     
+            System.out.println(arbitro);
+            System.out.println(nombre);
+            System.out.println(apellido);
             if(chkEspecial.isSelected()){
+                System.out.println("Especial");
                 especial = 1;
             }
             try {
                 ga.guardarArbitro(nombre, apellido, especial);
             } catch (SQLException ex) {
-                Logger.getLogger(AgregarArbitro.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EditarArbitro.class.getName()).log(Level.SEVERE, null, ex);
             }
             dispose();
         }
-    }//GEN-LAST:event_btnAgregarArbitroActionPerformed
+    }//GEN-LAST:event_btnEditarArbitroActionPerformed
 
     private void btnCancelarArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarArbitroActionPerformed
         dispose();
@@ -174,6 +190,15 @@ public class AgregarArbitro extends javax.swing.JDialog {
     private void chkEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkEspecialActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chkEspecialActionPerformed
+
+    private void cmbArbitrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbArbitrosItemStateChanged
+        String completo = cmbArbitros.getSelectedItem().toString();
+        String[] nombre = completo.split(" ");
+        if(nombre.length > 1){
+            this.txtNombreArbitro.setText(nombre[0]);
+            this.txtApellidoArbitro.setText(nombre[1]);
+        }
+    }//GEN-LAST:event_cmbArbitrosItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -192,14 +217,62 @@ public class AgregarArbitro extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -220,7 +293,7 @@ public class AgregarArbitro extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AgregarArbitro dialog = new AgregarArbitro(new javax.swing.JFrame(), true);
+                EditarArbitro dialog = new EditarArbitro(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -233,11 +306,13 @@ public class AgregarArbitro extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarArbitro;
     private javax.swing.JButton btnCancelarArbitro;
+    private javax.swing.JButton btnEditarArbitro;
     private javax.swing.JCheckBox chkEspecial;
+    private javax.swing.JComboBox<String> cmbArbitros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblAgreagarEquipo;
     private javax.swing.JLabel lblLogoAgregarEquipo;
     private javax.swing.JTextField txtApellidoArbitro;

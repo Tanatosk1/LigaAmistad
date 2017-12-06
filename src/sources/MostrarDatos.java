@@ -278,6 +278,20 @@ public class MostrarDatos {
         con.desconectar();
     }
     
+    public void llenarComboEditarArbitros(JComboBox cmbArbitros){
+        con.conectar();
+        String select = "*";
+        String from ="arbitros";
+        
+        ResultSet arbitros = con.getValues(select, from, "", "");
+        try{
+            while(arbitros.next()){
+                cmbArbitros.addItem(arbitros.getString("NOMBRE") +" "+ arbitros.getString("APELLIDOS"));
+            }
+        }catch(SQLException ex){}
+        
+    }
+    
     private String calculaDia(Date fecha){
         String dia = "";
         Calendar d = Calendar.getInstance();
@@ -299,14 +313,6 @@ public class MostrarDatos {
             System.out.println(e);
             }
     }
-    
-//    public void eliminarSeleccionadaInactivos(JTable tInactivos){
-//        DefaultTableModel model = (DefaultTableModel) tInactivos.getModel();
-//        int[] rows = tInactivos.getSelectedRows();
-//        for(int i=0;i<rows.length;i++){
-//          model.removeRow(rows[i]-i);
-//   }
-//}
     
 
     public static int diferenciasDeFechas(Date fechaInicial, Date fechaFinal) {
