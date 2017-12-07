@@ -14,24 +14,24 @@ import views.Restricciones;
 public class GestionarArbitros {
     private final Conn conn = new Conn();
     
-    public void guardarArbitro( String nombre, String apellido, int especial ) throws SQLException{
+    public void guardarArbitro( String nombre, String apellido, int nivel ) throws SQLException{
         
             conn.conectar();
 
-            conn.insertData("arbitros", "null,'" + nombre + "', '" + apellido + "','" + especial + "', 0");
+            conn.insertData("arbitros", "null,'" + nombre + "', '" + apellido + "','" + nivel + "', 0");
             conn.getConection().commit();
             conn.desconectar();      
     }
     
-    /*public void editarArbitro(String nombre, String apellido, boolean especial, boolean activo) throws SQLException{
-
-            conn.updateData("arbitros", "NOMBRE = '" + nombre + "', APELLIDOS = '" +apellido + "',  NIVEL = '" + especial + "'",  "NOMBRE LIKE '" + anterior+ "'");
+    public void editarArbitro(String[] arbitro, String nombre, String apellido, int nivel) throws SQLException{
+            conn.conectar();
+            conn.updateData("arbitros", "NOMBRE = '" + nombre + "', APELLIDOS = '" +apellido + "',  NIVEL = '" + nivel + "'",  "NOMBRE LIKE '" + arbitro[0]+ "' and APELLIDOS like '"+ arbitro[1] +"'");
             conn.getConection().commit();
             conn.desconectar();
         
     }
         
-    public void eliminarEquipo(String equipo) throws SQLException{
+    /*public void eliminarEquipo(String equipo) throws SQLException{
 
             conn.conectar();
             conn.deleteData("equipos", "NOMBRE like '" + equipo + "'");
@@ -56,5 +56,19 @@ public class GestionarArbitros {
             conn.desconectar();
 
     }*/
+    
+    public boolean getNivel(String nombre, String apellido) throws SQLException{
+        boolean nivel = false;
+        conn.conectar();
+        ResultSet rsNivel = conn.getValues("nivel", "arbitros", "NOMBRE like '"+nombre+"' and APELLIDOS like '"+apellido+"' LIMIT 1", "");
+        while(rsNivel.next()){
+            if(rsNivel.getInt("NIVEL") == 1){
+                nivel = true;
+                return nivel;
+            }
+        }
+        conn.desconectar();
+        return nivel;
+    }
     
 }

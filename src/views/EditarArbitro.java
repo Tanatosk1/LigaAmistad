@@ -166,16 +166,13 @@ public class EditarArbitro extends javax.swing.JDialog {
         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
         if (txtNombreArbitro.getText().equals("")){              
             JOptionPane.showMessageDialog(rootPane, "Debe escribir el nombre del árbitro","Nombre del árbitro", JOptionPane.QUESTION_MESSAGE, icon);
-        }else{     
-            System.out.println(arbitro);
-            System.out.println(nombre);
-            System.out.println(apellido);
+        }else{
+            String[] completo = arbitro.split(" ");
             if(chkEspecial.isSelected()){
-                System.out.println("Especial");
                 especial = 1;
             }
             try {
-                ga.guardarArbitro(nombre, apellido, especial);
+                ga.editarArbitro(completo, nombre, apellido, especial);
             } catch (SQLException ex) {
                 Logger.getLogger(EditarArbitro.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -195,8 +192,17 @@ public class EditarArbitro extends javax.swing.JDialog {
         String completo = cmbArbitros.getSelectedItem().toString();
         String[] nombre = completo.split(" ");
         if(nombre.length > 1){
-            this.txtNombreArbitro.setText(nombre[0]);
-            this.txtApellidoArbitro.setText(nombre[1]);
+            try {
+                this.txtNombreArbitro.setText(nombre[0]);
+                this.txtApellidoArbitro.setText(nombre[1]);
+                if(ga.getNivel(nombre[0], nombre[1])){
+                    this.chkEspecial.setSelected(true);
+                }else{
+                    this.chkEspecial.setSelected(false);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(EditarArbitro.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_cmbArbitrosItemStateChanged
 
@@ -226,69 +232,7 @@ public class EditarArbitro extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(EditarArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
