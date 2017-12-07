@@ -113,7 +113,7 @@ public class MostrarDatos {
       
     public void llenarTCalendario(JTable tCalendario){
         DefaultTableModel model = (DefaultTableModel) tCalendario.getModel();
-        Object[] fila = new Object[10];
+        Object[] fila = new Object[11];
         Date fechaFila = null;
         con.conectar();
         String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, l.NOMBRE AS \"LOCAL\", "
@@ -140,18 +140,20 @@ public class MostrarDatos {
                         fila[3] = "";
                         fila[4] = "";
                     }
-                    fila[5] = campeonato.getString("LOCAL");
-                    fila[6] = campeonato.getString("VISITANTE");
-                    fila[7] = campeonato.getString("CAMPO");
+                    fila[5] = "";
+                    fila[6] = campeonato.getString("CAMPO");
+                    fila[7] = campeonato.getString("LOCAL");
+                    fila[8] = campeonato.getString("VISITANTE");
+                    
                     if(campeonato.getString("DIVISION").equalsIgnoreCase("sin división")){
-                        fila[8] = campeonato.getString("CATEGORIA");
+                        fila[9] = campeonato.getString("CATEGORIA");
                     }else{
-                        fila[8] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
+                        fila[9] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
                     }
                     if(campeonato.getInt("APLAZADO") == 1){
-                        fila[9] = true;
+                        fila[10] = true;
                     }else{
-                        fila[9] = null;
+                        fila[10] = null;
                     }
                     model.addRow(fila);
                     

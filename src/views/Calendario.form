@@ -612,15 +612,16 @@
         <Component class="javax.swing.JTable" name="tCalendario">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="10" rowCount="0">
+              <Table columnCount="11" rowCount="0">
                 <Column editable="false" title="ID" type="java.lang.Object"/>
                 <Column editable="false" title="Jornada" type="java.lang.Object"/>
                 <Column editable="false" title="Fecha" type="java.lang.Object"/>
                 <Column editable="false" title="D&#xed;a" type="java.lang.Object"/>
                 <Column editable="true" title="Hora" type="java.lang.Object"/>
+                <Column editable="false" title="&#xc1;rbitro" type="java.lang.Object"/>
+                <Column editable="false" title="Campo" type="java.lang.Object"/>
                 <Column editable="false" title="Equipo Local" type="java.lang.Object"/>
                 <Column editable="false" title="Equipo Visitante" type="java.lang.Object"/>
-                <Column editable="false" title="Campo" type="java.lang.Object"/>
                 <Column editable="false" title="Competici&#xf3;n" type="java.lang.Object"/>
                 <Column editable="true" title="Partido aplazado" type="java.lang.Boolean"/>
               </Table>
@@ -628,6 +629,11 @@
             <Property name="autoResizeMode" type="int" value="0"/>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
