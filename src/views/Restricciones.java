@@ -531,6 +531,9 @@ public Restricciones() {
         cbSabado = new javax.swing.JComboBox<>();
         cbDomingo = new javax.swing.JComboBox<>();
         pCamposExcluidos = new javax.swing.JPanel();
+        lblNoCoincidir1 = new javax.swing.JLabel();
+        cbNoCoincidir1 = new javax.swing.JComboBox<>();
+        separadorEquipos7 = new javax.swing.JSeparator();
         pCampos = new javax.swing.JPanel();
         lblLogoCampos = new javax.swing.JLabel();
         lblCampos = new javax.swing.JLabel();
@@ -571,7 +574,6 @@ public Restricciones() {
         txtSabadoPrimera = new javax.swing.JTextField();
         ckSabadoSegunda = new javax.swing.JCheckBox();
         txtSabadoSegunda = new javax.swing.JTextField();
-        separadorCampos7 = new javax.swing.JSeparator();
         ckDomingoCampos = new javax.swing.JCheckBox();
         ckDomingoPrimera = new javax.swing.JCheckBox();
         txtDomingoPrimera = new javax.swing.JTextField();
@@ -579,11 +581,28 @@ public Restricciones() {
         txtDomingoSegunda = new javax.swing.JTextField();
         separadorCampos8 = new javax.swing.JSeparator();
         ckCongelarCampo = new javax.swing.JCheckBox();
-        separadorCampos9 = new javax.swing.JSeparator();
         btnEditarEquipos1 = new javax.swing.JButton();
         btnAceptarCampos = new javax.swing.JButton();
         lblCamposActivos = new javax.swing.JLabel();
         lblNumeroCamposActivos = new javax.swing.JLabel();
+        separadorCampos10 = new javax.swing.JSeparator();
+        lblLogoArbitros1 = new javax.swing.JLabel();
+        blArbitro = new javax.swing.JLabel();
+        cbArbitros = new javax.swing.JComboBox<>();
+        ckJuevesCampos1 = new javax.swing.JCheckBox();
+        ckDomingoCampos1 = new javax.swing.JCheckBox();
+        ckMiercolesCampos1 = new javax.swing.JCheckBox();
+        ckViernesCampos1 = new javax.swing.JCheckBox();
+        ckSabadoCampos1 = new javax.swing.JCheckBox();
+        ckLunesCampos1 = new javax.swing.JCheckBox();
+        ckMartesCampos1 = new javax.swing.JCheckBox();
+        separadorCampos11 = new javax.swing.JSeparator();
+        separadorCampos12 = new javax.swing.JSeparator();
+        lblNoCoincidir2 = new javax.swing.JLabel();
+        cbNoCoincidir2 = new javax.swing.JComboBox<>();
+        separadorCampos13 = new javax.swing.JSeparator();
+        lblCamposActivos1 = new javax.swing.JLabel();
+        lblNumeroCamposActivos1 = new javax.swing.JLabel();
         mbRestricciones = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -797,6 +816,16 @@ public Restricciones() {
             .addGap(0, 177, Short.MAX_VALUE)
         );
 
+        lblNoCoincidir1.setBackground(new java.awt.Color(255, 255, 255));
+        lblNoCoincidir1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblNoCoincidir1.setText("No coincidir con árbitro:");
+
+        cbNoCoincidir1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cbNoCoincidir1.setEnabled(false);
+        cbNoCoincidir1.setPreferredSize(new java.awt.Dimension(300, 28));
+
+        separadorEquipos7.setForeground(new java.awt.Color(31, 87, 12));
+
         javax.swing.GroupLayout pEquiposLayout = new javax.swing.GroupLayout(pEquipos);
         pEquipos.setLayout(pEquiposLayout);
         pEquiposLayout.setHorizontalGroup(
@@ -866,18 +895,24 @@ public Restricciones() {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(pCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(10, 10, 10))))
+                        .addGap(10, 10, 10))
+                    .addGroup(pEquiposLayout.createSequentialGroup()
+                        .addComponent(lblNoCoincidir1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbNoCoincidir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110))
+                    .addComponent(separadorEquipos7)))
         );
         pEquiposLayout.setVerticalGroup(
             pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pEquiposLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(22, 22, 22)
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblEquipos)
                         .addComponent(cbEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblLogoEquipos))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(separadorEquipos1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -911,7 +946,13 @@ public Restricciones() {
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(separadorEquipos7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNoCoincidir1)
+                    .addComponent(cbNoCoincidir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separadorEquipos4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1139,8 +1180,6 @@ public Restricciones() {
         txtSabadoSegunda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtSabadoSegunda.setEnabled(false);
 
-        separadorCampos7.setForeground(new java.awt.Color(31, 87, 12));
-
         ckDomingoCampos.setBackground(new java.awt.Color(255, 255, 255));
         ckDomingoCampos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         ckDomingoCampos.setText("Domingo");
@@ -1183,8 +1222,6 @@ public Restricciones() {
             }
         });
 
-        separadorCampos9.setForeground(new java.awt.Color(31, 87, 12));
-
         btnEditarEquipos1.setBackground(new java.awt.Color(31, 87, 12));
         btnEditarEquipos1.setForeground(new java.awt.Color(255, 255, 255));
         btnEditarEquipos1.setText("Editar Campo");
@@ -1210,6 +1247,138 @@ public Restricciones() {
         lblNumeroCamposActivos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblNumeroCamposActivos.setText("0");
 
+        separadorCampos10.setForeground(new java.awt.Color(31, 87, 12));
+
+        lblLogoArbitros1.setBackground(new java.awt.Color(255, 255, 255));
+        lblLogoArbitros1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/arbitros.png"))); // NOI18N
+
+        blArbitro.setBackground(new java.awt.Color(255, 255, 255));
+        blArbitro.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        blArbitro.setForeground(new java.awt.Color(31, 87, 12));
+        blArbitro.setText("Árbitro");
+
+        cbArbitros.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        cbArbitros.setForeground(new java.awt.Color(31, 87, 12));
+        cbArbitros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un árbitro" }));
+        cbArbitros.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbArbitrosItemStateChanged(evt);
+            }
+        });
+        cbArbitros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbArbitrosActionPerformed(evt);
+            }
+        });
+
+        ckJuevesCampos1.setBackground(new java.awt.Color(255, 255, 255));
+        ckJuevesCampos1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ckJuevesCampos1.setText("Jueves");
+        ckJuevesCampos1.setEnabled(false);
+        ckJuevesCampos1.setMaximumSize(new java.awt.Dimension(111, 31));
+        ckJuevesCampos1.setMinimumSize(new java.awt.Dimension(111, 31));
+        ckJuevesCampos1.setPreferredSize(new java.awt.Dimension(111, 31));
+        ckJuevesCampos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckJuevesCampos1ActionPerformed(evt);
+            }
+        });
+
+        ckDomingoCampos1.setBackground(new java.awt.Color(255, 255, 255));
+        ckDomingoCampos1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ckDomingoCampos1.setText("Domingo");
+        ckDomingoCampos1.setEnabled(false);
+        ckDomingoCampos1.setMaximumSize(new java.awt.Dimension(111, 31));
+        ckDomingoCampos1.setMinimumSize(new java.awt.Dimension(111, 31));
+        ckDomingoCampos1.setPreferredSize(new java.awt.Dimension(111, 31));
+        ckDomingoCampos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckDomingoCampos1ActionPerformed(evt);
+            }
+        });
+
+        ckMiercolesCampos1.setBackground(new java.awt.Color(255, 255, 255));
+        ckMiercolesCampos1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ckMiercolesCampos1.setText("Miércoles");
+        ckMiercolesCampos1.setEnabled(false);
+        ckMiercolesCampos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckMiercolesCampos1ActionPerformed(evt);
+            }
+        });
+
+        ckViernesCampos1.setBackground(new java.awt.Color(255, 255, 255));
+        ckViernesCampos1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ckViernesCampos1.setText("Viernes");
+        ckViernesCampos1.setEnabled(false);
+        ckViernesCampos1.setMaximumSize(new java.awt.Dimension(111, 31));
+        ckViernesCampos1.setMinimumSize(new java.awt.Dimension(111, 31));
+        ckViernesCampos1.setPreferredSize(new java.awt.Dimension(111, 31));
+        ckViernesCampos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckViernesCampos1ActionPerformed(evt);
+            }
+        });
+
+        ckSabadoCampos1.setBackground(new java.awt.Color(255, 255, 255));
+        ckSabadoCampos1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ckSabadoCampos1.setText("Sábado");
+        ckSabadoCampos1.setEnabled(false);
+        ckSabadoCampos1.setMaximumSize(new java.awt.Dimension(111, 31));
+        ckSabadoCampos1.setMinimumSize(new java.awt.Dimension(111, 31));
+        ckSabadoCampos1.setPreferredSize(new java.awt.Dimension(111, 31));
+        ckSabadoCampos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckSabadoCampos1ActionPerformed(evt);
+            }
+        });
+
+        ckLunesCampos1.setBackground(new java.awt.Color(255, 255, 255));
+        ckLunesCampos1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ckLunesCampos1.setText("Lunes");
+        ckLunesCampos1.setEnabled(false);
+        ckLunesCampos1.setMaximumSize(new java.awt.Dimension(111, 31));
+        ckLunesCampos1.setMinimumSize(new java.awt.Dimension(111, 31));
+        ckLunesCampos1.setPreferredSize(new java.awt.Dimension(111, 31));
+        ckLunesCampos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckLunesCampos1ActionPerformed(evt);
+            }
+        });
+
+        ckMartesCampos1.setBackground(new java.awt.Color(255, 255, 255));
+        ckMartesCampos1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ckMartesCampos1.setText("Martes");
+        ckMartesCampos1.setEnabled(false);
+        ckMartesCampos1.setMaximumSize(new java.awt.Dimension(111, 31));
+        ckMartesCampos1.setMinimumSize(new java.awt.Dimension(111, 31));
+        ckMartesCampos1.setPreferredSize(new java.awt.Dimension(111, 31));
+        ckMartesCampos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckMartesCampos1ActionPerformed(evt);
+            }
+        });
+
+        separadorCampos11.setForeground(new java.awt.Color(31, 87, 12));
+
+        separadorCampos12.setForeground(new java.awt.Color(31, 87, 12));
+
+        lblNoCoincidir2.setBackground(new java.awt.Color(255, 255, 255));
+        lblNoCoincidir2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblNoCoincidir2.setText("No coincidir con campo:");
+
+        cbNoCoincidir2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cbNoCoincidir2.setEnabled(false);
+        cbNoCoincidir2.setPreferredSize(new java.awt.Dimension(300, 28));
+
+        separadorCampos13.setForeground(new java.awt.Color(31, 87, 12));
+
+        lblCamposActivos1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblCamposActivos1.setText("Número de horas activas: ");
+
+        lblNumeroCamposActivos1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblNumeroCamposActivos1.setText("0");
+
         javax.swing.GroupLayout pCamposLayout = new javax.swing.GroupLayout(pCampos);
         pCampos.setLayout(pCamposLayout);
         pCamposLayout.setHorizontalGroup(
@@ -1217,120 +1386,151 @@ public Restricciones() {
             .addGroup(pCamposLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnEditarEquipos1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAceptarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(ckLunesCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblLogoArbitros1)
                         .addGap(18, 18, 18)
-                        .addComponent(ckLunesPrimera)
+                        .addComponent(blArbitro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbArbitros, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pCamposLayout.createSequentialGroup()
+                        .addComponent(lblLogoCampos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblCampos)
                         .addGap(18, 18, 18)
-                        .addComponent(txtLunesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ckLunesSegunda)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtLunesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cbCampos, 0, 452, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
+                        .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(separadorCampos10, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(separadorCampos8, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(separadorCampos5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(separadorCampos2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(separadorCampos3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(separadorCampos4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(separadorCampos1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(separadorCampos6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pCamposLayout.createSequentialGroup()
+                                .addComponent(ckCongelarCampo)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblCamposActivos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblNumeroCamposActivos)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(36, 36, 36))
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(separadorCampos5)
-                            .addComponent(separadorCampos2)
-                            .addComponent(separadorCampos3)
-                            .addComponent(separadorCampos4)
-                            .addComponent(separadorCampos1)
-                            .addComponent(separadorCampos6)
-                            .addComponent(separadorCampos7)
-                            .addComponent(separadorCampos8)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnEditarEquipos1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAceptarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(separadorCampos9, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pCamposLayout.createSequentialGroup()
-                                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pCamposLayout.createSequentialGroup()
-                                        .addComponent(ckJuevesCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckJuevesPrimera)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtJuevesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckJuevesSegunda)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtJuevesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(ckCongelarCampo)
-                                    .addGroup(pCamposLayout.createSequentialGroup()
-                                        .addComponent(ckDomingoCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckDomingoPrimera)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtDomingoPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckDomingoSegunda)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtDomingoSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pCamposLayout.createSequentialGroup()
-                                        .addComponent(ckMiercolesCampos)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckMiercolesPrimera)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtMiercolesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckMiercolesSegunda)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtMiercolesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pCamposLayout.createSequentialGroup()
-                                        .addComponent(ckViernesCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckViernesPrimera)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtViernesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckViernesSegunda)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtViernesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pCamposLayout.createSequentialGroup()
-                                        .addComponent(ckSabadoCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckSabadoPrimera)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtSabadoPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckSabadoSegunda)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtSabadoSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pCamposLayout.createSequentialGroup()
-                                        .addComponent(ckMartesCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckMartesPrimera)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtMartesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ckMartesSegunda)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtMartesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(ckSabadoCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ckDomingoCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pCamposLayout.createSequentialGroup()
-                                .addComponent(lblLogoCampos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblCampos)
+                                .addComponent(ckLunesCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(cbCampos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(lblCamposActivos)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblNumeroCamposActivos)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(ckMartesCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckMiercolesCampos1)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckJuevesCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckViernesCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(separadorCampos11, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(separadorCampos12, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addComponent(lblNoCoincidir2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbNoCoincidir2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(separadorCampos13, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addComponent(lblCamposActivos1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblNumeroCamposActivos1))
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addComponent(ckDomingoCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckDomingoPrimera)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDomingoPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckDomingoSegunda)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDomingoSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addComponent(ckSabadoCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckSabadoPrimera)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtSabadoPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckSabadoSegunda)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtSabadoSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addComponent(ckViernesCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckViernesPrimera)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtViernesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckViernesSegunda)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtViernesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addComponent(ckJuevesCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckJuevesPrimera)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtJuevesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckJuevesSegunda)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtJuevesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addComponent(ckMiercolesCampos)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckMiercolesPrimera)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtMiercolesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckMiercolesSegunda)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtMiercolesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addComponent(ckMartesCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckMartesPrimera)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtMartesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckMartesSegunda)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtMartesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addComponent(ckLunesCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckLunesPrimera)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtLunesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckLunesSegunda)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtLunesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pCamposLayout.setVerticalGroup(
             pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(22, 22, 22)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblCampos))
                     .addComponent(lblLogoCampos))
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separadorCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1339,75 +1539,102 @@ public Restricciones() {
                     .addComponent(txtLunesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckLunesSegunda)
                     .addComponent(txtLunesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separadorCampos2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckMartesCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckMartesPrimera)
                     .addComponent(txtMartesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckMartesSegunda)
                     .addComponent(txtMartesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separadorCampos3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckMiercolesCampos)
                     .addComponent(ckMiercolesPrimera)
                     .addComponent(txtMiercolesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckMiercolesSegunda)
                     .addComponent(txtMiercolesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separadorCampos4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckJuevesCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckJuevesPrimera)
                     .addComponent(txtJuevesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckJuevesSegunda)
                     .addComponent(txtJuevesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separadorCampos5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckViernesCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckViernesPrimera)
                     .addComponent(txtViernesPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckViernesSegunda)
                     .addComponent(txtViernesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separadorCampos6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckSabadoCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckSabadoPrimera)
                     .addComponent(txtSabadoPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckSabadoSegunda)
                     .addComponent(txtSabadoSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(separadorCampos7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(separadorCampos10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckDomingoCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckDomingoPrimera)
                     .addComponent(txtDomingoPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckDomingoSegunda)
                     .addComponent(txtDomingoSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separadorCampos8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ckCongelarCampo)
-                .addGap(10, 10, 10)
-                .addComponent(separadorCampos9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ckCongelarCampo)
                     .addComponent(lblCamposActivos)
                     .addComponent(lblNumeroCamposActivos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(64, 64, 64)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbArbitros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(blArbitro))
+                    .addComponent(lblLogoArbitros1))
+                .addGap(16, 16, 16)
+                .addComponent(separadorCampos11, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ckLunesCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ckMartesCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ckMiercolesCampos1)
+                    .addComponent(ckJuevesCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ckViernesCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ckSabadoCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ckDomingoCampos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(separadorCampos12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNoCoincidir2)
+                    .addComponent(cbNoCoincidir2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(separadorCampos13, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCamposActivos1)
+                    .addComponent(lblNumeroCamposActivos1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarCampos)
-                    .addComponent(btnEditarEquipos1))
-                .addContainerGap())
+                    .addComponent(btnEditarEquipos1)))
         );
 
         mbRestricciones.setBackground(new java.awt.Color(31, 87, 12));
@@ -1421,175 +1648,26 @@ public Restricciones() {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 658, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
-                    .addComponent(pEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE))
+                    .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 922, Short.MAX_VALUE)
+                    .addComponent(pEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, 922, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ckCongelarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckCongelarCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ckCongelarCampoActionPerformed
-
-    private void btnEditarEquipos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEquipos1ActionPerformed
-    if (cbCampos.getSelectedItem().toString().equals("Selecciona un campo")){
-        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-        JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Seleccione un campo", JOptionPane.QUESTION_MESSAGE, icon);
-    }else {
-            horasCamposEnabled ();    
-            cbCampos.setEnabled(false);
-            this.enableCampos();
-        }
-    }//GEN-LAST:event_btnEditarEquipos1ActionPerformed
-
-    private void btnAceptarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarCamposActionPerformed
-        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
-        int input = JOptionPane.showConfirmDialog(null, "¿Desea guardar los horarios para el campo seleccionado?", "Gestión de campos", 
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
-        if (input == JOptionPane.YES_OPTION) {
-            cbCampos.setEnabled(true);
-            if(this.ckCongelarCampo.isSelected()){
-                try {
-                    gc.congelarCampo(this.cbCampos.getSelectedItem().toString(), true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }else{  
-                try {
-                    gc.congelarCampo(this.cbCampos.getSelectedItem().toString(), false);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            
-            this.restriccionesDeCampo();
-            this.disableCampos();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            gc.contarHorarios(lblNumeroCamposActivos);
-        }else{
-            this.disableCampos();
-            btnAceptarCampos.setEnabled(false);
-            cbCampos.setSelectedItem("Selecciona un campo");
-            cbCampos.setEnabled(true);
-        }  
-    }//GEN-LAST:event_btnAceptarCamposActionPerformed
-
     private void ckLunesPrimeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckLunesPrimeraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ckLunesPrimeraActionPerformed
-
-    private void ckLunesCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckLunesCamposActionPerformed
-        if(ckLunesCampos.isSelected()){
-            ckLunesPrimera.setEnabled(true);
-            ckLunesSegunda.setEnabled(true);
-            txtLunesPrimera.setEnabled(true);
-            txtLunesSegunda.setEnabled(true);
-        }else{
-            ckLunesPrimera.setEnabled(false);
-            ckLunesSegunda.setEnabled(false);
-            txtLunesPrimera.setEnabled(false);
-            txtLunesSegunda.setEnabled(false);
-        }
-    }//GEN-LAST:event_ckLunesCamposActionPerformed
-
-    private void ckMartesCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckMartesCamposActionPerformed
-        if(ckMartesCampos.isSelected()){
-            ckMartesPrimera.setEnabled(true);
-            ckMartesSegunda.setEnabled(true);
-            txtMartesPrimera.setEnabled(true);
-            txtMartesSegunda.setEnabled(true);
-        }else{
-            ckMartesPrimera.setEnabled(false);
-            ckMartesSegunda.setEnabled(false);
-            txtMartesPrimera.setEnabled(false);
-            txtMartesSegunda.setEnabled(false);
-        }
-    }//GEN-LAST:event_ckMartesCamposActionPerformed
-
-    private void ckMiercolesCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckMiercolesCamposActionPerformed
-        if(ckMiercolesCampos.isSelected()){
-            ckMiercolesPrimera.setEnabled(true);
-            ckMiercolesSegunda.setEnabled(true);
-            txtMiercolesPrimera.setEnabled(true);
-            txtMiercolesSegunda.setEnabled(true);
-        }else{
-            ckMiercolesPrimera.setEnabled(false);
-            ckMiercolesSegunda.setEnabled(false);
-            txtMiercolesPrimera.setEnabled(false);
-            txtMiercolesSegunda.setEnabled(false);
-        }
-    }//GEN-LAST:event_ckMiercolesCamposActionPerformed
-
-    private void ckJuevesCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckJuevesCamposActionPerformed
-        if(ckJuevesCampos.isSelected()){
-            ckJuevesPrimera.setEnabled(true);
-            ckJuevesSegunda.setEnabled(true);
-            txtJuevesPrimera.setEnabled(true);
-            txtJuevesSegunda.setEnabled(true);
-        }else{
-            ckJuevesPrimera.setEnabled(false);
-            ckJuevesSegunda.setEnabled(false);
-            txtJuevesPrimera.setEnabled(false);
-            txtJuevesSegunda.setEnabled(false);
-        }
-    }//GEN-LAST:event_ckJuevesCamposActionPerformed
-
-    private void ckViernesCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckViernesCamposActionPerformed
-        if(ckViernesCampos.isSelected()){
-            ckViernesPrimera.setEnabled(true);
-            ckViernesSegunda.setEnabled(true);
-            txtViernesPrimera.setEnabled(true);
-            txtViernesSegunda.setEnabled(true);
-        }else{
-            ckViernesPrimera.setEnabled(false);
-            ckViernesSegunda.setEnabled(false);
-            txtViernesPrimera.setEnabled(false);
-            txtViernesSegunda.setEnabled(false);
-        }
-    }//GEN-LAST:event_ckViernesCamposActionPerformed
-
-    private void ckSabadoCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckSabadoCamposActionPerformed
-        if(ckSabadoCampos.isSelected()){
-            ckSabadoPrimera.setEnabled(true);
-            ckSabadoSegunda.setEnabled(true);
-            txtSabadoPrimera.setEnabled(true);
-            txtSabadoSegunda.setEnabled(true);
-        }else{
-            ckSabadoPrimera.setEnabled(false);
-            ckSabadoSegunda.setEnabled(false);
-            txtSabadoPrimera.setEnabled(false);
-            txtSabadoSegunda.setEnabled(false);
-        }
-    }//GEN-LAST:event_ckSabadoCamposActionPerformed
-
-    private void ckDomingoCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckDomingoCamposActionPerformed
-        if(ckDomingoCampos.isSelected()){
-            ckDomingoPrimera.setEnabled(true);
-            ckDomingoSegunda.setEnabled(true);
-            txtDomingoPrimera.setEnabled(true);
-            txtDomingoSegunda.setEnabled(true);
-        }else{
-            ckDomingoPrimera.setEnabled(false);
-            ckDomingoSegunda.setEnabled(false);
-            txtDomingoPrimera.setEnabled(false);
-            txtDomingoSegunda.setEnabled(false);
-        }
-    }//GEN-LAST:event_ckDomingoCamposActionPerformed
 
     private void btnAceptarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarEquiposActionPerformed
         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
@@ -1720,10 +1798,6 @@ public Restricciones() {
         }
     }//GEN-LAST:event_ckDomingoEquiposActionPerformed
 
-    private void cbCamposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCamposItemStateChanged
-        gc.mostrarDatos();
-    }//GEN-LAST:event_cbCamposItemStateChanged
-
     private void cbLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLunesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbLunesActionPerformed
@@ -1732,9 +1806,198 @@ public Restricciones() {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbEquiposActionPerformed
 
+    private void ckMartesCampos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckMartesCampos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckMartesCampos1ActionPerformed
+
+    private void ckLunesCampos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckLunesCampos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckLunesCampos1ActionPerformed
+
+    private void ckSabadoCampos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckSabadoCampos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckSabadoCampos1ActionPerformed
+
+    private void ckViernesCampos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckViernesCampos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckViernesCampos1ActionPerformed
+
+    private void ckMiercolesCampos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckMiercolesCampos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckMiercolesCampos1ActionPerformed
+
+    private void ckDomingoCampos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckDomingoCampos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckDomingoCampos1ActionPerformed
+
+    private void ckJuevesCampos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckJuevesCampos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckJuevesCampos1ActionPerformed
+
+    private void cbArbitrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbArbitrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbArbitrosActionPerformed
+
+    private void cbArbitrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbArbitrosItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbArbitrosItemStateChanged
+
+    private void btnAceptarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarCamposActionPerformed
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea guardar los horarios para el campo seleccionado?", "Gestión de campos",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        if (input == JOptionPane.YES_OPTION) {
+            cbCampos.setEnabled(true);
+            if(this.ckCongelarCampo.isSelected()){
+                try {
+                    gc.congelarCampo(this.cbCampos.getSelectedItem().toString(), true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                try {
+                    gc.congelarCampo(this.cbCampos.getSelectedItem().toString(), false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            this.restriccionesDeCampo();
+            this.disableCampos();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            gc.contarHorarios(lblNumeroCamposActivos);
+        }else{
+            this.disableCampos();
+            btnAceptarCampos.setEnabled(false);
+            cbCampos.setSelectedItem("Selecciona un campo");
+            cbCampos.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnAceptarCamposActionPerformed
+
+    private void btnEditarEquipos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEquipos1ActionPerformed
+        if (cbCampos.getSelectedItem().toString().equals("Selecciona un campo")){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un campo","Seleccione un campo", JOptionPane.QUESTION_MESSAGE, icon);
+        }else {
+            horasCamposEnabled ();
+            cbCampos.setEnabled(false);
+            this.enableCampos();
+        }
+    }//GEN-LAST:event_btnEditarEquipos1ActionPerformed
+
+    private void ckCongelarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckCongelarCampoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckCongelarCampoActionPerformed
+
+    private void ckDomingoCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckDomingoCamposActionPerformed
+        if(ckDomingoCampos.isSelected()){
+            ckDomingoPrimera.setEnabled(true);
+            ckDomingoSegunda.setEnabled(true);
+            txtDomingoPrimera.setEnabled(true);
+            txtDomingoSegunda.setEnabled(true);
+        }else{
+            ckDomingoPrimera.setEnabled(false);
+            ckDomingoSegunda.setEnabled(false);
+            txtDomingoPrimera.setEnabled(false);
+            txtDomingoSegunda.setEnabled(false);
+        }
+    }//GEN-LAST:event_ckDomingoCamposActionPerformed
+
+    private void ckSabadoCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckSabadoCamposActionPerformed
+        if(ckSabadoCampos.isSelected()){
+            ckSabadoPrimera.setEnabled(true);
+            ckSabadoSegunda.setEnabled(true);
+            txtSabadoPrimera.setEnabled(true);
+            txtSabadoSegunda.setEnabled(true);
+        }else{
+            ckSabadoPrimera.setEnabled(false);
+            ckSabadoSegunda.setEnabled(false);
+            txtSabadoPrimera.setEnabled(false);
+            txtSabadoSegunda.setEnabled(false);
+        }
+    }//GEN-LAST:event_ckSabadoCamposActionPerformed
+
+    private void ckViernesCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckViernesCamposActionPerformed
+        if(ckViernesCampos.isSelected()){
+            ckViernesPrimera.setEnabled(true);
+            ckViernesSegunda.setEnabled(true);
+            txtViernesPrimera.setEnabled(true);
+            txtViernesSegunda.setEnabled(true);
+        }else{
+            ckViernesPrimera.setEnabled(false);
+            ckViernesSegunda.setEnabled(false);
+            txtViernesPrimera.setEnabled(false);
+            txtViernesSegunda.setEnabled(false);
+        }
+    }//GEN-LAST:event_ckViernesCamposActionPerformed
+
+    private void ckJuevesCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckJuevesCamposActionPerformed
+        if(ckJuevesCampos.isSelected()){
+            ckJuevesPrimera.setEnabled(true);
+            ckJuevesSegunda.setEnabled(true);
+            txtJuevesPrimera.setEnabled(true);
+            txtJuevesSegunda.setEnabled(true);
+        }else{
+            ckJuevesPrimera.setEnabled(false);
+            ckJuevesSegunda.setEnabled(false);
+            txtJuevesPrimera.setEnabled(false);
+            txtJuevesSegunda.setEnabled(false);
+        }
+    }//GEN-LAST:event_ckJuevesCamposActionPerformed
+
+    private void ckMiercolesCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckMiercolesCamposActionPerformed
+        if(ckMiercolesCampos.isSelected()){
+            ckMiercolesPrimera.setEnabled(true);
+            ckMiercolesSegunda.setEnabled(true);
+            txtMiercolesPrimera.setEnabled(true);
+            txtMiercolesSegunda.setEnabled(true);
+        }else{
+            ckMiercolesPrimera.setEnabled(false);
+            ckMiercolesSegunda.setEnabled(false);
+            txtMiercolesPrimera.setEnabled(false);
+            txtMiercolesSegunda.setEnabled(false);
+        }
+    }//GEN-LAST:event_ckMiercolesCamposActionPerformed
+
+    private void ckMartesCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckMartesCamposActionPerformed
+        if(ckMartesCampos.isSelected()){
+            ckMartesPrimera.setEnabled(true);
+            ckMartesSegunda.setEnabled(true);
+            txtMartesPrimera.setEnabled(true);
+            txtMartesSegunda.setEnabled(true);
+        }else{
+            ckMartesPrimera.setEnabled(false);
+            ckMartesSegunda.setEnabled(false);
+            txtMartesPrimera.setEnabled(false);
+            txtMartesSegunda.setEnabled(false);
+        }
+    }//GEN-LAST:event_ckMartesCamposActionPerformed
+
+    private void ckLunesCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckLunesCamposActionPerformed
+        if(ckLunesCampos.isSelected()){
+            ckLunesPrimera.setEnabled(true);
+            ckLunesSegunda.setEnabled(true);
+            txtLunesPrimera.setEnabled(true);
+            txtLunesSegunda.setEnabled(true);
+        }else{
+            ckLunesPrimera.setEnabled(false);
+            ckLunesSegunda.setEnabled(false);
+            txtLunesPrimera.setEnabled(false);
+            txtLunesSegunda.setEnabled(false);
+        }
+    }//GEN-LAST:event_ckLunesCamposActionPerformed
+
     private void cbCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCamposActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCamposActionPerformed
+
+    private void cbCamposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCamposItemStateChanged
+        gc.mostrarDatos();
+    }//GEN-LAST:event_cbCamposItemStateChanged
    
     public void close() {
              dispose();             
@@ -1778,11 +2041,13 @@ public Restricciones() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel blArbitro;
     private javax.swing.JButton btnAceptarCampos;
     private javax.swing.JButton btnAceptarEquipos;
     private javax.swing.JButton btnEditarEquipos;
     private javax.swing.JButton btnEditarEquipos1;
-    public javax.swing.JComboBox<String> cbCampos;
+    private javax.swing.JComboBox<String> cbArbitros;
+    private javax.swing.JComboBox<String> cbCampos;
     public javax.swing.JComboBox<String> cbDomingo;
     public javax.swing.JComboBox<String> cbEquipos;
     public javax.swing.JComboBox<String> cbJueves;
@@ -1790,78 +2055,95 @@ public Restricciones() {
     public javax.swing.JComboBox<String> cbMartes;
     public javax.swing.JComboBox<String> cbMiercoles;
     public javax.swing.JComboBox<String> cbNoCoincidir;
+    public javax.swing.JComboBox<String> cbNoCoincidir1;
+    public javax.swing.JComboBox<String> cbNoCoincidir2;
     public javax.swing.JComboBox<String> cbSabado;
     public javax.swing.JComboBox<String> cbViernes;
-    public javax.swing.JCheckBox ckCongelarCampo;
+    private javax.swing.JCheckBox ckCongelarCampo;
     public javax.swing.JCheckBox ckCongelarEquipo;
-    public javax.swing.JCheckBox ckDomingoCampos;
+    private javax.swing.JCheckBox ckDomingoCampos;
+    private javax.swing.JCheckBox ckDomingoCampos1;
     public javax.swing.JCheckBox ckDomingoEquipos;
-    public javax.swing.JCheckBox ckDomingoPrimera;
-    public javax.swing.JCheckBox ckDomingoSegunda;
-    public javax.swing.JCheckBox ckJuevesCampos;
+    private javax.swing.JCheckBox ckDomingoPrimera;
+    private javax.swing.JCheckBox ckDomingoSegunda;
+    private javax.swing.JCheckBox ckJuevesCampos;
+    private javax.swing.JCheckBox ckJuevesCampos1;
     public javax.swing.JCheckBox ckJuevesEquipos;
-    public javax.swing.JCheckBox ckJuevesPrimera;
-    public javax.swing.JCheckBox ckJuevesSegunda;
-    public javax.swing.JCheckBox ckLunesCampos;
+    private javax.swing.JCheckBox ckJuevesPrimera;
+    private javax.swing.JCheckBox ckJuevesSegunda;
+    private javax.swing.JCheckBox ckLunesCampos;
+    private javax.swing.JCheckBox ckLunesCampos1;
     public javax.swing.JCheckBox ckLunesEquipos;
-    public javax.swing.JCheckBox ckLunesPrimera;
-    public javax.swing.JCheckBox ckLunesSegunda;
-    public javax.swing.JCheckBox ckMartesCampos;
+    private javax.swing.JCheckBox ckLunesPrimera;
+    private javax.swing.JCheckBox ckLunesSegunda;
+    private javax.swing.JCheckBox ckMartesCampos;
+    private javax.swing.JCheckBox ckMartesCampos1;
     public javax.swing.JCheckBox ckMartesEquipos;
-    public javax.swing.JCheckBox ckMartesPrimera;
-    public javax.swing.JCheckBox ckMartesSegunda;
-    public javax.swing.JCheckBox ckMiercolesCampos;
+    private javax.swing.JCheckBox ckMartesPrimera;
+    private javax.swing.JCheckBox ckMartesSegunda;
+    private javax.swing.JCheckBox ckMiercolesCampos;
+    private javax.swing.JCheckBox ckMiercolesCampos1;
     public javax.swing.JCheckBox ckMiercolesEquipos;
-    public javax.swing.JCheckBox ckMiercolesPrimera;
-    public javax.swing.JCheckBox ckMiercolesSegunda;
-    public javax.swing.JCheckBox ckSabadoCampos;
+    private javax.swing.JCheckBox ckMiercolesPrimera;
+    private javax.swing.JCheckBox ckMiercolesSegunda;
+    private javax.swing.JCheckBox ckSabadoCampos;
+    private javax.swing.JCheckBox ckSabadoCampos1;
     public javax.swing.JCheckBox ckSabadoEquipos;
-    public javax.swing.JCheckBox ckSabadoPrimera;
-    public javax.swing.JCheckBox ckSabadoSegunda;
-    public javax.swing.JCheckBox ckViernesCampos;
+    private javax.swing.JCheckBox ckSabadoPrimera;
+    private javax.swing.JCheckBox ckSabadoSegunda;
+    private javax.swing.JCheckBox ckViernesCampos;
+    private javax.swing.JCheckBox ckViernesCampos1;
     public javax.swing.JCheckBox ckViernesEquipos;
-    public javax.swing.JCheckBox ckViernesPrimera;
-    public javax.swing.JCheckBox ckViernesSegunda;
+    private javax.swing.JCheckBox ckViernesPrimera;
+    private javax.swing.JCheckBox ckViernesSegunda;
     private javax.swing.JLabel lblCampos;
     private javax.swing.JLabel lblCamposActivos;
+    private javax.swing.JLabel lblCamposActivos1;
     private javax.swing.JLabel lblCamposExcluidos;
     private javax.swing.JLabel lblDiasEquipos;
     private javax.swing.JLabel lblEquipos;
+    private javax.swing.JLabel lblLogoArbitros1;
     private javax.swing.JLabel lblLogoCampos;
     private javax.swing.JLabel lblLogoEquipos;
     private javax.swing.JLabel lblNoCoincidir;
+    private javax.swing.JLabel lblNoCoincidir1;
+    private javax.swing.JLabel lblNoCoincidir2;
     private javax.swing.JLabel lblNumeroCamposActivos;
+    private javax.swing.JLabel lblNumeroCamposActivos1;
     private javax.swing.JMenuBar mbRestricciones;
     private javax.swing.JPanel pCampos;
     private javax.swing.JPanel pCamposExcluidos;
     private javax.swing.JPanel pEquipos;
     private javax.swing.JSeparator separadorCampos1;
+    private javax.swing.JSeparator separadorCampos10;
+    private javax.swing.JSeparator separadorCampos11;
+    private javax.swing.JSeparator separadorCampos12;
+    private javax.swing.JSeparator separadorCampos13;
     private javax.swing.JSeparator separadorCampos2;
     private javax.swing.JSeparator separadorCampos3;
     private javax.swing.JSeparator separadorCampos4;
     private javax.swing.JSeparator separadorCampos5;
     private javax.swing.JSeparator separadorCampos6;
-    private javax.swing.JSeparator separadorCampos7;
     private javax.swing.JSeparator separadorCampos8;
-    private javax.swing.JSeparator separadorCampos9;
     private javax.swing.JSeparator separadorEquipos1;
     private javax.swing.JSeparator separadorEquipos2;
     private javax.swing.JSeparator separadorEquipos4;
     private javax.swing.JSeparator separadorEquipos5;
     private javax.swing.JSeparator separadorEquipos6;
-    public javax.swing.JTextField txtDomingoPrimera;
-    public javax.swing.JTextField txtDomingoSegunda;
-    public javax.swing.JTextField txtJuevesPrimera;
-    public javax.swing.JTextField txtJuevesSegunda;
-    public javax.swing.JTextField txtLunesPrimera;
-    public javax.swing.JTextField txtLunesSegunda;
-    public javax.swing.JTextField txtMartesPrimera;
-    public javax.swing.JTextField txtMartesSegunda;
-    public javax.swing.JTextField txtMiercolesPrimera;
-    public javax.swing.JTextField txtMiercolesSegunda;
-    public javax.swing.JTextField txtSabadoPrimera;
-    public javax.swing.JTextField txtSabadoSegunda;
-    public javax.swing.JTextField txtViernesPrimera;
-    public javax.swing.JTextField txtViernesSegunda;
+    private javax.swing.JSeparator separadorEquipos7;
+    private javax.swing.JTextField txtDomingoPrimera;
+    private javax.swing.JTextField txtDomingoSegunda;
+    private javax.swing.JTextField txtJuevesPrimera;
+    private javax.swing.JTextField txtJuevesSegunda;
+    private javax.swing.JTextField txtLunesPrimera;
+    private javax.swing.JTextField txtLunesSegunda;
+    private javax.swing.JTextField txtMartesPrimera;
+    private javax.swing.JTextField txtMartesSegunda;
+    private javax.swing.JTextField txtMiercolesPrimera;
+    private javax.swing.JTextField txtMiercolesSegunda;
+    private javax.swing.JTextField txtSabadoPrimera;
+    private javax.swing.JTextField txtSabadoSegunda;
+    private javax.swing.JTextField txtViernesPrimera;
+    private javax.swing.JTextField txtViernesSegunda;
     // End of variables declaration//GEN-END:variables
 }
