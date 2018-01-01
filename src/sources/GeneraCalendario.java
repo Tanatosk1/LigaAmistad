@@ -84,6 +84,7 @@ public class GeneraCalendario {
         rs = conn.getValues("c.ID, c.CAMPO, ch.ID_DIA, ch.ID_HORA, ch.ID as ID_CAM_HORA, h.HORA", "campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO INNER JOIN hora h ON ch.ID_HORA = h.ID", "c.CONGELADO = 0 " + where, "c.ID");
         crearAleatorio(rs);
                
+        conn.desconectar();
         /** Reparto de campos **/
         totalPartidosMostrados = model.getRowCount();
         partidosPorJornada = 0;
@@ -176,7 +177,7 @@ public class GeneraCalendario {
                 System.err.println(ex.getCause());
             }
         }       
-        conn.desconectar();
+        //conn.desconectar();
         pintarFilasConRestricciones(tabla);
         /** Fin reparto de campos **/
     }

@@ -112,6 +112,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
         scrollCalendario = new javax.swing.JScrollPane();
         tCalendario = new javax.swing.JTable();
         btnCalendarioGenerar = new javax.swing.JButton();
+        btnAsignarArbitros = new javax.swing.JButton();
         mbCalendario = new javax.swing.JMenuBar();
         mImportar = new javax.swing.JMenu();
         miImportarcalendario = new javax.swing.JMenuItem();
@@ -347,6 +348,13 @@ private final CrearDocumentos cd = new CrearDocumentos();
             }
         });
 
+        btnAsignarArbitros.setBackground(new java.awt.Color(31, 87, 12));
+        btnAsignarArbitros.setForeground(new java.awt.Color(255, 255, 255));
+        btnAsignarArbitros.setText("Asignar Árbitros");
+        btnAsignarArbitros.setMaximumSize(new java.awt.Dimension(125, 23));
+        btnAsignarArbitros.setMinimumSize(new java.awt.Dimension(125, 23));
+        btnAsignarArbitros.setPreferredSize(new java.awt.Dimension(125, 23));
+
         mbCalendario.setBackground(new java.awt.Color(31, 87, 12));
         mbCalendario.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -458,6 +466,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
                     .addComponent(pInicioCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAsignarArbitros, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCalendarioGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -471,7 +481,9 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 .addGap(18, 18, 18)
                 .addComponent(scrollCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnCalendarioGenerar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCalendarioGenerar)
+                    .addComponent(btnAsignarArbitros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -640,6 +652,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAsignarArbitros;
     private javax.swing.JButton btnCalendarioGenerar;
     private javax.swing.JButton btnFiltroAceptar;
     private javax.swing.JButton btnFiltroLimpiar;

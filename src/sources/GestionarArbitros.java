@@ -25,7 +25,11 @@ public class GestionarArbitros {
     
     public void editarArbitro(String[] arbitro, String nombre, String apellido, int nivel) throws SQLException{
             conn.conectar();
-            conn.updateData("arbitros", "NOMBRE = '" + nombre + "', APELLIDOS = '" +apellido + "',  NIVEL = '" + nivel + "'",  "NOMBRE LIKE '" + arbitro[0]+ "' and APELLIDOS like '"+ arbitro[1] +"'");
+            if(arbitro.length > 1){
+                conn.updateData("arbitros", "NOMBRE = '" + nombre + "', APELLIDOS = '" +apellido + "',  NIVEL = '" + nivel + "'",  "NOMBRE LIKE '" + arbitro[0]+ "' and APELLIDOS like '"+ arbitro[1] +"'");
+            }else{
+                conn.updateData("arbitros", "NOMBRE = '" + nombre + "', APELLIDOS = '" +apellido + "',  NIVEL = '" + nivel + "'",  "NOMBRE LIKE '" + arbitro[0]+ "'");
+            }
             conn.getConection().commit();
             conn.desconectar();
         

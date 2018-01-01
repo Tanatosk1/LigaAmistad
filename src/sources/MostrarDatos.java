@@ -110,6 +110,32 @@ public class MostrarDatos {
             }
         con.desconectar();
     }
+    
+    public void llenarCamposArbitros(JComboBox cbNoCoincidirArbitro){
+        con.conectar();
+        ResultSet campos = con.getValues("CAMPO", "Campos", "", "ID");
+            try {
+                while(campos.next()){
+                    cbNoCoincidirArbitro.addItem(campos.getString("CAMPO"));
+                } 
+            }catch (SQLException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        con.desconectar();
+    }
+    
+    public void llenarComboArbitros(JComboBox cbArbitro){
+        con.conectar();
+        ResultSet arbitros = con.getValues("*", "arbitros", "", "ID");
+            try {
+                while(arbitros.next()){
+                    cbArbitro.addItem(arbitros.getString("NOMBRE") + " " + arbitros.getString("APELLIDOS"));
+                } 
+            }catch (SQLException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        con.desconectar();
+    }
       
     public void llenarTCalendario(JTable tCalendario){
         DefaultTableModel model = (DefaultTableModel) tCalendario.getModel();
