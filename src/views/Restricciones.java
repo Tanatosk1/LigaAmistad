@@ -36,7 +36,7 @@ public class Restricciones extends javax.swing.JFrame {
 public Restricciones() {
         initComponents();
         setLocationRelativeTo(null);
-        //setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         Image icon = Toolkit.getDefaultToolkit().getImage("logo.png");
         setIconImage(icon);
         fondo = new FondoVentana();
@@ -393,6 +393,7 @@ public Restricciones() {
                 ckCongelarCampo.setEnabled(true);
     }
     
+    
     public void disableCampos(){
         
                 ckLunesCampos.setEnabled(false);
@@ -431,6 +432,34 @@ public Restricciones() {
                 txtDomingoPrimera.setEnabled(false);
                 txtDomingoSegunda.setEnabled(false);
                 ckCongelarCampo.setEnabled(false);
+    }
+    
+    public void enableArbitros(){
+        
+                cbNoCoincidirArbitro.setEnabled(true);
+                ckLunesArbitro.setEnabled(true);
+                ckMartesArbitro.setEnabled(true);
+                ckMiercolesArbitro.setEnabled(true);
+                ckJuevesArbitro.setEnabled(true);
+                ckViernesArbitro.setEnabled(true);
+                ckSabadoArbitro.setEnabled(true);
+                ckDomingoArbitro.setEnabled(true);
+                btnAceptarArbitro.setEnabled(true);
+                ckCongelarArbitro.setEnabled(true);
+    }
+    
+    public void disableArbitros(){
+        
+                cbNoCoincidirArbitro.setEnabled(true);
+                ckLunesArbitro.setEnabled(true);
+                ckMartesArbitro.setEnabled(true);
+                ckMiercolesArbitro.setEnabled(true);
+                ckJuevesArbitro.setEnabled(true);
+                ckViernesArbitro.setEnabled(true);
+                ckSabadoArbitro.setEnabled(true);
+                ckDomingoArbitro.setEnabled(true);
+                btnAceptarArbitro.setEnabled(true);
+                ckCongelarArbitro.setEnabled(true);
     }
     
     public void horasEquipossEnabled (){
@@ -486,10 +515,10 @@ public Restricciones() {
                 if (ckDomingoCampos.isSelected()){
                     ckDomingoPrimera.setEnabled(true);
                     ckDomingoSegunda.setEnabled(true); 
-                } 
-                
-                
+                }            
     }
+    
+    
     
    
 
@@ -1889,7 +1918,13 @@ public Restricciones() {
     }//GEN-LAST:event_btnAceptarArbitroActionPerformed
 
     private void btnEditarArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarArbitroActionPerformed
-        
+        if (cbArbitros.getSelectedItem().toString().equals("Selecciona un árbitro")){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un árbitro","Seleccione un árbitro", JOptionPane.QUESTION_MESSAGE, icon);
+        }else {
+            cbArbitros.setEnabled(false);
+            this.enableArbitros();
+        }
     }//GEN-LAST:event_btnEditarArbitroActionPerformed
 
     private void ckCongelarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckCongelarCampoActionPerformed
