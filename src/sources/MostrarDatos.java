@@ -113,6 +113,7 @@ public class MostrarDatos {
     
     public void llenarCamposArbitros(JComboBox cbNoCoincidirArbitro){
         con.conectar();
+        cbNoCoincidirArbitro.addItem("");
         ResultSet campos = con.getValues("CAMPO", "Campos", "", "ID");
             try {
                 while(campos.next()){

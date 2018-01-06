@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import sources.GestionarArbitros;
 import sources.GestionarCampos;
 import sources.GestionarEquipos;
 import sources.MostrarDatos;
@@ -29,6 +30,7 @@ public class Restricciones extends javax.swing.JFrame {
         private final MostrarDatos md = new MostrarDatos();
         private final GestionarCampos gc;
         private final GestionarEquipos ge;
+        private final GestionarArbitros ga;
         private boolean correcto = true;
         public int total = 0;
         public javax.swing.JCheckBox[] ckCampos;
@@ -48,6 +50,7 @@ public Restricciones() {
         md.llenarCamposArbitros(this.cbNoCoincidirArbitro);
         ge = new GestionarEquipos(this);
         gc = new GestionarCampos(this);
+        ga = new GestionarArbitros(this);
         
         conn.conectar();
         total = conn.totalRegistros("campos");
@@ -450,16 +453,16 @@ public Restricciones() {
     
     public void disableArbitros(){
         
-                cbNoCoincidirArbitro.setEnabled(true);
-                ckLunesArbitro.setEnabled(true);
-                ckMartesArbitro.setEnabled(true);
-                ckMiercolesArbitro.setEnabled(true);
-                ckJuevesArbitro.setEnabled(true);
-                ckViernesArbitro.setEnabled(true);
-                ckSabadoArbitro.setEnabled(true);
-                ckDomingoArbitro.setEnabled(true);
-                btnAceptarArbitro.setEnabled(true);
-                ckCongelarArbitro.setEnabled(true);
+                cbNoCoincidirArbitro.setEnabled(false);
+                ckLunesArbitro.setEnabled(false);
+                ckMartesArbitro.setEnabled(false);
+                ckMiercolesArbitro.setEnabled(false);
+                ckJuevesArbitro.setEnabled(false);
+                ckViernesArbitro.setEnabled(false);
+                ckSabadoArbitro.setEnabled(false);
+                ckDomingoArbitro.setEnabled(false);
+                btnAceptarArbitro.setEnabled(false);
+                ckCongelarArbitro.setEnabled(false);
     }
     
     public void horasEquipossEnabled (){
@@ -856,6 +859,11 @@ public Restricciones() {
         cbNoCoincidir1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cbNoCoincidir1.setEnabled(false);
         cbNoCoincidir1.setPreferredSize(new java.awt.Dimension(300, 28));
+        cbNoCoincidir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbNoCoincidir1ActionPerformed(evt);
+            }
+        });
 
         separadorEquipos7.setForeground(new java.awt.Color(31, 87, 12));
 
@@ -890,7 +898,7 @@ public Restricciones() {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnEditarEquipos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAceptarEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(separadorEquipos6, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(separadorEquipos2, javax.swing.GroupLayout.Alignment.LEADING)
@@ -999,8 +1007,8 @@ public Restricciones() {
                 .addComponent(separadorEquipos6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditarEquipos)
-                    .addComponent(btnAceptarEquipos))
+                    .addComponent(btnAceptarEquipos)
+                    .addComponent(btnEditarEquipos))
                 .addContainerGap())
         );
 
@@ -1298,11 +1306,6 @@ public Restricciones() {
                 cbArbitrosItemStateChanged(evt);
             }
         });
-        cbArbitros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbArbitrosActionPerformed(evt);
-            }
-        });
 
         ckJuevesArbitro.setBackground(new java.awt.Color(255, 255, 255));
         ckJuevesArbitro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -1476,7 +1479,12 @@ public Restricciones() {
                         .addGap(36, 36, 36))
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ckCongelarArbitro)
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addComponent(ckCongelarArbitro)
+                                .addGap(126, 126, 126)
+                                .addComponent(btnEditarArbitro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAceptarArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pCamposLayout.createSequentialGroup()
                                 .addComponent(ckSabadoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1574,16 +1582,10 @@ public Restricciones() {
                                 .addComponent(lblNumeroArbitrosActivos)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
-                                .addComponent(btnEditarArbitro)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAceptarArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
-                                .addComponent(btnEditarCampo)
-                                .addGap(8, 8, 8)
-                                .addComponent(btnAceptarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 434, Short.MAX_VALUE)
+                        .addComponent(btnEditarCampo)
+                        .addGap(8, 8, 8)
+                        .addComponent(btnAceptarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pCamposLayout.setVerticalGroup(
@@ -1696,16 +1698,16 @@ public Restricciones() {
                     .addComponent(cbNoCoincidirArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separadorCampos13, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ckCongelarArbitro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ckCongelarArbitro)
+                    .addComponent(btnEditarArbitro)
+                    .addComponent(btnAceptarArbitro))
                 .addGap(18, 18, 18)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCamposActivos1)
                     .addComponent(lblNumeroArbitrosActivos))
-                .addGap(21, 21, 21)
-                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptarArbitro)
-                    .addComponent(btnEditarArbitro)))
+                .addGap(44, 44, 44))
         );
 
         mbRestricciones.setBackground(new java.awt.Color(31, 87, 12));
@@ -1905,16 +1907,46 @@ public Restricciones() {
         // TODO add your handling code here:
     }//GEN-LAST:event_ckJuevesArbitroActionPerformed
 
-    private void cbArbitrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbArbitrosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbArbitrosActionPerformed
-
     private void cbArbitrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbArbitrosItemStateChanged
-        // TODO add your handling code here:
+        ga.mostrarDatos();
     }//GEN-LAST:event_cbArbitrosItemStateChanged
 
     private void btnAceptarArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarArbitroActionPerformed
-        
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
+        int input = JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios para el árbitro seleccionado?", "Gestión de Árbitros",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        if (input == JOptionPane.YES_OPTION) {
+            cbArbitros.setEnabled(true);
+            if(this.ckCongelarArbitro.isSelected()){
+                try {
+                    ga.congelarArbitro(this.cbArbitros.getSelectedIndex(), true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                try {
+                    ga.congelarArbitro(this.cbArbitros.getSelectedIndex(), false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            ga.gestionarArbitro();
+            this.disableArbitros();
+            btnAceptarArbitro.setEnabled(false);
+            cbArbitros.setSelectedItem("Selecciona un árbitro");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //gc.contarHorarios(lblNumeroCamposActivos);
+        }else{
+            this.disableArbitros();
+            btnAceptarArbitro.setEnabled(false);
+            cbArbitros.setSelectedItem("Selecciona un árbitro");
+            cbArbitros.setEnabled(true);
+        }
     }//GEN-LAST:event_btnAceptarArbitroActionPerformed
 
     private void btnEditarArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarArbitroActionPerformed
@@ -2029,10 +2061,6 @@ public Restricciones() {
         }
     }//GEN-LAST:event_ckLunesCamposActionPerformed
 
-    private void cbCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCamposActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbCamposActionPerformed
-
     private void cbCamposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCamposItemStateChanged
         gc.mostrarDatos();
     }//GEN-LAST:event_cbCamposItemStateChanged
@@ -2083,6 +2111,14 @@ public Restricciones() {
             cbCampos.setEnabled(true);
         }
     }//GEN-LAST:event_btnAceptarCampoActionPerformed
+
+    private void cbCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCamposActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCamposActionPerformed
+
+    private void cbNoCoincidir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNoCoincidir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbNoCoincidir1ActionPerformed
    
     public void close() {
              dispose();             
@@ -2146,7 +2182,7 @@ public Restricciones() {
     public javax.swing.JComboBox<String> cbNoCoincidirArbitro;
     public javax.swing.JComboBox<String> cbSabado;
     public javax.swing.JComboBox<String> cbViernes;
-    private javax.swing.JCheckBox ckCongelarArbitro;
+    public javax.swing.JCheckBox ckCongelarArbitro;
     public javax.swing.JCheckBox ckCongelarCampo;
     public javax.swing.JCheckBox ckCongelarEquipo;
     public javax.swing.JCheckBox ckDomingoArbitro;
