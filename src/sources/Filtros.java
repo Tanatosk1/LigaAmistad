@@ -25,20 +25,21 @@ public class Filtros {
         vaciarTabla(tabla);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
-        Object[] fila = new Object[10];
+        Object[] fila = new Object[11];
         String where = "";
         Calendar getDay = Calendar.getInstance();
         con.conectar();
         int cat = categoria;
         int div = division;
         int jor = jornada;
-        String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, l.NOMBRE AS \"LOCAL\", "
+        String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, a.NOMBRE AS \"ARBITRO\", l.NOMBRE AS \"LOCAL\", "
                 + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.APLAZADO, com.COMPETICION AS \"CATEGORIA\", "
                 + "d.DIVISION AS \"DIVISION\"";
         String from = " Campeonato c INNER JOIN Equipos l ON c.ID_LOCAL = l.ID "
                 + "INNER JOIN Equipos v ON c.ID_VISITANTE = v.ID "
                 + "LEFT JOIN Campos ca ON c.ID_CAMPO = ca.ID INNER JOIN Competicion com ON l.ID_COMPETICION = com.ID "
-                + "INNER JOIN Division d ON l.ID_DIVISION = d.ID";
+                + "INNER JOIN Division d ON l.ID_DIVISION = d.ID "
+                + "LEFT JOIN arbitros a ON a.ID = c.ID_ARBITRO";
         if(cat != 0 && div != 0 && jor == 0){
             where = "com.ID = " + cat + " and d.ID = "+div;
         }else if(cat != 0 && div == 0 && jor != 0){
@@ -54,7 +55,8 @@ public class Filtros {
         }else if(cat != 0 && div != 0 && jor != 0){
             where = "com.ID = " + cat + " and d.ID = " + div + " and c.JORNADA = " + jor;
         }
-        String order = "c.JORNADA, com.COMPETICION, d.DIVISION"; 
+        String order = "c.FECHA DESC";
+        //String order = "c.JORNADA, com.COMPETICION, d.DIVISION"; 
         ResultSet campeonato = con.getValues(select, from, where, order);    
         SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");
         Date fechaFila = null;
@@ -79,18 +81,20 @@ public class Filtros {
                             fila[3] = null;
                             fila[4] = null;
                         }
-                        fila[5] = campeonato.getString("LOCAL");
-                        fila[6] = campeonato.getString("VISITANTE");
-                        fila[7] = campeonato.getString("CAMPO");
+                        fila[5] = campeonato.getString("ARBITRO");
+                        fila[6] = campeonato.getString("CAMPO");
+                        fila[7] = campeonato.getString("LOCAL");
+                        fila[8] = campeonato.getString("VISITANTE");
+                        
                         if(campeonato.getString("DIVISION").equalsIgnoreCase("sin división")){
-                            fila[8] = campeonato.getString("CATEGORIA");
+                            fila[9] = campeonato.getString("CATEGORIA");
                         }else{
-                            fila[8] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
+                            fila[9] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
                         }
                         if(campeonato.getInt("APLAZADO") == 1){
-                            fila[9] = true;
+                            fila[10] = true;
                         }else{
-                            fila[9] = null;
+                            fila[10] = null;
                         }
                         model.addRow(fila);
                     }
@@ -112,19 +116,21 @@ public class Filtros {
         vaciarTabla(tabla);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
-        Object[] fila = new Object[10];
+        Object[] fila = new Object[11];
         
         Calendar getDay = Calendar.getInstance();
         con.conectar();
-        String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, l.NOMBRE AS \"LOCAL\", "
+        String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, a.NOMBRE AS \"ARBITRO\", l.NOMBRE AS \"LOCAL\", "
                 + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.APLAZADO, com.COMPETICION AS \"CATEGORIA\", "
                 + "d.DIVISION AS \"DIVISION\"";
         String from = " Campeonato c INNER JOIN Equipos l ON c.ID_LOCAL = l.ID "
                 + "INNER JOIN Equipos v ON c.ID_VISITANTE = v.ID "
                 + "LEFT JOIN Campos ca ON c.ID_CAMPO = ca.ID INNER JOIN Competicion com ON l.ID_COMPETICION = com.ID "
-                + "INNER JOIN Division d ON l.ID_DIVISION = d.ID";
+                + "INNER JOIN Division d ON l.ID_DIVISION = d.ID "
+                + "LEFT JOIN arbitros a ON a.ID = c.ID_ARBITRO";
         String where = "c.FECHA BETWEEN '" + formatter.format(inicio)+"' AND '" + formatter.format(fin) +"'";
-        String order = "c.JORNADA, com.ID, d.ID"; 
+        //String order = "c.FECHA DESC";
+        String order = "c.JORNADA, com.ID, d.ID, c.FECHA ASC, c.HORA ASC"; 
         ResultSet campeonato = con.getValues(select, from, where, order);    
             try {
                 if(!campeonato.first()){
@@ -144,18 +150,20 @@ public class Filtros {
                             fila[3] = null;
                         }
                         fila[4] = campeonato.getString("HORA");
-                        fila[5] = campeonato.getString("LOCAL");
-                        fila[6] = campeonato.getString("VISITANTE");
-                        fila[7] = campeonato.getString("CAMPO");
+                        fila[5] = campeonato.getString("ARBITRO");
+                        fila[6] = campeonato.getString("CAMPO");
+                        fila[7] = campeonato.getString("LOCAL");
+                        fila[8] = campeonato.getString("VISITANTE");
+                        
                         if(campeonato.getString("DIVISION").equalsIgnoreCase("sin división")){
-                            fila[8] = campeonato.getString("CATEGORIA");
+                            fila[9] = campeonato.getString("CATEGORIA");
                         }else{
-                            fila[8] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
+                            fila[9] = campeonato.getString("CATEGORIA")+" - "+campeonato.getString("DIVISION");
                         }
                         if(campeonato.getInt("APLAZADO") == 1){
-                            fila[9] = true;
+                            fila[10] = true;
                         }else{
-                            fila[9] = null;
+                            fila[10] = null;
                         }
                         model.addRow(fila);
                     }

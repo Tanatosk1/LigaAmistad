@@ -18,6 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import sources.CrearDocumentos;
 import sources.Filtros;
 import sources.GeneraCalendario;
+import sources.GestionarArbitros;
 import sources.LeerExcel;
 import sources.MostrarDatos;
 
@@ -31,6 +32,7 @@ public class Calendario extends javax.swing.JFrame {
 private FondoVentana fondo;
 private final MostrarDatos md = new MostrarDatos();
 private final GeneraCalendario gc = new GeneraCalendario();
+private final GestionarArbitros ga = new GestionarArbitros();
 private Filtros filtro;
 private final CrearDocumentos cd = new CrearDocumentos();
 
@@ -354,6 +356,11 @@ private final CrearDocumentos cd = new CrearDocumentos();
         btnAsignarArbitros.setMaximumSize(new java.awt.Dimension(125, 23));
         btnAsignarArbitros.setMinimumSize(new java.awt.Dimension(125, 23));
         btnAsignarArbitros.setPreferredSize(new java.awt.Dimension(125, 23));
+        btnAsignarArbitros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarArbitrosActionPerformed(evt);
+            }
+        });
 
         mbCalendario.setBackground(new java.awt.Color(31, 87, 12));
         mbCalendario.setForeground(new java.awt.Color(255, 255, 255));
@@ -560,8 +567,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
               Date fechaFin = this.dFechaFinTemporada.getDate();
               SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
               gc.generaFechas(formato.format(fechaInicio), formato.format(fechaFin), this.tCalendario, this.cbGenerarJornada);
-              miGestionarAplazados.setEnabled(true);
-              miVerCamposHabiles.setEnabled(true);
         }      
  
     }//GEN-LAST:event_btnGenerarInicioActionPerformed
@@ -611,6 +616,18 @@ private final CrearDocumentos cd = new CrearDocumentos();
         CamposHabiles  frm = new CamposHabiles ();
         frm.setVisible(true);
     }//GEN-LAST:event_miVerCamposHabilesActionPerformed
+
+    private void btnAsignarArbitrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarArbitrosActionPerformed
+        if (cbGenerarJornada.getSelectedItem().toString().equals("Seleccione una Jornada")){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una jornada","Seleccione una jornada", JOptionPane.QUESTION_MESSAGE, icon);
+        }else{
+              ga.asignarArbitros(this.tCalendario, this.cbGenerarJornada);
+              miGestionarAplazados.setEnabled(true);
+              miVerCamposHabiles.setEnabled(true);
+        }    
+        
+    }//GEN-LAST:event_btnAsignarArbitrosActionPerformed
     
     public void close() {
              dispose();             

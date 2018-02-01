@@ -143,13 +143,16 @@ public class MostrarDatos {
         Object[] fila = new Object[11];
         Date fechaFila = null;
         con.conectar();
-        String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, l.NOMBRE AS \"LOCAL\", "
+        String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, a.NOMBRE AS \"ARBITRO\", l.NOMBRE AS \"LOCAL\", "
                 + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.APLAZADO, com.COMPETICION AS \"CATEGORIA\", "
                 + "d.DIVISION AS \"DIVISION\"";
         String from = " Campeonato c INNER JOIN Equipos l ON c.ID_LOCAL = l.ID "
                 + "INNER JOIN Equipos v ON c.ID_VISITANTE = v.ID "
                 + "LEFT JOIN Campos ca ON c.ID_CAMPO = ca.ID INNER JOIN Competicion com ON l.ID_COMPETICION = com.ID "
-                + "INNER JOIN Division d ON l.ID_DIVISION = d.ID";
+                + "INNER JOIN Division d ON l.ID_DIVISION = d.ID "
+                + "LEFT JOIN arbitros a ON a.ID = c.ID_ARBITRO";
+        //String order = "c.ID";
+        //String order = "c.FECHA DESC";
         String order = "c.JORNADA, com.COMPETICION, d.DIVISION"; 
         ResultSet campeonato = con.getValues(select, from, "", order);
             SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");
@@ -167,7 +170,7 @@ public class MostrarDatos {
                         fila[3] = "";
                         fila[4] = "";
                     }
-                    fila[5] = "";
+                    fila[5] = campeonato.getString("ARBITRO");
                     fila[6] = campeonato.getString("CAMPO");
                     fila[7] = campeonato.getString("LOCAL");
                     fila[8] = campeonato.getString("VISITANTE");

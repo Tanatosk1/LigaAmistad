@@ -172,6 +172,7 @@ public class Conn {
     public void updateData(String table, String set){
         try {
             String Query = "UPDATE " + table + " SET " + set;
+            //System.out.println("Update " + Query);
             Statement st = link.createStatement();
             st.executeUpdate(Query);
         } catch (SQLException ex) {
@@ -189,6 +190,7 @@ public class Conn {
     public void updateData(String table, String set, String where){
         try {
             String Query = "UPDATE " + table + " SET " + set +" WHERE " + where;
+            //System.out.println("Update1 " + Query);
             Statement st = link.createStatement();
             st.executeUpdate(Query);
 //            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
@@ -249,7 +251,7 @@ public class Conn {
      public void deleteTable(String tabla){
         try{
             String query = "DELETE FROM " + tabla + " ";
-            System.out.println(query);
+            //System.out.println(query);
             Statement st = link.createStatement();
             st.execute(query);
             
@@ -260,7 +262,7 @@ public class Conn {
         
         try{
             String query2 = "ALTER TABLE " + tabla + " AUTO_INCREMENT = 1";
-            System.out.println(query2);
+            //System.out.println(query2);
             Statement st2 = link.createStatement();
             st2.execute(query2);
         }catch(SQLException ex){

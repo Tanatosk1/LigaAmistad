@@ -3,8 +3,13 @@ package sources;
 import connection.Conn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 import views.Restricciones;
 
 /**
@@ -14,13 +19,15 @@ import views.Restricciones;
 public class GestionarArbitros {
     private final Conn conn = new Conn();
     private Restricciones res = null;
+    private ResultSet rs;
+    private ArrayList<OArbitros> arbitros;
     
     public GestionarArbitros(Restricciones res){
         this.res = res;
     }
     
     public GestionarArbitros(){
-        
+        this.arbitros = new ArrayList<>();
     }
     
     public void guardarArbitro( String nombre, String apellido, int nivel ) throws SQLException{
@@ -145,6 +152,107 @@ public class GestionarArbitros {
         } catch (SQLException ex) {
             Logger.getLogger(GestionarCampos.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void asignarArbitros(JTable tabla, JComboBox jornada){
+        conn.conectar();
+        rs = conn.getValues("*", "arbitros", "CONGELADO = 0", "");
+        crearAleatorio(rs);
+        String dia;
+        String nombre;
+        int nDias = 0;
+        for(int i = 0; i < arbitros.size(); i++){
+            nombre = arbitros.get(i).nombre;
+            if(arbitros.get(i).lunes == 1){
+                dia = "Lunes";
+                buscarPartido(tabla, jornada, dia, nombre);
+                nDias++;
+            }
+            if(arbitros.get(i).martes == 1){
+                dia = "Martes";
+                buscarPartido(tabla, jornada, dia, nombre);
+                nDias++;
+            }
+            if(arbitros.get(i).miercoles == 1){
+                dia = "Miércoles";
+                buscarPartido(tabla, jornada, dia, nombre);
+                nDias++;
+            }
+            if(arbitros.get(i).jueves == 1){
+                dia = "Jueves";
+                buscarPartido(tabla, jornada, dia, nombre);
+                nDias++;
+            }
+            if(arbitros.get(i).viernes == 1){
+                nDias++;
+            }
+            if(arbitros.get(i).sabado == 1){
+                nDias++;
+            }
+            if(arbitros.get(i).domingo == 1){
+                nDias++;
+            }
+        }
+        
+        arbitros.clear();
+        conn.desconectar();
+        
+    }
+    
+    private void buscarPartido(JTable tabla, JComboBox jornada, String dia, String nombre){
+        for(int i = 0; i < tabla.getRowCount(); i++){
+            if(jornada.getSelectedItem() == tabla.getValueAt(i, 1)){
+                if(tabla.getValueAt(i, 3).equals(dia)){
+                    if(tabla.getValueAt(i, 5) != null){
+                        continue;
+                    }else{
+                        tabla.setValueAt(nombre, i, 5);
+                    }
+                    String campo = tabla.getValueAt(i, 6).toString();
+                    for(int j = i; j < tabla.getRowCount(); j++){
+                        if(jornada.getSelectedItem() == tabla.getValueAt(j, 1)){
+                            if(tabla.getValueAt(j, 6) == null){
+                                continue;
+                            }else if(tabla.getValueAt(j, 6).equals(campo)){
+                                if(tabla.getValueAt(j, 3).equals(dia)){
+                                    tabla.setValueAt(nombre, j, 5);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    
+    private void crearAleatorio(ResultSet arbitrosDisponibles){
+        try {
+            while(arbitrosDisponibles.next()){
+                arbitros.add(new OArbitros(arbitrosDisponibles.getInt("ID"),
+                                           arbitrosDisponibles.getString("NOMBRE"),
+                                           arbitrosDisponibles.getString("APELLIDOS"),
+                                           arbitrosDisponibles.getInt("LUNES"),
+                                           arbitrosDisponibles.getInt("MARTES"),
+                                           arbitrosDisponibles.getInt("MIERCOLES"),
+                                           arbitrosDisponibles.getInt("JUEVES"),
+                                           arbitrosDisponibles.getInt("VIERNES"),
+                                           arbitrosDisponibles.getInt("SABADO"),
+                                           arbitrosDisponibles.getInt("DOMINGO"),
+                                           arbitrosDisponibles.getInt("NIVEL"),
+                                           arbitrosDisponibles.getInt("IDCAMPO")));
+            }
+            Collections.shuffle(arbitros);
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void contarHorarios(JLabel lblTotal){
+        conn.conectar();
+        int total = conn.totalRegistros("(SELECT LUNES dia from arbitros WHERE LUNES = 1 AND CONGELADO = 0 UNION ALL select MARTES dia from arbitros WHERE MARTES = 1 AND CONGELADO = 0 UNION ALL select MIERCOLES dia from arbitros WHERE MIERCOLES = 1 AND CONGELADO = 0 UNION ALL select JUEVES dia from arbitros WHERE JUEVES = 1 AND CONGELADO = 0 UNION ALL select VIERNES dia from arbitros WHERE VIERNES = 1 AND CONGELADO = 0 UNION ALL select SABADO dia from arbitros WHERE SABADO = 1 AND CONGELADO = 0 UNION ALL select DOMINGO dia from arbitros WHERE DOMINGO = 1 AND CONGELADO = 0) T");
+        lblTotal.setText(String.valueOf(total));
+        conn.desconectar();
     }
     
     private void limpiarSeleccion(){

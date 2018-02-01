@@ -26,13 +26,13 @@ public class PintarFilas extends DefaultTableCellRenderer{
         component.setBackground(Color.white);
         
         if(table.getValueAt(row, 1).equals(this.jornada)){
-            if(column == 5){
+            if(column == 7){
                 for(int i = 0; i < this.row.size(); i++){
                     if(value.equals(this.row.get(i))){
                         component.setBackground(Color.red);
                     }
                 }
-            }else if(column == 6){
+            }else if(column == 8){
                 for(int j = 0; j < this.row.size(); j++){
                     if(value.equals(this.row.get(j))){
                         component.setBackground(Color.red);
