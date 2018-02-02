@@ -160,27 +160,29 @@ public class GestionarArbitros {
         crearAleatorio(rs);
         String dia;
         String nombre;
+        int id = 0;
         int nDias = 0;
         for(int i = 0; i < arbitros.size(); i++){
             nombre = arbitros.get(i).nombre;
+            id = arbitros.get(i).id;
             if(arbitros.get(i).lunes == 1){
                 dia = "Lunes";
-                buscarPartido(tabla, jornada, dia, nombre);
+                buscarPartido(tabla, jornada, dia, nombre, id);
                 nDias++;
             }
             if(arbitros.get(i).martes == 1){
                 dia = "Martes";
-                buscarPartido(tabla, jornada, dia, nombre);
+                buscarPartido(tabla, jornada, dia, nombre, id);
                 nDias++;
             }
             if(arbitros.get(i).miercoles == 1){
                 dia = "Miércoles";
-                buscarPartido(tabla, jornada, dia, nombre);
+                buscarPartido(tabla, jornada, dia, nombre, id);
                 nDias++;
             }
             if(arbitros.get(i).jueves == 1){
                 dia = "Jueves";
-                buscarPartido(tabla, jornada, dia, nombre);
+                buscarPartido(tabla, jornada, dia, nombre, id);
                 nDias++;
             }
             if(arbitros.get(i).viernes == 1){
@@ -199,7 +201,8 @@ public class GestionarArbitros {
         
     }
     
-    private void buscarPartido(JTable tabla, JComboBox jornada, String dia, String nombre){
+    private void buscarPartido(JTable tabla, JComboBox jornada, String dia, String nombre, int id){
+        try{
         for(int i = 0; i < tabla.getRowCount(); i++){
             if(jornada.getSelectedItem() == tabla.getValueAt(i, 1)){
                 if(tabla.getValueAt(i, 3).equals(dia)){
@@ -207,6 +210,8 @@ public class GestionarArbitros {
                         continue;
                     }else{
                         tabla.setValueAt(nombre, i, 5);
+                        conn.updateData("campeonato", "ID_ARBiTRO = " + id, "ID = " + tabla.getValueAt(i, 0));
+                        conn.getConection().commit();
                     }
                     String campo = tabla.getValueAt(i, 6).toString();
                     for(int j = i; j < tabla.getRowCount(); j++){
@@ -216,6 +221,8 @@ public class GestionarArbitros {
                             }else if(tabla.getValueAt(j, 6).equals(campo)){
                                 if(tabla.getValueAt(j, 3).equals(dia)){
                                     tabla.setValueAt(nombre, j, 5);
+                                    conn.updateData("campeonato", "ID_ARBiTRO = " + id, "ID = " + tabla.getValueAt(j, 0));
+                                    conn.getConection().commit();
                                 }
                             }
                         }
@@ -224,6 +231,7 @@ public class GestionarArbitros {
                 }
             }
         }
+        }catch(SQLException e){}
     }
     
     private void crearAleatorio(ResultSet arbitrosDisponibles){
