@@ -167,31 +167,37 @@ public class GestionarArbitros {
             id = arbitros.get(i).id;
             if(arbitros.get(i).lunes == 1){
                 dia = "Lunes";
-                buscarPartido(tabla, jornada, dia, nombre, id);
+                buscarPartido(tabla, jornada, dia, nombre, id, i);
                 nDias++;
             }
             if(arbitros.get(i).martes == 1){
                 dia = "Martes";
-                buscarPartido(tabla, jornada, dia, nombre, id);
+                buscarPartido(tabla, jornada, dia, nombre, id, i);
                 nDias++;
             }
             if(arbitros.get(i).miercoles == 1){
                 dia = "Miércoles";
-                buscarPartido(tabla, jornada, dia, nombre, id);
+                buscarPartido(tabla, jornada, dia, nombre, id, i);
                 nDias++;
             }
             if(arbitros.get(i).jueves == 1){
                 dia = "Jueves";
-                buscarPartido(tabla, jornada, dia, nombre, id);
+                buscarPartido(tabla, jornada, dia, nombre, id, i);
                 nDias++;
             }
             if(arbitros.get(i).viernes == 1){
+                dia = "Viernes";
+                buscarPartido(tabla, jornada, dia, nombre, id, i);
                 nDias++;
             }
             if(arbitros.get(i).sabado == 1){
+                dia = "Sábado";
+                buscarPartido(tabla, jornada, dia, nombre, id, i);
                 nDias++;
             }
             if(arbitros.get(i).domingo == 1){
+                dia = "Domingo";
+                buscarPartido(tabla, jornada, dia, nombre, id, i);
                 nDias++;
             }
         }
@@ -201,7 +207,7 @@ public class GestionarArbitros {
         
     }
     
-    private void buscarPartido(JTable tabla, JComboBox jornada, String dia, String nombre, int id){
+    private void buscarPartido(JTable tabla, JComboBox jornada, String dia, String nombre, int id, int indice){
         try{
         for(int i = 0; i < tabla.getRowCount(); i++){
             if(jornada.getSelectedItem() == tabla.getValueAt(i, 1)){
@@ -209,9 +215,13 @@ public class GestionarArbitros {
                     if(tabla.getValueAt(i, 5) != null){
                         continue;
                     }else{
-                        tabla.setValueAt(nombre, i, 5);
-                        conn.updateData("campeonato", "ID_ARBiTRO = " + id, "ID = " + tabla.getValueAt(i, 0));
-                        conn.getConection().commit();
+                        if(verificarCampo(indice, tabla, i)){
+                            continue;
+                        }else{
+                            tabla.setValueAt(nombre, i, 5);
+                            conn.updateData("campeonato", "ID_ARBITRO = " + id, "ID = " + tabla.getValueAt(i, 0));
+                            conn.getConection().commit();
+                        }
                     }
                     String campo = tabla.getValueAt(i, 6).toString();
                     for(int j = i; j < tabla.getRowCount(); j++){
@@ -221,7 +231,7 @@ public class GestionarArbitros {
                             }else if(tabla.getValueAt(j, 6).equals(campo)){
                                 if(tabla.getValueAt(j, 3).equals(dia)){
                                     tabla.setValueAt(nombre, j, 5);
-                                    conn.updateData("campeonato", "ID_ARBiTRO = " + id, "ID = " + tabla.getValueAt(j, 0));
+                                    conn.updateData("campeonato", "ID_ARBITRO = " + id, "ID = " + tabla.getValueAt(j, 0));
                                     conn.getConection().commit();
                                 }
                             }
@@ -232,6 +242,20 @@ public class GestionarArbitros {
             }
         }
         }catch(SQLException e){}
+    }
+    
+    private boolean verificarCampo(int indice, JTable tabla, int fila){
+        ResultSet rsCampos = conn.getValues("id", "campos", "CAMPO like '"+tabla.getValueAt(fila, 6)+"'", "");
+        try {
+            while (rsCampos.next()){
+                if(arbitros.get(indice).noCoincidir == rsCampos.getInt("ID")){
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
     
     private void crearAleatorio(ResultSet arbitrosDisponibles){
