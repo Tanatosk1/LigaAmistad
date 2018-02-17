@@ -120,7 +120,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
         miImportarcalendario = new javax.swing.JMenuItem();
         mExportar = new javax.swing.JMenu();
         miExportarExcel = new javax.swing.JMenuItem();
-        miExportarPDF = new javax.swing.JMenuItem();
+        miExportarExcelEquipos = new javax.swing.JMenuItem();
+        miExportarExcelArbitros = new javax.swing.JMenuItem();
         mGestionarRestricciones = new javax.swing.JMenu();
         miGestionarFestivos = new javax.swing.JMenuItem();
         miGestionarAplazados = new javax.swing.JMenuItem();
@@ -326,7 +327,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, false, false, false, false, true
+                false, false, false, false, false, true, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -391,10 +392,10 @@ private final CrearDocumentos cd = new CrearDocumentos();
         });
 
         miExportarExcel.setBackground(new java.awt.Color(31, 87, 12));
-        miExportarExcel.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        miExportarExcel.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         miExportarExcel.setForeground(new java.awt.Color(255, 255, 255));
         miExportarExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/excel.png"))); // NOI18N
-        miExportarExcel.setText("A Excel...");
+        miExportarExcel.setText("Excel general");
         miExportarExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miExportarExcelActionPerformed(evt);
@@ -402,17 +403,24 @@ private final CrearDocumentos cd = new CrearDocumentos();
         });
         mExportar.add(miExportarExcel);
 
-        miExportarPDF.setBackground(new java.awt.Color(31, 87, 12));
-        miExportarPDF.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        miExportarPDF.setForeground(new java.awt.Color(255, 255, 255));
-        miExportarPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pdf.png"))); // NOI18N
-        miExportarPDF.setText("A PDF...");
-        miExportarPDF.addActionListener(new java.awt.event.ActionListener() {
+        miExportarExcelEquipos.setBackground(new java.awt.Color(31, 87, 12));
+        miExportarExcelEquipos.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        miExportarExcelEquipos.setForeground(new java.awt.Color(255, 255, 255));
+        miExportarExcelEquipos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/excel.png"))); // NOI18N
+        miExportarExcelEquipos.setText("Excel equipos");
+        miExportarExcelEquipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miExportarPDFActionPerformed(evt);
+                miExportarExcelEquiposActionPerformed(evt);
             }
         });
-        mExportar.add(miExportarPDF);
+        mExportar.add(miExportarExcelEquipos);
+
+        miExportarExcelArbitros.setBackground(new java.awt.Color(31, 87, 12));
+        miExportarExcelArbitros.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        miExportarExcelArbitros.setForeground(new java.awt.Color(255, 255, 255));
+        miExportarExcelArbitros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/excel.png"))); // NOI18N
+        miExportarExcelArbitros.setText("Excel árbitros");
+        mExportar.add(miExportarExcelArbitros);
 
         mbCalendario.add(mExportar);
 
@@ -524,19 +532,20 @@ private final CrearDocumentos cd = new CrearDocumentos();
   
     }//GEN-LAST:event_miExportarExcelActionPerformed
 
-    private void miExportarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExportarPDFActionPerformed
+    private void miExportarExcelEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExportarExcelEquiposActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo PDF (*.pdf)", "pdf");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de Excel (*.xlsx)", "xlsx");
         fileChooser.setFileFilter(filter);
         int seleccion = fileChooser.showSaveDialog(new Principal());
         if (seleccion == JFileChooser.APPROVE_OPTION)
         {
             File fichero = fileChooser.getSelectedFile();
-            System.out.println("Save as file: " + fichero.getAbsolutePath());
+            cd.crearExcelEquipos(fichero.getAbsolutePath()+"."+filter.getExtensions()[0], this.tCalendario);
+            //System.out.println("Save as file: " + fichero.getAbsolutePath());
             //aqui debe coger los datos de la BBDD y guardarlos en un PDF
 
         }
-    }//GEN-LAST:event_miExportarPDFActionPerformed
+    }//GEN-LAST:event_miExportarExcelEquiposActionPerformed
 
     private void btnFiltroAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroAceptarActionPerformed
         if(this.dFechaInicoFiltro.getDate() == null && this.dFechaFinFiltro.getDate() == null){
@@ -695,7 +704,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private javax.swing.JMenu mImportar;
     private javax.swing.JMenuBar mbCalendario;
     private javax.swing.JMenuItem miExportarExcel;
-    private javax.swing.JMenuItem miExportarPDF;
+    private javax.swing.JMenuItem miExportarExcelArbitros;
+    private javax.swing.JMenuItem miExportarExcelEquipos;
     private javax.swing.JMenuItem miGestionarAplazados;
     private javax.swing.JMenuItem miGestionarFestivos;
     private javax.swing.JMenuItem miImportarcalendario;

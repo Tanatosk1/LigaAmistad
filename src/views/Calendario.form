@@ -59,7 +59,7 @@
                   <Color blue="c" green="57" red="1f" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Franklin Gothic Medium" size="24" style="0"/>
+                  <Font name="Franklin Gothic Medium" size="18" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -67,31 +67,48 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/excel.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="A Excel..."/>
+                <Property name="text" type="java.lang.String" value="Excel general"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miExportarExcelActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="miExportarPDF">
+            <MenuItem class="javax.swing.JMenuItem" name="miExportarExcelEquipos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="c" green="57" red="1f" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Franklin Gothic Medium" size="24" style="0"/>
+                  <Font name="Franklin Gothic Medium" size="18" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/resources/pdf.png"/>
+                  <Image iconType="3" name="/resources/excel.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="A PDF..."/>
+                <Property name="text" type="java.lang.String" value="Excel equipos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miExportarPDFActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miExportarExcelEquiposActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miExportarExcelArbitros">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c" green="57" red="1f" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Franklin Gothic Medium" size="18" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/resources/excel.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Excel &#xe1;rbitros"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -622,8 +639,8 @@
                 <Column editable="false" title="Jornada" type="java.lang.Object"/>
                 <Column editable="false" title="Fecha" type="java.lang.Object"/>
                 <Column editable="false" title="D&#xed;a" type="java.lang.Object"/>
-                <Column editable="true" title="Hora" type="java.lang.Object"/>
-                <Column editable="false" title="&#xc1;rbitro" type="java.lang.Object"/>
+                <Column editable="false" title="Hora" type="java.lang.Object"/>
+                <Column editable="true" title="&#xc1;rbitro" type="java.lang.Object"/>
                 <Column editable="false" title="Campo" type="java.lang.Object"/>
                 <Column editable="false" title="Equipo Local" type="java.lang.Object"/>
                 <Column editable="false" title="Equipo Visitante" type="java.lang.Object"/>
