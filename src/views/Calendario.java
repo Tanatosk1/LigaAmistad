@@ -320,14 +320,14 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
             },
             new String [] {
-                "ID", "Jornada", "Fecha", "Día", "Hora", "Árbitro", "Campo", "Equipo Local", "Equipo Visitante", "Competición", "Partido aplazado"
+                "ID", "Jornada", "Fecha", "Día", "Hora", "Árbitro", "Campo", "Equipo Local", "Equipo Visitante", "Competición", "Partido aplazado", "Árbitro de nivel"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, false, false, false, false, true
+                false, false, false, false, false, true, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
