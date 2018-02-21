@@ -106,16 +106,16 @@ public Restricciones() {
         if(this.ckLunesEquipos.isSelected()){
             switch (this.cbLunes.getSelectedIndex()) {
                 case 1:
-                    condiciones.add(new ORestriccion(1,this.cbLunes.getSelectedIndex(),null,null));
+                    condiciones.add(new ORestriccion(1,this.cbLunes.getSelectedIndex(),null,null,null));
                     correcto = true;
                     break;
                 case 2:
-                    condiciones.add(new ORestriccion(1,this.cbLunes.getSelectedIndex(),null,null));
+                    condiciones.add(new ORestriccion(1,this.cbLunes.getSelectedIndex(),null,null,null));
                     correcto = true;
                     break;
                 case 3:
-                    condiciones.add(new ORestriccion(1,1,null,null));
-                    condiciones.add(new ORestriccion(1,2,null,null));
+                    condiciones.add(new ORestriccion(1,1,null,null,null));
+                    condiciones.add(new ORestriccion(1,2,null,null,null));
                     correcto = true;
                     break;
                 default:
@@ -126,16 +126,16 @@ public Restricciones() {
         if(this.ckMartesEquipos.isSelected()){
             switch (this.cbMartes.getSelectedIndex()) {
                 case 1:
-                    condiciones.add(new ORestriccion(2,1,null,null));
+                    condiciones.add(new ORestriccion(2,1,null,null,null));
                     correcto = true;
                     break;
                 case 2:
-                    condiciones.add(new ORestriccion(2,2,null,null));
+                    condiciones.add(new ORestriccion(2,2,null,null,null));
                     correcto = true;
                     break;
                 case 3:
-                    condiciones.add(new ORestriccion(2,1,null,null));
-                    condiciones.add(new ORestriccion(2,2,null,null));
+                    condiciones.add(new ORestriccion(2,1,null,null,null));
+                    condiciones.add(new ORestriccion(2,2,null,null,null));
                     correcto = true;
                     break;
                 default:
@@ -146,16 +146,16 @@ public Restricciones() {
         if(this.ckMiercolesEquipos.isSelected()){
             switch (this.cbMiercoles.getSelectedIndex()) {
                 case 1:
-                    condiciones.add(new ORestriccion(3,1,null,null));
+                    condiciones.add(new ORestriccion(3,1,null,null,null));
                     correcto = true;
                     break;
                 case 2:
-                    condiciones.add(new ORestriccion(3,2,null,null));
+                    condiciones.add(new ORestriccion(3,2,null,null,null));
                     correcto = true;
                     break;
                 case 3:
-                    condiciones.add(new ORestriccion(3,1,null,null));
-                    condiciones.add(new ORestriccion(3,2,null,null));
+                    condiciones.add(new ORestriccion(3,1,null,null,null));
+                    condiciones.add(new ORestriccion(3,2,null,null,null));
                     correcto = true;
                     break;
                 default:
@@ -166,16 +166,16 @@ public Restricciones() {
         if(this.ckJuevesEquipos.isSelected()){
             switch (this.cbJueves.getSelectedIndex()) {
                 case 1:
-                    condiciones.add(new ORestriccion(4,1,null,null));
+                    condiciones.add(new ORestriccion(4,1,null,null,null));
                     correcto = true;
                     break;
                 case 2:
-                    condiciones.add(new ORestriccion(4,2,null,null));
+                    condiciones.add(new ORestriccion(4,2,null,null,null));
                     correcto = true;
                     break;
                 case 3:
-                    condiciones.add(new ORestriccion(4,1,null,null));
-                    condiciones.add(new ORestriccion(4,2,null,null));
+                    condiciones.add(new ORestriccion(4,1,null,null,null));
+                    condiciones.add(new ORestriccion(4,2,null,null,null));
                     correcto = true;
                     break;
                 default:
@@ -186,16 +186,16 @@ public Restricciones() {
         if(this.ckViernesEquipos.isSelected()){
             switch (this.cbViernes.getSelectedIndex()) {
                 case 1:
-                    condiciones.add(new ORestriccion(5,1,null,null));
+                    condiciones.add(new ORestriccion(5,1,null,null,null));
                     correcto = true;
                     break;
                 case 2:
-                    condiciones.add(new ORestriccion(5,2,null,null));
+                    condiciones.add(new ORestriccion(5,2,null,null,null));
                     correcto = true;
                     break;
                 case 3:
-                    condiciones.add(new ORestriccion(5,1,null,null));
-                    condiciones.add(new ORestriccion(5,2,null,null));
+                    condiciones.add(new ORestriccion(5,1,null,null,null));
+                    condiciones.add(new ORestriccion(5,2,null,null,null));
                     correcto = true;
                     break;
                 default:
@@ -206,16 +206,16 @@ public Restricciones() {
         if(this.ckSabadoEquipos.isSelected()){
             switch (this.cbSabado.getSelectedIndex()) {
                 case 1:
-                    condiciones.add(new ORestriccion(6,1,null,null));
+                    condiciones.add(new ORestriccion(6,1,null,null,null));
                     correcto = true;
                     break;
                 case 2:
-                    condiciones.add(new ORestriccion(6,2,null,null));
+                    condiciones.add(new ORestriccion(6,2,null,null,null));
                     correcto = true;
                     break;
                 case 3:
-                    condiciones.add(new ORestriccion(6,1,null,null));
-                    condiciones.add(new ORestriccion(6,2,null,null));
+                    condiciones.add(new ORestriccion(6,1,null,null,null));
+                    condiciones.add(new ORestriccion(6,2,null,null,null));
                     correcto = true;
                     break;
                 default:
@@ -226,16 +226,16 @@ public Restricciones() {
         if(this.ckDomingoEquipos.isSelected()){
             switch (this.cbDomingo.getSelectedIndex()) {
                 case 1:
-                    condiciones.add(new ORestriccion(7,1,null,null));
+                    condiciones.add(new ORestriccion(7,1,null,null,null));
                     correcto = true;
                     break;
                 case 2:
-                    condiciones.add(new ORestriccion(7,2,null,null));
+                    condiciones.add(new ORestriccion(7,2,null,null,null));
                     correcto = true;
                     break;
                 case 3:
-                    condiciones.add(new ORestriccion(7,1,null,null));
-                    condiciones.add(new ORestriccion(7,2,null,null));
+                    condiciones.add(new ORestriccion(7,1,null,null,null));
+                    condiciones.add(new ORestriccion(7,2,null,null,null));
                     correcto = true;
                     break;
                 default:
@@ -246,7 +246,7 @@ public Restricciones() {
         
         for(int i = 1; i < total+1; i++){
             if(this.ckCampos[i].isSelected()){
-                condiciones.add(new ORestriccion(null, null, i, null));
+                condiciones.add(new ORestriccion(null, null, i, null,null));
             }
         }
         
@@ -255,7 +255,7 @@ public Restricciones() {
             ResultSet idEquipoNoCoincidir = conn.getValues("ID", "Equipos", "NOMBRE like '" + cbNoCoincidir.getSelectedItem()+"'", "");
             try {
                 while(idEquipoNoCoincidir.next()){
-                    condiciones.add(new ORestriccion(null, null, null, idEquipoNoCoincidir.getInt("ID")));
+                    condiciones.add(new ORestriccion(null, null, null, idEquipoNoCoincidir.getInt("ID"),null));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Restricciones.class.getName()).log(Level.SEVERE, null, ex);
@@ -267,6 +267,12 @@ public Restricciones() {
                 }
                 conn.desconectar();
             }   
+        }
+        
+        if(this.cbNoCoincidir1.getSelectedIndex() > 0){
+            conn.conectar();
+            ResultSet idArbitroNoCoincidir = conn.getValues("ID", "arbitros", "NOMBRE like '"+cbNoCoincidir1.getSelectedItem()+"'", "");
+            conn.desconectar();
         }
         
         if(correcto){
@@ -288,6 +294,7 @@ public Restricciones() {
                 ckSabadoEquipos.setEnabled(true);
                 ckDomingoEquipos.setEnabled(true);
                 cbNoCoincidir.setEnabled(true);
+                cbNoCoincidir1.setEnabled(true);
                 ckCongelarEquipo.setEnabled(true);
                 for(int i = 1; i < total+1; i++){
                     ckCampos[i].setEnabled(true);
@@ -310,6 +317,7 @@ public Restricciones() {
                 cbSabado.setEnabled(false);
                 cbDomingo.setEnabled(false);
                 cbNoCoincidir.setEnabled(false);
+                cbNoCoincidir1.setEnabled(false);
                 ckCongelarEquipo.setEnabled(false);
                 for(int i = 1; i < total+1; i++){
                     ckCampos[i].setSelected(false);
@@ -898,8 +906,6 @@ public Restricciones() {
                                 .addComponent(cbEquipos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnEditarEquipos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAceptarEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(separadorEquipos6, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(separadorEquipos2, javax.swing.GroupLayout.Alignment.LEADING)
@@ -944,6 +950,10 @@ public Restricciones() {
                         .addComponent(cbNoCoincidir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(110, 110, 110))
                     .addComponent(separadorEquipos7)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pEquiposLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEditarEquipos)
+                .addGap(121, 121, 121))
         );
         pEquiposLayout.setVerticalGroup(
             pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -989,6 +999,8 @@ public Restricciones() {
                     .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEditarEquipos)
+                .addGap(49, 49, 49)
                 .addComponent(separadorEquipos7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1007,9 +1019,7 @@ public Restricciones() {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separadorEquipos6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptarEquipos)
-                    .addComponent(btnEditarEquipos))
+                .addComponent(btnAceptarEquipos)
                 .addContainerGap())
         );
 
@@ -1785,6 +1795,8 @@ public Restricciones() {
             horasEquipossEnabled ();
             cbEquipos.setEnabled(false);
             this.enableEquipos();
+            cbNoCoincidir1.addItem("");
+            md.llenarComboArbitros(this.cbNoCoincidir1);
             btnAceptarEquipos.setEnabled(true);
 
         }

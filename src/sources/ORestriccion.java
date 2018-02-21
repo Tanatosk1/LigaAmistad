@@ -9,12 +9,14 @@ public class ORestriccion {
     private final Object hora;
     private final Object campo;
     private final Object noCoincidir;
+    private final Object idArbitro;
     
-    public ORestriccion(Object dia, Object hora, Object campo, Object noCoincidir){
+    public ORestriccion(Object dia, Object hora, Object campo, Object noCoincidir, Object idArbitro){
         this.dia = dia;
         this.hora = hora;
         this.campo = campo;
         this.noCoincidir = noCoincidir;
+        this.idArbitro = idArbitro;
     }
     
     public Object getDia(){
@@ -31,5 +33,9 @@ public class ORestriccion {
     
     public Object getNoCoincidir(){
         return this.noCoincidir;
+    }
+    
+    public Object getIdArbitro(){
+        return this.idArbitro;
     }
 }
