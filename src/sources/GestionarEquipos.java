@@ -36,7 +36,7 @@ public class GestionarEquipos {
             for(int i = 0; i < condiciones.size(); i++){
                 conn.insertData("restricciones", "null,"+id +","+condiciones.get(i).getDia()+","+
                                  condiciones.get(i).getHora()+","+condiciones.get(i).getCampo()+","+
-                                 condiciones.get(i).getNoCoincidir());
+                                 condiciones.get(i).getNoCoincidir()+","+condiciones.get(i).getIdArbitro());
                 conn.getConection().commit();
                 
                 if(condiciones.get(i).getNoCoincidir() != null){
@@ -144,8 +144,9 @@ public class GestionarEquipos {
             limpiarCampos();
             int idEquipo = r.cbEquipos.getSelectedIndex();
             conn.conectar();
-            ResultSet equi = conn.getValues("r.*, d.dia, e.nombre",
-                    "restricciones r LEFT JOIN dias d ON r.ID_DIA = d.ID LEFT JOIN equipos e ON r.ID_COINCIDE = e.ID",
+            ResultSet equi = conn.getValues("r.*, d.dia, e.nombre AS equipo, concat_ws(' ', a.nombre, a.apellidos) AS arbitro",
+                    "restricciones r LEFT JOIN dias d ON r.ID_DIA = d.ID LEFT JOIN equipos e ON r.ID_COINCIDE = e.ID"
+                            + " LEFT JOIN arbitros a ON r.ID_ARBITRO = a.ID",
                     "r.ID_EQUIPO = " + idEquipo, "");
             int ambasLunes = 0;
             int ambasMartes = 0;
@@ -230,8 +231,11 @@ public class GestionarEquipos {
                     }
                 }
                 if(equi.getObject("ID_COINCIDE") != null){
-                    r.cbNoCoincidir.setSelectedItem(equi.getString("nombre"));
+                    r.cbNoCoincidir.setSelectedItem(equi.getString("equipo"));
                 } 
+                if(equi.getObject("ID_ARBITRO") != null){
+                    r.cbNoCoincidir1.setSelectedIndex(equi.getInt("ID_ARBITRO"));
+                }
             }
             
             ResultSet eCongelado = conn.getValues("CONGELADO", "equipos", "ID = " + idEquipo, "");

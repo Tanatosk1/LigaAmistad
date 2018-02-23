@@ -61,7 +61,6 @@ public class GestionarArbitros {
     }
         
     public void vaciarArbitros() throws SQLException{
-
             conn.conectar();
             conn.deleteTable("arbitros");
             conn.getConection().commit();

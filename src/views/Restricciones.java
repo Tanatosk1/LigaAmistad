@@ -270,9 +270,7 @@ public Restricciones() {
         }
         
         if(this.cbNoCoincidir1.getSelectedIndex() > 0){
-            conn.conectar();
-            ResultSet idArbitroNoCoincidir = conn.getValues("ID", "arbitros", "NOMBRE like '"+cbNoCoincidir1.getSelectedItem()+"'", "");
-            conn.desconectar();
+            condiciones.add(new ORestriccion(null, null, null, null, cbNoCoincidir1.getSelectedIndex()));
         }
         
         if(correcto){
@@ -674,11 +672,6 @@ public Restricciones() {
                 cbEquiposItemStateChanged(evt);
             }
         });
-        cbEquipos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbEquiposActionPerformed(evt);
-            }
-        });
 
         lblLogoEquipos.setBackground(new java.awt.Color(255, 255, 255));
         lblLogoEquipos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/equipos.png"))); // NOI18N
@@ -904,9 +897,6 @@ public Restricciones() {
                                 .addComponent(lblEquipos)
                                 .addGap(18, 18, 18)
                                 .addComponent(cbEquipos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnAceptarEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(separadorEquipos6, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(separadorEquipos2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEquiposLayout.createSequentialGroup()
@@ -948,12 +938,14 @@ public Restricciones() {
                         .addComponent(lblNoCoincidir1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbNoCoincidir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110))
-                    .addComponent(separadorEquipos7)))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pEquiposLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEditarEquipos)
-                .addGap(121, 121, 121))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(separadorEquipos7)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pEquiposLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnEditarEquipos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAceptarEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))))
         );
         pEquiposLayout.setVerticalGroup(
             pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -999,8 +991,6 @@ public Restricciones() {
                     .addComponent(lblCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pCamposExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEditarEquipos)
-                .addGap(49, 49, 49)
                 .addComponent(separadorEquipos7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1018,9 +1008,11 @@ public Restricciones() {
                 .addComponent(ckCongelarEquipo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separadorEquipos6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAceptarEquipos)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAceptarEquipos)
+                    .addComponent(btnEditarEquipos))
+                .addGap(18, 18, 18))
         );
 
         pCampos.setBackground(new java.awt.Color(255, 255, 255));
@@ -1795,8 +1787,8 @@ public Restricciones() {
             horasEquipossEnabled ();
             cbEquipos.setEnabled(false);
             this.enableEquipos();
-            cbNoCoincidir1.addItem("");
-            md.llenarComboArbitros(this.cbNoCoincidir1);
+            //cbNoCoincidir1.addItem("");
+            //md.llenarComboArbitros(this.cbNoCoincidir1);
             btnAceptarEquipos.setEnabled(true);
 
         }
@@ -1829,6 +1821,9 @@ public Restricciones() {
 
     private void cbEquiposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEquiposItemStateChanged
         md.llenarComboNoCoincidir(this.cbNoCoincidir, this.cbEquipos.getSelectedIndex());
+        this.cbNoCoincidir1.removeAllItems();
+        this.cbNoCoincidir1.addItem("");
+        md.llenarComboArbitros(this.cbNoCoincidir1);
         ge.mostrarRestricciones();
     }//GEN-LAST:event_cbEquiposItemStateChanged
 
@@ -1889,10 +1884,6 @@ public Restricciones() {
     private void cbLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLunesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbLunesActionPerformed
-
-    private void cbEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEquiposActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbEquiposActionPerformed
 
     private void ckMartesArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckMartesArbitroActionPerformed
         // TODO add your handling code here:
