@@ -639,7 +639,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
     }//GEN-LAST:event_btnAsignarArbitrosActionPerformed
     
     public void close() {
-             dispose();             
+        gc.borrarCamposAsignado();
+        dispose();             
     }
     /**
      * @param args the command line arguments

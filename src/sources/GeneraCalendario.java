@@ -34,8 +34,9 @@ public class GeneraCalendario {
     private ArrayList<OPartido> camposDis = new ArrayList();
     private final ArrayList idcampos = new ArrayList();
     private ArrayList diasFestivos;
+    private ArrayList camposUsados = new ArrayList();
 
-    public void generaFechas(String fInicio, String fFin, JTable tabla, JComboBox jornada){
+    public void borrarCamposAsignado(){
         Conn conn = new Conn();
         conn.conectar();
         conn.updateData("cam_horarios", "ASIGNADO = 0");
@@ -44,6 +45,12 @@ public class GeneraCalendario {
         } catch (SQLException ex) {
             Logger.getLogger(MostrarDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        conn.desconectar();
+    }
+    public void generaFechas(String fInicio, String fFin, JTable tabla, JComboBox jornada){
+        Conn conn = new Conn();
+        conn.conectar();
+        
         model = (DefaultTableModel) tabla.getModel();
         this.jornada = (int) jornada.getSelectedItem();
         
@@ -81,7 +88,7 @@ public class GeneraCalendario {
         }
         
         totalHorariosDisponibles = conn.totalRegistros("campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO", "c.CONGELADO = 0" + where);
-        rs = conn.getValues("c.ID, c.CAMPO, ch.ID_DIA, ch.ID_HORA, ch.ID as ID_CAM_HORA, h.HORA", "campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO INNER JOIN hora h ON ch.ID_HORA = h.ID", "c.CONGELADO = 0 " + where, "c.ID");
+        rs = conn.getValues("c.ID, c.CAMPO, ch.ID_DIA, ch.ID_HORA, ch.ID as ID_CAM_HORA, h.HORA", "campos c INNER JOIN cam_horarios ch ON c.ID = ch.ID_CAMPO INNER JOIN hora h ON ch.ID_HORA = h.ID", "c.CONGELADO = 0 and ch.ASIGNADO = 0 " + where, "c.ID");
         crearAleatorio(rs);
                
         conn.desconectar();
@@ -107,7 +114,7 @@ public class GeneraCalendario {
         String restriccionesCoincidirVisitante;
         Date dateIni = null;
         Date dateFin = null;
-        ArrayList camposUsados = new ArrayList();
+        //ArrayList camposUsados = new ArrayList();
         bucle:
         for(int d = 0; d < totalPartidosMostrados; d++){
             try {
@@ -144,7 +151,7 @@ public class GeneraCalendario {
                                                         }
                                                     }
                                                     tabla.setValueAt(camposDis.get(l).getCampo(), d, 6);
-                                                    idcampos.add(camposDis.get(l).getIdCampo());
+                                                    
                                                     String diaSemana = getDia(camposDis.get(l).getIdDia());
                                                     if(diaSemana.equals(restriccionesCoincidirLocal)){
                                                         continue cambioCampo;
@@ -152,6 +159,7 @@ public class GeneraCalendario {
                                                     if(diaSemana.equals(restriccionesCoincidirVisitante)){
                                                         continue cambioCampo;
                                                     }
+                                                    idcampos.add(camposDis.get(l).getIdCampo());
                                                     tabla.setValueAt(diaSemana, d, 3);
                                                     pintarFechaMostrar(d, dateIni, dateFin, tabla);
                                                     tabla.setValueAt(camposDis.get(l).getHora(), d, 4);
@@ -240,7 +248,10 @@ public class GeneraCalendario {
                         conn.updateData("campeonato", "APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
                     }else{
                         while(tabla.getValueAt(i, 1).equals(jornada.getSelectedItem())){
-                            conn.updateData("campeonato", "fecha = '"+formatoFechaGuardar(String.valueOf(tabla.getValueAt(i,2)))+"', hora = '"+tabla.getValueAt(i, 4)+"', ID_CAMPO = "+idcampos.get(f)+", APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
+                            ResultSet idCampo = conn.getValues("ID", "campos", "CAMPO like '" + tabla.getValueAt(i, 6).toString() + "' limit 1", "");
+                            while(idCampo.next()){
+                                conn.updateData("campeonato", "fecha = '"+formatoFechaGuardar(String.valueOf(tabla.getValueAt(i,2)))+"', hora = '"+tabla.getValueAt(i, 4)+"', ID_CAMPO = "+idCampo.getInt("ID")+", APLAZADO = "+aplazado, "ID = "+tabla.getValueAt(i, 0));
+                            }
                             f++;
                             continue aumentoFila;
                         }

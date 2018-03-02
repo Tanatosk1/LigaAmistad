@@ -217,9 +217,13 @@ public class GestionarArbitros {
                         if(verificarCampo(indice, tabla, i)){
                             continue;
                         }else{
-                            tabla.setValueAt(nombre, i, 5);
-                            conn.updateData("campeonato", "ID_ARBITRO = " + id, "ID = " + tabla.getValueAt(i, 0));
-                            conn.getConection().commit();
+                            if(verificarEquipos(tabla, i)){
+                                
+                            }else{
+                                tabla.setValueAt(nombre, i, 5);
+                                conn.updateData("campeonato", "ID_ARBITRO = " + id, "ID = " + tabla.getValueAt(i, 0));
+                                conn.getConection().commit();
+                            }
                         }
                     }
                     String campo = tabla.getValueAt(i, 6).toString();
@@ -254,6 +258,13 @@ public class GestionarArbitros {
         } catch (SQLException ex) {
             Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
+    }
+    
+    private boolean verificarEquipos(JTable tabla, int fila){
+        ResultSet rsEquiposLocal = conn.getValues("ID", "equipos", "NOMBRE like '" + tabla.getValueAt(fila, 7) + "'", "");
+        ResultSet rsEquipoVisitante = conn.getValues("ID", "equipos", "NOMBRE like '" + tabla.getValueAt(fila, 8) + "'", "");
+        
         return false;
     }
     

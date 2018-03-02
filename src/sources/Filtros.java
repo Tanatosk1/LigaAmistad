@@ -55,7 +55,7 @@ public class Filtros {
         }else if(cat != 0 && div != 0 && jor != 0){
             where = "com.ID = " + cat + " and d.ID = " + div + " and c.JORNADA = " + jor;
         }
-        String order = "c.FECHA DESC";
+        String order = "c.JORNADA, c.FECHA DESC";
         //String order = "c.JORNADA, com.COMPETICION, d.DIVISION"; 
         ResultSet campeonato = con.getValues(select, from, where, order);    
         SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");

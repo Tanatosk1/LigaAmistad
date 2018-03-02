@@ -68,6 +68,4 @@ public class OPartido {
     public void setHora(String hora) {
         this.hora = hora;
     }
-    
-    
 }
