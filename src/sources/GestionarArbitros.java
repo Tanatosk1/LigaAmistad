@@ -20,6 +20,7 @@ public class GestionarArbitros {
     private final Conn conn = new Conn();
     private Restricciones res = null;
     private ResultSet rs;
+    private ResultSet rsNivel;
     private ArrayList<OArbitros> arbitros;
     
     public GestionarArbitros(Restricciones res){
@@ -154,71 +155,148 @@ public class GestionarArbitros {
     }
     
     public void asignarArbitros(JTable tabla, JComboBox jornada){
-        conn.conectar();
-        rs = conn.getValues("*", "arbitros", "CONGELADO = 0", "");
-        crearAleatorio(rs);
         String dia;
         String nombre;
         int id = 0;
-        int nDias = 0;
+        conn.conectar();
+        rsNivel = conn.getValues("*", "arbitros", "CONGELADO = 0 AND NIVEL = 1", "");
+        crearAleatorio(rsNivel);
+        nuevaFila:
+        for(int t = 0; t < tabla.getRowCount(); t++){
+            if(tabla.getValueAt(t, 11) != null){
+                if((boolean)tabla.getValueAt(t, 11) == true){                    
+                    if(tabla.getValueAt(t, 5) == null){
+                        for(int arN = 0; arN < arbitros.size(); arN++){
+                            nombre = arbitros.get(arN).nombre + " " + arbitros.get(arN).apellidos;
+                            if(arbitros.get(arN).lunes == 1){
+                                if(tabla.getValueAt(t, 3).equals("Lunes")){
+                                    try {
+                                        tabla.setValueAt(nombre, t, 5);
+                                        arbitros.get(arN).setLunes(0);
+                                        mismoCampo(tabla, t, tabla.getValueAt(t, 6).toString(), tabla.getValueAt(t, 3).toString(), arbitros.get(arN).id, nombre);
+                                        conn.updateData("campeonato", "ID_ARBITRO = " + arbitros.get(arN).id, "ID = " + tabla.getValueAt(t, 0));
+                                        conn.updateData("arbitros", "LUNES = 0", "ID = " + arbitros.get(arN).id);
+                                        conn.getConection().commit();  
+                                        continue nuevaFila;
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }
+                            if(arbitros.get(arN).martes == 1){
+                                if(tabla.getValueAt(t, 3).equals(("Martes"))){
+                                    try {
+                                        tabla.setValueAt(nombre, t, 5);
+                                        arbitros.get(arN).setMartes(0);
+                                        mismoCampo(tabla, t, tabla.getValueAt(t, 6).toString(), tabla.getValueAt(t, 3).toString(), arbitros.get(arN).id, nombre);
+                                        conn.updateData("campeonato", "ID_ARBITRO = " + arbitros.get(arN).id, "ID = " + tabla.getValueAt(t, 0));
+                                        conn.updateData("arbitros", "MARTES = 0", "ID = " + arbitros.get(arN).id);
+                                        conn.getConection().commit();
+                                        continue nuevaFila;
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }
+                            if(arbitros.get(arN).miercoles == 1){
+                                if(tabla.getValueAt(t, 3).equals(("Miércoles"))){
+                                    try {
+                                        tabla.setValueAt(nombre, t, 5);
+                                        arbitros.get(arN).setMiercoles(0);
+                                        mismoCampo(tabla, t, tabla.getValueAt(t, 6).toString(), tabla.getValueAt(t, 3).toString(), arbitros.get(arN).id, nombre);
+                                        conn.updateData("campeonato", "ID_ARBITRO = " + arbitros.get(arN).id, "ID = " + tabla.getValueAt(t, 0));
+                                        conn.updateData("arbitros", "MIERCOLES = 0", "ID = " + arbitros.get(arN).id);
+                                        conn.getConection().commit();
+                                        continue nuevaFila;
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }
+                            if(arbitros.get(arN).jueves == 1){
+                                if(tabla.getValueAt(t, 3).equals(("Jueves"))){
+                                    try {
+                                        tabla.setValueAt(nombre, t, 5);
+                                        arbitros.get(arN).setJueves(0);
+                                        mismoCampo(tabla, t, tabla.getValueAt(t, 6).toString(), tabla.getValueAt(t, 3).toString(), arbitros.get(arN).id, nombre);
+                                        conn.updateData("campeonato", "ID_ARBITRO = " + arbitros.get(arN).id, "ID = " + tabla.getValueAt(t, 0));
+                                        conn.updateData("arbitros", "JUEVES = 0", "ID = " + arbitros.get(arN).id);
+                                        conn.getConection().commit();
+                                        continue nuevaFila;
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        arbitros.clear();
+        rs = conn.getValues("*", "arbitros", "CONGELADO = 0", "");
+        crearAleatorio(rs);
+        
+        
+        //int nDias = 0;
         for(int i = 0; i < arbitros.size(); i++){
             nombre = arbitros.get(i).nombre + " " + arbitros.get(i).apellidos;
             id = arbitros.get(i).id;
             if(arbitros.get(i).lunes == 1){
                 dia = "Lunes";
                 buscarPartido(tabla, jornada, dia, nombre, id, i);
-                nDias++;
+                //nDias++;
             }
             if(arbitros.get(i).martes == 1){
                 dia = "Martes";
                 buscarPartido(tabla, jornada, dia, nombre, id, i);
-                nDias++;
+                //nDias++;
             }
             if(arbitros.get(i).miercoles == 1){
                 dia = "Miércoles";
                 buscarPartido(tabla, jornada, dia, nombre, id, i);
-                nDias++;
+                //nDias++;
             }
             if(arbitros.get(i).jueves == 1){
                 dia = "Jueves";
                 buscarPartido(tabla, jornada, dia, nombre, id, i);
-                nDias++;
+                //nDias++;
             }
             if(arbitros.get(i).viernes == 1){
                 dia = "Viernes";
                 buscarPartido(tabla, jornada, dia, nombre, id, i);
-                nDias++;
+                //nDias++;
             }
             if(arbitros.get(i).sabado == 1){
                 dia = "Sábado";
                 buscarPartido(tabla, jornada, dia, nombre, id, i);
-                nDias++;
+                //nDias++;
             }
             if(arbitros.get(i).domingo == 1){
                 dia = "Domingo";
                 buscarPartido(tabla, jornada, dia, nombre, id, i);
-                nDias++;
+                //nDias++;
             }
         }
-        
+
         arbitros.clear();
-        conn.desconectar();
-        
+
+        conn.desconectar();       
+    }
+    
+    private void mismoCampo(JTable tabla, int fila, String campo, String dia, int idArbitro, String nombre){
+        for(int mc = fila; mc < tabla.getRowCount(); mc++){
+            if(tabla.getValueAt(mc, 6).equals(campo)){
+                if(tabla.getValueAt(mc, 3).equals(dia)){
+                    tabla.setValueAt(nombre, mc, 5);
+                    //conn.updateData("campeonato", "ID_ARBITRO = " + idArbitro, "ID = " + tabla.getValueAt(mc, 0));
+                }
+            }
+        }
     }
     
     private void buscarPartido(JTable tabla, JComboBox jornada, String dia, String nombre, int id, int indice){
         try{
-        /** Asignamos primero arbitros especiales  **/
-            /*for(int f = 0; f < tabla.getRowCount(); f++){
-                if(jornada.getSelectedItem() == tabla.getValueAt(f, 1)){
-                    if((boolean)tabla.getValueAt(f, 11) == true || tabla.getValueAt(f, 11) == null){
-                        System.out.println("Arbitro con nivel");
-                        for(int arbitrosNivel = 0; arbitrosNivel < arbitros.size(); arbitrosNivel++){
-                            
-                        }
-                    }
-                }
-            }
         
         /** Asignamos el resto de arbitros **/
         for(int i = 0; i < tabla.getRowCount(); i++){    

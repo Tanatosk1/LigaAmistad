@@ -34,5 +34,31 @@ public class OArbitros {
         this.noCoincidir = noCoincidir;
     }
     
+    public void setLunes(int lunes){
+        this.lunes = lunes;
+    }
     
+    public void setMartes(int martes){
+        this.martes = martes;
+    }
+    
+    public void setMiercoles(int miercoles){
+        this.miercoles = miercoles;
+    }
+    
+    public void setJueves(int jueves){
+        this.jueves = jueves;
+    }
+    
+    public void setViernes(int viernes){
+        this.viernes = viernes;
+    }
+    
+    public void setSabado(int sabado){
+        this.sabado = sabado;
+    }
+    
+    public void setDomingo(int domingo){
+        this.domingo = domingo;
+    }
 }
