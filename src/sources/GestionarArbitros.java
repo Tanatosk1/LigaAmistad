@@ -35,7 +35,7 @@ public class GestionarArbitros {
         
             conn.conectar();
 
-            conn.insertData("arbitros", "null,'" + nombre + "', '" + apellido + "','" + nivel + "', 0");
+            conn.insertData("arbitros", "null,'" + nombre + "', '" + apellido + "'," + nivel + ", 1, 0, 0, 0, 0, 0, 0, 0, 0");
             conn.getConection().commit();
             conn.desconectar();      
     }
