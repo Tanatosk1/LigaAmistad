@@ -444,6 +444,10 @@ public Restricciones() {
                 ckCongelarCampo.setEnabled(false);
     }
     
+    public void enableHorasAsignar(){
+        cmbHorasAsignar.setEnabled(true);
+    }
+    
     public void enableArbitros(){
         
                 cbNoCoincidirArbitro.setEnabled(true);
@@ -647,6 +651,8 @@ public Restricciones() {
         ckCongelarArbitro = new javax.swing.JCheckBox();
         btnEditarCampo = new javax.swing.JButton();
         btnAceptarCampo = new javax.swing.JButton();
+        lblHorasASeleccionar = new javax.swing.JLabel();
+        cmbHorasAsignar = new javax.swing.JComboBox<>();
         mbRestricciones = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -1317,9 +1323,9 @@ public Restricciones() {
         ckJuevesArbitro.setMaximumSize(new java.awt.Dimension(111, 31));
         ckJuevesArbitro.setMinimumSize(new java.awt.Dimension(111, 31));
         ckJuevesArbitro.setPreferredSize(new java.awt.Dimension(111, 31));
-        ckJuevesArbitro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckJuevesArbitroActionPerformed(evt);
+        ckJuevesArbitro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ckJuevesArbitroItemStateChanged(evt);
             }
         });
 
@@ -1330,9 +1336,9 @@ public Restricciones() {
         ckDomingoArbitro.setMaximumSize(new java.awt.Dimension(111, 31));
         ckDomingoArbitro.setMinimumSize(new java.awt.Dimension(111, 31));
         ckDomingoArbitro.setPreferredSize(new java.awt.Dimension(111, 31));
-        ckDomingoArbitro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckDomingoArbitroActionPerformed(evt);
+        ckDomingoArbitro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ckDomingoArbitroItemStateChanged(evt);
             }
         });
 
@@ -1340,9 +1346,9 @@ public Restricciones() {
         ckMiercolesArbitro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         ckMiercolesArbitro.setText("Miércoles");
         ckMiercolesArbitro.setEnabled(false);
-        ckMiercolesArbitro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckMiercolesArbitroActionPerformed(evt);
+        ckMiercolesArbitro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ckMiercolesArbitroItemStateChanged(evt);
             }
         });
 
@@ -1353,9 +1359,9 @@ public Restricciones() {
         ckViernesArbitro.setMaximumSize(new java.awt.Dimension(111, 31));
         ckViernesArbitro.setMinimumSize(new java.awt.Dimension(111, 31));
         ckViernesArbitro.setPreferredSize(new java.awt.Dimension(111, 31));
-        ckViernesArbitro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckViernesArbitroActionPerformed(evt);
+        ckViernesArbitro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ckViernesArbitroItemStateChanged(evt);
             }
         });
 
@@ -1366,9 +1372,9 @@ public Restricciones() {
         ckSabadoArbitro.setMaximumSize(new java.awt.Dimension(111, 31));
         ckSabadoArbitro.setMinimumSize(new java.awt.Dimension(111, 31));
         ckSabadoArbitro.setPreferredSize(new java.awt.Dimension(111, 31));
-        ckSabadoArbitro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckSabadoArbitroActionPerformed(evt);
+        ckSabadoArbitro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ckSabadoArbitroItemStateChanged(evt);
             }
         });
 
@@ -1379,9 +1385,9 @@ public Restricciones() {
         ckLunesArbitro.setMaximumSize(new java.awt.Dimension(111, 31));
         ckLunesArbitro.setMinimumSize(new java.awt.Dimension(111, 31));
         ckLunesArbitro.setPreferredSize(new java.awt.Dimension(111, 31));
-        ckLunesArbitro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckLunesArbitroActionPerformed(evt);
+        ckLunesArbitro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ckLunesArbitroItemStateChanged(evt);
             }
         });
 
@@ -1392,9 +1398,9 @@ public Restricciones() {
         ckMartesArbitro.setMaximumSize(new java.awt.Dimension(111, 31));
         ckMartesArbitro.setMinimumSize(new java.awt.Dimension(111, 31));
         ckMartesArbitro.setPreferredSize(new java.awt.Dimension(111, 31));
-        ckMartesArbitro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckMartesArbitroActionPerformed(evt);
+        ckMartesArbitro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ckMartesArbitroItemStateChanged(evt);
             }
         });
 
@@ -1413,7 +1419,7 @@ public Restricciones() {
         separadorCampos13.setForeground(new java.awt.Color(31, 87, 12));
 
         lblCamposActivos1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblCamposActivos1.setText("Número de horas activas: ");
+        lblCamposActivos1.setText("Número de horas activas totales: ");
 
         lblNumeroArbitrosActivos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblNumeroArbitrosActivos.setText("0");
@@ -1440,6 +1446,27 @@ public Restricciones() {
         btnAceptarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarCampoActionPerformed(evt);
+            }
+        });
+
+        lblHorasASeleccionar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblHorasASeleccionar.setText("Horas a asignar:");
+        lblHorasASeleccionar.setToolTipText("");
+
+        cmbHorasAsignar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cmbHorasAsignar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "2", "4", "6", "8", "10", "12", "14" }));
+        cmbHorasAsignar.setSelectedIndex(-1);
+        cmbHorasAsignar.setToolTipText("");
+        cmbHorasAsignar.setEnabled(false);
+        cmbHorasAsignar.setPreferredSize(new java.awt.Dimension(300, 28));
+        cmbHorasAsignar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbHorasAsignarItemStateChanged(evt);
+            }
+        });
+        cmbHorasAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbHorasAsignarActionPerformed(evt);
             }
         });
 
@@ -1480,13 +1507,37 @@ public Restricciones() {
                                 .addComponent(lblNumeroCamposActivos)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnEditarCampo)
+                        .addGap(8, 8, 8)
+                        .addComponent(btnAceptarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pCamposLayout.createSequentialGroup()
+                        .addComponent(lblNoCoincidir2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbNoCoincidirArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))
+                    .addGroup(pCamposLayout.createSequentialGroup()
+                        .addComponent(lblHorasASeleccionar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmbHorasAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))
+                    .addGroup(pCamposLayout.createSequentialGroup()
+                        .addComponent(ckSabadoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ckDomingoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEditarArbitro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAceptarArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1))
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ckCongelarArbitro)
                             .addGroup(pCamposLayout.createSequentialGroup()
-                                .addComponent(ckSabadoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ckDomingoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblCamposActivos1)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblNumeroArbitrosActivos))
+                            .addComponent(ckCongelarArbitro)
                             .addGroup(pCamposLayout.createSequentialGroup()
                                 .addComponent(ckLunesArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -1499,10 +1550,6 @@ public Restricciones() {
                                 .addComponent(ckViernesArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(separadorCampos11, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(separadorCampos12, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pCamposLayout.createSequentialGroup()
-                                .addComponent(lblNoCoincidir2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(83, 83, 83)
-                                .addComponent(cbNoCoincidirArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(separadorCampos13, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pCamposLayout.createSequentialGroup()
                                 .addComponent(ckDomingoCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1573,23 +1620,8 @@ public Restricciones() {
                                 .addGap(18, 18, 18)
                                 .addComponent(ckLunesSegunda)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtLunesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pCamposLayout.createSequentialGroup()
-                                .addComponent(lblCamposActivos1)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblNumeroArbitrosActivos)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
-                                .addComponent(btnEditarCampo)
-                                .addGap(8, 8, 8)
-                                .addComponent(btnAceptarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
-                                .addComponent(btnEditarArbitro)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAceptarArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtLunesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pCamposLayout.setVerticalGroup(
@@ -1681,7 +1713,11 @@ public Restricciones() {
                         .addComponent(cbArbitros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(blArbitro))
                     .addComponent(lblLogoArbitros1))
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHorasASeleccionar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cmbHorasAsignar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separadorCampos11, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1693,25 +1729,23 @@ public Restricciones() {
                 .addGap(18, 18, 18)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckSabadoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ckDomingoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                    .addComponent(ckDomingoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditarArbitro)
+                    .addComponent(btnAceptarArbitro))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separadorCampos12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNoCoincidir2)
                     .addComponent(cbNoCoincidirArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separadorCampos13, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ckCongelarArbitro)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCamposActivos1)
                     .addComponent(lblNumeroArbitrosActivos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptarArbitro)
-                    .addComponent(btnEditarArbitro))
                 .addContainerGap())
         );
 
@@ -1885,34 +1919,6 @@ public Restricciones() {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbLunesActionPerformed
 
-    private void ckMartesArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckMartesArbitroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ckMartesArbitroActionPerformed
-
-    private void ckLunesArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckLunesArbitroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ckLunesArbitroActionPerformed
-
-    private void ckSabadoArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckSabadoArbitroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ckSabadoArbitroActionPerformed
-
-    private void ckViernesArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckViernesArbitroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ckViernesArbitroActionPerformed
-
-    private void ckMiercolesArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckMiercolesArbitroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ckMiercolesArbitroActionPerformed
-
-    private void ckDomingoArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckDomingoArbitroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ckDomingoArbitroActionPerformed
-
-    private void ckJuevesArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckJuevesArbitroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ckJuevesArbitroActionPerformed
-
     private void cbArbitrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbArbitrosItemStateChanged
         ga.mostrarDatos();
     }//GEN-LAST:event_cbArbitrosItemStateChanged
@@ -1941,6 +1947,7 @@ public Restricciones() {
             this.disableArbitros();
             btnAceptarArbitro.setEnabled(false);
             cbArbitros.setSelectedItem("Selecciona un árbitro");
+            cmbHorasAsignar.setSelectedIndex(-1);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
@@ -1961,7 +1968,8 @@ public Restricciones() {
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un árbitro","Seleccione un árbitro", JOptionPane.QUESTION_MESSAGE, icon);
         }else {
             cbArbitros.setEnabled(false);
-            this.enableArbitros();
+            this.enableHorasAsignar();
+            //this.enableArbitros();
         }
     }//GEN-LAST:event_btnEditarArbitroActionPerformed
 
@@ -2125,7 +2133,1219 @@ public Restricciones() {
     private void cbNoCoincidir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNoCoincidir1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbNoCoincidir1ActionPerformed
-   
+
+    private void cmbHorasAsignarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbHorasAsignarItemStateChanged
+        if(this.cmbHorasAsignar.getSelectedItem().equals("0")){
+            this.disableArbitros();
+            this.ckLunesArbitro.setSelected(false);
+            this.ckMartesArbitro.setSelected(false);
+            this.ckMiercolesArbitro.setSelected(false);
+            this.ckJuevesArbitro.setSelected(false);
+            this.ckViernesArbitro.setSelected(false);
+            this.ckSabadoArbitro.setSelected(false);
+            this.ckDomingoArbitro.setSelected(false);
+            btnAceptarArbitro.setEnabled(true);
+        }else if(this.cmbHorasAsignar.getSelectedItem().equals("14")){
+            this.ckLunesArbitro.setSelected(true);
+            this.ckMartesArbitro.setSelected(true);
+            this.ckMiercolesArbitro.setSelected(true);
+            this.ckJuevesArbitro.setSelected(true);
+            this.ckViernesArbitro.setSelected(true);
+            this.ckSabadoArbitro.setSelected(true);
+            this.ckDomingoArbitro.setSelected(true);
+        }else{
+            this.enableArbitros();   
+        }
+    }//GEN-LAST:event_cmbHorasAsignarItemStateChanged
+
+    private void cmbHorasAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHorasAsignarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbHorasAsignarActionPerformed
+
+    private void ckLunesArbitroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckLunesArbitroItemStateChanged
+        if(this.cmbHorasAsignar.getSelectedIndex() > 0){
+            int horas = Integer.parseInt(cmbHorasAsignar.getSelectedItem().toString());
+            switch(horas){
+                case 2:
+                    if(this.ckLunesArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 4:
+                    if(this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() ||
+                        this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                        this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                        this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                        this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                        this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 6:
+                    if(this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 8:
+                    if(this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 10:
+                    if(this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 12:
+                    if(this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+            }
+            this.btnEditarArbitro.setEnabled(false);
+            this.btnAceptarArbitro.setEnabled(true);      
+        }
+    }//GEN-LAST:event_ckLunesArbitroItemStateChanged
+
+    private void ckMartesArbitroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckMartesArbitroItemStateChanged
+        if(this.cmbHorasAsignar.getSelectedIndex() > 0){
+            int horas = Integer.parseInt(cmbHorasAsignar.getSelectedItem().toString());
+            switch(horas){
+                case 2:
+                    if(this.ckMartesArbitro.isSelected()){
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 4:
+                    if(this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                        this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                        this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                        this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                        this.ckMartesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                        this.ckMartesArbitro.isSelected() && this.ckDomingoArbitro.isSelected()){
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 6:
+                    if(this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 8:
+                    if(this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 10:
+                    if(this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 12:
+                    if(this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()){
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+            }
+            this.btnEditarArbitro.setEnabled(false);
+            this.btnAceptarArbitro.setEnabled(true);
+                 
+        }
+    }//GEN-LAST:event_ckMartesArbitroItemStateChanged
+
+    private void ckMiercolesArbitroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckMiercolesArbitroItemStateChanged
+        if(this.cmbHorasAsignar.getSelectedIndex() > 0){
+            int horas = Integer.parseInt(cmbHorasAsignar.getSelectedItem().toString());
+            switch(horas){
+                case 2:
+                    if(this.ckMiercolesArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 4:
+                    if(this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() ||
+                        this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                        this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                        this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                        this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                        this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 6:
+                    if(this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 8:
+                    if(this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 10:
+                    if(this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 12:
+                    if(this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+            }
+            this.btnEditarArbitro.setEnabled(false);
+            this.btnAceptarArbitro.setEnabled(true);     
+        }
+    }//GEN-LAST:event_ckMiercolesArbitroItemStateChanged
+
+    private void ckJuevesArbitroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckJuevesArbitroItemStateChanged
+        if(this.cmbHorasAsignar.getSelectedIndex() > 0){
+            int horas = Integer.parseInt(cmbHorasAsignar.getSelectedItem().toString());
+            switch(horas){
+                case 2:
+                    if(this.ckJuevesArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 4:
+                    if(this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() ||
+                        this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                        this.ckJuevesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                        this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                        this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                        this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 6:
+                    if(this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 8:
+                    if(this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 10:
+                    if(this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 12:
+                    if(this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+            }
+            this.btnEditarArbitro.setEnabled(false);
+            this.btnAceptarArbitro.setEnabled(true);     
+        }
+    }//GEN-LAST:event_ckJuevesArbitroItemStateChanged
+
+    private void ckViernesArbitroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckViernesArbitroItemStateChanged
+        if(this.cmbHorasAsignar.getSelectedIndex() > 0){
+            int horas = Integer.parseInt(cmbHorasAsignar.getSelectedItem().toString());
+            switch(horas){
+                case 2:
+                    if(this.ckViernesArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 4:
+                    if(this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() ||
+                        this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                        this.ckViernesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                        this.ckViernesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                        this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                        this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 6:
+                    if(this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 8:
+                    if(this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 10:
+                    if(this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 12:
+                    if(this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckViernesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+            }
+            this.btnEditarArbitro.setEnabled(false);
+            this.btnAceptarArbitro.setEnabled(true);      
+        }
+    }//GEN-LAST:event_ckViernesArbitroItemStateChanged
+
+    private void ckSabadoArbitroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckSabadoArbitroItemStateChanged
+        if(this.cmbHorasAsignar.getSelectedIndex() > 0){
+            int horas = Integer.parseInt(cmbHorasAsignar.getSelectedItem().toString());
+            switch(horas){
+                case 2:
+                    if(this.ckSabadoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 4:
+                    if(this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() ||
+                        this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                        this.ckSabadoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                        this.ckSabadoArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                        this.ckSabadoArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                        this.ckSabadoArbitro.isSelected() && this.ckDomingoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 6:
+                    if(this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 8:
+                    if(this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 10:
+                    if(this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 12:
+                    if(this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected() ||
+                       this.ckSabadoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckDomingoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckDomingoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckDomingoArbitro.setEnabled(true);
+                    }
+                    break;
+            }
+            this.btnEditarArbitro.setEnabled(false);
+            this.btnAceptarArbitro.setEnabled(true);
+        }
+    }//GEN-LAST:event_ckSabadoArbitroItemStateChanged
+
+    private void ckDomingoArbitroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckDomingoArbitroItemStateChanged
+        if(this.cmbHorasAsignar.getSelectedIndex() > 0){
+            int horas = Integer.parseInt(cmbHorasAsignar.getSelectedItem().toString());
+            switch(horas){
+                case 2:
+                    if(this.ckDomingoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 4:
+                    if(this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() ||
+                        this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                        this.ckDomingoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                        this.ckDomingoArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                        this.ckDomingoArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                        this.ckDomingoArbitro.isSelected() && this.ckSabadoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 6:
+                    if(this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 8:
+                    if(this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 10:
+                    if(this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected()) {
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                    }
+                    break;
+                case 12:
+                    if(this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMartesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected() ||
+                       this.ckDomingoArbitro.isSelected() && this.ckMiercolesArbitro.isSelected() && this.ckJuevesArbitro.isSelected() && this.ckLunesArbitro.isSelected() && this.ckViernesArbitro.isSelected() && this.ckSabadoArbitro.isSelected()){
+                        this.ckMartesArbitro.setEnabled(false);
+                        this.ckMiercolesArbitro.setEnabled(false);
+                        this.ckJuevesArbitro.setEnabled(false);
+                        this.ckLunesArbitro.setEnabled(false);
+                        this.ckViernesArbitro.setEnabled(false);
+                        this.ckSabadoArbitro.setEnabled(false);
+                    }else{
+                        this.ckMartesArbitro.setEnabled(true);
+                        this.ckMiercolesArbitro.setEnabled(true);
+                        this.ckJuevesArbitro.setEnabled(true);
+                        this.ckLunesArbitro.setEnabled(true);
+                        this.ckViernesArbitro.setEnabled(true);
+                        this.ckSabadoArbitro.setEnabled(true);
+                    }
+                    break;
+            }
+            this.btnEditarArbitro.setEnabled(false);
+            this.btnAceptarArbitro.setEnabled(true);
+        }
+    }//GEN-LAST:event_ckDomingoArbitroItemStateChanged
+
     public void close() {
              dispose();             
     }
@@ -2226,12 +3446,14 @@ public Restricciones() {
     public javax.swing.JCheckBox ckViernesEquipos;
     public javax.swing.JCheckBox ckViernesPrimera;
     public javax.swing.JCheckBox ckViernesSegunda;
+    private javax.swing.JComboBox<String> cmbHorasAsignar;
     private javax.swing.JLabel lblCampos;
     private javax.swing.JLabel lblCamposActivos;
     private javax.swing.JLabel lblCamposActivos1;
     private javax.swing.JLabel lblCamposExcluidos;
     private javax.swing.JLabel lblDiasEquipos;
     private javax.swing.JLabel lblEquipos;
+    private javax.swing.JLabel lblHorasASeleccionar;
     private javax.swing.JLabel lblLogoArbitros1;
     private javax.swing.JLabel lblLogoCampos;
     private javax.swing.JLabel lblLogoEquipos;

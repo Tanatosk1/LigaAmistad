@@ -97,8 +97,8 @@ public class GeneraCalendario {
         partidosPorJornada = 0;
         for(int pa = 0; pa < totalPartidosMostrados; pa++){
             if(this.jornada == (int)model.getValueAt(pa, 1)){
-                if(!verificarEquipoCongelado((String)tabla.getValueAt(pa, 5))){
-                    if(!verificarEquipoCongelado((String)tabla.getValueAt(pa, 6))){
+                if(!verificarEquipoCongelado((String)tabla.getValueAt(pa, 7))){
+                    if(!verificarEquipoCongelado((String)tabla.getValueAt(pa, 8))){
                         partidosPorJornada++;
                     }
                 }
