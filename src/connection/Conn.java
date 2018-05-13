@@ -86,7 +86,6 @@ public class Conn {
         try {
             String Query = "INSERT INTO " + table + " VALUES(" + values +")";
             Statement st = link.createStatement();
-
             st.executeUpdate(Query);
 //            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/aceptar.png"));
 //            JOptionPane.showMessageDialog(null, "Datos guardados con éxito", "Información", JOptionPane.QUESTION_MESSAGE, icon);

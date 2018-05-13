@@ -110,23 +110,23 @@ public class LeerExcel implements Runnable{
             //Creamos un ArrayList para guardar los datos del excel
             List list = (List) sheetData.get(i);
             //Buscamos en la tabla de equipos para obtener el ID de cada equipo, local y visitante
-            ResultSet idEquipoLocal = conn.getValues("ID", "Equipos", "NOMBRE like \"" + String.valueOf(list.get(4)).replace("\"", "'")+"\"", "");
-            ResultSet idEquipoVisitante = conn.getValues("ID", "Equipos", "NOMBRE like \"" + String.valueOf(list.get(6)).replace("\"", "'")+"\"", "");
+            ResultSet idEquipoLocal = conn.getValues("ID", "Equipos", "NOMBRE like \"" + String.valueOf(list.get(1)).replace("\"", "'")+"\"", "");
+            ResultSet idEquipoVisitante = conn.getValues("ID", "Equipos", "NOMBRE like \"" + String.valueOf(list.get(2)).replace("\"", "'")+"\"", "");
             //Sustituimos en el ArrayList el nombre del equipo por su ID
             while(idEquipoLocal.next()){
-                list.set(4, idEquipoLocal.getInt("ID"));
+                list.set(1, idEquipoLocal.getInt("ID"));
             }
             while(idEquipoVisitante.next()){
-                list.set(6, idEquipoVisitante.getInt("ID"));
+                list.set(2, idEquipoVisitante.getInt("ID"));
             }
             //Convertimos el dato de la jornada de DOUBLE a INT, ya que de excel viene como DOUBLE
-            Cell cell = (Cell) list.get(1);
+            Cell cell = (Cell) list.get(0);
             int jornada = 0;
             if(cell.getCellType() == Cell.CELL_TYPE_NUMERIC){
                 jornada = (int)cell.getNumericCellValue();
             }
             //Enviamos la sentencia SQL para insertar los datos
-            conn.insertData("Campeonato", "ID, JORNADA, ID_LOCAL, ID_VISITANTE", "NULL,"+jornada+","+list.get(4)+","+list.get(6));  
+            conn.insertData("Campeonato", "ID, JORNADA, ID_LOCAL, ID_VISITANTE", "NULL,"+jornada+","+list.get(1)+","+list.get(2));  
             if(LeerExcel.terminar){
                 break;
             }
