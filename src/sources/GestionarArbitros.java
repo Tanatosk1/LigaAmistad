@@ -80,9 +80,17 @@ public class GestionarArbitros {
     public boolean getNivel(String nombre, String apellido) throws SQLException{
         boolean nivel = false;
         conn.conectar();
-        ResultSet rsNivel = conn.getValues("nivel", "arbitros", "NOMBRE like '"+nombre+"' and APELLIDOS like '"+apellido+"' LIMIT 1", "");
+        if(apellido.isEmpty()){
+            System.out.println("Solo nombre");
+            rsNivel = conn.getValues("nivel", "arbitros", "NOMBRE like '"+nombre+"' LIMIT 1", "");
+        }else{
+            System.out.println("Con nombre y apellido");
+            rsNivel = conn.getValues("nivel", "arbitros", "NOMBRE like '"+nombre+"' and APELLIDOS like '"+apellido+"' LIMIT 1", "");
+        }
         while(rsNivel.next()){
+            System.out.println("Dentro del while");
             if(rsNivel.getInt("NIVEL") == 1){
+                System.out.println("Nivel true");
                 nivel = true;
                 return nivel;
             }

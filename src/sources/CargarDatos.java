@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -73,6 +74,7 @@ public class CargarDatos {
                 }
             }
             showExelDataEquipos(sheetData);
+            JOptionPane.showMessageDialog(null, "Carga de equipos finalizada", "Información", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             Logger.getLogger(LeerExcel.class.getName()).log(Level.SEVERE, null, ex);
 	}

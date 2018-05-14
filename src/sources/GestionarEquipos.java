@@ -125,9 +125,12 @@ public class GestionarEquipos {
     public void vaciarEquipo() throws SQLException{
 
             conn.conectar();
+            conn.deleteTable("restricciones");
+            conn.getConection().commit();
             conn.deleteTable("equipos");
             conn.getConection().commit();
             conn.desconectar();
+            JOptionPane.showMessageDialog(null, "Se ha vaciado la tabla", "Información", JOptionPane.INFORMATION_MESSAGE);
 
     }
     

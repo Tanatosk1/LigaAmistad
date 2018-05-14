@@ -26,6 +26,7 @@ public class GestionarCampeonato {
             conn.deleteTable("campeonato");
             conn.getConection().commit();
             conn.desconectar();
+            JOptionPane.showMessageDialog(null, "Se ha limpiado la tabla", "Información", JOptionPane.INFORMATION_MESSAGE);
         }catch(SQLException ex){
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
             JOptionPane.showMessageDialog(null, "Error al vaciar los datos\n"+ex.getMessage(), "Error", JOptionPane.QUESTION_MESSAGE, icon);
