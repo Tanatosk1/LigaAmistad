@@ -19,7 +19,7 @@ public class CrearDocumentos {
     
     public void crearExcel(String ruta, JTable tabla){
     try{    
-        String[] headers = {"","JORNADA", "FECHA", "DÍA", "HORA", "ÁRBITRO","CAMPO", "LOCAL", "VISITANTE", "COMPETICION"};
+        String[] headers = {"","JORNADA", "FECHA", "DÍA", "HORA", "CAMPO", "LOCAL", "VISITANTE", "COMPETICION", "ÁRBITRO"};
 
         //Creamos un libro excel
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -31,11 +31,11 @@ public class CrearDocumentos {
         sheet.setColumnWidth(2, 4096);
         sheet.setColumnWidth(3, 4096);
         sheet.setColumnWidth(4, 4096);
-        sheet.setColumnWidth(6, 7202);
+        sheet.setColumnWidth(5, 12000);
+        sheet.setColumnWidth(6, 9350);
         sheet.setColumnWidth(7, 9350);
-        sheet.setColumnWidth(8, 9350);
-        sheet.setColumnWidth(9, 12000);
-        //XSSFSheet sheet1 = workbook.createSheet("Otra hoja");
+        sheet.setColumnWidth(8, 7202);
+        sheet.setColumnWidth(9, 4096);
         
         //Creamos estilo para los encabezados
         CellStyle headerStyle = workbook.createCellStyle();
@@ -90,11 +90,11 @@ public class CrearDocumentos {
             String fecha = (String) d[2];
             String dia = (String) d[3];
             String hora = (String) d[4];
-            String arbitro = (String) d[5];
-            String local = (String) d[6];
-            String visitante = (String) d[7];
-            String campo = (String) d[8];
-            String competicion = (String) d[9];
+            String campo = (String) d[6];
+            String local = (String) d[7];
+            String visitante = (String) d[8];
+            String competicion = (String) d[5];
+            String arbitro = (String) d[9];
             
             //Agregamos el texto a cada celda del excel y centramos el contenido
             //dataRow.createCell(0).setCellValue(id);

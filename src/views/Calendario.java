@@ -47,14 +47,14 @@ private final CrearDocumentos cd = new CrearDocumentos();
         
         tCalendario.getColumnModel().getColumn(0).setPreferredWidth(50);
         tCalendario.getColumnModel().getColumn(1).setPreferredWidth(75);
-        tCalendario.getColumnModel().getColumn(2).setPreferredWidth(120);
-        tCalendario.getColumnModel().getColumn(3).setPreferredWidth(120);
-        tCalendario.getColumnModel().getColumn(4).setPreferredWidth(120);
-        tCalendario.getColumnModel().getColumn(5).setPreferredWidth(325);
-        tCalendario.getColumnModel().getColumn(6).setPreferredWidth(325);
-        tCalendario.getColumnModel().getColumn(7).setPreferredWidth(325);
+        tCalendario.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tCalendario.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tCalendario.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tCalendario.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tCalendario.getColumnModel().getColumn(6).setPreferredWidth(280);
+        tCalendario.getColumnModel().getColumn(7).setPreferredWidth(300);
         tCalendario.getColumnModel().getColumn(8).setPreferredWidth(300);
-        tCalendario.getColumnModel().getColumn(9).setPreferredWidth(120);
+        tCalendario.getColumnModel().getColumn(9).setPreferredWidth(350);
         
         md.llenarComboCategorias(this.cbCategoria);
         md.llenarComboDivisiones(this.cbDivision);
@@ -115,13 +115,13 @@ private final CrearDocumentos cd = new CrearDocumentos();
         tCalendario = new javax.swing.JTable();
         btnCalendarioGenerar = new javax.swing.JButton();
         btnAsignarArbitros = new javax.swing.JButton();
+        btnBorrarArbitros = new javax.swing.JButton();
         mbCalendario = new javax.swing.JMenuBar();
         mImportar = new javax.swing.JMenu();
         miImportarcalendario = new javax.swing.JMenuItem();
         mExportar = new javax.swing.JMenu();
         miExportarExcel = new javax.swing.JMenuItem();
         miExportarExcelEquipos = new javax.swing.JMenuItem();
-        miExportarExcelArbitros = new javax.swing.JMenuItem();
         mGestionarRestricciones = new javax.swing.JMenu();
         miGestionarFestivos = new javax.swing.JMenuItem();
         miGestionarAplazados = new javax.swing.JMenuItem();
@@ -363,6 +363,18 @@ private final CrearDocumentos cd = new CrearDocumentos();
             }
         });
 
+        btnBorrarArbitros.setBackground(new java.awt.Color(31, 87, 12));
+        btnBorrarArbitros.setForeground(new java.awt.Color(255, 255, 255));
+        btnBorrarArbitros.setText("Borrar Árbitros");
+        btnBorrarArbitros.setMaximumSize(new java.awt.Dimension(125, 23));
+        btnBorrarArbitros.setMinimumSize(new java.awt.Dimension(125, 23));
+        btnBorrarArbitros.setPreferredSize(new java.awt.Dimension(125, 23));
+        btnBorrarArbitros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarArbitrosActionPerformed(evt);
+            }
+        });
+
         mbCalendario.setBackground(new java.awt.Color(31, 87, 12));
         mbCalendario.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -414,13 +426,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
             }
         });
         mExportar.add(miExportarExcelEquipos);
-
-        miExportarExcelArbitros.setBackground(new java.awt.Color(31, 87, 12));
-        miExportarExcelArbitros.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        miExportarExcelArbitros.setForeground(new java.awt.Color(255, 255, 255));
-        miExportarExcelArbitros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/excel.png"))); // NOI18N
-        miExportarExcelArbitros.setText("Excel árbitros");
-        mExportar.add(miExportarExcelArbitros);
 
         mbCalendario.add(mExportar);
 
@@ -481,6 +486,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
                     .addComponent(pInicioCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnBorrarArbitros, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAsignarArbitros, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCalendarioGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -498,7 +505,8 @@ private final CrearDocumentos cd = new CrearDocumentos();
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCalendarioGenerar)
-                    .addComponent(btnAsignarArbitros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAsignarArbitros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrarArbitros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -629,7 +637,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private void btnAsignarArbitrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarArbitrosActionPerformed
         if (cbGenerarJornada.getSelectedItem().toString().equals("Seleccione una Jornada")){
             ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
-            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una jornada","Seleccione una jornada", JOptionPane.QUESTION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una jornada para asignar árbitros","Seleccione una jornada", JOptionPane.QUESTION_MESSAGE, icon);
         }else{
               ga.asignarArbitros(this.tCalendario, this.cbGenerarJornada);
               miGestionarAplazados.setEnabled(true);
@@ -637,6 +645,17 @@ private final CrearDocumentos cd = new CrearDocumentos();
         }    
         
     }//GEN-LAST:event_btnAsignarArbitrosActionPerformed
+
+    private void btnBorrarArbitrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarArbitrosActionPerformed
+        if (cbGenerarJornada.getSelectedItem().toString().equals("Seleccione una Jornada")){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/resources/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una jornada para eliminar árbitros","Seleccione una jornada", JOptionPane.QUESTION_MESSAGE, icon);
+        }else{
+              ga.borrarArbitros(this.tCalendario, this.cbGenerarJornada);
+              miGestionarAplazados.setEnabled(true);
+              miVerCamposHabiles.setEnabled(true);
+        }  
+    }//GEN-LAST:event_btnBorrarArbitrosActionPerformed
     
     public void close() {
         gc.borrarCamposAsignado();
@@ -680,6 +699,7 @@ private final CrearDocumentos cd = new CrearDocumentos();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignarArbitros;
+    private javax.swing.JButton btnBorrarArbitros;
     private javax.swing.JButton btnCalendarioGenerar;
     private javax.swing.JButton btnFiltroAceptar;
     private javax.swing.JButton btnFiltroLimpiar;
@@ -705,7 +725,6 @@ private final CrearDocumentos cd = new CrearDocumentos();
     private javax.swing.JMenu mImportar;
     private javax.swing.JMenuBar mbCalendario;
     private javax.swing.JMenuItem miExportarExcel;
-    private javax.swing.JMenuItem miExportarExcelArbitros;
     private javax.swing.JMenuItem miExportarExcelEquipos;
     private javax.swing.JMenuItem miGestionarAplazados;
     private javax.swing.JMenuItem miGestionarFestivos;

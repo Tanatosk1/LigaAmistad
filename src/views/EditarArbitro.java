@@ -189,6 +189,8 @@ public class EditarArbitro extends javax.swing.JDialog {
     }//GEN-LAST:event_chkEspecialActionPerformed
 
     private void cmbArbitrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbArbitrosItemStateChanged
+        this.txtNombreArbitro.setText("");
+        this.txtApellidoArbitro.setText("");
         String completo = cmbArbitros.getSelectedItem().toString();
         String[] nombre = completo.split(" ");
         if(nombre.length > 1){
@@ -196,6 +198,17 @@ public class EditarArbitro extends javax.swing.JDialog {
                 this.txtNombreArbitro.setText(nombre[0]);
                 this.txtApellidoArbitro.setText(nombre[1]);
                 if(ga.getNivel(nombre[0], nombre[1])){
+                    this.chkEspecial.setSelected(true);
+                }else{
+                    this.chkEspecial.setSelected(false);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(EditarArbitro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            try {
+                this.txtNombreArbitro.setText(nombre[0]);
+                if(ga.getNivel(nombre[0], "")){
                     this.chkEspecial.setSelected(true);
                 }else{
                     this.chkEspecial.setSelected(false);

@@ -32,7 +32,7 @@ public class Filtros {
         int cat = categoria;
         int div = division;
         int jor = jornada;
-        String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, a.NOMBRE AS \"ARBITRO\", l.NOMBRE AS \"LOCAL\", "
+        String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, a.NOMBRE AS \"ARBITRO\", a.APELLIDOS, l.NOMBRE AS \"LOCAL\", "
                 + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.APLAZADO, com.COMPETICION AS \"CATEGORIA\", "
                 + "d.DIVISION AS \"DIVISION\"";
         String from = " Campeonato c INNER JOIN Equipos l ON c.ID_LOCAL = l.ID "
@@ -55,7 +55,7 @@ public class Filtros {
         }else if(cat != 0 && div != 0 && jor != 0){
             where = "com.ID = " + cat + " and d.ID = " + div + " and c.JORNADA = " + jor;
         }
-        String order = "c.JORNADA, c.FECHA DESC";
+        String order = "c.JORNADA, c.FECHA, ca.CAMPO, c.HORA ASC";
         //String order = "c.JORNADA, com.COMPETICION, d.DIVISION"; 
         ResultSet campeonato = con.getValues(select, from, where, order);    
         SimpleDateFormat formatterShow = new SimpleDateFormat("dd-MM-yyyy");
@@ -76,12 +76,18 @@ public class Filtros {
                             int day = getDay.get(Calendar.DAY_OF_WEEK)-1;
                             fila[3] = getDia(day);
                             fila[4] = campeonato.getString("HORA").substring(0, 5);
+                            
                         }else{
-                            fila[2] = null;
-                            fila[3] = null;
-                            fila[4] = null;
+                            fila[2] = "";
+                            fila[3] = "";
+                            fila[4] = "";
+                            
                         }
-                        fila[5] = campeonato.getString("ARBITRO");
+                        if(campeonato.getString("ARBITRO") != null){
+                            fila[5] = campeonato.getString("ARBITRO")+ " " + campeonato.getString("APELLIDOS");
+                        }else{
+                            fila[5] = "";
+                        }
                         fila[6] = campeonato.getString("CAMPO");
                         fila[7] = campeonato.getString("LOCAL");
                         fila[8] = campeonato.getString("VISITANTE");
@@ -120,7 +126,7 @@ public class Filtros {
         
         Calendar getDay = Calendar.getInstance();
         con.conectar();
-        String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, a.NOMBRE AS \"ARBITRO\", l.NOMBRE AS \"LOCAL\", "
+        String select = "c.ID, c.JORNADA, c.FECHA, c.HORA, a.NOMBRE AS \"ARBITRO\", a.APELLIDOS, l.NOMBRE AS \"LOCAL\", "
                 + "v.NOMBRE AS \"VISITANTE\", ca.CAMPO, c.APLAZADO, com.COMPETICION AS \"CATEGORIA\", "
                 + "d.DIVISION AS \"DIVISION\"";
         String from = " Campeonato c INNER JOIN Equipos l ON c.ID_LOCAL = l.ID "
@@ -130,7 +136,7 @@ public class Filtros {
                 + "LEFT JOIN arbitros a ON a.ID = c.ID_ARBITRO";
         String where = "c.FECHA BETWEEN '" + formatter.format(inicio)+"' AND '" + formatter.format(fin) +"'";
         //String order = "c.FECHA DESC";
-        String order = "c.JORNADA, com.ID, d.ID, c.FECHA ASC, c.HORA ASC"; 
+        String order = "c.JORNADA, c.FECHA, ca.CAMPO, c.HORA ASC"; 
         ResultSet campeonato = con.getValues(select, from, where, order);    
             try {
                 if(!campeonato.first()){
@@ -150,7 +156,7 @@ public class Filtros {
                             fila[3] = null;
                         }
                         fila[4] = campeonato.getString("HORA");
-                        fila[5] = campeonato.getString("ARBITRO");
+                        fila[5] = campeonato.getString("ARBITRO") + " " + campeonato.getString("APELLIDOS");
                         fila[6] = campeonato.getString("CAMPO");
                         fila[7] = campeonato.getString("LOCAL");
                         fila[8] = campeonato.getString("VISITANTE");

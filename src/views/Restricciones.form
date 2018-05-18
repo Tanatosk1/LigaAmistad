@@ -878,9 +878,18 @@
                           <Component id="ckSabadoArbitro" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="ckDomingoArbitro" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnEditarArbitro" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnAceptarArbitro" min="-2" pref="102" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblCamposActivos1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="lblNumeroArbitrosActivos" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="ckCongelarArbitro" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="ckLunesArbitro" min="-2" pref="93" max="-2" attributes="0"/>
@@ -975,15 +984,6 @@
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblCamposActivos1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="lblNumeroArbitrosActivos" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnEditarArbitro" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnAceptarArbitro" min="-2" pref="102" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -1092,7 +1092,7 @@
                       </Group>
                       <Component id="lblLogoArbitros1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblHorasASeleccionar" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="cmbHorasAsignar" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -1111,6 +1111,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="ckSabadoArbitro" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ckDomingoArbitro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnEditarArbitro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAceptarArbitro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="separadorCampos12" min="-2" pref="10" max="-2" attributes="0"/>
@@ -1122,19 +1124,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="separadorCampos13" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="ckCongelarArbitro" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblCamposActivos1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblNumeroArbitrosActivos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                          <Component id="btnAceptarArbitro" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnEditarArbitro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Component id="ckCongelarArbitro" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblCamposActivos1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNumeroArbitrosActivos" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -2229,7 +2223,6 @@
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbHorasAsignarItemStateChanged"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbHorasAsignarActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

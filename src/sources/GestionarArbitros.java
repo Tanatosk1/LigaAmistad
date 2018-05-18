@@ -81,16 +81,12 @@ public class GestionarArbitros {
         boolean nivel = false;
         conn.conectar();
         if(apellido.isEmpty()){
-            System.out.println("Solo nombre");
             rsNivel = conn.getValues("nivel", "arbitros", "NOMBRE like '"+nombre+"' LIMIT 1", "");
         }else{
-            System.out.println("Con nombre y apellido");
             rsNivel = conn.getValues("nivel", "arbitros", "NOMBRE like '"+nombre+"' and APELLIDOS like '"+apellido+"' LIMIT 1", "");
         }
         while(rsNivel.next()){
-            System.out.println("Dentro del while");
             if(rsNivel.getInt("NIVEL") == 1){
-                System.out.println("Nivel true");
                 nivel = true;
                 return nivel;
             }
@@ -311,7 +307,7 @@ public class GestionarArbitros {
             if(jornada.getSelectedItem() == tabla.getValueAt(i, 1)){
                 if(tabla.getValueAt(i, 3) != null){
                     if(tabla.getValueAt(i, 3).equals(dia)){
-                        if(tabla.getValueAt(i, 5) != null){
+                        if(!tabla.getValueAt(i, 5).equals("")){
                             continue;
                         }else{
                             if(verificarCampo(indice, tabla, i)){
@@ -424,6 +420,24 @@ public class GestionarArbitros {
         res.ckDomingoArbitro.setSelected(false);
         res.ckCongelarArbitro.setSelected(false);
         res.cbNoCoincidirArbitro.setSelectedIndex(0);
+    }
+    
+    public void borrarArbitros(JTable tabla, JComboBox jornada){
+        int j = Integer.parseInt(jornada.getSelectedItem().toString());
+        for(int fila = 0; fila < tabla.getRowCount(); fila++){
+            if((int)tabla.getValueAt(fila, 1) == j){
+                tabla.setValueAt("", fila, 5);
+            }
+        }
+        
+        conn.conectar();
+        conn.updateData("campeonato", "ID_ARBITRO = NULL", "JORNADA = " + j);
+        try {
+            conn.getConection().commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conn.desconectar();
     }
     
 }
