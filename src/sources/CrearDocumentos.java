@@ -136,7 +136,7 @@ public class CrearDocumentos {
     
     public void crearExcelEquipos(String ruta, JTable tabla){
     try{    
-        String[] headers = {"","Jornada", "Fecha", "Día", "Hora", "Equipo local", "Equipo visitante", "Campo", "Competición"};
+        String[] headers = {"","Jornada", "Fecha", "Día", "Hora", "Campo", "Equipo local", "Equipo visitante", "Competición"};
 
         //Creamos un libro excel
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -148,9 +148,9 @@ public class CrearDocumentos {
         sheet.setColumnWidth(2, 4096);
         sheet.setColumnWidth(3, 4096);
         sheet.setColumnWidth(4, 4096);
-        sheet.setColumnWidth(5, 9350);
+        sheet.setColumnWidth(5, 7202);
         sheet.setColumnWidth(6, 9350);
-        sheet.setColumnWidth(7, 7202);
+        sheet.setColumnWidth(7, 9350);
         sheet.setColumnWidth(8, 12000);
         //XSSFSheet sheet1 = workbook.createSheet("Otra hoja");
         
@@ -220,11 +220,11 @@ public class CrearDocumentos {
             dataRow.getCell(3).setCellStyle(dataStyle);
             dataRow.createCell(4).setCellValue(hora);
             dataRow.getCell(4).setCellStyle(dataStyle);
-            dataRow.createCell(5).setCellValue(local);
+            dataRow.createCell(5).setCellValue(campo);
             dataRow.getCell(5).setCellStyle(dataStyle);
-            dataRow.createCell(6).setCellValue(visitante);
+            dataRow.createCell(6).setCellValue(local);
             dataRow.getCell(6).setCellStyle(dataStyle);
-            dataRow.createCell(7).setCellValue(campo);
+            dataRow.createCell(7).setCellValue(visitante);
             dataRow.getCell(7).setCellStyle(dataStyle);
             dataRow.createCell(8).setCellValue(competicion); 
             dataRow.getCell(8).setCellStyle(dataStyle);
