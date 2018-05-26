@@ -30,6 +30,9 @@ public class GestionarEquipos {
         try {
             int id = r.cbEquipos.getSelectedIndex();
             conn.conectar();
+            if(condiciones.size() != 0){
+                conn.deleteData("restricciones", "ID_EQUIPO = " + condiciones.get(0).getNoCoincidir() + " AND ID_COINCIDE = " + id);
+            }
             conn.deleteData("restricciones", "ID_EQUIPO = " + id);
             conn.getConection().commit();
             
@@ -40,7 +43,7 @@ public class GestionarEquipos {
                 conn.getConection().commit();
                 
                 if(condiciones.get(i).getNoCoincidir() != null){
-                    conn.insertData("restricciones", "null,"+condiciones.get(i).getNoCoincidir()+",null, null, null,"+id);
+                    conn.insertData("restricciones", "null,"+condiciones.get(i).getNoCoincidir()+",null, null, null,"+id+",null");
                     conn.getConection().commit();
                 }
             }
