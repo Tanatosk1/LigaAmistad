@@ -31,10 +31,10 @@ public class CrearDocumentos {
         sheet.setColumnWidth(2, 4096);
         sheet.setColumnWidth(3, 4096);
         sheet.setColumnWidth(4, 4096);
-        sheet.setColumnWidth(5, 12000);
+        sheet.setColumnWidth(5, 7202);
         sheet.setColumnWidth(6, 9350);
         sheet.setColumnWidth(7, 9350);
-        sheet.setColumnWidth(8, 7202);
+        sheet.setColumnWidth(8, 12000);
         sheet.setColumnWidth(9, 4096);
         
         //Creamos estilo para los encabezados
@@ -93,8 +93,8 @@ public class CrearDocumentos {
             String campo = (String) d[6];
             String local = (String) d[7];
             String visitante = (String) d[8];
-            String competicion = (String) d[5];
-            String arbitro = (String) d[9];
+            String competicion = (String) d[9];
+            String arbitro = (String) d[5];
             
             //Agregamos el texto a cada celda del excel y centramos el contenido
             //dataRow.createCell(0).setCellValue(id);
@@ -107,15 +107,15 @@ public class CrearDocumentos {
             dataRow.getCell(3).setCellStyle(dataStyle);
             dataRow.createCell(4).setCellValue(hora);
             dataRow.getCell(4).setCellStyle(dataStyle);
-            dataRow.createCell(5).setCellValue(arbitro);
+            dataRow.createCell(5).setCellValue(campo);
             dataRow.getCell(5).setCellStyle(dataStyle);
             dataRow.createCell(6).setCellValue(local);
             dataRow.getCell(6).setCellStyle(dataStyle);
             dataRow.createCell(7).setCellValue(visitante);
             dataRow.getCell(7).setCellStyle(dataStyle);
-            dataRow.createCell(8).setCellValue(campo);
+            dataRow.createCell(8).setCellValue(competicion);
             dataRow.getCell(8).setCellStyle(dataStyle);
-            dataRow.createCell(9).setCellValue(competicion); 
+            dataRow.createCell(9).setCellValue(arbitro); 
             dataRow.getCell(9).setCellStyle(dataStyle);
         }
 
@@ -136,7 +136,7 @@ public class CrearDocumentos {
     
     public void crearExcelEquipos(String ruta, JTable tabla){
     try{    
-        String[] headers = {"","JORNADA", "FECHA", "DÍA", "HORA", "CAMPO", "LOCAL", "VISITANTE", "COMPETICION"};
+        String[] headers = {"","Jornada", "Fecha", "Día", "Hora", "Equipo local", "Equipo visitante", "Campo", "Competición"};
 
         //Creamos un libro excel
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -148,9 +148,9 @@ public class CrearDocumentos {
         sheet.setColumnWidth(2, 4096);
         sheet.setColumnWidth(3, 4096);
         sheet.setColumnWidth(4, 4096);
-        sheet.setColumnWidth(5, 7202);
+        sheet.setColumnWidth(5, 9350);
         sheet.setColumnWidth(6, 9350);
-        sheet.setColumnWidth(7, 9350);
+        sheet.setColumnWidth(7, 7202);
         sheet.setColumnWidth(8, 12000);
         //XSSFSheet sheet1 = workbook.createSheet("Otra hoja");
         
@@ -202,20 +202,16 @@ public class CrearDocumentos {
             
             //Extraemos los datos de la matriz
             Object[] d = datos[i];
-            //int id = (int) d[0];
             int jornada = (int) d[1];
             String fecha = (String) d[2];
             String dia = (String) d[3];
             String hora = (String) d[4];
-            //String arbitro = (String) d[5];
-            String local = (String) d[6];
-            String visitante = (String) d[7];
-            String campo = (String) d[8];
+            String local = (String) d[7];
+            String visitante = (String) d[8];
+            String campo = (String) d[6];
             String competicion = (String) d[9];
             
             //Agregamos el texto a cada celda del excel y centramos el contenido
-            //dataRow.createCell(0).setCellValue(id);
-            //dataRow.getCell(0).setCellStyle(dataStyle);
             dataRow.createCell(1).setCellValue(jornada);
             dataRow.getCell(1).setCellStyle(dataStyle);
             dataRow.createCell(2).setCellValue(fecha);
@@ -224,8 +220,6 @@ public class CrearDocumentos {
             dataRow.getCell(3).setCellStyle(dataStyle);
             dataRow.createCell(4).setCellValue(hora);
             dataRow.getCell(4).setCellStyle(dataStyle);
-            //dataRow.createCell(5).setCellValue(arbitro);
-            //dataRow.getCell(5).setCellStyle(dataStyle);
             dataRow.createCell(5).setCellValue(local);
             dataRow.getCell(5).setCellStyle(dataStyle);
             dataRow.createCell(6).setCellValue(visitante);
