@@ -161,82 +161,112 @@ public class GestionarArbitros {
     public void asignarArbitros(JTable tabla, JComboBox jornada){
         String dia;
         String nombre;
+        int jor = Integer.parseInt(jornada.getSelectedItem().toString());
         int id = 0;
         conn.conectar();
-        rsNivel = conn.getValues("*", "arbitros", "CONGELADO = 0 AND NIVEL = 1", "");
+        rsNivel = conn.getValues("*", "arbitros", "CONGELADO = 0 AND NIVEL = 1", "");       
         crearAleatorio(rsNivel);
+        int cont = 0;
         nuevaFila:
-        for(int t = 0; t < tabla.getRowCount(); t++){
-            if(tabla.getValueAt(t, 11) != null){
-                if((boolean)tabla.getValueAt(t, 11) == true){                    
-                    if(tabla.getValueAt(t, 5) == null){
-                        for(int arN = 0; arN < arbitros.size(); arN++){
-                            nombre = arbitros.get(arN).nombre + " " + arbitros.get(arN).apellidos;
-                            if(arbitros.get(arN).lunes == 1){
-                                if(tabla.getValueAt(t, 3).equals("Lunes")){
-                                    try {
-                                        tabla.setValueAt(nombre, t, 5);
-                                        arbitros.get(arN).setLunes(0);
-                                        mismoCampo(tabla, t, tabla.getValueAt(t, 6).toString(), tabla.getValueAt(t, 3).toString(), arbitros.get(arN).id, nombre);
-                                        conn.updateData("campeonato", "ID_ARBITRO = " + arbitros.get(arN).id, "ID = " + tabla.getValueAt(t, 0));
-                                        conn.updateData("arbitros", "LUNES = 0", "ID = " + arbitros.get(arN).id);
-                                        conn.getConection().commit();  
-                                        continue nuevaFila;
-                                    } catch (SQLException ex) {
-                                        Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+        for(int t = 0; t < tabla.getRowCount(); t++){//recorro toda la tabla
+            if((int)tabla.getValueAt(t, 1) == jor){ //Verifico si la jornada en la tabla es la misma que la seleccinada
+                if(tabla.getValueAt(t, 11) != null){//Verifico si el check de árbitro de nivel tiene datos
+                    if((boolean)tabla.getValueAt(t, 11) == true){//Verifico si el dato del check es true
+                        if(tabla.getValueAt(t, 5) == ""){//Verifico si ya tiene un árbitro asignado
+                            while(cont <= arbitros.size()){
+                                nombre = arbitros.get(cont).nombre + " " + arbitros.get(cont).apellidos;
+                                if(arbitros.get(cont).lunes == 1){
+                                    if(tabla.getValueAt(t, 3).equals("Lunes")){
+                                        try {
+                                            tabla.setValueAt(nombre, t, 5);
+                                            arbitros.get(cont).setLunes(0);
+                                            conn.updateData("campeonato", "ID_ARBITRO = " + arbitros.get(cont).id, "ID = " + tabla.getValueAt(t, 0));
+                                            mismoCampo(tabla, tabla.getValueAt(t, 6).toString(), tabla.getValueAt(t, 3).toString(), arbitros.get(cont).id, nombre, jor);
+                                            conn.updateData("arbitros", "LUNES = 0", "ID = " + arbitros.get(cont).id);
+                                            conn.getConection().commit();
+                                            cont++;
+                                            if(cont >= arbitros.size()){
+                                                cont = 0;
+                                            }
+                                            continue nuevaFila;
+                                        } catch (SQLException ex) {
+                                            Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
                                     }
                                 }
-                            }
-                            if(arbitros.get(arN).martes == 1){
-                                if(tabla.getValueAt(t, 3).equals(("Martes"))){
-                                    try {
-                                        tabla.setValueAt(nombre, t, 5);
-                                        arbitros.get(arN).setMartes(0);
-                                        mismoCampo(tabla, t, tabla.getValueAt(t, 6).toString(), tabla.getValueAt(t, 3).toString(), arbitros.get(arN).id, nombre);
-                                        conn.updateData("campeonato", "ID_ARBITRO = " + arbitros.get(arN).id, "ID = " + tabla.getValueAt(t, 0));
-                                        conn.updateData("arbitros", "MARTES = 0", "ID = " + arbitros.get(arN).id);
-                                        conn.getConection().commit();
-                                        continue nuevaFila;
-                                    } catch (SQLException ex) {
-                                        Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+                                if(arbitros.get(cont).martes == 1){
+                                    if(tabla.getValueAt(t, 3).equals(("Martes"))){
+                                        try {
+                                            tabla.setValueAt(nombre, t, 5);
+                                            arbitros.get(cont).setMartes(0);
+                                            conn.updateData("campeonato", "ID_ARBITRO = " + arbitros.get(cont).id, "ID = " + tabla.getValueAt(t, 0));
+                                            mismoCampo(tabla, tabla.getValueAt(t, 6).toString(), tabla.getValueAt(t, 3).toString(), arbitros.get(cont).id, nombre, jor);
+                                            conn.updateData("arbitros", "MARTES = 0", "ID = " + arbitros.get(cont).id);
+                                            conn.getConection().commit();
+                                            cont++;
+                                            if(cont >= arbitros.size()){
+                                                cont = 0;
+                                            }
+                                            continue nuevaFila;
+                                        } catch (SQLException ex) {
+                                            Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
                                     }
                                 }
-                            }
-                            if(arbitros.get(arN).miercoles == 1){
-                                if(tabla.getValueAt(t, 3).equals(("Miércoles"))){
-                                    try {
-                                        tabla.setValueAt(nombre, t, 5);
-                                        arbitros.get(arN).setMiercoles(0);
-                                        mismoCampo(tabla, t, tabla.getValueAt(t, 6).toString(), tabla.getValueAt(t, 3).toString(), arbitros.get(arN).id, nombre);
-                                        conn.updateData("campeonato", "ID_ARBITRO = " + arbitros.get(arN).id, "ID = " + tabla.getValueAt(t, 0));
-                                        conn.updateData("arbitros", "MIERCOLES = 0", "ID = " + arbitros.get(arN).id);
-                                        conn.getConection().commit();
-                                        continue nuevaFila;
-                                    } catch (SQLException ex) {
-                                        Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+                                if(arbitros.get(cont).miercoles == 1){
+                                    if(tabla.getValueAt(t, 3).equals(("Miércoles"))){
+                                        try {
+                                            tabla.setValueAt(nombre, t, 5);
+                                            arbitros.get(cont).setMiercoles(0);
+                                            conn.updateData("campeonato", "ID_ARBITRO = " + arbitros.get(cont).id, "ID = " + tabla.getValueAt(t, 0));
+                                            mismoCampo(tabla, tabla.getValueAt(t, 6).toString(), tabla.getValueAt(t, 3).toString(), arbitros.get(cont).id, nombre, jor);
+                                            
+                                            conn.updateData("arbitros", "MIERCOLES = 0", "ID = " + arbitros.get(cont).id);
+                                            conn.getConection().commit();
+                                            cont++;
+                                            if(cont >= arbitros.size()){
+                                                cont = 0;
+                                            }
+                                            continue nuevaFila;
+                                        } catch (SQLException ex) {
+                                            Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
                                     }
                                 }
-                            }
-                            if(arbitros.get(arN).jueves == 1){
-                                if(tabla.getValueAt(t, 3).equals(("Jueves"))){
-                                    try {
-                                        tabla.setValueAt(nombre, t, 5);
-                                        arbitros.get(arN).setJueves(0);
-                                        mismoCampo(tabla, t, tabla.getValueAt(t, 6).toString(), tabla.getValueAt(t, 3).toString(), arbitros.get(arN).id, nombre);
-                                        conn.updateData("campeonato", "ID_ARBITRO = " + arbitros.get(arN).id, "ID = " + tabla.getValueAt(t, 0));
-                                        conn.updateData("arbitros", "JUEVES = 0", "ID = " + arbitros.get(arN).id);
-                                        conn.getConection().commit();
-                                        continue nuevaFila;
-                                    } catch (SQLException ex) {
-                                        Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+                                if(arbitros.get(cont).jueves == 1){
+                                    if(tabla.getValueAt(t, 3).equals(("Jueves"))){
+                                        try {
+                                            tabla.setValueAt(nombre, t, 5);
+                                            arbitros.get(cont).setJueves(0);
+                                            conn.updateData("campeonato", "ID_ARBITRO = " + arbitros.get(cont).id, "ID = " + tabla.getValueAt(t, 0));
+                                            mismoCampo(tabla, tabla.getValueAt(t, 6).toString(), tabla.getValueAt(t, 3).toString(), arbitros.get(cont).id, nombre, jor);
+                                            
+                                            conn.updateData("arbitros", "JUEVES = 0", "ID = " + arbitros.get(cont).id);
+                                            conn.getConection().commit();
+                                            cont++;
+                                            if(cont >= arbitros.size()){
+                                                cont = 0;
+                                            }
+                                            continue nuevaFila;
+                                        } catch (SQLException ex) {
+                                            Logger.getLogger(GestionarArbitros.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
                                     }
                                 }
+                                
                             }
-                        }
-                    }
-                }
-            }
-        }
+                            
+                            /*for(int arN = cont ; arN < arbitros.size(); arN++){
+                                System.out.println(arN);
+                                System.out.println("Contador " + cont);
+                                System.out.println("Tamaño arbitros " + arbitros.size());
+                                
+                            }*/// Fin For arN
+                        }//Fin verificación árbitro asignado
+                    }//Fin verificación tipo de dato del check
+                }//Fin verificación si datos de nivel tiene datos
+            }//Fin verificación jornada seleccionada
+        }//Termino de recorrer la tabla
         arbitros.clear();
         rs = conn.getValues("*", "arbitros", "CONGELADO = 0", "");
         crearAleatorio(rs);
@@ -288,12 +318,14 @@ public class GestionarArbitros {
         conn.desconectar();       
     }
     
-    private void mismoCampo(JTable tabla, int fila, String campo, String dia, int idArbitro, String nombre){
-        for(int mc = fila; mc < tabla.getRowCount(); mc++){
-            if(tabla.getValueAt(mc, 6).equals(campo)){
-                if(tabla.getValueAt(mc, 3).equals(dia)){
-                    tabla.setValueAt(nombre, mc, 5);
-                    //conn.updateData("campeonato", "ID_ARBITRO = " + idArbitro, "ID = " + tabla.getValueAt(mc, 0));
+    private void mismoCampo(JTable tabla, String campo, String dia, int idArbitro, String nombre, int jornada){
+        for(int mc = 0; mc < tabla.getRowCount(); mc++){
+            if((int)tabla.getValueAt(mc, 1)==jornada){
+                if(tabla.getValueAt(mc, 6).equals(campo)){
+                    if(tabla.getValueAt(mc, 3).equals(dia)){
+                        tabla.setValueAt(nombre, mc, 5);
+                        conn.updateData("campeonato", "ID_ARBITRO = " + idArbitro, "ID = " + tabla.getValueAt(mc, 0));
+                    }
                 }
             }
         }
@@ -341,7 +373,7 @@ public class GestionarArbitros {
                 }
             }
         }
-        }catch(SQLException e){}
+        }catch(SQLException e){ System.err.println(e.getCause());}
     }
     
     private boolean verificarCampo(int indice, JTable tabla, int fila){
