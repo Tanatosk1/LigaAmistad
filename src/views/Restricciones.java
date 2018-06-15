@@ -1520,17 +1520,9 @@ public Restricciones() {
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(ckSabadoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ckDomingoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEditarArbitro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAceptarArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ckDomingoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pCamposLayout.createSequentialGroup()
-                                .addComponent(lblCamposActivos1)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblNumeroArbitrosActivos))
                             .addComponent(ckCongelarArbitro)
                             .addGroup(pCamposLayout.createSequentialGroup()
                                 .addComponent(ckLunesArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1615,7 +1607,15 @@ public Restricciones() {
                                 .addComponent(ckLunesSegunda)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtLunesSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pCamposLayout.createSequentialGroup()
+                        .addComponent(lblCamposActivos1)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblNumeroArbitrosActivos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEditarArbitro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAceptarArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pCamposLayout.setVerticalGroup(
@@ -1707,7 +1707,7 @@ public Restricciones() {
                         .addComponent(cbArbitros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(blArbitro))
                     .addComponent(lblLogoArbitros1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHorasASeleccionar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cmbHorasAsignar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1723,9 +1723,7 @@ public Restricciones() {
                 .addGap(18, 18, 18)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckSabadoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ckDomingoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditarArbitro)
-                    .addComponent(btnAceptarArbitro))
+                    .addComponent(ckDomingoArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separadorCampos12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1735,11 +1733,16 @@ public Restricciones() {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separadorCampos13, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ckCongelarArbitro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCamposActivos1)
-                    .addComponent(lblNumeroArbitrosActivos))
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pCamposLayout.createSequentialGroup()
+                        .addComponent(ckCongelarArbitro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCamposActivos1)
+                            .addComponent(lblNumeroArbitrosActivos)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAceptarArbitro)
+                        .addComponent(btnEditarArbitro)))
                 .addContainerGap())
         );
 
@@ -1941,6 +1944,7 @@ public Restricciones() {
             
             cbArbitros.setSelectedItem("Selecciona un árbitro");
             btnEditarArbitro.setEnabled(true);
+            cmbHorasAsignar.setSelectedIndex(-1);
             cmbHorasAsignar.setEnabled(false);
             try {
                 Thread.sleep(1000);
@@ -2133,7 +2137,16 @@ public Restricciones() {
     }//GEN-LAST:event_cbNoCoincidir1ActionPerformed
 
     private void cmbHorasAsignarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbHorasAsignarItemStateChanged
-        if(this.cmbHorasAsignar.getSelectedItem().equals("0")){
+        if(this.cmbHorasAsignar.getSelectedIndex() == -1){
+            this.ckLunesArbitro.setSelected(false);
+            this.ckMartesArbitro.setSelected(false);
+            this.ckMiercolesArbitro.setSelected(false);
+            this.ckJuevesArbitro.setSelected(false);
+            this.ckViernesArbitro.setSelected(false);
+            this.ckSabadoArbitro.setSelected(false);
+            this.ckDomingoArbitro.setSelected(false);
+            btnAceptarArbitro.setEnabled(false);
+        }else if(this.cmbHorasAsignar.getSelectedItem().equals("0")){
             this.disableArbitros();
             this.ckLunesArbitro.setSelected(false);
             this.ckMartesArbitro.setSelected(false);
@@ -2151,9 +2164,8 @@ public Restricciones() {
             this.ckViernesArbitro.setSelected(true);
             this.ckSabadoArbitro.setSelected(true);
             this.ckDomingoArbitro.setSelected(true);
-        }else if(this.cmbHorasAsignar.getSelectedIndex() == -1){
-            
-        }else{
+        }else {
+        
             this.enableArbitros();   
         }
     }//GEN-LAST:event_cmbHorasAsignarItemStateChanged
